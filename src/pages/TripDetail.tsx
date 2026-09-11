@@ -11,6 +11,8 @@ import { Pencil, Trash2, ArrowLeft, Bike, Shirt, Baby, ArrowUpRight } from 'luci
 import { ConfirmSheet } from '@/components/ConfirmSheet'
 import { getTripContext } from '@/lib/tripContext'
 import { generateLuxeJetterCopy, deriveWardrobeMoments } from '@/lib/luxeJetterCopy'
+import { openExternal } from '@/lib/links'
+import { appFamily } from '@/config/appFamily'
 import type { Destination, Itinerary } from '@/types'
 
 export function TripDetail() {
@@ -162,10 +164,14 @@ function MakeItYours({ destination, tripId, itinerary }: { destination: Destinat
         {/* Luxe Jetter — always relevant. Copy is trip-specific: destination,
             day count, and this itinerary's real occasion mix (see
             deriveWardrobeMoments). */}
-        <div className="rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 ring-1 ring-terracotta/15 sm:col-span-2">
+        <button
+          type="button"
+          onClick={() => openExternal(appFamily['luxe-jetter'].iOSURL)}
+          className="w-full rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 text-left ring-1 ring-terracotta/15 transition-opacity active:opacity-80 sm:col-span-2"
+        >
           <div className="flex items-center gap-2">
             <Shirt size={18} className="text-terracotta" />
-            <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">Luxe Jetter</p>
+            <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">LuxeJetter</p>
           </div>
           <p className="mt-2 font-display text-lg text-ink">{luxeCopy?.headline ?? 'What Are You Wearing?'}</p>
           <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">
@@ -191,10 +197,12 @@ function MakeItYours({ destination, tripId, itinerary }: { destination: Destinat
             <p className="text-xs font-medium text-terracotta/80">{luxeCopy?.cta ?? 'Build My Wardrobe'}</p>
             <ArrowUpRight size={13} className="text-terracotta/60" />
           </div>
-        </div>
+        </button>
 
         {/* Little Jetter — only for trips traveling with kids. Parent-facing
-            copy only; zero child-directed commerce language. */}
+            copy only; zero child-directed commerce language. No verified
+            App Store/web URL for Little Jetter yet (see appFamily.ts), so
+            this card is a real promo but not yet a live link. */}
         {isFamilyTrip && (
           <div className="rounded-2xl bg-gradient-to-br from-jungle/10 via-cream to-cream p-4 ring-1 ring-jungle/15">
             <Baby size={18} className="text-jungle" />
@@ -211,14 +219,18 @@ function MakeItYours({ destination, tripId, itinerary }: { destination: Destinat
         {/* Rallii — only when this destination has a genuine, documented
             scenic-rail/mountain-biking/trail connection. */}
         {railii && (
-          <div className="rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 ring-1 ring-gold/20">
+          <button
+            type="button"
+            onClick={() => openExternal(appFamily.rallii.iOSURL)}
+            className="w-full rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 text-left ring-1 ring-gold/20 transition-opacity active:opacity-80"
+          >
             <Bike size={18} className="text-gold" />
             <p className="mt-2 font-display text-lg text-ink">Take the Scenic Route</p>
             <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">There's more to the journey. {railii.description}</p>
             <div className="mt-2 flex items-center gap-1 text-[11px] font-medium text-gold/80">
-              Explore in Rallii <ArrowUpRight size={11} />
+              Explore in Rallii Rail <ArrowUpRight size={11} />
             </div>
-          </div>
+          </button>
         )}
       </div>
     </div>

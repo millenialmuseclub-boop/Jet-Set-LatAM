@@ -1,4 +1,4 @@
-import { Compass, Shirt, Baby, Bike, type LucideIcon } from 'lucide-react'
+import { Compass, Shirt, Baby, Bike, UtensilsCrossed, type LucideIcon } from 'lucide-react'
 import type { TripContext } from '@/types'
 
 // ---------------------------------------------------------------------------
@@ -9,14 +9,15 @@ import type { TripContext } from '@/types'
 // the only data a sibling app could ever read, and only if a future pass
 // wires up a real handoff.
 //
-// All four apps are published (per Jordann, Sept 2026) — none of them are
+// All five apps are published (per Jordann, Sept 2026) — none of them are
 // framed as "coming soon" or ordered/numbered relative to each other in any
-// UI. Real webURL/iOSURL values still need to be added below the moment
-// they're verified — leaving a URL field undefined just means that app's
-// card isn't a clickable link yet, not that the app isn't real.
+// UI. iOSURL values below are verified live App Store IDs (fetched and
+// confirmed against apps.apple.com, developer: Jordann Lopez, Sept 2026).
+// Little Jetter's URL isn't verified yet — its card just isn't a clickable
+// link until one lands here; that's not a statement the app isn't real.
 // ---------------------------------------------------------------------------
 
-export type AppFamilyId = 'jet-set-latam' | 'luxe-jetter' | 'little-jetter' | 'rallii'
+export type AppFamilyId = 'jet-set-latam' | 'luxe-jetter' | 'little-jetter' | 'rallii' | 'let-them-eat'
 
 export interface AppFamilyMember {
   id: AppFamilyId
@@ -50,9 +51,10 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
   },
   'luxe-jetter': {
     id: 'luxe-jetter',
-    name: 'Luxe Jetter',
-    description: 'Outfit planning built around your itinerary — what to wear, where you\'re going.',
+    name: 'LuxeJetter',
+    description: 'Destination-led wardrobes, complete looks and beauty rituals for the way you actually travel.',
     icon: Shirt,
+    iOSURL: 'https://apps.apple.com/us/app/luxejetter/id6808023085',
     status: 'live',
     oneLiner: 'Dress for it',
     supportedDestinations: 'all',
@@ -68,15 +70,26 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
   },
   rallii: {
     id: 'rallii',
-    name: 'Rallii',
-    description: 'Scenic rail, mountain-biking and trail routes for the days you want to move.',
+    name: 'Rallii Rail',
+    description: 'Seat guidance, scenic moments and planning tools for 36 remarkable rail journeys.',
     icon: Bike,
+    iOSURL: 'https://apps.apple.com/us/app/rallii-rail/id6804085679',
     status: 'live',
     oneLiner: 'Take the scenic route',
     // Scoped to destinations with a verified railiiConnection only (see the
     // Destination type) — populated by the app at render time, not hardcoded
     // here, so it never drifts out of sync with what's actually documented.
     supportedDestinations: [],
+  },
+  'let-them-eat': {
+    id: 'let-them-eat',
+    name: 'Let Them Eat',
+    description: 'Cakes, ramen, cookies and noodles — stories, global traditions, flavor guides and pairings.',
+    icon: UtensilsCrossed,
+    iOSURL: 'https://apps.apple.com/us/app/let-them-eat/id6801655009',
+    status: 'live',
+    oneLiner: 'Taste the trip',
+    supportedDestinations: 'all',
   },
 }
 
