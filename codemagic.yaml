@@ -8,6 +8,17 @@ workflows:
       # Name the integration exactly "codemagic" so this reference resolves.
       app_store_connect: codemagic
     environment:
+      # ios-testflight holds CERTIFICATE_P12_BASE64 / CERTIFICATE_P12_PASSWORD
+      # (and PROVISIONING_PROFILE_B...) as secure vars in Codemagic → this
+      # app → Environment variables. Without importing the group here, those
+      # never reach the shell — $CERTIFICATE_P12_PASSWORD expanded to an
+      # empty string, `keychain add-certificates --certificate-password`
+      # got no argument, the cert import silently failed, and the archive
+      # step then had no distribution certificate/private key to sign with
+      # ("No signing certificate 'iOS Distribution' found ... with a
+      # private key"). Confirmed from the actual build-6aa44036 raw log.
+      groups:
+        - ios-testflight
       vars:
         BUNDLE_ID: "com.jetsetlatam.app"
         XCODE_PROJECT: "ios/App/App.xcodeproj"
