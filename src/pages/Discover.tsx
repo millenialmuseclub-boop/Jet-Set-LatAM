@@ -63,6 +63,7 @@ export function Discover() {
     getPlacesByDestination('cartagena').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
     getPlacesByDestination('guadalajara').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
     getPlacesByDestination('tulum').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
+    getPlacesByDestination('sao-paulo').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
   ]).slice(0, 6)
   // WEEKEND SOMEWHERE — the GUIDE-tier destinations, framed as a shorter,
   // less-planned trip rather than hidden as second-class.

@@ -1,62 +1,29 @@
-import type { Destination, Place } from '@/types'
+import type { Destination } from '@/types'
 
 // ---------------------------------------------------------------------------
 // FIELD NOTE tier (Pass 12) — smaller, real editorial destinations held back
 // only on photography, not on content.
 //
-// São Paulo and Playa del Carmen were re-searched this pass via the
-// jetsetlatam.com (thebrunchmanifesto.blog) WordPress media API. Same
-// result as the prior pass (see docs/CONTENT_INVENTORY.md): every
-// candidate photo for both is explicitly stock-credited ("Photo by
-// Caroline Cagnin," "Photo by Willian Justen de Vasconcellos," "Photo by
-// Tim Mossholder," two raw pexels-photo-*.jpeg files) or has a filename
-// mirroring an article slug with no identifiable geography — this
-// project's established stock/AI heuristic. No authentic photography
-// exists for either yet.
+// São Paulo graduated out of this file in Pass 12 (same pass) once Jordann
+// supplied real trip photography (Beco do Batman) directly — see
+// src/data/destinations/sao-paulo.ts. Only Playa del Carmen remains here.
 //
-// Under this pass's instruction, that no longer means "hold out entirely."
-// It means: ship the real written content as an honest FIELD NOTE — a
-// smaller destination page, PhotoPlaceholder hero instead of a stock
-// photo, and only the Places that are genuinely named and sourced. Nothing
-// here is invented; anything not explicitly verified in
-// docs/CONTENT_INVENTORY.md is left out rather than guessed at.
+// Playa del Carmen was re-searched this pass via the jetsetlatam.com
+// (thebrunchmanifesto.blog) WordPress media API. Same result as the prior
+// pass (see docs/CONTENT_INVENTORY.md): every candidate photo is explicitly
+// stock-credited ("Photo by Willian Justen de Vasconcellos," "Photo by Tim
+// Mossholder," two raw pexels-photo-*.jpeg files). No authentic photography
+// exists for it yet.
+//
+// Under this pass's instruction, that doesn't mean "hold out entirely." It
+// means: ship the real written content as an honest FIELD NOTE — a smaller
+// destination page, PhotoPlaceholder hero instead of a stock photo, and
+// only Places that are genuinely named and sourced. Playa del Carmen's
+// archive doesn't have confirmed named/bookable Places yet, so none are
+// invented here.
 // ---------------------------------------------------------------------------
 
-export const fieldNotePlaces: Place[] = [
-  {
-    id: 'pl-hocca-bar',
-    name: 'Hocca Bar',
-    country: 'Brazil',
-    city: 'São Paulo',
-    neighborhood: 'Centro',
-    category: 'restaurant',
-    description:
-      'A counter inside Mercado Municipal de São Paulo, known for one thing above all: the mortadella sandwich, stacked thick, that regulars line up for at lunch.',
-    photos: [],
-    isJetSetPick: false,
-    tags: ['market', 'sandwich', 'lunch'],
-  },
-]
-
 export const fieldNoteDestinations: Destination[] = [
-  {
-    id: 'sao-paulo',
-    slug: 'sao-paulo',
-    city: 'São Paulo',
-    country: 'Brazil',
-    heroPhoto: '',
-    tagline: 'Field Note',
-    status: 'field-note',
-    content: {
-      overview:
-        'Mercado Municipal de São Paulo has anchored the city’s downtown since 1933 — a neoclassical market hall with stained glass by Conrado Sorgenicht Filho, still busy with vendors and lunch crowds. Hocca Bar, inside the market, is known for its mortadella sandwich. Sé Cathedral and the Rua 25 de Março shopping strip are both close by.',
-      whyGo: 'A working food market with real architectural weight, in a city Jet Set LatAm hasn’t built a full page for yet — no authentic photography exists for São Paulo yet, so this stays a written field note rather than a photo essay.',
-    },
-    neighborhoods: [],
-    placeIds: ['pl-hocca-bar'],
-    guideIds: [],
-    itineraryIds: [],
-  },
   {
     id: 'playa-del-carmen',
     slug: 'playa-del-carmen',

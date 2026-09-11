@@ -12,6 +12,7 @@ import { cdmxPhotos } from '@/assets/cdmx'
 import { rioPhotos } from '@/assets/rio'
 import { cartagenaPhotos } from '@/assets/cartagena'
 import { tulumPhotos } from '@/assets/tulum'
+import { saoPauloPhotos } from '@/assets/sao-paulo'
 import { openExternal, openMap } from '@/lib/links'
 import { toggleSavedDestination, isSavedDestination, toggleSavedPlace, isSavedPlace } from '@/lib/storage'
 import { Bookmark, BookmarkCheck, Map, Globe, Shirt, ArrowUpRight } from 'lucide-react'
@@ -236,6 +237,19 @@ export function DestinationDetail() {
               { src: tulumPhotos.tulumRuinsCliff, seed: 'pc-tulum-cliff', alt: 'Tulum ruins atop the cliff over the sea', caption: 'The Tulum ruins, cliffside over the Caribbean — the only Maya site built to face the sunrise over open water.' },
               { src: tulumPhotos.tulumBoardwalkBeach, seed: 'pc-tulum-boardwalk', alt: 'Wooden boardwalk to a turquoise beach' },
               { src: tulumPhotos.tulumRuinsPalm, seed: 'pc-tulum-palm', alt: 'Tulum ruins framed by a palm' },
+            ]}
+          />
+        )}
+
+        {tab === 'overview' && destination.id === 'sao-paulo' && (
+          <PostcardGallery
+            title="Beco do Batman In Color"
+            images={[
+              { src: saoPauloPhotos.becoDoBatmanBirdMural, seed: 'pc-sp-bird', alt: 'Psychedelic bird mural, Beco do Batman', caption: 'One wall of Beco do Batman, Vila Madalena — repainted often enough that no two visits look the same.' },
+              { src: saoPauloPhotos.becoDoBatmanDragonMural, seed: 'pc-sp-dragon', alt: 'Dragon and eye murals, Beco do Batman' },
+              { src: saoPauloPhotos.becoDoBatmanButterflyMural, seed: 'pc-sp-butterfly', alt: 'Butterfly mural, Beco do Batman', caption: 'A monarch mural big enough to pose in front of — one of the alley\'s most photographed walls.' },
+              { src: saoPauloPhotos.becoDoBatmanGeometricMural, seed: 'pc-sp-geometric', alt: 'Geometric face mural, Beco do Batman' },
+              { src: saoPauloPhotos.becoDoBatmanMarketAlley, seed: 'pc-sp-market', alt: 'Vendor tables along Beco do Batman' },
             ]}
           />
         )}
