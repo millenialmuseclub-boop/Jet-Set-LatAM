@@ -124,7 +124,9 @@ export const saoPauloPlaces: Place[] = [
       spend: '$',
     },
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Catedral+da+Se+Praca+da+Se+Sao+Paulo',
-    website: 'https://catedraldase.org.br/',
+    // NOTE: catedraldase.org.br is NOT this cathedral's site — checked
+    // during the Pass 14 link audit and found to be an unrelated squatted
+    // domain. No verified official site found; mapUrl only.
     tags: ['cathedral', 'architecture', 'centro'],
   },
 
@@ -236,7 +238,7 @@ export const saoPauloPlaces: Place[] = [
     isJetSetPick: false,
     priceLevel: '$$$',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Rua+Oscar+Freire+Sao+Paulo',
-    website: 'https://cidadedesaopaulo.com/places/rua-oscar-freire/',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Rua_Oscar_Freire',
     tags: ['shopping', 'boutiques', 'jardins'],
   },
   {
