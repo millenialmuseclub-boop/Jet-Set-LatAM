@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import { appFamilyList } from '@/config/appFamily'
+import { appFamilyList, CREATOR_PORTFOLIO_URL } from '@/config/appFamily'
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure'
+import { openExternal } from '@/lib/links'
 
 // A short, editorial About/Credits screen — not a founder biography, not a
 // settings page. Reachable from a restrained link in Discover's "Our World"
@@ -25,9 +26,22 @@ export function About() {
           no stock photography, no filler.
         </p>
         <p className="text-[15px] leading-relaxed text-ink-soft/80">
-          Created by <span className="font-medium text-ink">@jordypop</span>.
+          Created by{' '}
+          <button
+            type="button"
+            onClick={() => openExternal(CREATOR_PORTFOLIO_URL)}
+            className="font-medium text-ink underline decoration-ink/20 underline-offset-2"
+          >
+            @jordypop
+          </button>
+          .
         </p>
-        <p className="text-sm text-ink-soft/50">© 2026 @jordypop</p>
+        <p className="text-sm text-ink-soft/50">
+          ©{' '}2026{' '}
+          <button type="button" onClick={() => openExternal(CREATOR_PORTFOLIO_URL)} className="underline decoration-ink-soft/20 underline-offset-2">
+            @jordypop
+          </button>
+        </p>
       </div>
 
       <div className="border-t border-ink/10 pt-6">
@@ -62,7 +76,13 @@ export function About() {
         </div>
       </div>
 
-      <p className="pt-4 text-center text-[11px] italic text-ink-soft/40">A @jordypop project</p>
+      <p className="pt-4 text-center text-[11px] italic text-ink-soft/40">
+        A{' '}
+        <button type="button" onClick={() => openExternal(CREATOR_PORTFOLIO_URL)} className="underline decoration-ink-soft/20 underline-offset-2">
+          @jordypop
+        </button>
+        {' '}project
+      </p>
     </div>
   )
 }

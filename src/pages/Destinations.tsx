@@ -1,7 +1,8 @@
 import { destinations } from '@/data'
 import { Photo } from '@/components/Photo'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
-import { appFamily } from '@/config/appFamily'
+import { appFamily, CREATOR_PORTFOLIO_URL } from '@/config/appFamily'
+import { openExternal } from '@/lib/links'
 import { Link } from 'react-router-dom'
 import type { Destination } from '@/types'
 
@@ -68,7 +69,13 @@ export function Destinations() {
           </div>
         </section>
       ))}
-      <p className="px-5 pt-2 text-center text-[11px] italic text-ink-soft/35 md:px-8">A @jordypop project</p>
+      <p className="px-5 pt-2 text-center text-[11px] italic text-ink-soft/35 md:px-8">
+        A{' '}
+        <button type="button" onClick={() => openExternal(CREATOR_PORTFOLIO_URL)} className="underline decoration-ink-soft/20 underline-offset-2">
+          @jordypop
+        </button>
+        {' '}project
+      </p>
     </div>
   )
 }

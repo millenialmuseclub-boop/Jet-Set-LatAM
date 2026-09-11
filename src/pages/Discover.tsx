@@ -5,7 +5,8 @@ import { PostcardGallery } from '@/components/PostcardGallery'
 import { flagshipDestination, guides, getJetSetPicks, destinations, getPlacesByDestination, getDestinationForPlace } from '@/data'
 import { cdmxPhotos } from '@/assets/cdmx'
 import { rioPhotos } from '@/assets/rio'
-import { appFamilyList } from '@/config/appFamily'
+import { appFamilyList, CREATOR_PORTFOLIO_URL } from '@/config/appFamily'
+import { openExternal } from '@/lib/links'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
@@ -375,7 +376,12 @@ export function Discover() {
         </div>
         <div className="mt-6 flex items-center justify-between border-t border-ink/5 pt-4">
           <Link to="/about" className="text-[11px] uppercase tracking-[0.1em] text-ink-soft/50">About Jet Set LatAm</Link>
-          <p className="text-[11px] text-ink-soft/35">© 2026 @jordypop</p>
+          <p className="text-[11px] text-ink-soft/35">
+            ©{' '}2026{' '}
+            <button type="button" onClick={() => openExternal(CREATOR_PORTFOLIO_URL)} className="underline decoration-ink-soft/20 underline-offset-2">
+              @jordypop
+            </button>
+          </p>
         </div>
       </section>
     </div>
