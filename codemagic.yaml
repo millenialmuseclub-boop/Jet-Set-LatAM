@@ -38,14 +38,20 @@ workflows:
         # Uses a dedicated certificate generated specifically for this app
         # (Apple's API can't hand out private keys for certs it didn't
         # generate, so app-store-connect fetch-signing-files can't be used
-        # here). Set CERTIFICATE_P12_BASE64, CERTIFICATE_P12_PASSWORD, and
-        # PROVISIONING_PROFILE_BASE64 as secure environment variables in
-        # Codemagic → this app → Environment variables.
+        # here). Set CERTIFICATE_P12_BASE64 and CERTIFICATE_P12_PASSWORD as
+        # secure environment variables in Codemagic → this app → Environment
+        # variables (the .p12 contains the private key, so it stays a
+        # secret). The provisioning profile itself has no private key in
+        # it, so it's committed directly to the repo (codemagic-signing/)
+        # instead of pasted as a giant base64 env var — that 16KB manual
+        # paste was the actual cause of an earlier "Invalid provisioning
+        # profile: Error reading S/MIME message" failure (silent
+        # truncation/corruption on copy), not a real signing problem.
         script: |
           echo $CERTIFICATE_P12_BASE64 | base64 --decode > /tmp/certificate.p12
           keychain add-certificates --certificate /tmp/certificate.p12 --certificate-password $CERTIFICATE_P12_PASSWORD
           mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
-          echo $PROVISIONING_PROFILE_BASE64 | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/jetsetlatam.mobileprovision"
+          cp codemagic-signing/jetsetlatam.mobileprovision "$HOME/Library/MobileDevice/Provisioning Profiles/jetsetlatam.mobileprovision"
       - name: Set up code signing
         script: |
           xcode-project use-profiles
