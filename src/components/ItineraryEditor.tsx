@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Itinerary, ItineraryDay, Place } from '@/types'
 import { getPlace } from '@/data'
 import { Photo } from './Photo'
-import { MapPin, Trash2, ArrowUp, ArrowDown, Shuffle, Map, Globe, Plus, X } from 'lucide-react'
+import { MapPin, Trash2, ArrowUp, ArrowDown, Shuffle, Map, Globe, Plus, X, Sparkle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { openExternal, openMap } from '@/lib/links'
 import { ConfirmSheet } from './ConfirmSheet'
@@ -126,7 +126,14 @@ export function ItineraryEditor({
                         <p className="text-[10px] uppercase tracking-[0.1em] text-terracotta/80">{a.label}</p>
                         {place ? (
                           <>
-                            <p className="text-sm font-medium leading-tight text-ink">{place.name}</p>
+                            <p className="flex items-center gap-1 text-sm font-medium leading-tight text-ink">
+                              {place.name}
+                              {place.isJetSetPick && (
+                                <span title="A Jordann/blog firsthand recommendation, not just a verified place">
+                                  <Sparkle size={11} className="shrink-0 fill-gold text-gold" />
+                                </span>
+                              )}
+                            </p>
                             <p className="mt-0.5 flex items-center gap-1 text-xs text-ink-soft/60">
                               <MapPin size={10} /> {place.neighborhood ?? place.city}
                             </p>
