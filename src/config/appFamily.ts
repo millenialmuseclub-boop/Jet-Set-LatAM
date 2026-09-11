@@ -19,6 +19,12 @@ import type { TripContext } from '@/types'
 
 export type AppFamilyId = 'jet-set-latam' | 'luxe-jetter' | 'little-jetter' | 'rallii' | 'let-them-eat'
 
+// The creator's own portfolio — verified live (jordypop.vercel.app: Studio
+// Art student / multidisciplinary digital artist, lists LuxeJetter, Rallii
+// and Let Them Eat as released apps, Little Jetter as a work in progress).
+// Every "@jordypop" credit in the app links here.
+export const CREATOR_PORTFOLIO_URL = 'https://jordypop.vercel.app'
+
 export interface AppFamilyMember {
   id: AppFamilyId
   name: string
