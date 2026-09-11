@@ -149,7 +149,7 @@ export const tulumDestination: Destination = {
       'Tulum layers three real identities on top of each other: the walled Maya city on its cliff above the Caribbean, a ring of freshwater cenotes just inland (Cristalino, Azul, Jardín del Edén), and one of Mexico\'s most concentrated wellness scenes, from temazcal ceremonies at Yäan to spa treatments at Azulik and Saná. Nomade Tulum anchors a well-known walking route through the hotel zone.',
     whyGo:
       'For the single postcard view — Maya ruins on a cliff over turquoise water — and for a wellness/cenote scene with real depth beyond the beach clubs.',
-    bestTime: 'Content coming soon.',
+    bestTime: 'December–April: dry, sunny and the best cenote/beach weather — also the busiest and most expensive. May is a good shoulder month. June–November is hurricane season — hot, humid, with real storm risk, especially August–October.',
   },
   neighborhoods: [],
   placeIds: tulumPlaces.map((p) => p.id),

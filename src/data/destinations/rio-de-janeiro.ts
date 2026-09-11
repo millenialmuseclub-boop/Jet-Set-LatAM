@@ -510,7 +510,7 @@ export const rioDeJaneiroDestination: Destination = {
       'Rio de Janeiro is a canvas of stunning visuals — towering cliffs embracing the ocean, golden sand, vibrant beachfront bairros. Copacabana’s classic energy, Ipanema’s stylish calm and Leblon’s quiet luxury each tell a different story against the same backdrop of sea, sand and sky. Beyond the beaches, Christ the Redeemer watches over the city from Corcovado, Kobra’s mural anchors the modern waterfront at Porto Maravilha, and Santa Teresa’s cobbled hillside moves at an entirely different pace.',
     whyGo:
       'For a city that rewards both structure and wandering — legendary beachfront hotels and a rooftop-bar nightlife scene sit a short tram ride from Santa Teresa’s unhurried, artist-filled streets.',
-    bestTime: 'Content coming soon.',
+    bestTime: 'May–September (Southern Hemisphere winter): cooler, drier and less crowded — the best window for hiking Sugarloaf and long beach days without peak-season prices. December–March is hot, humid and the most festive (New Year\'s Eve, Carnival in Feb/March) but also the busiest and priciest.',
   },
   neighborhoods: rioNeighborhoods,
   placeIds: rioPlaces.map((p) => p.id),

@@ -526,7 +526,7 @@ export const mexicoCityDestination: Destination = {
       'Mexico City has three major neighborhoods where the best designer boutiques cluster, each with a distinct personality and density of fashion, handbags and contemporary design. Beyond fashion, the city rewards slow movement — through Condesa’s leafy boulevards, Roma’s murals, Coyoacán’s historic pulse and Chapultepec Park — toward the Zócalo at its historic center.',
     whyGo:
       'For a city that operates as a living design culture rather than a source of decorative references — where fashion houses like Carla Fernández treat centuries-old textile techniques as a living, modern practice, not a museum piece.',
-    bestTime: 'Content coming soon.',
+    bestTime: 'November–April: dry season, mild days and cool nights at altitude — the most reliable weather for walking neighborhoods. May–October brings afternoon rain (usually a short, predictable downpour rather than an all-day washout).',
   },
   neighborhoods: cdmxNeighborhoods,
   placeIds: cdmxPlaces.map((p) => p.id),

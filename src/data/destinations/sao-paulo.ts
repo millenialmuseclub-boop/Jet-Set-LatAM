@@ -349,6 +349,7 @@ export const saoPauloDestination: Destination = {
     overview:
       'São Paulo runs from the neo-Gothic Sé Cathedral and neoclassical Mercado Municipal downtown, up Avenida Paulista\'s skyscraper spine to MASP, out to Oscar Niemeyer\'s Ibirapuera pavilions, and back into Vila Madalena\'s ever-repainted Beco do Batman alley. Ten verified places across landmarks, museums, a working market, a shopping street, a rooftop and a park — enough to build a real multi-day trip, not just a highlight reel.',
     whyGo: 'Brazil\'s biggest, densest city, with real architectural weight (Niemeyer, Lina Bo Bardi), a serious museum scene, and street life that rewards slow wandering as much as a checklist.',
+    bestTime: 'June–September (Southern Hemisphere winter): mild, dry and the most comfortable for walking. December–March is hot and rainy, with heavy afternoon downpours common.',
   },
   neighborhoods: saoPauloNeighborhoods,
   placeIds: [

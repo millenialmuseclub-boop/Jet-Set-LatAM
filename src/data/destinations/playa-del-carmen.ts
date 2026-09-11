@@ -65,6 +65,7 @@ export const playaDelCarmenDestination: Destination = {
     overview:
       'Source articles consistently frame Playa del Carmen as the "beating heart" of the Riviera Maya, with Xcaret as a day-trip cluster reachable from it — a park built around natural lagoons, underground rivers, and a walk-through butterfly sanctuary. The archive includes multi-day itineraries, a Cancún-vs-Playa comparison, a cruiser-bike guide, and a dedicated Xcaret hotels guide, not yet pulled into named, bookable Places beyond the butterfly sanctuary.',
     whyGo: 'The region\'s most-written-about beach town in the archive, now with real photography from Xcaret\'s lagoon and butterfly sanctuary to back it up.',
+    bestTime: 'November–April: dry season, the best beach and cenote weather — also the busiest and priciest. June–November is hurricane season, hot and humid with real storm risk, heaviest August–October.',
   },
   neighborhoods: playaDelCarmenNeighborhoods,
   placeIds: ['pl-xcaret-butterfly-sanctuary'],

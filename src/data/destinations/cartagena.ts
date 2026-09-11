@@ -470,7 +470,7 @@ export const cartagenaDestination: Destination = {
       'Cartagena\'s Walled City is a place where fashion, craftsmanship and Caribbean romance blend into one long, golden-hour stroll — bougainvillea over pastel façades, horse-drawn carriages, and boutiques that feel like immersive little worlds. Beyond the walls, Getsemaní brings a livelier, more local energy, and a short speedboat ride out to Isla Barú trades the cobblestones for a beach cabana and turquoise water.',
     whyGo:
       'For a colonial city that still feels lived-in rather than preserved behind glass — where a centuries-old fortress, a Bourdain-famous ceviche bar and a Botero sculpture all sit within a twenty-minute walk of each other.',
-    bestTime: 'Content coming soon.',
+    bestTime: 'December–April: driest, coolest and busiest. May–November brings more humidity and afternoon rain, with the heaviest storms August–October — shoulder months (May, November) trade a little rain for real savings and fewer crowds.',
   },
   neighborhoods: cartagenaNeighborhoods,
   placeIds: cartagenaPlaces.map((p) => p.id),

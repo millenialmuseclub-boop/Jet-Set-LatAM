@@ -151,7 +151,7 @@ export const guadalajaraDestination: Destination = {
       'Guadalajara pairs a design-forward, walkable core with one of Mexico’s most iconic day trips just outside it. Colonia Americana’s art deco streets and Orozco’s murals at the Instituto Cultural Cabañas anchor the city; the José Cuervo Express carries you out into blue agave country and the town of Tequila itself.',
     whyGo:
       'For the murals, the wandering, and the fact that a full day trip through agave fields is on the table without leaving the region.',
-    bestTime: 'Content coming soon.',
+    bestTime: 'November–April: mild, dry and sunny — the best stretch for walking neighborhoods and a day trip to Tequila. May is hot before the rains arrive; June–September brings afternoon thunderstorms but still-warm days.',
   },
   neighborhoods: guadalajaraNeighborhoods,
   placeIds: guadalajaraPlaces.map((p) => p.id),

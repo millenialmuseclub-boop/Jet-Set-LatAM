@@ -332,6 +332,7 @@ export const buenosAiresDestination: Destination = {
     overview:
       'Buenos Aires is the strongest untapped city in the Jet Set LatAm archive by its own tag count — a walking tour through Palermo Soho\'s independent boutiques, a honeymoon guide naming Recoleta\'s grand hotels and MALBA, and a culture-and-nightlife piece anchored by Café Tortoni, the city\'s oldest café. Twelve places across restaurant, museum, park, landmark, cafe, nightlife, hotel, bar and shop categories, spanning six neighborhoods from Palermo Soho to Puerto Madero.',
     whyGo: 'World-class steak, serious museums, and tango ranging from a hidden milonga feel to Faena\'s full theatrical spectacle — a city with real range, not just one postcard image.',
+    bestTime: 'September–November (spring) and March–May (fall): mild and pleasant, with jacaranda blooms in spring. December–February is hot and humid, but also peak nightlife season; June–August is cool and quieter — best for museums and steakhouse dinners.',
   },
   neighborhoods: buenosAiresNeighborhoods,
   placeIds: [
