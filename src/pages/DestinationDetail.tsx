@@ -26,8 +26,9 @@ const SHOP_THE_LOOK_PLACE_IDS = new Set(['pl-copacabana-palace'])
 // Destinations with a strong enough wardrobe-relevant editorial framing to
 // earn ONE contextual Luxe Jetter mention on the destination page itself —
 // not every destination, just where it genuinely fits (colonial-heat
-// Cartagena, beach-to-dinner Rio). No real Luxe Jetter URL exists yet, so
-// this stays an inert "coming soon" mention, same posture as everywhere
+// Cartagena, beach-to-dinner Rio). Luxe Jetter is a published app; its
+// deep-link URL isn't wired into appFamily.ts yet, so this stays a
+// destination-specific promo mention, same posture as everywhere
 // else Luxe Jetter appears.
 const LUXE_JETTER_DESTINATION_COPY: Record<string, string> = {
   cartagena: 'Boutique walks by day, dinner reservations by night — see how Luxe Jetter would pack for the heat and the cobblestones.',
@@ -294,7 +295,7 @@ export function DestinationDetail() {
             </div>
             <p className="mt-1.5 font-display text-lg leading-tight text-ink">Take the Scenic Route</p>
             <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/65">There's more to the journey. {destination.railiiConnection.description}</p>
-            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-gold/80">Explore in Rallii — Not open yet</p>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-gold/80">Explore in Rallii</p>
           </div>
         )}
 
@@ -306,7 +307,7 @@ export function DestinationDetail() {
             </div>
             <p className="mt-1.5 font-display text-lg leading-tight text-ink">Pack For {destination.city}</p>
             <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/65">{LUXE_JETTER_DESTINATION_COPY[destination.id]}</p>
-            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-terracotta/70">See the Luxe Jetter edit — Not open yet</p>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-terracotta/70">See the Luxe Jetter edit</p>
           </div>
         )}
       </div>

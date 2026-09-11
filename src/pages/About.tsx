@@ -37,7 +37,7 @@ export function About() {
 
       <div className="border-t border-ink/10 pt-6">
         <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft/40">Our World</p>
-        <p className="mb-4 text-xs text-ink-soft/50">Jet Set LatAm is the first of a small family of travel apps.</p>
+        <p className="mb-4 text-xs text-ink-soft/50">The Jordypop family of travel apps — built for the same traveler.</p>
         <div className="space-y-2.5">
           {appFamilyList.map((app) => (
             <div key={app.id} className="flex items-center gap-3 rounded-xl bg-cream/60 p-3 ring-1 ring-ink/5">
@@ -47,7 +47,7 @@ export function About() {
                 <p className="text-[11px] text-ink-soft/45">{app.oneLiner}</p>
               </div>
               <span className="ml-auto shrink-0 text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">
-                {app.status === 'live' ? 'Available' : 'Coming soon'}
+                Available
               </span>
             </div>
           ))}

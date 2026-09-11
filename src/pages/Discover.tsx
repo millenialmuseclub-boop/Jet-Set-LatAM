@@ -352,14 +352,14 @@ export function Discover() {
       {/* ---------------------------------------------------------------- */}
       <section className="mx-auto max-w-6xl px-5 pb-2 md:px-8">
         <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft/40">Our World</p>
-        <p className="mb-4 max-w-md text-xs text-ink-soft/50">Jet Set LatAm is the first of a small family of travel apps. The rest are on the way.</p>
+        <p className="mb-4 max-w-md text-xs text-ink-soft/50">The Jordypop family of travel apps — built for the same traveler.</p>
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
           {appFamilyList.map((app) => (
             <div key={app.id} className="rounded-xl bg-cream/60 p-3 ring-1 ring-ink/5">
               <app.icon size={15} className="text-ink-soft/50" />
               <p className="mt-1.5 text-xs font-medium text-ink-soft/80">{app.name}</p>
               <p className="text-[10px] text-ink-soft/45">{app.oneLiner}</p>
-              <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">{app.status === 'live' ? 'Available' : 'Coming soon'}</p>
+              <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">Available</p>
             </div>
           ))}
         </div>

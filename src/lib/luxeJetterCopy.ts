@@ -6,8 +6,9 @@ import { getPlace } from '@/data'
 //
 // Jet Set LatAm handles travel content and travel affiliate opportunities
 // (stays, experiences, tours). Fashion/wardrobe intent belongs to Luxe
-// Jetter — this file never invents a look, a product, or a real Luxe Jetter
-// URL (none exists yet, see src/config/appFamily.ts). It only reads the real
+// Jetter, a published sibling app — this file never invents a look, a
+// product, or a URL (its deep-link URL isn't wired into
+// src/config/appFamily.ts yet). It only reads the real
 // TripContext / Itinerary this trip already has and turns it into two things:
 //   1. A short, destination- and trip-specific headline/body/CTA for the
 //      "Make It Yours" card (replacing one static sentence reused everywhere).
