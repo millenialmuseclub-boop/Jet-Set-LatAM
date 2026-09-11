@@ -37,20 +37,28 @@ export function About() {
 
       <div className="border-t border-ink/10 pt-6">
         <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft/40">Our World</p>
-        <p className="mb-4 text-xs text-ink-soft/50">Jet Set LatAm is the first of a small family of travel apps.</p>
+        <p className="mb-4 text-xs text-ink-soft/50">The Jordypop family of travel apps — built for the same traveler.</p>
         <div className="space-y-2.5">
-          {appFamilyList.map((app) => (
-            <div key={app.id} className="flex items-center gap-3 rounded-xl bg-cream/60 p-3 ring-1 ring-ink/5">
-              <app.icon size={16} className="shrink-0 text-ink-soft/50" />
-              <div className="min-w-0">
-                <p className="text-sm font-medium text-ink-soft/85">{app.name}</p>
-                <p className="text-[11px] text-ink-soft/45">{app.oneLiner}</p>
-              </div>
-              <span className="ml-auto shrink-0 text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">
-                {app.status === 'live' ? 'Available' : 'Coming soon'}
-              </span>
-            </div>
-          ))}
+          {appFamilyList.map((app) => {
+            const href = app.id === 'jet-set-latam' ? undefined : (app.iOSURL ?? app.webURL)
+            const Wrapper = href ? 'a' : 'div'
+            return (
+              <Wrapper
+                key={app.id}
+                {...(href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {})}
+                className="flex items-center gap-3 rounded-xl bg-cream/60 p-3 ring-1 ring-ink/5 transition-colors hover:bg-cream"
+              >
+                <app.icon size={16} className="shrink-0 text-ink-soft/50" />
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-ink-soft/85">{app.name}</p>
+                  <p className="text-[11px] text-ink-soft/45">{app.oneLiner}</p>
+                </div>
+                <span className="ml-auto shrink-0 text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">
+                  {href ? 'Get the app' : 'Available'}
+                </span>
+              </Wrapper>
+            )
+          })}
         </div>
       </div>
 

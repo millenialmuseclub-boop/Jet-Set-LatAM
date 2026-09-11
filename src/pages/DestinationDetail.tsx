@@ -14,7 +14,7 @@ import { cartagenaPhotos } from '@/assets/cartagena'
 import { tulumPhotos } from '@/assets/tulum'
 import { openExternal, openMap } from '@/lib/links'
 import { toggleSavedDestination, isSavedDestination, toggleSavedPlace, isSavedPlace } from '@/lib/storage'
-import { Bookmark, BookmarkCheck, Map, Globe, Shirt } from 'lucide-react'
+import { Bookmark, BookmarkCheck, Map, Globe, Shirt, ArrowUpRight } from 'lucide-react'
 import type { GuideSection, Place } from '@/types'
 
 // Places with a real, verified affiliate surface (see ShopTheLookCard) — a
@@ -26,8 +26,9 @@ const SHOP_THE_LOOK_PLACE_IDS = new Set(['pl-copacabana-palace'])
 // Destinations with a strong enough wardrobe-relevant editorial framing to
 // earn ONE contextual Luxe Jetter mention on the destination page itself —
 // not every destination, just where it genuinely fits (colonial-heat
-// Cartagena, beach-to-dinner Rio). No real Luxe Jetter URL exists yet, so
-// this stays an inert "coming soon" mention, same posture as everywhere
+// Cartagena, beach-to-dinner Rio). Luxe Jetter is a published app; its
+// deep-link URL isn't wired into appFamily.ts yet, so this stays a
+// destination-specific promo mention, same posture as everywhere
 // else Luxe Jetter appears.
 const LUXE_JETTER_DESTINATION_COPY: Record<string, string> = {
   cartagena: 'Boutique walks by day, dinner reservations by night — see how Luxe Jetter would pack for the heat and the cobblestones.',
@@ -287,27 +288,35 @@ export function DestinationDetail() {
         )}
 
         {tab === 'overview' && destination.railiiConnection && (
-          <div className="rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 ring-1 ring-gold/20">
+          <button
+            type="button"
+            onClick={() => openExternal(appFamily.rallii.iOSURL)}
+            className="w-full rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 text-left ring-1 ring-gold/20 transition-opacity active:opacity-80"
+          >
             <div className="flex items-center gap-2">
               <appFamily.rallii.icon size={16} className="text-gold" />
-              <p className="text-[11px] uppercase tracking-[0.14em] text-gold">Rallii</p>
+              <p className="text-[11px] uppercase tracking-[0.14em] text-gold">Rallii Rail</p>
             </div>
             <p className="mt-1.5 font-display text-lg leading-tight text-ink">Take the Scenic Route</p>
             <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/65">There's more to the journey. {destination.railiiConnection.description}</p>
-            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-gold/80">Explore in Rallii — Not open yet</p>
-          </div>
+            <p className="mt-2 flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-gold/80">Explore in Rallii Rail <ArrowUpRight size={11} /></p>
+          </button>
         )}
 
         {tab === 'overview' && LUXE_JETTER_DESTINATION_COPY[destination.id] && (
-          <div className="rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 ring-1 ring-terracotta/15">
+          <button
+            type="button"
+            onClick={() => openExternal(appFamily['luxe-jetter'].iOSURL)}
+            className="w-full rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 text-left ring-1 ring-terracotta/15 transition-opacity active:opacity-80"
+          >
             <div className="flex items-center gap-2">
               <Shirt size={16} className="text-terracotta" />
-              <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">Luxe Jetter</p>
+              <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">LuxeJetter</p>
             </div>
             <p className="mt-1.5 font-display text-lg leading-tight text-ink">Pack For {destination.city}</p>
             <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/65">{LUXE_JETTER_DESTINATION_COPY[destination.id]}</p>
-            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-terracotta/70">See the Luxe Jetter edit — Not open yet</p>
-          </div>
+            <p className="mt-2 flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-terracotta/70">See the LuxeJetter edit <ArrowUpRight size={11} /></p>
+          </button>
         )}
       </div>
     </div>

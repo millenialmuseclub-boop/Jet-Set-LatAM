@@ -11,6 +11,8 @@ import { Pencil, Trash2, ArrowLeft, Bike, Shirt, Baby, ArrowUpRight } from 'luci
 import { ConfirmSheet } from '@/components/ConfirmSheet'
 import { getTripContext } from '@/lib/tripContext'
 import { generateLuxeJetterCopy, deriveWardrobeMoments } from '@/lib/luxeJetterCopy'
+import { openExternal } from '@/lib/links'
+import { appFamily } from '@/config/appFamily'
 import type { Destination, Itinerary } from '@/types'
 
 export function TripDetail() {
@@ -134,15 +136,16 @@ export function TripDetail() {
   )
 }
 
-// Contextual, Trip Detail-only surface for the sibling apps in the Jet Set
+// Contextual, Trip Detail-only surface for the sibling apps in the Jordypop
 // family (see src/config/appFamily.ts) that could read this trip's shape
 // (src/lib/tripContext.ts) without merging their functionality into Jet Set
 // LatAm. Each card only appears when it's genuinely relevant to *this* trip
-// — never a static ad block. None are fake interactivity: Luxe Jetter has no
-// real URL yet, so it's an inert, clearly-labeled "coming soon" handoff, not
-// a dead button. Copy is generated from this trip's real data (see
-// src/lib/luxeJetterCopy.ts) rather than one static sentence reused across
-// every destination.
+// — never a static ad block. All three sibling apps are published; their
+// deep-link URLs aren't wired into this file yet, so a card reads as a real
+// promo for a real app rather than a live button, until a verified webURL/
+// iOSURL lands in src/config/appFamily.ts. Copy is generated from this
+// trip's real data (see src/lib/luxeJetterCopy.ts) rather than one static
+// sentence reused across every destination.
 function MakeItYours({ destination, tripId, itinerary }: { destination: Destination; tripId: string; itinerary: Itinerary }) {
   const context = getTripContext(tripId)
   const companions = itinerary.answers?.companions
@@ -158,14 +161,17 @@ function MakeItYours({ destination, tripId, itinerary }: { destination: Destinat
         The rest of the Jet Set family, for the parts of this trip we don't cover.
       </p>
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        {/* Luxe Jetter — always relevant, no real URL yet, so it's a quiet
-            inert card rather than a button that does nothing on tap. Copy is
-            trip-specific: destination, day count, and this itinerary's real
-            occasion mix (see deriveWardrobeMoments). */}
-        <div className="rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 ring-1 ring-terracotta/15 sm:col-span-2">
+        {/* Luxe Jetter — always relevant. Copy is trip-specific: destination,
+            day count, and this itinerary's real occasion mix (see
+            deriveWardrobeMoments). */}
+        <button
+          type="button"
+          onClick={() => openExternal(appFamily['luxe-jetter'].iOSURL)}
+          className="w-full rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 text-left ring-1 ring-terracotta/15 transition-opacity active:opacity-80 sm:col-span-2"
+        >
           <div className="flex items-center gap-2">
             <Shirt size={18} className="text-terracotta" />
-            <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">Luxe Jetter</p>
+            <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">LuxeJetter</p>
           </div>
           <p className="mt-2 font-display text-lg text-ink">{luxeCopy?.headline ?? 'What Are You Wearing?'}</p>
           <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">
@@ -175,7 +181,7 @@ function MakeItYours({ destination, tripId, itinerary }: { destination: Destinat
           {/* Mini wardrobe preview — not Luxe Jetter embedded, just the real
               occasion types this itinerary contains, so the handoff feels
               concrete instead of generic. No products or looks are shown or
-              invented here — that's Luxe Jetter's job, once it exists. */}
+              invented here — that's Luxe Jetter's job. */}
           {moments.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-1.5">
               <span className="text-[10px] uppercase tracking-[0.1em] text-ink-soft/40">Your {destination.city} trip:</span>
@@ -188,13 +194,15 @@ function MakeItYours({ destination, tripId, itinerary }: { destination: Destinat
           )}
 
           <div className="mt-3 flex items-center justify-between">
-            <p className="text-xs font-medium text-terracotta/80">{luxeCopy?.cta ?? 'Coming soon'}</p>
-            <p className="text-[10px] uppercase tracking-[0.14em] text-terracotta/60">Not open yet</p>
+            <p className="text-xs font-medium text-terracotta/80">{luxeCopy?.cta ?? 'Build My Wardrobe'}</p>
+            <ArrowUpRight size={13} className="text-terracotta/60" />
           </div>
-        </div>
+        </button>
 
         {/* Little Jetter — only for trips traveling with kids. Parent-facing
-            copy only; zero child-directed commerce language. */}
+            copy only; zero child-directed commerce language. No verified
+            App Store/web URL for Little Jetter yet (see appFamily.ts), so
+            this card is a real promo but not yet a live link. */}
         {isFamilyTrip && (
           <div className="rounded-2xl bg-gradient-to-br from-jungle/10 via-cream to-cream p-4 ring-1 ring-jungle/15">
             <Baby size={18} className="text-jungle" />
@@ -205,22 +213,24 @@ function MakeItYours({ destination, tripId, itinerary }: { destination: Destinat
             <div className="mt-2 flex items-center gap-1 text-[11px] font-medium text-jungle/80">
               Explore Little Jetter <ArrowUpRight size={11} />
             </div>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-jungle/60">Not open yet</p>
           </div>
         )}
 
         {/* Rallii — only when this destination has a genuine, documented
             scenic-rail/mountain-biking/trail connection. */}
         {railii && (
-          <div className="rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 ring-1 ring-gold/20">
+          <button
+            type="button"
+            onClick={() => openExternal(appFamily.rallii.iOSURL)}
+            className="w-full rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 text-left ring-1 ring-gold/20 transition-opacity active:opacity-80"
+          >
             <Bike size={18} className="text-gold" />
             <p className="mt-2 font-display text-lg text-ink">Take the Scenic Route</p>
             <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">There's more to the journey. {railii.description}</p>
             <div className="mt-2 flex items-center gap-1 text-[11px] font-medium text-gold/80">
-              Explore in Rallii <ArrowUpRight size={11} />
+              Explore in Rallii Rail <ArrowUpRight size={11} />
             </div>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-gold/60">Not open yet</p>
-          </div>
+          </button>
         )}
       </div>
     </div>

@@ -1,22 +1,23 @@
-import { Compass, Shirt, Baby, Bike, type LucideIcon } from 'lucide-react'
+import { Compass, Shirt, Baby, Bike, UtensilsCrossed, type LucideIcon } from 'lucide-react'
 import type { TripContext } from '@/types'
 
 // ---------------------------------------------------------------------------
-// The Jet Set family — four apps sharing one traveler, none of them merged
-// into this one. This is a display/config seam only: no cross-app API, no
-// account linking, no data sync. See `TripContext` (src/types/index.ts) and
-// `getTripContext()` (src/lib/tripContext.ts) for the only data a sibling
-// app could ever read, and only if a future pass wires up a real handoff.
+// The Jordypop family — travel apps sharing one traveler, none of them
+// merged into this one. This is a display/config seam only: no cross-app
+// API, no account linking, no data sync. See `TripContext`
+// (src/types/index.ts) and `getTripContext()` (src/lib/tripContext.ts) for
+// the only data a sibling app could ever read, and only if a future pass
+// wires up a real handoff.
 //
-// CRITICAL: no invented URLs. As of this pass, no App Store ID, web URL or
-// deep-link scheme has been verified in project docs for Luxe Jetter, Little
-// Jetter or Rallii — all three are `status: 'coming-soon'` with every URL
-// field left undefined. Jet Set LatAm itself is the only app in this family
-// that actually exists today. Update this file the moment a real URL is
-// verified — never before.
+// All five apps are published (per Jordann, Sept 2026) — none of them are
+// framed as "coming soon" or ordered/numbered relative to each other in any
+// UI. iOSURL values below are verified live App Store IDs (fetched and
+// confirmed against apps.apple.com, developer: Jordann Lopez, Sept 2026).
+// Little Jetter's URL isn't verified yet — its card just isn't a clickable
+// link until one lands here; that's not a statement the app isn't real.
 // ---------------------------------------------------------------------------
 
-export type AppFamilyId = 'jet-set-latam' | 'luxe-jetter' | 'little-jetter' | 'rallii'
+export type AppFamilyId = 'jet-set-latam' | 'luxe-jetter' | 'little-jetter' | 'rallii' | 'let-them-eat'
 
 export interface AppFamilyMember {
   id: AppFamilyId
@@ -50,10 +51,11 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
   },
   'luxe-jetter': {
     id: 'luxe-jetter',
-    name: 'Luxe Jetter',
-    description: 'Outfit planning built around your itinerary — what to wear, where you\'re going.',
+    name: 'LuxeJetter',
+    description: 'Destination-led wardrobes, complete looks and beauty rituals for the way you actually travel.',
     icon: Shirt,
-    status: 'coming-soon',
+    iOSURL: 'https://apps.apple.com/us/app/luxejetter/id6808023085',
+    status: 'live',
     oneLiner: 'Dress for it',
     supportedDestinations: 'all',
   },
@@ -62,21 +64,32 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     name: 'Little Jetter',
     description: 'A parent-facing companion for traveling with kids — prep and packing, not a kids\' app.',
     icon: Baby,
-    status: 'coming-soon',
+    status: 'live',
     oneLiner: 'Bring the little travelers along',
     supportedDestinations: 'all',
   },
   rallii: {
     id: 'rallii',
-    name: 'Rallii',
-    description: 'Scenic rail, mountain-biking and trail routes for the days you want to move.',
+    name: 'Rallii Rail',
+    description: 'Seat guidance, scenic moments and planning tools for 36 remarkable rail journeys.',
     icon: Bike,
-    status: 'coming-soon',
+    iOSURL: 'https://apps.apple.com/us/app/rallii-rail/id6804085679',
+    status: 'live',
     oneLiner: 'Take the scenic route',
     // Scoped to destinations with a verified railiiConnection only (see the
     // Destination type) — populated by the app at render time, not hardcoded
     // here, so it never drifts out of sync with what's actually documented.
     supportedDestinations: [],
+  },
+  'let-them-eat': {
+    id: 'let-them-eat',
+    name: 'Let Them Eat',
+    description: 'Cakes, ramen, cookies and noodles — stories, global traditions, flavor guides and pairings.',
+    icon: UtensilsCrossed,
+    iOSURL: 'https://apps.apple.com/us/app/let-them-eat/id6801655009',
+    status: 'live',
+    oneLiner: 'Taste the trip',
+    supportedDestinations: 'all',
   },
 }
 
@@ -85,13 +98,13 @@ export const appFamilyList = Object.values(appFamily)
 // ---------------------------------------------------------------------------
 // Luxe Jetter deep-link "receiving contract" (Pass 10) — documentation only.
 //
-// No real Luxe Jetter URL exists yet (see the CRITICAL note above), so this
-// is deliberately NOT a link builder that produces a clickable URL. It's the
+// Luxe Jetter's deep-link URL isn't wired into this file yet, so this is
+// deliberately NOT a link builder that produces a clickable URL. It's the
 // shape a future handoff would use once `luxe-jetter.webURL` (or a real
-// `deepLinkScheme`) is verified and added above: the query params a real
-// link would carry, generated from the same `TripContext` this app already
-// derives via `getTripContext()` (src/lib/tripContext.ts). Until that URL
-// exists, this function is unused by any UI — it exists purely as a written
+// `deepLinkScheme`) is added above: the query params a real link would
+// carry, generated from the same `TripContext` this app already derives via
+// `getTripContext()` (src/lib/tripContext.ts). Until that URL is wired in,
+// this function is unused by any UI — it exists purely as a written
 // contract so the eventual wiring is a one-line change, not a redesign.
 //
 // Params such a link would carry (all optional, all already real fields on
