@@ -9,15 +9,18 @@ import { ItineraryEditor } from '@/components/ItineraryEditor'
 import { Check, Pencil, Baby } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-// A destination is offered in the planner only once it has enough real,
-// verified Places to generate a useful itinerary without filler — not just
-// because it exists in the destinations list. LIVE destinations with 6+
-// verified Places qualify automatically (currently Mexico City, Rio de
-// Janeiro and Cartagena); GUIDE-tier destinations like Guadalajara are
-// excluded on purpose — real content exists, but not enough category
-// variety yet for a trip that doesn't lean on filler. Coming-soon stubs
-// are excluded automatically since getPlacesByDestination returns an
-// empty array for them.
+// A destination is offered in the planner only once it has enough real
+// Places to generate a useful itinerary without filler — not just because
+// it exists in the destinations list. LIVE destinations with 6+ Places
+// qualify automatically (currently Mexico City, Rio de Janeiro, Cartagena
+// and São Paulo); "Places" here includes both Jet Set Picks (Jordann's own
+// firsthand recommendations) and Verified Places (real, independently
+// researched, sourceUrl-cited places not yet personally covered) — see
+// src/data/destinations/sao-paulo.ts for the isJetSetPick distinction.
+// GUIDE-tier destinations like Guadalajara are excluded on purpose — real
+// content exists, but not enough category variety yet for a trip that
+// doesn't lean on filler. Coming-soon stubs are excluded automatically
+// since getPlacesByDestination returns an empty array for them.
 const PLANNER_READY_DESTINATIONS = destinations.filter(
   (d) => d.status === 'live' && getPlacesByDestination(d.id).length >= 6
 )
