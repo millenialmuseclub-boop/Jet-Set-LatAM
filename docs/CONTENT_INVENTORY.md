@@ -183,3 +183,44 @@ this still-unresolved Playa del Carmen taxonomy question.
    category listing), attach real `sourceUrl`s to the existing Tulum
    Places and build proper Guides — both were deliberately left out this
    pass rather than guessed at.
+
+## Pass 15 — archive-scale reconnaissance + Buenos Aires
+
+Real numbers pulled from the WordPress REST API's own `/categories` and
+`/tags` endpoints (`count` field — reliable structured data, unlike bulk
+post enumeration, which a tool limitation this pass could not do
+exhaustively — see caveat below):
+
+- `Destinations` category: **287 posts**. `Experiences`: 135. Country
+  categories: Mexico 63, South America 91 (parent/overlap), Argentina 27,
+  Colombia 29, Brazil 18, Caribbean 28, Central America 12, Peru 10,
+  Chile 9, Ecuador 9, Costa Rica 7.
+- City-level **tag** counts (the real per-destination coverage signal):
+  Cartagena 21, Buenos Aires 15, Playa Del Carmen 15, Mexico
+  City/CDMX 12+6, Mendoza 7, Rio de Janeiro 7, Guadalajara 5, Cancún 5,
+  Tulum 4, São Paulo 4, Patagonia 4, Santiago 3, Oaxaca 3, Punta Cana 2,
+  Galápagos 2, Havana 2, Quito 2. Notably absent as real destination
+  tags: Bogotá, Medellín, Napa, San Francisco (SF only appears via
+  "World Cup San Francisco," a 2026 event tag, not a destination guide —
+  consistent with the Pass 8 finding that Napa/SF have no real guide
+  content, only passing mentions).
+- **Buenos Aires built this pass** (was 0 → now LIVE/PLAN, 12 Places,
+  6 neighborhoods, 1 ready-made itinerary) — the single strongest
+  untapped destination by tag count. Sourced from 3 real articles found
+  via the Buenos Aires tag: a Palermo Soho/Recoleta boutique walking
+  tour, a honeymoon guide (hotels/restaurants/museums), and a culture &
+  nightlife piece. No firsthand Jordann photography exists for it yet —
+  every Place has `photos: []` and renders on the honest placeholder.
+- **Tooling caveat, stated plainly**: true bulk post enumeration (fetch
+  every one of ~287 posts and read full bodies) is not reliable with the
+  tools available this session — `WebFetch` silently truncates/
+  summarizes large JSON responses (asked for 20-100 posts per call,
+  reliably got 2-8), and direct `curl`/API access is blocked by this
+  session's egress policy. The category/tag `count` endpoints are
+  reliable (small, structured, no truncation) and are what the numbers
+  above come from — but a genuine "scan all 287 Destinations posts and
+  extract every named place" pass would take dozens of individual
+  WebFetch calls per destination, not one systematic sweep. Playa del
+  Carmen (15 tagged posts, only 3 Places currently used) is the clearest
+  next candidate to mine deeper with that same per-destination approach
+  used for Buenos Aires.

@@ -33,6 +33,7 @@ export function Discover() {
     getJetSetPicks('cartagena'),
     getJetSetPicks('guadalajara'),
     getJetSetPicks('sao-paulo'),
+    getJetSetPicks('buenos-aires'),
   ]).slice(0, 10)
   const sortedGuides = [...guides].sort((a, b) => (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''))
   const [featureGuide, ...restGuides] = sortedGuides
@@ -56,6 +57,7 @@ export function Discover() {
     getPlacesByDestination('rio-de-janeiro').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('cartagena').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('sao-paulo').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
+    getPlacesByDestination('buenos-aires').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
   ]).slice(0, 6)
   // ART + DESIGN — museum/landmark places with real category variety across
   // every built destination, not CDMX-only.
@@ -66,6 +68,7 @@ export function Discover() {
     getPlacesByDestination('guadalajara').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
     getPlacesByDestination('tulum').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
     getPlacesByDestination('sao-paulo').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
+    getPlacesByDestination('buenos-aires').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
   ]).slice(0, 6)
   // WEEKEND SOMEWHERE — the GUIDE-tier destinations, framed as a shorter,
   // less-planned trip rather than hidden as second-class.

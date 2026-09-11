@@ -35,6 +35,7 @@ const CITY_FLAVOR: Record<string, string> = {
   Guadalajara: 'plazas, mezcalerías and a day out to Tequila',
   Tulum: 'cenotes, ruins and beach club afternoons',
   'São Paulo': 'gallery mornings, mural-lined alleys and late kitchens',
+  'Buenos Aires': 'steakhouse dinners, grand hotel lobbies and tango nights',
 }
 
 const OCCASION_LABEL_BY_CATEGORY: Partial<Record<PlaceCategory, string>> = {
