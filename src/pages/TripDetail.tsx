@@ -8,6 +8,7 @@ import { Photo } from '@/components/Photo'
 import { ItineraryEditor } from '@/components/ItineraryEditor'
 import { EmptyState } from '@/components/EmptyState'
 import { Pencil, Trash2, ArrowLeft, Bike, Shirt, Baby } from 'lucide-react'
+import { ConfirmSheet } from '@/components/ConfirmSheet'
 import type { Destination, Itinerary, TripCompanions } from '@/types'
 
 export function TripDetail() {
@@ -20,6 +21,7 @@ export function TripDetail() {
   )
   const [editingTitle, setEditingTitle] = useState(false)
   const [titleDraft, setTitleDraft] = useState(trip?.title ?? '')
+  const [confirmingDelete, setConfirmingDelete] = useState(false)
 
   if (!trip || !destination || !itinerary) {
     return (
@@ -108,10 +110,18 @@ export function TripDetail() {
           <Link to={`/destinations/${destination.slug}`} className="flex-1 rounded-full bg-cream py-3 text-center text-sm font-medium text-ink-soft ring-1 ring-ink/10">
             Back to {destination.city}
           </Link>
-          <button onClick={handleDelete} className="flex items-center gap-1.5 rounded-full bg-cream px-4 py-3 text-sm font-medium text-red-500 ring-1 ring-ink/10">
+          <button onClick={() => setConfirmingDelete(true)} className="flex items-center gap-1.5 rounded-full bg-cream px-4 py-3 text-sm font-medium text-red-500 ring-1 ring-ink/10">
             <Trash2 size={14} /> Delete Trip
           </button>
         </div>
+        <ConfirmSheet
+          open={confirmingDelete}
+          title="Delete this trip?"
+          body={`"${itinerary.title}" and its itinerary will be removed from this device. This can't be undone.`}
+          confirmLabel="Delete Trip"
+          onCancel={() => setConfirmingDelete(false)}
+          onConfirm={handleDelete}
+        />
         <p className="text-center text-[11px] text-ink-soft/40">
           Assembled from the Jet Set LatAm {destination.city} Place database — not AI-generated. Changes save automatically on this device.
         </p>
