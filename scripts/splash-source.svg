@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2732 2732" width="2732" height="2732">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="2732" y2="2732" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1f4d3d"/>
+      <stop offset="1" stop-color="#143529"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="2732" height="2732" fill="url(#bg)"/>
+
+  <!-- compass mark, centered, scaled down and kept well within the aspect-fill safe zone -->
+  <g transform="translate(1366,1206)">
+    <circle cx="0" cy="0" r="210" fill="none" stroke="#e4cd8f" stroke-width="6" opacity="0.55"/>
+    <path d="M0 -206 L31 -34 L0 0 L-31 -34 Z" fill="#c1502e"/>
+    <path d="M0 246 L-26 74 L0 0 L26 74 Z" fill="#e08a63"/>
+    <path d="M-206 0 L-34 -26 L0 0 L-34 26 Z" fill="#c9a24b"/>
+    <path d="M206 0 L34 -31 L0 0 L34 31 Z" fill="#c9a24b"/>
+    <circle cx="0" cy="0" r="17" fill="#fffaf2"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="1366" y="1440" text-anchor="middle" font-family="DejaVu Serif, Georgia, serif" font-size="86" fill="#fffaf2" letter-spacing="14">JET SET LATAM</text>
+</svg>

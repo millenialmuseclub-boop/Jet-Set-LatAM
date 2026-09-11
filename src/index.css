@@ -1,0 +1,87 @@
+/* Fonts are bundled via @fontsource (npm packages, Vite-processed and
+ * hashed into dist/assets/ like every other asset) rather than a remote
+ * Google Fonts @import. A native app has no guaranteed network on first
+ * launch — a remote @import there means a failed request every cold start
+ * and a silent fallback to system serif/sans-serif, which is a visible miss
+ * for an editorial, typography-led app. This makes the real display/sans
+ * pair work identically online and fully offline. */
+@import "@fontsource/cormorant-garamond/latin-400.css";
+@import "@fontsource/cormorant-garamond/latin-500.css";
+@import "@fontsource/cormorant-garamond/latin-600.css";
+@import "@fontsource/cormorant-garamond/latin-400-italic.css";
+@import "@fontsource/cormorant-garamond/latin-500-italic.css";
+@import "@fontsource/cormorant-garamond/latin-ext-400.css";
+@import "@fontsource/cormorant-garamond/latin-ext-500.css";
+@import "@fontsource/cormorant-garamond/latin-ext-600.css";
+@import "@fontsource/cormorant-garamond/latin-ext-400-italic.css";
+@import "@fontsource/cormorant-garamond/latin-ext-500-italic.css";
+@import "@fontsource/jost/latin-300.css";
+@import "@fontsource/jost/latin-400.css";
+@import "@fontsource/jost/latin-500.css";
+@import "@fontsource/jost/latin-600.css";
+@import "@fontsource/jost/latin-ext-300.css";
+@import "@fontsource/jost/latin-ext-400.css";
+@import "@fontsource/jost/latin-ext-500.css";
+@import "@fontsource/jost/latin-ext-600.css";
+@import "tailwindcss";
+
+@theme {
+  /* Jet Set LatAm palette — warm parchment, terracotta, jungle green, gold */
+  --color-parchment: #f7f0e4;
+  --color-parchment-dark: #efe4d1;
+  --color-ink: #2a231c;
+  --color-ink-soft: #4a4038;
+  --color-terracotta: #c1502e;
+  --color-terracotta-dark: #9c3f23;
+  --color-terracotta-light: #e08a63;
+  --color-jungle: #1f4d3d;
+  --color-jungle-dark: #143529;
+  --color-jungle-light: #3a7a63;
+  --color-gold: #c9a24b;
+  --color-gold-light: #e4cd8f;
+  --color-cream: #fffaf2;
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Jost", "DM Sans", sans-serif;
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fade-in 0.5s ease forwards;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overscroll-behavior-y: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* safe-area helpers */
+.pt-safe { padding-top: env(safe-area-inset-top); }
+.pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+.pl-safe { padding-left: env(safe-area-inset-left); }
+.pr-safe { padding-right: env(safe-area-inset-right); }

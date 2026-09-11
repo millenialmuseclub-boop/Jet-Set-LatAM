@@ -1,0 +1,228 @@
+// ---------------------------------------------------------------------------
+// Jet Set LatAm — core content/data model
+//
+// Design principle: editorial content (Places, Guides, Picks) is kept
+// strictly separate from commercial/affiliate data (Offer). A place's
+// editorial status is never influenced by whether it has a booking link.
+// ---------------------------------------------------------------------------
+
+export type PriceLevel = '$' | '$$' | '$$$' | '$$$$'
+
+export type PlaceCategory =
+  | 'restaurant'
+  | 'cafe'
+  | 'bar'
+  | 'hotel'
+  | 'shop'
+  | 'museum'
+  | 'landmark'
+  | 'experience'
+  | 'beach'
+  | 'nightlife'
+  | 'park'
+
+export type TripInterest =
+  | 'food'
+  | 'culture'
+  | 'beach'
+  | 'shopping'
+  | 'nightlife'
+  | 'relaxation'
+
+export type TripCompanions = 'solo' | 'couple' | 'friends' | 'family'
+export type TripStyle = 'value' | 'comfortable' | 'luxe'
+export type TripPace = 'slow' | 'balanced' | 'pack-it-in'
+
+/** Commercial/affiliate data for a Place. Kept separate from editorial content
+ *  so affiliate relationships can never influence whether something is
+ *  recommended. Entirely optional — a Place is fully valid without one. */
+export interface Offer {
+  bookingUrl?: string
+  affiliateUrl?: string
+  disclosure?: string // e.g. "We may earn a commission at no extra cost to you."
+}
+
+/** A canonical Place — the atomic unit of the destination database. A
+ *  restaurant mentioned across three guides is one Place, referenced by id
+ *  from each guide, not three duplicated blobs of content. */
+export interface Place {
+  id: string
+  name: string
+  country: string
+  city: string
+  neighborhood?: string
+  category: PlaceCategory
+  coordinates?: { lat: number; lng: number }
+  address?: string
+
+  // Editorial
+  description: string
+  photos: string[]
+  isJetSetPick: boolean
+  pickDetails?: JetSetPickDetails
+
+  // Practical
+  priceLevel?: PriceLevel
+  tags: string[]
+  mapUrl?: string
+  website?: string
+  practicalNotes?: string
+
+  // Cross-references (by id)
+  relatedGuideIds?: string[]
+  relatedItineraryIds?: string[]
+  pairWithPlaceId?: string
+
+  // Commercial — separate from editorial judgment
+  offer?: Offer
+
+  sourceUrl?: string // provenance: the jetsetlatam.com article this was drawn from
+}
+
+/** The editorial content that makes a Jet Set Pick a Jet Set Pick. */
+export interface JetSetPickDetails {
+  goFor: string
+  skipIf?: string
+  orderOrDo?: string
+  spend?: PriceLevel
+}
+
+export interface Neighborhood {
+  id: string
+  name: string
+  city: string
+  description: string
+  heroPhoto?: string
+}
+
+export interface DestinationSection {
+  overview: string
+  whyGo: string
+  bestTime?: string
+}
+
+/** Country → City → Neighborhood → Place. A Destination here represents one
+ *  bookable city-level entry point (e.g. Mexico City); countries group cities. */
+export interface Destination {
+  id: string
+  slug: string
+  city: string
+  country: string
+  heroPhoto: string
+  tagline: string
+  isFlagship?: boolean
+  content: DestinationSection
+  neighborhoods: Neighborhood[]
+  placeIds: string[] // all places belonging to this destination
+  guideIds: string[]
+  itineraryIds: string[]
+  // 'live' = rich enough to browse and plan (Plan a Trip may offer it).
+  // 'guide' = enough real content for a useful destination page, but not
+  //   enough verified Places/category variety for full planner support.
+  // 'coming-soon' = no structured real content yet.
+  status: 'live' | 'guide' | 'coming-soon'
+}
+
+export type GuideSection =
+  | 'stay' | 'eat' | 'drink' | 'see' | 'shop' | 'beaches' | 'nightlife' | 'experiences'
+
+/** A Guide is an editorial article — the original long-form unit — now
+ *  linked to structured Places rather than duplicating their content. */
+export interface Guide {
+  id: string
+  title: string
+  destinationId: string
+  section: GuideSection
+  dek: string
+  body: string // markdown-ish plain text pulled/adapted from the source article
+  heroPhoto?: string
+  placeIds: string[]
+  sourceUrl: string
+  publishedAt?: string
+}
+
+// ---------------------------------------------------------------------------
+// Plan a Trip
+// ---------------------------------------------------------------------------
+
+export interface TripQuizAnswers {
+  destinationId: string
+  days: number
+  companions: TripCompanions
+  interests: TripInterest[]
+  style: TripStyle
+  pace: TripPace
+}
+
+export interface ItineraryActivity {
+  id: string
+  time: string // "9:00"
+  label: string // "Breakfast", "Experience", "Free Afternoon"
+  placeId?: string
+  notes?: string
+}
+
+export interface ItineraryDay {
+  day: number
+  theme: string // "Beach + Old City"
+  activities: ItineraryActivity[]
+}
+
+export interface Itinerary {
+  id: string
+  destinationId: string
+  title: string
+  days: ItineraryDay[]
+  answers?: TripQuizAnswers // present when generated from Plan a Trip
+  isReadyMade?: boolean // curated template vs. user-generated
+}
+
+// ---------------------------------------------------------------------------
+// Saved / My Trips (local-first)
+// ---------------------------------------------------------------------------
+
+export interface SavedTrip {
+  id: string
+  itineraryId: string
+  destinationId: string
+  title: string
+  createdAt: string
+  status: 'upcoming' | 'past'
+}
+
+export interface SavedLibrary {
+  upcomingTripIds: string[]
+  pastTripIds: string[]
+  savedDestinationIds: string[]
+  savedPlaceIds: string[]
+  savedGuideIds: string[]
+}
+
+// ---------------------------------------------------------------------------
+// Ecosystem foundation (not wired into Jet Set LatAm's UI or planner)
+//
+// A tiny, additive shape describing "the trip" in terms a sibling product
+// could use without importing anything else from this app: Luxe Jetter (an
+// outfit-planning companion — "what am I wearing?") and Little Jetter (a
+// kids'-prep companion — "how are the kids joining/preparing?"). Jet Set
+// LatAm stays a single-purpose travel-planning app; this type exists only so
+// a future handoff has a stable shape to hand data through, and is derived
+// from existing data on demand rather than stored or synced anywhere. See
+// `getTripContext()` in `src/lib/tripContext.ts`.
+// ---------------------------------------------------------------------------
+export interface TripContext {
+  tripId: string
+  destinationId: string
+  destinationName: string
+  city: string
+  country: string
+  /** ISO date strings, when the app ever collects real trip dates — it
+   *  doesn't yet (trips are planned by day-count, not calendar dates). */
+  startDate?: string
+  endDate?: string
+  days: number
+  companions?: TripCompanions
+  interests?: TripInterest[]
+  style?: TripStyle
+  pace?: TripPace
+}
