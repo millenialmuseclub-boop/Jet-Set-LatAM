@@ -32,6 +32,7 @@ export function Discover() {
     getJetSetPicks('rio-de-janeiro'),
     getJetSetPicks('cartagena'),
     getJetSetPicks('guadalajara'),
+    getJetSetPicks('sao-paulo'),
   ]).slice(0, 10)
   const sortedGuides = [...guides].sort((a, b) => (b.publishedAt ?? '').localeCompare(a.publishedAt ?? ''))
   const [featureGuide, ...restGuides] = sortedGuides
@@ -54,6 +55,7 @@ export function Discover() {
     getPlacesByDestination('mexico-city').filter((p) => p.category === 'cafe'),
     getPlacesByDestination('rio-de-janeiro').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('cartagena').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
+    getPlacesByDestination('sao-paulo').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
   ]).slice(0, 6)
   // ART + DESIGN — museum/landmark places with real category variety across
   // every built destination, not CDMX-only.

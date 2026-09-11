@@ -11,6 +11,10 @@ import becoDoBatmanDragonMural from './beco-do-batman-dragon-mural.jpg'
 import becoDoBatmanGeometricMural from './beco-do-batman-geometric-mural.jpg'
 import becoDoBatmanButterflyMural from './beco-do-batman-butterfly-mural.jpg'
 import becoDoBatmanBirdMural from './beco-do-batman-bird-mural.jpg'
+// Second batch, same provenance (Jordann's own phone photos, Sept 2026):
+// Catedral da Sé, the neo-Gothic cathedral anchoring Praça da Sé in Centro.
+import seCathedralTwinTowers from './se-cathedral-twin-towers.jpg'
+import seCathedralFacadeDetail from './se-cathedral-facade-detail.jpg'
 
 export const saoPauloPhotos = {
   becoDoBatmanMarketAlley,
@@ -18,4 +22,6 @@ export const saoPauloPhotos = {
   becoDoBatmanGeometricMural,
   becoDoBatmanButterflyMural,
   becoDoBatmanBirdMural,
+  seCathedralTwinTowers,
+  seCathedralFacadeDetail,
 }
