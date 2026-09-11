@@ -13,6 +13,7 @@ import { rioPhotos } from '@/assets/rio'
 import { cartagenaPhotos } from '@/assets/cartagena'
 import { tulumPhotos } from '@/assets/tulum'
 import { saoPauloPhotos } from '@/assets/sao-paulo'
+import { playaDelCarmenPhotos } from '@/assets/playa-del-carmen'
 import { openExternal, openMap } from '@/lib/links'
 import { toggleSavedDestination, isSavedDestination, toggleSavedPlace, isSavedPlace } from '@/lib/storage'
 import { Bookmark, BookmarkCheck, Map, Globe, Shirt, ArrowUpRight } from 'lucide-react'
@@ -250,6 +251,17 @@ export function DestinationDetail() {
               { src: saoPauloPhotos.becoDoBatmanButterflyMural, seed: 'pc-sp-butterfly', alt: 'Butterfly mural, Beco do Batman', caption: 'A monarch mural big enough to pose in front of — one of the alley\'s most photographed walls.' },
               { src: saoPauloPhotos.becoDoBatmanGeometricMural, seed: 'pc-sp-geometric', alt: 'Geometric face mural, Beco do Batman' },
               { src: saoPauloPhotos.becoDoBatmanMarketAlley, seed: 'pc-sp-market', alt: 'Vendor tables along Beco do Batman' },
+            ]}
+          />
+        )}
+
+        {tab === 'overview' && destination.id === 'playa-del-carmen' && (
+          <PostcardGallery
+            title="An Afternoon At Xcaret"
+            images={[
+              { src: playaDelCarmenPhotos.xcaretLagoonCove, seed: 'pc-pdc-lagoon', alt: 'Xcaret lagoon cove with palapa restaurant', caption: 'One of Xcaret\'s natural lagoons — thatched-roof palapas, dugout canoes, and water calm enough to swim across.' },
+              { src: playaDelCarmenPhotos.xcaretButterflySanctuarySign, seed: 'pc-pdc-butterfly-sign', alt: 'Xcaret butterfly sanctuary photo arch' },
+              { src: playaDelCarmenPhotos.xcaretButterflySanctuaryPortrait, seed: 'pc-pdc-butterfly-portrait', alt: 'Traveler at the Xcaret butterfly sanctuary', caption: '"Your time as a caterpillar has expired, your wings are ready" — bilingual, and one of the park\'s most-photographed corners.' },
             ]}
           />
         )}
