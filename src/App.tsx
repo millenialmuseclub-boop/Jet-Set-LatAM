@@ -10,6 +10,7 @@ import { Saved } from '@/pages/Saved'
 import { TripDetail } from '@/pages/TripDetail'
 import { GuideDetail } from '@/pages/GuideDetail'
 import { Journal } from '@/pages/Journal'
+import { About } from '@/pages/About'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/destinations/:slug" element={<DestinationDetail />} />
           <Route path="/guides/:id" element={<GuideDetail />} />
           <Route path="/journal" element={<Journal />} />
+          <Route path="/about" element={<About />} />
           <Route path="/plan" element={<PlanTrip />} />
           <Route path="/saved" element={<Saved />} />
           <Route path="/saved/trips/:tripId" element={<TripDetail />} />

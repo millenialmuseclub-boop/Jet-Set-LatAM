@@ -6,6 +6,7 @@ const LINKS = [
   { to: '/destinations/mexico-city?tab=stay', label: 'Stay' },
   { to: '/destinations/mexico-city?tab=experiences', label: 'Things to Do' },
   { to: '/journal', label: 'Journal' },
+  { to: '/about', label: 'About' },
 ]
 
 // Desktop/web navigation — hidden below md. The app keeps BottomNav; this is
