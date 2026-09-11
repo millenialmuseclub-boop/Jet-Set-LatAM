@@ -45,16 +45,19 @@ export function Destinations() {
                   aria-disabled={!clickable}
                   className={!clickable ? 'pointer-events-none opacity-50' : ''}
                 >
-                  {d.status === 'coming-soon' ? (
-                    <PhotoPlaceholder seed={d.id} label={d.country} className="h-36 w-full md:h-52" />
-                  ) : (
+                  {d.heroPhoto ? (
                     <Photo src={d.heroPhoto} seed={d.id} alt={d.city} className="h-36 w-full md:h-52" />
+                  ) : (
+                    <PhotoPlaceholder seed={d.id} label={d.country} className="h-36 w-full md:h-52" />
                   )}
                   <div className="mt-2">
                     <p className="font-display text-xl leading-tight text-ink">{d.city}</p>
-                    <p className="text-xs uppercase tracking-[0.1em] text-ink-soft/50">
-                      {d.status === 'live' && 'Plan-ready'}
+                    <p className={`text-xs uppercase tracking-[0.1em] ${
+                      d.status === 'live' ? 'text-terracotta' : d.status === 'guide' ? 'text-jungle' : d.status === 'field-note' ? 'text-gold' : 'text-ink-soft/50'
+                    }`}>
+                      {d.status === 'live' && 'Plan'}
                       {d.status === 'guide' && 'Explore'}
+                      {d.status === 'field-note' && 'Field Note'}
                       {d.status === 'coming-soon' && 'Coming soon'}
                     </p>
                     {d.railiiConnection && (

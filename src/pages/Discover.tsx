@@ -45,6 +45,7 @@ export function Discover() {
   const comingSoon = destinations.filter((d) => d.status === 'coming-soon')
   const builtDestinations = destinations.filter((d) => d.status === 'live')
   const guideTierDestinations = destinations.filter((d) => d.status === 'guide')
+  const fieldNoteTierDestinations = destinations.filter((d) => d.status === 'field-note')
   // A full-width visual break highlighting the destinations beyond the
   // flagship — deliberately excludes Mexico City so the hero above doesn't
   // repeat itself here.
@@ -154,7 +155,14 @@ export function Discover() {
             <Link key={d.id} to={`/destinations/${d.slug}`} className="min-w-[180px] max-w-[180px] shrink-0 md:min-w-0 md:max-w-none md:flex-1">
               <Photo src={d.heroPhoto} seed={d.id} alt={d.city} className="h-64 w-full" />
               <p className="mt-2 font-display text-lg text-ink">{d.city}</p>
-              <p className="text-[11px] uppercase tracking-[0.1em] text-ink-soft/50">Guide</p>
+              <p className="text-[11px] uppercase tracking-[0.1em] text-jungle">Explore</p>
+            </Link>
+          ))}
+          {fieldNoteTierDestinations.map((d) => (
+            <Link key={d.id} to={`/destinations/${d.slug}`} className="min-w-[160px] max-w-[160px] shrink-0 md:min-w-0 md:max-w-none md:flex-1">
+              <PhotoPlaceholder seed={d.id} label={d.country} className="h-64 w-full" />
+              <p className="mt-2 font-display text-lg text-ink">{d.city}</p>
+              <p className="text-[11px] uppercase tracking-[0.1em] text-gold">Field Note</p>
             </Link>
           ))}
           {comingSoon.map((d) => (

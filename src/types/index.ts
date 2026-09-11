@@ -116,11 +116,19 @@ export interface Destination {
   placeIds: string[] // all places belonging to this destination
   guideIds: string[]
   itineraryIds: string[]
-  // 'live' = rich enough to browse and plan (Plan a Trip may offer it).
-  // 'guide' = enough real content for a useful destination page, but not
-  //   enough verified Places/category variety for full planner support.
-  // 'coming-soon' = no structured real content yet.
-  status: 'live' | 'guide' | 'coming-soon'
+  // 'live' = PLAN tier — rich enough to browse and plan (Plan a Trip may
+  //   offer it).
+  // 'guide' = EXPLORE tier — enough real content for a useful destination
+  //   page, but not enough verified Places/category variety for full
+  //   planner support.
+  // 'field-note' = FIELD NOTE tier — a smaller, real editorial destination:
+  //   genuine written source content (and usually 0-1 verified Places), but
+  //   held without a hero photo because no authentic, non-stock photography
+  //   has been found for it yet. Still a real page — not a stub — just
+  //   honest about not having a photo essay behind it.
+  // 'coming-soon' = no structured real content yet (a name and country
+  //   only, or literally nothing built).
+  status: 'live' | 'guide' | 'field-note' | 'coming-soon'
   /** Populated ONLY where a genuine, documented connection to Rallii (the
    *  scenic-rail/mountain-biking/trail app in the Jet Set family) exists —
    *  e.g. Guadalajara's José Cuervo Express train. Never added speculatively;
