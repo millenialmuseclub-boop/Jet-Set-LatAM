@@ -59,7 +59,11 @@ workflows:
         script: |
           xcode-project build-ipa \
             --project "$XCODE_PROJECT" \
-            --scheme "$XCODE_SCHEME"
+            --scheme "$XCODE_SCHEME" \
+            || (echo "===== RAW XCODEBUILD LOG (tail -c 20000) ====="; \
+                tail -c 20000 /tmp/xcodebuild_logs/*.log 2>&1; \
+                echo "===== END RAW LOG ====="; \
+                exit 65)
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
