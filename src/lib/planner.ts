@@ -28,7 +28,7 @@ const INTEREST_TO_CATEGORY: Record<TripInterest, Place['category'][]> = {
 // fill a slot with something already used. `experience` and `hotel` are
 // deliberately NOT repeatable — most Experiences in this data set are
 // one-time tours/activities, not a flexible drop-in.
-const REPEATABLE_CATEGORIES = new Set<Place['category']>(['cafe', 'park', 'beach', 'shop', 'nightlife', 'bar'])
+export const REPEATABLE_CATEGORIES = new Set<Place['category']>(['cafe', 'park', 'beach', 'shop', 'nightlife', 'bar'])
 
 // A short, destination-agnostic word for what a category contributes to a
 // day's theme — used to build a real theme like "Art + Jardins" from what
@@ -187,9 +187,12 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
       }
       // Nothing left that's fair to repeat — an intentional free block
       // beats forcing a second visit to a museum or fine-dining dinner.
+      // Labeled "Free Time" (not the original slot label) and phrased as
+      // a real recommendation, not a technical fallback message — this
+      // should read as a deliberate part of the trip, never an error state.
       const freeIn = [...dayNeighborhoods.keys()][0]
-      const note = freeIn ? `Free time to explore ${freeIn} — no additional verified place needed here` : `Free time in ${destCity}`
-      return { id: `${d}-${i}`, time, label, notes: note }
+      const note = freeIn ? `Explore ${freeIn} at your own pace.` : `Explore ${destCity} at your own pace.`
+      return { id: `${d}-${i}`, time, label: 'Free Time', notes: note }
     })
     days.push({ day: d, theme: themeFromDay(d, answers.interests, dayPlaces), activities })
   }

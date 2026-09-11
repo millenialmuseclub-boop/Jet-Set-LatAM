@@ -5,6 +5,7 @@ import { Photo } from './Photo'
 import { MapPin, Trash2, ArrowUp, ArrowDown, Shuffle, Map, Globe, Plus, X, Sparkle } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { openExternal, openMap } from '@/lib/links'
+import { REPEATABLE_CATEGORIES } from '@/lib/planner'
 import { ConfirmSheet } from './ConfirmSheet'
 
 // Shared day-by-day itinerary UI — used by both Plan a Trip (right after
@@ -47,14 +48,20 @@ export function ItineraryEditor({
 
   function replaceActivity(dayIndex: number, activityId: string) {
     const usedIds = new Set(itinerary.days.flatMap((d) => d.activities.map((a) => a.placeId).filter(Boolean)))
-    const candidate = candidatePlaces.find((p) => !usedIds.has(p.id))
+    // Same semantic-repeat rule as the generator: prefer anything unused
+    // trip-wide, and only fall back to a REPEATABLE-category place (never
+    // a museum/landmark/restaurant already used elsewhere) before giving
+    // up with an intentional free block.
+    const candidate =
+      candidatePlaces.find((p) => !usedIds.has(p.id)) ??
+      candidatePlaces.find((p) => usedIds.has(p.id) && REPEATABLE_CATEGORIES.has(p.category))
     mutateDay(dayIndex, (day) => ({
       ...day,
       activities: day.activities.map((a) =>
         a.id === activityId
           ? candidate
             ? { ...a, placeId: candidate.id, notes: undefined }
-            : { ...a, placeId: undefined, notes: 'Open block — no more unused verified Places to swap in' }
+            : { ...a, placeId: undefined, label: 'Free Time', notes: 'Nothing left to swap in without repeating a museum, landmark or dinner spot — explore this neighborhood at your own pace instead.' }
           : a
       ),
     }))
@@ -139,7 +146,7 @@ export function ItineraryEditor({
                             </p>
                           </>
                         ) : (
-                          <p className="text-xs italic text-ink-soft/40">{a.notes}</p>
+                          <p className="text-sm leading-snug text-ink-soft/70">{a.notes}</p>
                         )}
                       </div>
                       <div className="-mr-1.5 flex shrink-0 flex-wrap items-start justify-end gap-0.5">
