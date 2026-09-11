@@ -207,7 +207,11 @@ export const saoPauloPlaces: Place[] = [
     photos: [],
     isJetSetPick: false,
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mercado+Municipal+de+Pinheiros+Sao+Paulo',
-    website: 'https://www.mercadomunicipaldepinheiros.com/',
+    // Link audit catch: mercadomunicipaldepinheiros.com is a fan/community
+    // page (explicit "no ties to any public or private agency" disclaimer,
+    // plus dubious future-dated posts) — not the market's official site. No
+    // official site found; mapUrl only, same honesty rule applied to the
+    // Sé Cathedral link earlier.
     tags: ['market', 'produce', 'local'],
   },
   {
