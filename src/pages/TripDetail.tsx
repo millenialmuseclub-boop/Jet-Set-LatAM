@@ -7,9 +7,11 @@ import {
 import { Photo } from '@/components/Photo'
 import { ItineraryEditor } from '@/components/ItineraryEditor'
 import { EmptyState } from '@/components/EmptyState'
-import { Pencil, Trash2, ArrowLeft, Bike, Shirt, Baby } from 'lucide-react'
+import { Pencil, Trash2, ArrowLeft, Bike, Shirt, Baby, ArrowUpRight } from 'lucide-react'
 import { ConfirmSheet } from '@/components/ConfirmSheet'
-import type { Destination, Itinerary, TripCompanions } from '@/types'
+import { getTripContext } from '@/lib/tripContext'
+import { generateLuxeJetterCopy, deriveWardrobeMoments } from '@/lib/luxeJetterCopy'
+import type { Destination, Itinerary } from '@/types'
 
 export function TripDetail() {
   const { tripId } = useParams()
@@ -126,7 +128,7 @@ export function TripDetail() {
           Assembled from the Jet Set LatAm {destination.city} Place database — not AI-generated. Changes save automatically on this device.
         </p>
 
-        <MakeItYours destination={destination} companions={answers?.companions} />
+        <MakeItYours destination={destination} tripId={trip.id} itinerary={itinerary} />
       </div>
     </div>
   )
@@ -138,10 +140,16 @@ export function TripDetail() {
 // LatAm. Each card only appears when it's genuinely relevant to *this* trip
 // — never a static ad block. None are fake interactivity: Luxe Jetter has no
 // real URL yet, so it's an inert, clearly-labeled "coming soon" handoff, not
-// a dead button.
-function MakeItYours({ destination, companions }: { destination: Destination; companions?: TripCompanions }) {
+// a dead button. Copy is generated from this trip's real data (see
+// src/lib/luxeJetterCopy.ts) rather than one static sentence reused across
+// every destination.
+function MakeItYours({ destination, tripId, itinerary }: { destination: Destination; tripId: string; itinerary: Itinerary }) {
+  const context = getTripContext(tripId)
+  const companions = itinerary.answers?.companions
   const isFamilyTrip = companions === 'family'
   const railii = destination.railiiConnection
+  const moments = deriveWardrobeMoments(itinerary)
+  const luxeCopy = context ? generateLuxeJetterCopy(context, moments) : undefined
 
   return (
     <div className="border-t border-ink/10 pt-6">
@@ -151,14 +159,38 @@ function MakeItYours({ destination, companions }: { destination: Destination; co
       </p>
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {/* Luxe Jetter — always relevant, no real URL yet, so it's a quiet
-            inert card rather than a button that does nothing on tap. */}
-        <div className="rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 ring-1 ring-terracotta/15">
-          <Shirt size={18} className="text-terracotta" />
-          <p className="mt-2 font-display text-lg text-ink">What Are You Wearing?</p>
+            inert card rather than a button that does nothing on tap. Copy is
+            trip-specific: destination, day count, and this itinerary's real
+            occasion mix (see deriveWardrobeMoments). */}
+        <div className="rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 ring-1 ring-terracotta/15 sm:col-span-2">
+          <div className="flex items-center gap-2">
+            <Shirt size={18} className="text-terracotta" />
+            <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">Luxe Jetter</p>
+          </div>
+          <p className="mt-2 font-display text-lg text-ink">{luxeCopy?.headline ?? 'What Are You Wearing?'}</p>
           <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">
-            Luxe Jetter builds an outfit plan around this exact itinerary. Not open yet.
+            {luxeCopy?.body ?? 'Luxe Jetter builds an outfit plan around this exact itinerary.'}
           </p>
-          <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-terracotta/70">Coming soon</p>
+
+          {/* Mini wardrobe preview — not Luxe Jetter embedded, just the real
+              occasion types this itinerary contains, so the handoff feels
+              concrete instead of generic. No products or looks are shown or
+              invented here — that's Luxe Jetter's job, once it exists. */}
+          {moments.length > 0 && (
+            <div className="mt-3 flex flex-wrap items-center gap-1.5">
+              <span className="text-[10px] uppercase tracking-[0.1em] text-ink-soft/40">Your {destination.city} trip:</span>
+              {moments.map((m, i) => (
+                <span key={m} className="text-xs text-ink-soft/70">
+                  {m}{i < moments.length - 1 && <span className="mx-1.5 text-ink-soft/25">/</span>}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <div className="mt-3 flex items-center justify-between">
+            <p className="text-xs font-medium text-terracotta/80">{luxeCopy?.cta ?? 'Coming soon'}</p>
+            <p className="text-[10px] uppercase tracking-[0.14em] text-terracotta/60">Not open yet</p>
+          </div>
         </div>
 
         {/* Little Jetter — only for trips traveling with kids. Parent-facing
@@ -166,11 +198,14 @@ function MakeItYours({ destination, companions }: { destination: Destination; co
         {isFamilyTrip && (
           <div className="rounded-2xl bg-gradient-to-br from-jungle/10 via-cream to-cream p-4 ring-1 ring-jungle/15">
             <Baby size={18} className="text-jungle" />
-            <p className="mt-2 font-display text-lg text-ink">For the Little Jetters</p>
+            <p className="mt-2 font-display text-lg text-ink">Little Jetters Coming Too?</p>
             <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">
-              You told us the kids are coming — Little Jetter helps you prep and pack for traveling with them. Not open yet.
+              Let them get ready for the trip too — Little Jetter helps you prep and pack for traveling with kids.
             </p>
-            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-jungle/70">Coming soon</p>
+            <div className="mt-2 flex items-center gap-1 text-[11px] font-medium text-jungle/80">
+              Explore Little Jetter <ArrowUpRight size={11} />
+            </div>
+            <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-jungle/60">Not open yet</p>
           </div>
         )}
 
@@ -180,8 +215,11 @@ function MakeItYours({ destination, companions }: { destination: Destination; co
           <div className="rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 ring-1 ring-gold/20">
             <Bike size={18} className="text-gold" />
             <p className="mt-2 font-display text-lg text-ink">Take the Scenic Route</p>
-            <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">{railii.description} Rallii is building routes like this one. Not open yet.</p>
-            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-gold/80">Coming soon</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">There's more to the journey. {railii.description}</p>
+            <div className="mt-2 flex items-center gap-1 text-[11px] font-medium text-gold/80">
+              Explore in Rallii <ArrowUpRight size={11} />
+            </div>
+            <p className="mt-1 text-[10px] uppercase tracking-[0.14em] text-gold/60">Not open yet</p>
           </div>
         )}
       </div>

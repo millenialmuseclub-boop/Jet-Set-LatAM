@@ -68,6 +68,7 @@ export function Destinations() {
           </div>
         </section>
       ))}
+      <p className="px-5 pt-2 text-center text-[11px] italic text-ink-soft/35 md:px-8">A @jordypop project</p>
     </div>
   )
 }

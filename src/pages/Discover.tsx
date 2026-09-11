@@ -4,6 +4,7 @@ import { JetSetPickCard } from '@/components/JetSetPickCard'
 import { PostcardGallery } from '@/components/PostcardGallery'
 import { flagshipDestination, guides, getJetSetPicks, destinations, getPlacesByDestination, getDestinationForPlace } from '@/data'
 import { cdmxPhotos } from '@/assets/cdmx'
+import { rioPhotos } from '@/assets/rio'
 import { appFamilyList } from '@/config/appFamily'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
@@ -263,6 +264,27 @@ export function Discover() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
+      {/* RIO AFTER DARK — a themed essay reusing Rio's real photo set with */}
+      {/* different sequencing/captions than its own destination page.     */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="mb-5 flex items-baseline justify-between">
+          <div>
+            <p className="font-display text-3xl text-ink md:text-4xl">Rio After Dark</p>
+            <p className="text-sm text-ink-soft/60">Sunset over Sugarloaf, the murals lit up, and the last tram down from Santa Teresa.</p>
+          </div>
+          <Link to="/destinations/rio-de-janeiro" className="shrink-0 text-xs uppercase tracking-[0.1em] text-terracotta">Full gallery</Link>
+        </div>
+        <PostcardGallery
+          images={[
+            { src: rioPhotos.christRedeemerSunset, seed: 'disc-rio-christ-sunset', alt: 'Christ the Redeemer at sunset', caption: 'Cristo Redentor catches the last light before the city goes gold, then dark.' },
+            { src: rioPhotos.kobraMural, seed: 'disc-rio-kobra', alt: 'Kobra street mural' },
+            { src: rioPhotos.santaTeresaTram, seed: 'disc-rio-tram', alt: 'Santa Teresa tram' },
+          ]}
+        />
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
       {/* WEEKEND SOMEWHERE — GUIDE-tier destinations, framed intentionally */}
       {/* ---------------------------------------------------------------- */}
       {weekendSomewhere.length > 0 && (
@@ -336,9 +358,14 @@ export function Discover() {
             <div key={app.id} className="rounded-xl bg-cream/60 p-3 ring-1 ring-ink/5">
               <app.icon size={15} className="text-ink-soft/50" />
               <p className="mt-1.5 text-xs font-medium text-ink-soft/80">{app.name}</p>
-              <p className="text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">{app.status === 'live' ? 'Available' : 'Coming soon'}</p>
+              <p className="text-[10px] text-ink-soft/45">{app.oneLiner}</p>
+              <p className="mt-1 text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">{app.status === 'live' ? 'Available' : 'Coming soon'}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-6 flex items-center justify-between border-t border-ink/5 pt-4">
+          <Link to="/about" className="text-[11px] uppercase tracking-[0.1em] text-ink-soft/50">About Jet Set LatAm</Link>
+          <p className="text-[11px] text-ink-soft/35">© 2026 @jordypop</p>
         </div>
       </section>
     </div>
