@@ -7,8 +7,8 @@ import {
 import { Photo } from '@/components/Photo'
 import { ItineraryEditor } from '@/components/ItineraryEditor'
 import { EmptyState } from '@/components/EmptyState'
-import { Pencil, Trash2, ArrowLeft, Shirt, Baby } from 'lucide-react'
-import type { Itinerary } from '@/types'
+import { Pencil, Trash2, ArrowLeft, Bike, Shirt, Baby } from 'lucide-react'
+import type { Destination, Itinerary, TripCompanions } from '@/types'
 
 export function TripDetail() {
   const { tripId } = useParams()
@@ -116,36 +116,64 @@ export function TripDetail() {
           Assembled from the Jet Set LatAm {destination.city} Place database — not AI-generated. Changes save automatically on this device.
         </p>
 
-        <MakeItYours />
+        <MakeItYours destination={destination} companions={answers?.companions} />
       </div>
     </div>
   )
 }
 
-// Subtle, Trip Detail-only teaser for two sibling products that read this
-// trip's shape (see `src/lib/tripContext.ts`) without merging their
-// functionality into Jet Set LatAm. Editorial in tone, no fake interactivity
-// — both cards are plainly "coming soon" and do nothing when tapped.
-function MakeItYours() {
+// Contextual, Trip Detail-only surface for the sibling apps in the Jet Set
+// family (see src/config/appFamily.ts) that could read this trip's shape
+// (src/lib/tripContext.ts) without merging their functionality into Jet Set
+// LatAm. Each card only appears when it's genuinely relevant to *this* trip
+// — never a static ad block. None are fake interactivity: Luxe Jetter has no
+// real URL yet, so it's an inert, clearly-labeled "coming soon" handoff, not
+// a dead button.
+function MakeItYours({ destination, companions }: { destination: Destination; companions?: TripCompanions }) {
+  const isFamilyTrip = companions === 'family'
+  const railii = destination.railiiConnection
+
   return (
     <div className="border-t border-ink/10 pt-6">
       <p className="text-center text-[11px] uppercase tracking-[0.2em] text-ink-soft/40">Make It Yours</p>
       <p className="mx-auto mt-1.5 max-w-sm text-center text-xs text-ink-soft/50">
-        Two companions to this trip, on the way.
+        The rest of the Jet Set family, for the parts of this trip we don't cover.
       </p>
       <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <div className="rounded-2xl bg-cream p-4 ring-1 ring-ink/5">
+        {/* Luxe Jetter — always relevant, no real URL yet, so it's a quiet
+            inert card rather than a button that does nothing on tap. */}
+        <div className="rounded-2xl bg-gradient-to-br from-terracotta/10 via-cream to-cream p-4 ring-1 ring-terracotta/15">
           <Shirt size={18} className="text-terracotta" />
-          <p className="mt-2 font-display text-base text-ink">Luxe Jetter</p>
-          <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">What am I wearing? Outfit planning built around this itinerary.</p>
-          <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-ink-soft/40">Coming soon</p>
+          <p className="mt-2 font-display text-lg text-ink">What Are You Wearing?</p>
+          <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">
+            Luxe Jetter builds an outfit plan around this exact itinerary. Not open yet.
+          </p>
+          <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-terracotta/70">Coming soon</p>
         </div>
-        <div className="rounded-2xl bg-cream p-4 ring-1 ring-ink/5">
-          <Baby size={18} className="text-jungle" />
-          <p className="mt-2 font-display text-base text-ink">Little Jetter</p>
-          <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">How are the kids joining? Prep made for traveling with them.</p>
-          <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-ink-soft/40">Coming soon</p>
-        </div>
+
+        {/* Little Jetter — only for trips traveling with kids. Parent-facing
+            copy only; zero child-directed commerce language. */}
+        {isFamilyTrip && (
+          <div className="rounded-2xl bg-gradient-to-br from-jungle/10 via-cream to-cream p-4 ring-1 ring-jungle/15">
+            <Baby size={18} className="text-jungle" />
+            <p className="mt-2 font-display text-lg text-ink">For the Little Jetters</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">
+              You told us the kids are coming — Little Jetter helps you prep and pack for traveling with them. Not open yet.
+            </p>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-jungle/70">Coming soon</p>
+          </div>
+        )}
+
+        {/* Rallii — only when this destination has a genuine, documented
+            scenic-rail/mountain-biking/trail connection. */}
+        {railii && (
+          <div className="rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 ring-1 ring-gold/20">
+            <Bike size={18} className="text-gold" />
+            <p className="mt-2 font-display text-lg text-ink">Take the Scenic Route</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/60">{railii.description} Rallii is building routes like this one. Not open yet.</p>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-gold/80">Coming soon</p>
+          </div>
+        )}
       </div>
     </div>
   )

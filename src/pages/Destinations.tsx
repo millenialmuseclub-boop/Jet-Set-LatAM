@@ -1,6 +1,7 @@
 import { destinations } from '@/data'
 import { Photo } from '@/components/Photo'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
+import { appFamily } from '@/config/appFamily'
 import { Link } from 'react-router-dom'
 import type { Destination } from '@/types'
 
@@ -51,10 +52,15 @@ export function Destinations() {
                   <div className="mt-2">
                     <p className="font-display text-xl leading-tight text-ink">{d.city}</p>
                     <p className="text-xs uppercase tracking-[0.1em] text-ink-soft/50">
-                      {d.status === 'live' && 'Full guide + planner'}
-                      {d.status === 'guide' && 'Guide'}
+                      {d.status === 'live' && 'Plan-ready'}
+                      {d.status === 'guide' && 'Explore'}
                       {d.status === 'coming-soon' && 'Coming soon'}
                     </p>
+                    {d.railiiConnection && (
+                      <p className="mt-0.5 flex items-center gap-1 text-[10px] text-ink-soft/40">
+                        <appFamily.rallii.icon size={11} /> Scenic route
+                      </p>
+                    )}
                   </div>
                 </Link>
               )

@@ -5,10 +5,20 @@ import { Photo } from '@/components/Photo'
 import { JetSetPickCard } from '@/components/JetSetPickCard'
 import { EmptyState } from '@/components/EmptyState'
 import { AddToTripControl } from '@/components/AddToTripControl'
+import { ShopTheLookCard } from '@/components/ShopTheLookCard'
+import { PostcardGallery } from '@/components/PostcardGallery'
+import { appFamily } from '@/config/appFamily'
+import { cdmxPhotos } from '@/assets/cdmx'
 import { openExternal } from '@/lib/links'
 import { toggleSavedDestination, isSavedDestination, toggleSavedPlace, isSavedPlace } from '@/lib/storage'
 import { Bookmark, BookmarkCheck, Map, Globe } from 'lucide-react'
 import type { GuideSection, Place } from '@/types'
+
+// Places with a real, verified affiliate surface (see ShopTheLookCard) — a
+// tiny allowlist rather than a generic "does this place have an offer"
+// check, so the ShopMy cards only ever appear next to the place they were
+// actually sourced for.
+const SHOP_THE_LOOK_PLACE_IDS = new Set(['pl-copacabana-palace'])
 
 const TABS: { key: GuideSection | 'overview' | 'neighborhoods'; label: string }[] = [
   { key: 'overview', label: 'Overview' },
@@ -163,6 +173,21 @@ export function DestinationDetail() {
           </div>
         )}
 
+        {tab === 'overview' && destination.id === 'mexico-city' && (
+          <PostcardGallery
+            title="Postcards From Mexico City"
+            images={[
+              { src: cdmxPhotos.zocalo, seed: 'pc-zocalo', alt: 'The Zócalo at dusk', caption: 'The Zócalo — Mexico City\'s grand central square, best arriving at sunset or after dark.' },
+              { src: cdmxPhotos.angelIndependencia, seed: 'pc-angel', alt: 'Ángel de la Independencia' },
+              { src: cdmxPhotos.plazaGaribaldi, seed: 'pc-garibaldi', alt: 'Plaza Garibaldi mariachi' },
+              { src: cdmxPhotos.granHotelDome, seed: 'pc-hotel-dome', alt: 'Gran Hotel Ciudad de México stained-glass dome', caption: 'Gran Hotel Ciudad de México\'s Tiffany-style stained-glass ceiling — one of the most photographed lobbies in Latin America.' },
+              { src: cdmxPhotos.granHotelAtrium, seed: 'pc-hotel-atrium', alt: 'Gran Hotel Ciudad de México atrium' },
+              { src: cdmxPhotos.unamLibrary, seed: 'pc-unam', alt: 'Biblioteca Central, UNAM' },
+              { src: cdmxPhotos.folkArtAlebrije, seed: 'pc-alebrije', alt: 'Folk art alebrije' },
+            ]}
+          />
+        )}
+
         {tab === 'neighborhoods' && (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {destination.neighborhoods.map((n) => (
@@ -198,10 +223,27 @@ export function DestinationDetail() {
                     {p.neighborhood && <p className="text-[11px] uppercase tracking-[0.08em] text-terracotta/80">{p.neighborhood}</p>}
                     <p className="mt-0.5 line-clamp-2 text-xs text-ink-soft/70">{p.description}</p>
                     <PlaceActions place={p} />
+                    {SHOP_THE_LOOK_PLACE_IDS.has(p.id) && (
+                      <div className="mt-3">
+                        <ShopTheLookCard placeName={p.name} />
+                      </div>
+                    )}
                   </div>
                 </div>
               ))
             )}
+          </div>
+        )}
+
+        {tab === 'overview' && destination.railiiConnection && (
+          <div className="rounded-2xl bg-gradient-to-br from-gold/15 via-cream to-cream p-4 ring-1 ring-gold/20">
+            <div className="flex items-center gap-2">
+              <appFamily.rallii.icon size={16} className="text-gold" />
+              <p className="text-[11px] uppercase tracking-[0.14em] text-gold">Rallii</p>
+            </div>
+            <p className="mt-1.5 font-display text-lg leading-tight text-ink">Take the Scenic Route</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-ink-soft/65">{destination.railiiConnection.description} Rallii is building routes like this one.</p>
+            <p className="mt-2 text-[10px] uppercase tracking-[0.14em] text-gold/80">Coming soon</p>
           </div>
         )}
       </div>

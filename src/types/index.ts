@@ -121,6 +121,14 @@ export interface Destination {
   //   enough verified Places/category variety for full planner support.
   // 'coming-soon' = no structured real content yet.
   status: 'live' | 'guide' | 'coming-soon'
+  /** Populated ONLY where a genuine, documented connection to Rallii (the
+   *  scenic-rail/mountain-biking/trail app in the Jet Set family) exists —
+   *  e.g. Guadalajara's José Cuervo Express train. Never added speculatively;
+   *  see docs/CONTENT_INVENTORY.md for what's verified. */
+  railiiConnection?: {
+    type: 'scenic-rail' | 'mountain-biking' | 'trail'
+    description: string
+  }
 }
 
 export type GuideSection =
@@ -225,4 +233,8 @@ export interface TripContext {
   interests?: TripInterest[]
   style?: TripStyle
   pace?: TripPace
+  /** Place ids referenced by the itinerary's day activities, deduped —
+   *  lets a sibling product know which real, named places this trip
+   *  actually touches without re-deriving it from storage itself. */
+  selectedPlaces?: string[]
 }

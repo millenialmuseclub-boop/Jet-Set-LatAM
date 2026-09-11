@@ -18,6 +18,10 @@ export function getTripContext(tripId: string): TripContext | undefined {
   const itinerary = getEffectiveItinerary(trip.itineraryId)
   const answers = itinerary?.answers
 
+  const selectedPlaces = itinerary
+    ? [...new Set(itinerary.days.flatMap((d) => d.activities.map((a) => a.placeId).filter((id): id is string => !!id)))]
+    : []
+
   return {
     tripId: trip.id,
     destinationId: destination.id,
@@ -29,5 +33,6 @@ export function getTripContext(tripId: string): TripContext | undefined {
     interests: answers?.interests,
     style: answers?.style,
     pace: answers?.pace,
+    selectedPlaces,
   }
 }

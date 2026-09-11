@@ -1,7 +1,10 @@
 import { Photo } from '@/components/Photo'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import { JetSetPickCard } from '@/components/JetSetPickCard'
-import { flagshipDestination, guides, getJetSetPicks, destinations, getPlacesByDestination } from '@/data'
+import { PostcardGallery } from '@/components/PostcardGallery'
+import { flagshipDestination, guides, getJetSetPicks, destinations, getPlacesByDestination, getDestinationForPlace } from '@/data'
+import { cdmxPhotos } from '@/assets/cdmx'
+import { appFamilyList } from '@/config/appFamily'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
@@ -49,6 +52,18 @@ export function Discover() {
     getPlacesByDestination('rio-de-janeiro').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('cartagena').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
   ]).slice(0, 6)
+  // ART + DESIGN — museum/landmark places with real category variety across
+  // every built destination, not CDMX-only.
+  const artAndDesign = interleave([
+    getPlacesByDestination('mexico-city').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
+    getPlacesByDestination('rio-de-janeiro').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
+    getPlacesByDestination('cartagena').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
+    getPlacesByDestination('guadalajara').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
+    getPlacesByDestination('tulum').filter((p) => ['museum', 'landmark'].includes(p.category) && p.isJetSetPick),
+  ]).slice(0, 6)
+  // WEEKEND SOMEWHERE — the GUIDE-tier destinations, framed as a shorter,
+  // less-planned trip rather than hidden as second-class.
+  const weekendSomewhere = destinations.filter((d) => d.status === 'guide')
 
   return (
     <div className="space-y-14 pb-6 md:space-y-24">
@@ -207,6 +222,69 @@ export function Discover() {
       )}
 
       {/* ---------------------------------------------------------------- */}
+      {/* ART + DESIGN — museums, murals and landmarks, mixed across cities */}
+      {/* ---------------------------------------------------------------- */}
+      {artAndDesign.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 md:px-8">
+          <p className="mb-1 font-display text-3xl text-ink md:text-4xl">Art + Design</p>
+          <p className="mb-5 text-sm text-ink-soft/60">Murals, museums and monuments worth planning a morning around.</p>
+          <div className="flex snap-x gap-4 overflow-x-auto pb-1">
+            {artAndDesign.map((p) => (
+              <Link key={p.id} to={`/destinations/${getDestinationForPlace(p)?.slug ?? ''}`} className="group relative block w-56 shrink-0 snap-start overflow-hidden rounded-2xl">
+                <Photo src={p.photos[0]} seed={p.id} alt={p.name} className="h-64 w-full transition-transform duration-700 group-hover:scale-105" rounded="rounded-2xl" />
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 to-transparent p-3.5">
+                  <p className="text-[10px] uppercase tracking-[0.12em] text-gold-light">{p.city}</p>
+                  <p className="font-display text-lg leading-tight text-cream">{p.name}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ---------------------------------------------------------------- */}
+      {/* POSTCARDS FROM MEXICO CITY — the richest verified photo set */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="mb-5 flex items-baseline justify-between">
+          <div>
+            <p className="font-display text-3xl text-ink md:text-4xl">Postcards From Mexico City</p>
+            <p className="text-sm text-ink-soft/60">A photo essay from the flagship — the deepest real photo set we have.</p>
+          </div>
+          <Link to="/destinations/mexico-city" className="shrink-0 text-xs uppercase tracking-[0.1em] text-terracotta">Full gallery</Link>
+        </div>
+        <PostcardGallery
+          images={[
+            { src: cdmxPhotos.zocalo, seed: 'disc-zocalo', alt: 'The Zócalo', caption: 'The Zócalo — Mexico City\'s grand central square, best arriving at sunset or after dark.' },
+            { src: cdmxPhotos.angelIndependencia, seed: 'disc-angel', alt: 'Ángel de la Independencia' },
+            { src: cdmxPhotos.granHotelDome, seed: 'disc-hotel', alt: 'Gran Hotel Ciudad de México dome' },
+          ]}
+        />
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* WEEKEND SOMEWHERE — GUIDE-tier destinations, framed intentionally */}
+      {/* ---------------------------------------------------------------- */}
+      {weekendSomewhere.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 md:px-8">
+          <p className="mb-1 font-display text-3xl text-ink md:text-4xl">Weekend Somewhere</p>
+          <p className="mb-5 text-sm text-ink-soft/60">Shorter, less-planned trips — real content, honestly not our deepest planner support yet.</p>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {weekendSomewhere.map((d) => (
+              <Link key={d.id} to={`/destinations/${d.slug}`} className="group relative flex overflow-hidden rounded-2xl bg-cream ring-1 ring-ink/5">
+                <Photo src={d.heroPhoto} seed={d.id} alt={d.city} className="h-32 w-32 shrink-0 md:h-40 md:w-40" rounded="rounded-none" />
+                <div className="min-w-0 p-4">
+                  <p className="text-[10px] uppercase tracking-[0.12em] text-terracotta">{d.country}</p>
+                  <p className="font-display text-xl leading-tight text-ink">{d.city}</p>
+                  <p className="mt-1 line-clamp-2 text-xs text-ink-soft/65">{d.tagline}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ---------------------------------------------------------------- */}
       {/* BUILD YOUR TRIP */}
       {/* ---------------------------------------------------------------- */}
       <section className="mx-auto max-w-6xl px-5 md:px-8">
@@ -246,6 +324,23 @@ export function Discover() {
           </div>
         </section>
       )}
+
+      {/* ---------------------------------------------------------------- */}
+      {/* OUR WORLD — small, restrained mention of the wider app family */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="mx-auto max-w-6xl px-5 pb-2 md:px-8">
+        <p className="mb-1 text-[11px] uppercase tracking-[0.2em] text-ink-soft/40">Our World</p>
+        <p className="mb-4 max-w-md text-xs text-ink-soft/50">Jet Set LatAm is the first of a small family of travel apps. The rest are on the way.</p>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {appFamilyList.map((app) => (
+            <div key={app.id} className="rounded-xl bg-cream/60 p-3 ring-1 ring-ink/5">
+              <app.icon size={15} className="text-ink-soft/50" />
+              <p className="mt-1.5 text-xs font-medium text-ink-soft/80">{app.name}</p>
+              <p className="text-[10px] uppercase tracking-[0.1em] text-ink-soft/35">{app.status === 'live' ? 'Available' : 'Coming soon'}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
