@@ -72,28 +72,46 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
   const ranked = [...allPlaces].sort((a, b) => scorePlace(b, answers.interests) - scorePlace(a, answers.interests))
 
   const perDay = PACE_ACTIVITIES_PER_DAY[answers.pace]
-  const used = new Set<string>()
   const days: ItineraryDay[] = []
+
+  // A short trip-length or a thin destination shouldn't ever produce a
+  // broken "no place left" block — once every place has appeared once,
+  // the planner starts revisiting the best-scoring ones (a real trip
+  // returns to a favorite café or park too) rather than leaving a slot
+  // empty. `useCount` tracks how many times each place has already been
+  // used across the whole trip; `usedToday` only prevents the same place
+  // appearing twice on one day.
+  const useCount = new Map<string, number>()
+  for (const p of allPlaces) useCount.set(p.id, 0)
+
+  function pickBest(pool: Place[], usedToday: Set<string>): Place | undefined {
+    const available = pool.filter((p) => !usedToday.has(p.id))
+    if (available.length === 0) return undefined
+    return [...available].sort((a, b) => {
+      const countDiff = (useCount.get(a.id) ?? 0) - (useCount.get(b.id) ?? 0)
+      if (countDiff !== 0) return countDiff
+      return scorePlace(b, answers.interests) - scorePlace(a, answers.interests)
+    })[0]
+  }
 
   for (let d = 1; d <= answers.days; d++) {
     const slots = DAY_SLOTS.slice(0, perDay)
+    const usedToday = new Set<string>()
     const activities: ItineraryActivity[] = slots.map((time, i) => {
-      // Pull the next unused, highest-scoring place that isn't a meal slot
-      // mismatch (best-effort — we don't have per-place meal tagging yet).
-      const candidate = ranked.find((p) => !used.has(p.id))
       const label = SLOT_LABELS[time] ?? 'Activity'
-      if (candidate && (label !== 'Breakfast' && label !== 'Lunch' && label !== 'Dinner')) {
-        used.add(candidate.id)
+      const isMeal = label === 'Breakfast' || label === 'Lunch' || label === 'Dinner'
+      // Meal slots prefer a café/restaurant, but fall back to any
+      // least-used place rather than an open block if the destination has
+      // none left unused today.
+      const mealPool = ranked.filter((p) => ['cafe', 'restaurant'].includes(p.category))
+      const candidate = isMeal ? (pickBest(mealPool, usedToday) ?? pickBest(ranked, usedToday)) : pickBest(ranked, usedToday)
+      if (candidate) {
+        usedToday.add(candidate.id)
+        useCount.set(candidate.id, (useCount.get(candidate.id) ?? 0) + 1)
         return { id: `${d}-${i}`, time, label, placeId: candidate.id }
       }
-      // For meal slots, prefer a café/restaurant if one is unused
-      if (label === 'Breakfast' || label === 'Lunch' || label === 'Dinner') {
-        const meal = ranked.find((p) => !used.has(p.id) && ['cafe', 'restaurant'].includes(p.category))
-        if (meal) {
-          used.add(meal.id)
-          return { id: `${d}-${i}`, time, label, placeId: meal.id }
-        }
-      }
+      // Only reachable if the destination has zero places at all, which
+      // shouldn't happen for any planner-eligible (6+ place) destination.
       return { id: `${d}-${i}`, time, label, notes: 'Open block — no verified place left for this slot yet' }
     })
     days.push({ day: d, theme: themeForDay(d, answers.interests), activities })
