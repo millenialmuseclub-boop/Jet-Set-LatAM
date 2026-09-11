@@ -94,7 +94,7 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
           return { id: `${d}-${i}`, time, label, placeId: meal.id }
         }
       }
-      return { id: `${d}-${i}`, time, label, notes: 'Open block — no verified Jet Set Pick left for this slot yet' }
+      return { id: `${d}-${i}`, time, label, notes: 'Open block — no verified place left for this slot yet' }
     })
     days.push({ day: d, theme: themeForDay(d, answers.interests), activities })
   }

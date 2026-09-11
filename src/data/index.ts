@@ -4,14 +4,15 @@ import { cartagenaDestination, cartagenaPlaces, cartagenaGuides, cartagenaReadyM
 import { guadalajaraDestination, guadalajaraPlaces, guadalajaraGuides } from './destinations/guadalajara'
 import { tulumDestination, tulumPlaces } from './destinations/tulum'
 import { comingSoonDestinations } from './destinations/coming-soon'
-import { saoPauloDestination, saoPauloPlaces } from './destinations/sao-paulo'
+import { saoPauloDestination, saoPauloPlaces, saoPauloReadyMadeItinerary } from './destinations/sao-paulo'
 import { playaDelCarmenDestination, playaDelCarmenPlaces } from './destinations/playa-del-carmen'
+import { buenosAiresDestination, buenosAiresPlaces, buenosAiresReadyMadeItinerary } from './destinations/buenos-aires'
 import type { Destination, Place, Guide, Itinerary } from '@/types'
 
-export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, ...comingSoonDestinations]
-export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces]
+export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, ...comingSoonDestinations]
+export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces]
 export const guides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides]
-export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary]
+export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary]
 
 export const flagshipDestination = mexicoCityDestination
 
