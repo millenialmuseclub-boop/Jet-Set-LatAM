@@ -4,15 +4,13 @@ workflows:
     max_build_duration: 60
     instance_type: mac_mini_m2
     integrations:
-      # Set this up in Codemagic → Teams → Integrations → App Store Connect.
-      # Give the integration this same name so the reference below resolves.
+      # Set up in Codemagic → Team settings → Integrations → App Store Connect.
+      # Name the integration exactly "codemagic" so this reference resolves.
       app_store_connect: codemagic
     environment:
-      groups:
-        - app_store_credentials # bundle identifier, team ID (add in Codemagic → Environment variables)
       vars:
         BUNDLE_ID: "com.jetsetlatam.app"
-        XCODE_WORKSPACE: "ios/App/App.xcodeproj"
+        XCODE_PROJECT: "ios/App/App.xcodeproj"
         XCODE_SCHEME: "App"
       node: 22.22.2
       xcode: latest
@@ -36,14 +34,10 @@ workflows:
       - name: Set up code signing
         script: |
           xcode-project use-profiles
-      - name: Increment build number
-        script: |
-          cd ios/App
-          agvtool new-version -all $(($(app-store-connect get-latest-build-number "$BUNDLE_ID") + 1))
       - name: Build ipa for distribution
         script: |
           xcode-project build-ipa \
-            --project "$XCODE_WORKSPACE" \
+            --project "$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME"
     artifacts:
       - build/ios/ipa/*.ipa
