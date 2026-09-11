@@ -4,7 +4,7 @@ import { AddToTripControl } from './AddToTripControl'
 import { Bookmark, BookmarkCheck, ArrowRight, Map, Globe } from 'lucide-react'
 import { useState } from 'react'
 import { isSavedPlace, toggleSavedPlace } from '@/lib/storage'
-import { openExternal } from '@/lib/links'
+import { openExternal, openMap } from '@/lib/links'
 import { getPlace, getGuide } from '@/data'
 import { Link } from 'react-router-dom'
 
@@ -56,14 +56,14 @@ export function JetSetPickCard({ place }: { place: Place }) {
               View <ArrowRight size={12} />
             </Link>
           ) : <span />}
-          <div className="flex items-center gap-2.5">
+          <div className="-mr-1.5 flex items-center gap-0.5">
             {place.mapUrl && (
-              <button onClick={() => openExternal(place.mapUrl)} className="flex items-center gap-1 text-[11px] text-ink-soft/50 hover:text-terracotta">
+              <button onClick={() => openMap(place.mapUrl)} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/50 active:bg-ink/5 active:text-terracotta">
                 <Map size={12} /> Map
               </button>
             )}
             {place.website && (
-              <button onClick={() => openExternal(place.website)} className="flex items-center gap-1 text-[11px] text-ink-soft/50 hover:text-terracotta">
+              <button onClick={() => openExternal(place.website)} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/50 active:bg-ink/5 active:text-terracotta">
                 <Globe size={12} /> Site
               </button>
             )}

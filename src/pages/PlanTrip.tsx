@@ -150,7 +150,7 @@ export function PlanTrip() {
           </button>
         </div>
         <p className="text-center text-[11px] text-ink-soft/40">
-          Assembled from the Jet Set LatAm {selectedDestination.city} Place database — not AI-generated. Hover an activity to reorder, swap or remove it.
+          Assembled from the Jet Set LatAm {selectedDestination.city} Place database — not AI-generated. Tap an activity's icons to reorder, swap or remove it.
         </p>
         {itinerary.answers?.companions === 'family' && (
           <div className="flex items-center gap-2.5 rounded-2xl bg-jungle/10 p-3.5 ring-1 ring-jungle/15">

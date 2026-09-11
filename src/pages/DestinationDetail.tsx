@@ -9,7 +9,10 @@ import { ShopTheLookCard } from '@/components/ShopTheLookCard'
 import { PostcardGallery } from '@/components/PostcardGallery'
 import { appFamily } from '@/config/appFamily'
 import { cdmxPhotos } from '@/assets/cdmx'
-import { openExternal } from '@/lib/links'
+import { rioPhotos } from '@/assets/rio'
+import { cartagenaPhotos } from '@/assets/cartagena'
+import { tulumPhotos } from '@/assets/tulum'
+import { openExternal, openMap } from '@/lib/links'
 import { toggleSavedDestination, isSavedDestination, toggleSavedPlace, isSavedPlace } from '@/lib/storage'
 import { Bookmark, BookmarkCheck, Map, Globe } from 'lucide-react'
 import type { GuideSection, Place } from '@/types'
@@ -35,18 +38,18 @@ function PlaceActions({ place }: { place: Place }) {
   const [saved, setSaved] = useState(() => isSavedPlace(place.id))
 
   return (
-    <div className="mt-1.5 flex flex-wrap items-center gap-3">
+    <div className="-ml-1 mt-1 flex flex-wrap items-center gap-1">
       {place.mapUrl && (
-        <button onClick={() => openExternal(place.mapUrl)} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
+        <button onClick={() => openMap(place.mapUrl)} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta">
           <Map size={12} /> Map
         </button>
       )}
       {place.website && (
-        <button onClick={() => openExternal(place.website)} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
+        <button onClick={() => openExternal(place.website)} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta">
           <Globe size={12} /> Website
         </button>
       )}
-      <button onClick={() => setSaved(toggleSavedPlace(place.id))} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
+      <button onClick={() => setSaved(toggleSavedPlace(place.id))} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta">
         {saved ? <BookmarkCheck size={12} /> : <Bookmark size={12} />} {saved ? 'Saved' : 'Save'}
       </button>
       <AddToTripControl place={place} />
@@ -184,6 +187,43 @@ export function DestinationDetail() {
               { src: cdmxPhotos.granHotelAtrium, seed: 'pc-hotel-atrium', alt: 'Gran Hotel Ciudad de México atrium' },
               { src: cdmxPhotos.unamLibrary, seed: 'pc-unam', alt: 'Biblioteca Central, UNAM' },
               { src: cdmxPhotos.folkArtAlebrije, seed: 'pc-alebrije', alt: 'Folk art alebrije' },
+            ]}
+          />
+        )}
+
+        {tab === 'overview' && destination.id === 'rio-de-janeiro' && (
+          <PostcardGallery
+            title="Postcards From Rio de Janeiro"
+            images={[
+              { src: rioPhotos.sugarloafPanorama, seed: 'pc-rio-sugarloaf', alt: 'Sugarloaf Mountain panorama', caption: 'Pão de Açúcar at golden hour — the classic Rio panorama, cable car included.' },
+              { src: rioPhotos.christRedeemerSunset, seed: 'pc-rio-christ-sunset', alt: 'Christ the Redeemer at sunset' },
+              { src: rioPhotos.kobraMural, seed: 'pc-rio-kobra', alt: 'Kobra street mural' },
+              { src: rioPhotos.christRedeemer, seed: 'pc-rio-christ', alt: 'Christ the Redeemer', caption: 'Cristo Redentor watches over the city from Corcovado — go early to beat both the crowds and the clouds.' },
+              { src: rioPhotos.santaTeresaTram, seed: 'pc-rio-tram', alt: 'Santa Teresa tram' },
+            ]}
+          />
+        )}
+
+        {tab === 'overview' && destination.id === 'cartagena' && (
+          <PostcardGallery
+            title="Postcards From Cartagena"
+            images={[
+              { src: cartagenaPhotos.cartagenaSkyline, seed: 'pc-cart-skyline', alt: 'Cartagena skyline from Muelle de la Bodeguita', caption: 'The modern skyline from Muelle de la Bodeguita — Cartagena in one frame, old and new.' },
+              { src: cartagenaPhotos.walledCityStreet, seed: 'pc-cart-street', alt: 'Walled City street' },
+              { src: cartagenaPhotos.palenquerasStreet, seed: 'pc-cart-palenqueras', alt: 'Palenqueras street scene' },
+              { src: cartagenaPhotos.walledCityCourtyard, seed: 'pc-cart-courtyard', alt: 'Walled City courtyard outside Museo Histórico', caption: 'A quiet courtyard outside Museo Histórico, in the Walled City\'s oldest streets.' },
+              { src: cartagenaPhotos.murallasSunset, seed: 'pc-cart-murallas', alt: 'Las Murallas at sunset' },
+            ]}
+          />
+        )}
+
+        {tab === 'overview' && destination.id === 'tulum' && (
+          <PostcardGallery
+            title="Postcards From Tulum"
+            images={[
+              { src: tulumPhotos.tulumRuinsCliff, seed: 'pc-tulum-cliff', alt: 'Tulum ruins atop the cliff over the sea', caption: 'The Tulum ruins, cliffside over the Caribbean — the only Maya site built to face the sunrise over open water.' },
+              { src: tulumPhotos.tulumBoardwalkBeach, seed: 'pc-tulum-boardwalk', alt: 'Wooden boardwalk to a turquoise beach' },
+              { src: tulumPhotos.tulumRuinsPalm, seed: 'pc-tulum-palm', alt: 'Tulum ruins framed by a palm' },
             ]}
           />
         )}

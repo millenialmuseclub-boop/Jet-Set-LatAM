@@ -4,7 +4,8 @@ import { getPlace } from '@/data'
 import { Photo } from './Photo'
 import { MapPin, Trash2, ArrowUp, ArrowDown, Shuffle, Map, Globe, Plus, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { openExternal } from '@/lib/links'
+import { openExternal, openMap } from '@/lib/links'
+import { ConfirmSheet } from './ConfirmSheet'
 
 // Shared day-by-day itinerary UI — used by both Plan a Trip (right after
 // generating a trip) and Trip Detail (editing a trip you already saved).
@@ -22,6 +23,7 @@ export function ItineraryEditor({
   addablePlaces?: Place[]
 }) {
   const [addingToDay, setAddingToDay] = useState<number | null>(null)
+  const [pendingRemoval, setPendingRemoval] = useState<{ dayIndex: number; activityId: string; label: string } | null>(null)
 
   function mutateDay(dayIndex: number, updater: (day: ItineraryDay) => ItineraryDay) {
     const days = itinerary.days.map((d, i) => (i === dayIndex ? updater(d) : d))
@@ -71,6 +73,17 @@ export function ItineraryEditor({
 
   return (
     <div className="space-y-6">
+      <ConfirmSheet
+        open={!!pendingRemoval}
+        title="Remove this from the trip?"
+        body={pendingRemoval ? `"${pendingRemoval.label}" will come out of this day's plan. You can add it back from Saved Places any time.` : undefined}
+        confirmLabel="Remove"
+        onCancel={() => setPendingRemoval(null)}
+        onConfirm={() => {
+          if (pendingRemoval) removeActivity(pendingRemoval.dayIndex, pendingRemoval.activityId)
+          setPendingRemoval(null)
+        }}
+      />
       {itinerary.days.map((day, dayIndex) => {
         const dayPhoto = day.activities
           .map((a) => (a.placeId ? getPlace(a.placeId)?.photos[0] : undefined))
@@ -122,21 +135,21 @@ export function ItineraryEditor({
                           <p className="text-xs italic text-ink-soft/40">{a.notes}</p>
                         )}
                       </div>
-                      <div className="flex shrink-0 items-start gap-0.5 opacity-40 transition-opacity group-hover:opacity-100">
+                      <div className="-mr-1.5 flex shrink-0 flex-wrap items-start justify-end gap-0.5">
                         {place?.mapUrl && (
-                          <button onClick={(e) => { e.stopPropagation(); openExternal(place.mapUrl) }} className="rounded p-1 text-ink-soft/50 hover:text-terracotta" aria-label={`Open ${place.name} in Maps`}>
-                            <Map size={12} />
+                          <button onClick={(e) => { e.stopPropagation(); openMap(place.mapUrl) }} className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta" aria-label={`Open ${place.name} in Maps`}>
+                            <Map size={14} />
                           </button>
                         )}
                         {place?.website && (
-                          <button onClick={(e) => { e.stopPropagation(); openExternal(place.website) }} className="rounded p-1 text-ink-soft/50 hover:text-terracotta" aria-label={`Open ${place.name}'s website`}>
-                            <Globe size={12} />
+                          <button onClick={(e) => { e.stopPropagation(); openExternal(place.website) }} className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta" aria-label={`Open ${place.name}'s website`}>
+                            <Globe size={14} />
                           </button>
                         )}
-                        <button onClick={() => moveActivity(dayIndex, a.id, -1)} disabled={i === 0} className="rounded p-1 text-ink-soft/50 hover:text-ink disabled:opacity-20"><ArrowUp size={12} /></button>
-                        <button onClick={() => moveActivity(dayIndex, a.id, 1)} disabled={isLast} className="rounded p-1 text-ink-soft/50 hover:text-ink disabled:opacity-20"><ArrowDown size={12} /></button>
-                        <button onClick={() => replaceActivity(dayIndex, a.id)} className="rounded p-1 text-ink-soft/50 hover:text-terracotta"><Shuffle size={12} /></button>
-                        <button onClick={() => removeActivity(dayIndex, a.id)} className="rounded p-1 text-ink-soft/50 hover:text-red-500"><Trash2 size={12} /></button>
+                        <button onClick={() => moveActivity(dayIndex, a.id, -1)} disabled={i === 0} aria-label="Move earlier" className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-ink disabled:opacity-20"><ArrowUp size={14} /></button>
+                        <button onClick={() => moveActivity(dayIndex, a.id, 1)} disabled={isLast} aria-label="Move later" className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-ink disabled:opacity-20"><ArrowDown size={14} /></button>
+                        <button onClick={() => replaceActivity(dayIndex, a.id)} aria-label="Swap for another place" className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"><Shuffle size={14} /></button>
+                        <button onClick={() => setPendingRemoval({ dayIndex, activityId: a.id, label: place?.name ?? a.label })} aria-label="Remove from itinerary" className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-red-500/10 active:text-red-500"><Trash2 size={14} /></button>
                       </div>
                     </motion.div>
                   )

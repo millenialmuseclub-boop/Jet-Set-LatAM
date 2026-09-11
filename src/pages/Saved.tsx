@@ -4,7 +4,8 @@ import { getPlace, getDestinationById, getDestinationForPlace, getGuide } from '
 import { Photo } from '@/components/Photo'
 import { EmptyState } from '@/components/EmptyState'
 import { AddToTripControl } from '@/components/AddToTripControl'
-import { openExternal } from '@/lib/links'
+import { ConfirmSheet } from '@/components/ConfirmSheet'
+import { openExternal, openMap } from '@/lib/links'
 import { Link } from 'react-router-dom'
 import { Trash2, Map as MapIcon, Globe, BookmarkX } from 'lucide-react'
 import type { Place } from '@/types'
@@ -12,6 +13,7 @@ import type { Place } from '@/types'
 export function Saved() {
   const [lib, setLib] = useState(getLibrary())
   const [trips, setTrips] = useState(getSavedTrips())
+  const [pendingDeleteTripId, setPendingDeleteTripId] = useState<string | null>(null)
 
   const upcoming = trips.filter((t) => t.status === 'upcoming')
   const past = trips.filter((t) => t.status === 'past')
@@ -62,10 +64,14 @@ export function Saved() {
                     <p className="text-xs text-cream/70">Saved {new Date(t.createdAt).toLocaleDateString()}</p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Link to={`/saved/trips/${t.id}`} className="rounded-full bg-cream px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.08em] text-ink">
+                    <Link to={`/saved/trips/${t.id}`} className="rounded-full bg-cream px-3.5 py-2 text-[11px] font-medium uppercase tracking-[0.08em] text-ink">
                       Open Trip
                     </Link>
-                    <button onClick={() => { removeTrip(t.id); setTrips(getSavedTrips()) }} className="text-cream/70" aria-label="Delete trip">
+                    <button
+                      onClick={() => setPendingDeleteTripId(t.id)}
+                      className="flex h-9 w-9 items-center justify-center rounded-full text-cream/80 active:bg-cream/20"
+                      aria-label={`Delete ${t.title}`}
+                    >
                       <Trash2 size={16} />
                     </button>
                   </div>
@@ -118,19 +124,19 @@ export function Saved() {
                         <p className="font-display text-base leading-tight text-ink">{p.name}</p>
                       )}
                       <p className="text-xs text-ink-soft/60">{p.neighborhood}</p>
-                      <div className="mt-1.5 flex flex-wrap items-center gap-3">
+                      <div className="-ml-1 mt-1 flex flex-wrap items-center gap-1">
                         {p.mapUrl && (
-                          <button onClick={() => openExternal(p.mapUrl)} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
+                          <button onClick={() => openMap(p.mapUrl)} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta">
                             <MapIcon size={12} /> Map
                           </button>
                         )}
                         {p.website && (
-                          <button onClick={() => openExternal(p.website)} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
+                          <button onClick={() => openExternal(p.website)} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta">
                             <Globe size={12} /> Website
                           </button>
                         )}
                         <AddToTripControl place={p} />
-                        <button onClick={() => unsavePlace(p.id)} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-red-500">
+                        <button onClick={() => unsavePlace(p.id)} className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-red-500/10 active:text-red-500">
                           <BookmarkX size={12} /> Remove
                         </button>
                       </div>
@@ -153,6 +159,18 @@ export function Saved() {
           ))}
         </section>
       )}
+
+      <ConfirmSheet
+        open={!!pendingDeleteTripId}
+        title="Delete this trip?"
+        body="Its itinerary will be removed from this device. This can't be undone."
+        confirmLabel="Delete Trip"
+        onCancel={() => setPendingDeleteTripId(null)}
+        onConfirm={() => {
+          if (pendingDeleteTripId) { removeTrip(pendingDeleteTripId); setTrips(getSavedTrips()) }
+          setPendingDeleteTripId(null)
+        }}
+      />
 
       {past.length > 0 && (
         <section className="space-y-3">
