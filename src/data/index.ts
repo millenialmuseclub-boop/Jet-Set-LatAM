@@ -2,11 +2,12 @@ import { mexicoCityDestination, cdmxPlaces, cdmxGuides, cdmxReadyMadeItinerary }
 import { rioDeJaneiroDestination, rioPlaces, rioGuides, rioReadyMadeItinerary } from './destinations/rio-de-janeiro'
 import { cartagenaDestination, cartagenaPlaces, cartagenaGuides, cartagenaReadyMadeItinerary } from './destinations/cartagena'
 import { guadalajaraDestination, guadalajaraPlaces, guadalajaraGuides } from './destinations/guadalajara'
+import { tulumDestination, tulumPlaces } from './destinations/tulum'
 import { comingSoonDestinations } from './destinations/coming-soon'
 import type { Destination, Place, Guide, Itinerary } from '@/types'
 
-export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, ...comingSoonDestinations]
-export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces]
+export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, ...comingSoonDestinations]
+export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces]
 export const guides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides]
 export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary]
 

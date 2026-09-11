@@ -1,4 +1,4 @@
-# Content Inventory — What's Ready vs. What's Not (Pass 5 update)
+# Content Inventory — What's Ready vs. What's Not (Pass 8 update)
 
 Snapshot of what real Jet Set LatAm content/photography exists per
 destination, and what's actually been built into the app vs. still gated on
@@ -53,6 +53,65 @@ missing verified content or authentic photography.
   single day-trip cluster, not a spread of in-city categories). Not
   planner-enabled this pass; a real page, not a stub.
 
+## Tulum — GUIDE tier, built out (Pass 8)
+
+- 3 real photos in `src/assets/tulum/` — captured via browser screenshot
+  from the jetsetlatam.com (THE BRUNCH MANIFESTO-watermarked) media
+  archive, watermark cropped out with ImageMagick, resized to 1600px max
+  width / quality 85 JPEG, matching the established pipeline: a wooden
+  boardwalk to a turquoise beach, the Tulum ruins temple atop the cliff
+  over the sea, and the same ruins framed by a foreground palm.
+- 8 verified Places confirmed via the jetsetlatam.com WordPress REST API
+  this pass: Tulum Archaeological Zone (landmark), three cenotes —
+  Cenote Cristalino, Cenote Azul, Jardín del Edén (experience), Nomade
+  Tulum (hotel, cited as a walking-route starting point), and three
+  wellness/spa names — Yäan Healing Sanctuary, Azulik Spa, Saná Spa
+  (experience). No Guides were built: unlike Cartagena/Guadalajara, no
+  individual article permalinks were captured this pass for Tulum — only
+  the category/tag listing was confirmed via the API — and `Guide.sourceUrl`
+  is required, not optional, so attaching an unverified or invented article
+  link was avoided entirely rather than guessed at. Every Place's
+  `sourceUrl` is likewise left unset for the same reason.
+- **Held at GUIDE, not LIVE**, for the same reasoning as the Guadalajara
+  precedent: the category spread (landmark/experience/hotel) looks similar
+  on paper, but there's no verified restaurant/cafe/shop/nightlife content,
+  only 3 photos (vs. 5+ at every LIVE destination), and every place
+  description is a single verified fact rather than the fuller
+  address/price/practical-notes depth LIVE places carry. Real enough for an
+  honest destination page; not enough to clear the planner-readiness bar.
+
+## Napa, San Francisco Chinatown — searched this pass, zero real content found
+
+- Both were searched this pass via the jetsetlatam.com WordPress API
+  (posts, categories, tags, media library). No named Places, no articles,
+  and no candidate photography turned up for either. No stub or Place data
+  was created — left fully open rather than guessed at.
+
+## Argentina / Peru / Chile / Costa Rica / Caribbean — HOLD, searched this pass
+
+Same failure pattern as the already-documented São Paulo / Playa del Carmen
+holds below: some real written content exists in the archive, but
+photography that would clear this project's photography-first bar was not
+found. Kept brief and honest rather than padded with specifics that weren't
+actually verified:
+
+- **Argentina (Buenos Aires)**: some real written references found in the
+  archive search, but no authentic, non-stock photography candidates
+  turned up. Held out.
+- **Peru**: same pattern — written references exist, no verified authentic
+  photography found this pass.
+- **Chile**: same pattern — written references exist, no verified authentic
+  photography found this pass.
+- **Costa Rica**: same pattern — written references exist, no verified
+  authentic photography found this pass.
+- **Caribbean (non-Colombia/Mexico)**: same pattern — scattered written
+  references, no verified authentic photography found this pass.
+
+None of these were built into `coming-soon.ts` stubs this pass — they're
+recorded here as an honest research log, not as promises of a specific
+future structure, since (per São Paulo/Playa del Carmen below) that
+structure is better decided once real photography exists to build against.
+
 ## São Paulo — held in `coming-soon`, blocked on photography
 
 - Real, specific written content exists: "Mercado Municipal de São Paulo:
@@ -98,11 +157,11 @@ missing verified content or authentic photography.
   build against; no point locking in a content structure with stock-only
   imagery.
 
-## Napa, San Francisco Chinatown
-
-- Not searched this pass (Pass 5 priority order stopped at Playa del
-  Carmen per the user's explicit list). No stub exists yet — still fully
-  open, no assumptions made.
+Note: this Playa del Carmen entry's framing ("Xcaret and Tulum treated as
+day-trip/experience clusters inside it") predates Pass 8's Tulum build.
+Pass 8 confirmed enough Tulum-specific content via the WordPress API to
+build Tulum as its own GUIDE-tier destination (see above) independent of
+this still-unresolved Playa del Carmen taxonomy question.
 
 ## Recommendation for the next content pass
 
@@ -115,7 +174,12 @@ missing verified content or authentic photography.
    "beating heart" piece, one of the day-count itineraries, the Xcaret
    hotel guide) to extract real named Places before deciding final
    structure.
-4. Run the still-open Napa / San Francisco Chinatown searches.
-5. Consider elevating Guadalajara from GUIDE to LIVE if a future pass
-   finds verified in-city Places (restaurant/shop/cafe) beyond the
-   Tequila day-trip cluster.
+4. Re-run the Argentina/Peru/Chile/Costa Rica/Caribbean photo searches
+   periodically — same blocker as São Paulo/Playa del Carmen.
+5. Consider elevating Guadalajara and/or Tulum from GUIDE to LIVE if a
+   future pass finds verified in-city category variety (restaurant/shop/
+   cafe/nightlife) and richer photography beyond what's documented above.
+6. If individual Tulum article permalinks turn up (not just the API
+   category listing), attach real `sourceUrl`s to the existing Tulum
+   Places and build proper Guides — both were deliberately left out this
+   pass rather than guessed at.

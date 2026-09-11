@@ -157,4 +157,11 @@ export const guadalajaraDestination: Destination = {
   placeIds: guadalajaraPlaces.map((p) => p.id),
   guideIds: guadalajaraGuides.map((g) => g.id),
   itineraryIds: [],
+  // Genuine, documented Rallii connection — the José Cuervo Express is a
+  // real scenic train (see pl-jose-cuervo-express above), not a speculative
+  // addition. See docs/CONTENT_INVENTORY.md.
+  railiiConnection: {
+    type: 'scenic-rail',
+    description: 'The José Cuervo Express — a scenic day-trip train through blue agave country to Tequila.',
+  },
 }

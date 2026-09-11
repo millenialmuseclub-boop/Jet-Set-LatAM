@@ -226,6 +226,53 @@ bar, run on at least one physical device, then Product → Archive → Validate
 → upload via Organizer. See `docs/IOS_RELEASE_CHECKLIST.md` for the full
 step-by-step — it's now updated to reflect exactly what's done vs. pending.
 
+## Ecosystem — Pass 8 update
+
+Pass 8 built the "wow factor and ecosystem" pass on top of this foundation.
+See `docs/CONTENT_INVENTORY.md` for the Tulum destination this pass added.
+
+- `src/config/appFamily.ts` — a typed registry of all four Jet Set apps
+  (Jet Set LatAm, Luxe Jetter, Little Jetter, Rallii) with name/description/
+  icon/status. No invented URLs: Jet Set LatAm is the only `status: 'live'`
+  entry; the other three are `status: 'coming-soon'` with every
+  `webURL`/`iOSURL`/`deepLinkScheme` left `undefined`. Update this file the
+  moment a real URL is verified — never before.
+- `TripContext.selectedPlaces` — a new optional field (deduped place ids
+  from the itinerary's day activities), populated by `getTripContext()`.
+  Still purely additive/derived — nothing stores or syncs it.
+- `Destination.railiiConnection` — an optional field, populated ONLY where
+  a genuine, already-documented connection exists. As of this pass, that's
+  Guadalajara's José Cuervo Express (a real scenic train, already a Place
+  in `guadalajara.ts` since Pass 5) — no other destination got this field.
+- "Make It Yours" on Trip Detail is now contextual instead of two static
+  cards: Luxe Jetter always shows (still an inert "coming soon" card, no
+  real URL), Little Jetter only shows when the trip's companions is
+  `'family'`, and a Rallii card only shows when the destination has a real
+  `railiiConnection`. A matching Rallii card also appears on
+  `DestinationDetail`'s overview tab for destinations with the field, and a
+  small Little Jetter mention appears on the Plan a Trip result screen for
+  family trips.
+- Real affiliate infrastructure wired in for the first time: two ShopMy
+  collection URLs (`https://shopmy.us/collections/embed/2799513` — hotel,
+  `https://shopmy.us/collections/embed/2687505` — clothing), found
+  associated with Copacabana Palace content and consistent with the real
+  creator's own ShopMy platform. Rendered via a new `ShopTheLookCard`
+  (Luxe Jetter-flavored, not a generic per-Place booking button — no such
+  per-place affiliate infra exists) on Rio's Copacabana Palace place card,
+  with a small reusable `AffiliateDisclosure` component next to it. These
+  are the only two affiliate URLs anywhere in the app.
+- `PostcardGallery` — a new varied-layout photo-essay component (large
+  landscape → two portraits → caption → full-width, repeating), used on
+  Mexico City's destination page (richest verified photo count) and as a
+  condensed teaser on Discover.
+- Discover gained Art + Design, Postcards From Mexico City, Weekend
+  Somewhere (the GUIDE-tier destinations), and a small non-dominant "Our
+  World" app-family section. Destinations.tsx now uses friendly copy
+  ("Plan-ready" / "Explore" / "Coming soon") instead of raw tier labels.
+- Little Jetter and Rallii remain **not built** as real products — only
+  contextual, inert mentions exist, same "ecosystem foundation, not a
+  feature" posture as Pass 7.
+
 ## Explicitly not done (by instruction)
 
 - No OTA update mechanism.

@@ -6,7 +6,7 @@ import { generateItinerary } from '@/lib/planner'
 import { addUpcomingTrip, saveUserItinerary } from '@/lib/storage'
 import { Photo } from '@/components/Photo'
 import { ItineraryEditor } from '@/components/ItineraryEditor'
-import { Check, Pencil } from 'lucide-react'
+import { Check, Pencil, Baby } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // A destination is offered in the planner only once it has enough real,
@@ -152,6 +152,14 @@ export function PlanTrip() {
         <p className="text-center text-[11px] text-ink-soft/40">
           Assembled from the Jet Set LatAm {selectedDestination.city} Place database — not AI-generated. Hover an activity to reorder, swap or remove it.
         </p>
+        {itinerary.answers?.companions === 'family' && (
+          <div className="flex items-center gap-2.5 rounded-2xl bg-jungle/10 p-3.5 ring-1 ring-jungle/15">
+            <Baby size={16} className="shrink-0 text-jungle" />
+            <p className="text-xs leading-relaxed text-ink-soft/70">
+              Traveling with kids — <span className="font-medium text-ink">Little Jetter</span> (coming soon) will help you prep and pack for this one.
+            </p>
+          </div>
+        )}
       </div>
     )
   }
