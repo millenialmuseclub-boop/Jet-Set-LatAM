@@ -476,7 +476,7 @@ export const rioReadyMadeItinerary: Itinerary = {
       day: 2,
       theme: 'Icons + Porto Maravilha',
       activities: [
-        { id: 'r7', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified pick yet' },
+        { id: 'r7', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'r8', time: '10:30', label: 'Christ the Redeemer', placeId: 'pl-christ-redeemer' },
         { id: 'r9', time: '13:00', label: 'Lunch', placeId: 'pl-gajos-douro' },
         { id: 'r10', time: '15:00', label: 'Museu do Amanhã', placeId: 'pl-museu-do-amanha' },
@@ -510,7 +510,7 @@ export const rioDeJaneiroDestination: Destination = {
       'Rio de Janeiro is a canvas of stunning visuals — towering cliffs embracing the ocean, golden sand, vibrant beachfront bairros. Copacabana’s classic energy, Ipanema’s stylish calm and Leblon’s quiet luxury each tell a different story against the same backdrop of sea, sand and sky. Beyond the beaches, Christ the Redeemer watches over the city from Corcovado, Kobra’s mural anchors the modern waterfront at Porto Maravilha, and Santa Teresa’s cobbled hillside moves at an entirely different pace.',
     whyGo:
       'For a city that rewards both structure and wandering — legendary beachfront hotels and a rooftop-bar nightlife scene sit a short tram ride from Santa Teresa’s unhurried, artist-filled streets.',
-    bestTime: 'Content coming soon.',
+    bestTime: 'May–September (Southern Hemisphere winter): cooler, drier and less crowded — the best window for hiking Sugarloaf and long beach days without peak-season prices. December–March is hot, humid and the most festive (New Year\'s Eve, Carnival in Feb/March) but also the busiest and priciest.',
   },
   neighborhoods: rioNeighborhoods,
   placeIds: rioPlaces.map((p) => p.id),

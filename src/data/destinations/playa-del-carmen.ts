@@ -15,11 +15,11 @@ import { playaDelCarmenPhotos } from '@/assets/playa-del-carmen'
 // experience cluster reachable from it (per the archive's own framing,
 // documented in the former field-notes.ts entry this file replaces).
 //
-// EXPLORE, not PLAN: one verified Place (Xcaret's butterfly sanctuary) —
-// real and specific, but the archive's multi-day itineraries and named
-// hotels/restaurants haven't been pulled into individual Places yet. Same
-// posture as Guadalajara/Tulum/São Paulo: a real destination page, not a
-// stub, not planner-enabled yet.
+// EXPLORE, not PLAN: real, named Places pulled from the archive's "Perfect
+// Four Day Itinerary" post (restaurants, a beach club, a café, a landmark
+// plaza and a rooftop) plus the Xcaret butterfly sanctuary. Still not
+// planner-enabled — same posture as Guadalajara/Tulum: a real destination
+// page, not a stub.
 // ---------------------------------------------------------------------------
 
 export const playaDelCarmenNeighborhoods: Neighborhood[] = [
@@ -31,9 +31,118 @@ export const playaDelCarmenNeighborhoods: Neighborhood[] = [
       'An eco-archaeological park just south of town, built around natural lagoons, underground rivers and a butterfly sanctuary — a full day trip in itself, and the Riviera Maya\'s best-known single attraction.',
     heroPhoto: playaDelCarmenPhotos.xcaretLagoonCove,
   },
+  {
+    id: 'nb-quinta-avenida',
+    name: 'Quinta Avenida',
+    city: 'Playa del Carmen',
+    description: 'The pedestrian spine of downtown Playa — restaurants, artisan shops and street life running roughly parallel to the beach.',
+  },
+  {
+    id: 'nb-centro-pdc',
+    name: 'Centro',
+    city: 'Playa del Carmen',
+    description: 'The town center around Parque Fundadores and the waterfront — plazas, churches and the ferry terminal to Cozumel.',
+  },
+  {
+    id: 'nb-coco-beach',
+    name: 'Coco Beach',
+    city: 'Playa del Carmen',
+    description: 'A quieter stretch of beach north of downtown — calmer water, beach clubs and rooftop pools with fewer crowds than Quinta Avenida.',
+  },
 ]
 
 export const playaDelCarmenPlaces: Place[] = [
+  {
+    id: 'pl-la-cueva-del-chango',
+    name: 'La Cueva del Chango',
+    country: 'Mexico',
+    city: 'Playa del Carmen',
+    neighborhood: 'Quinta Avenida',
+    category: 'restaurant',
+    description: 'A garden-set breakfast and brunch spot just off Quinta Avenida — chilaquiles and fresh juices in a leafy, jungle-like setting that feels far from the main strip.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=La+Cueva+del+Chango+Playa+del+Carmen',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/01/30/playa-del-carmen-perfect-four-day-itinerary/',
+    tags: ['breakfast', 'brunch', 'garden'],
+  },
+  {
+    id: 'pl-el-fogon',
+    name: 'El Fogón',
+    country: 'Mexico',
+    city: 'Playa del Carmen',
+    neighborhood: 'Quinta Avenida',
+    category: 'restaurant',
+    description: 'A casual, no-frills taco spot known for its al pastor — the kind of dinner that has nothing to prove and doesn\'t need to.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=El+Fogon+Playa+del+Carmen',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/01/30/playa-del-carmen-perfect-four-day-itinerary/',
+    tags: ['tacos', 'al pastor', 'casual'],
+  },
+  {
+    id: 'pl-ah-cacao',
+    name: 'Ah Cacao',
+    country: 'Mexico',
+    city: 'Playa del Carmen',
+    neighborhood: 'Centro',
+    category: 'cafe',
+    description: 'A Mexican chocolate café chain built on fair-trade cacao from family farms — thick hot chocolate, coffee and pastries, a reliable stop between museum visits and beach time.',
+    photos: [],
+    website: 'https://ahcacao.com/en',
+    isJetSetPick: false,
+    priceLevel: '$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ah+Cacao+Playa+del+Carmen',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/01/30/playa-del-carmen-perfect-four-day-itinerary/',
+    tags: ['chocolate', 'coffee', 'cafe'],
+  },
+  {
+    id: 'pl-parque-fundadores',
+    name: 'Parque Fundadores',
+    country: 'Mexico',
+    city: 'Playa del Carmen',
+    neighborhood: 'Centro',
+    category: 'landmark',
+    description: 'The waterfront square at the foot of Quinta Avenida, anchored by the Portal Maya sculpture — live performances, artisan vendors and people-watching, best around sunset.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Parque+Los+Fundadores+Playa+del+Carmen',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/01/30/playa-del-carmen-perfect-four-day-itinerary/',
+    tags: ['plaza', 'waterfront', 'sunset'],
+  },
+  {
+    id: 'pl-mandarino-beach-club',
+    name: 'Mandarino Beach Club',
+    country: 'Mexico',
+    city: 'Playa del Carmen',
+    neighborhood: 'Coco Beach',
+    category: 'beach',
+    description: 'A calmer stretch of sand north of the main strip in Coco Beach — fewer crowds, loungers and calm water, a good half-day alternative to Quinta Avenida\'s beach clubs.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mandarino+Beach+Club+Playa+del+Carmen',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/01/30/playa-del-carmen-perfect-four-day-itinerary/',
+    tags: ['beach club', 'coco beach', 'quiet'],
+  },
+  {
+    id: 'pl-the-palm-at-playa',
+    name: 'The Palm at Playa',
+    country: 'Mexico',
+    city: 'Playa del Carmen',
+    neighborhood: 'Coco Beach',
+    category: 'nightlife',
+    description: 'A lively, adults-oriented rooftop pool scene in North Playa — strong cocktails and a see-and-be-seen crowd once the sun goes down.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=The+Palm+at+Playa+Playa+del+Carmen',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/01/30/playa-del-carmen-perfect-four-day-itinerary/',
+    tags: ['rooftop', 'pool', 'nightlife'],
+  },
   {
     id: 'pl-xcaret-butterfly-sanctuary',
     name: 'Xcaret Butterfly Sanctuary',
@@ -63,11 +172,12 @@ export const playaDelCarmenDestination: Destination = {
   status: 'guide',
   content: {
     overview:
-      'Source articles consistently frame Playa del Carmen as the "beating heart" of the Riviera Maya, with Xcaret as a day-trip cluster reachable from it — a park built around natural lagoons, underground rivers, and a walk-through butterfly sanctuary. The archive includes multi-day itineraries, a Cancún-vs-Playa comparison, a cruiser-bike guide, and a dedicated Xcaret hotels guide, not yet pulled into named, bookable Places beyond the butterfly sanctuary.',
-    whyGo: 'The region\'s most-written-about beach town in the archive, now with real photography from Xcaret\'s lagoon and butterfly sanctuary to back it up.',
+      'Source articles consistently frame Playa del Carmen as the "beating heart" of the Riviera Maya, with Xcaret as a day-trip cluster reachable from it — a park built around natural lagoons, underground rivers, and a walk-through butterfly sanctuary. Downtown itself runs along Quinta Avenida and the waterfront Parque Fundadores, with a quieter beach-club scene north in Coco Beach.',
+    whyGo: 'The region\'s most-written-about beach town in the archive — garden breakfasts, a chocolate café, a landmark plaza and Xcaret\'s butterfly sanctuary, all real and sourced.',
+    bestTime: 'November–April: dry season, the best beach and cenote weather — also the busiest and priciest. June–November is hurricane season, hot and humid with real storm risk, heaviest August–October.',
   },
   neighborhoods: playaDelCarmenNeighborhoods,
-  placeIds: ['pl-xcaret-butterfly-sanctuary'],
+  placeIds: playaDelCarmenPlaces.map((p) => p.id),
   guideIds: [],
   itineraryIds: [],
 }

@@ -139,11 +139,11 @@ export const saoPauloPlaces: Place[] = [
     neighborhood: 'Centro',
     category: 'restaurant',
     description:
-      'A counter inside Mercado Municipal de São Paulo, known for one thing above all: the mortadella sandwich, stacked thick, that regulars line up for at lunch.',
+      'A local institution inside Mercado Municipal de São Paulo, home of the legendary mortadella sandwich stacked thick enough to share — claim a counter seat and watch the morning unfold as Paulistanos trade stories over cold beers.',
     photos: [],
     isJetSetPick: false,
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Hocca+Bar+Mercado+Municipal+Sao+Paulo',
-    sourceUrl: 'https://jetsetlatam.com',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/10/20/mercado-municipal-de-sao-paulo-a-flavorful-landmark-in-the-heart-of-the-city/',
     tags: ['market', 'sandwich', 'lunch'],
   },
   {
@@ -207,7 +207,11 @@ export const saoPauloPlaces: Place[] = [
     photos: [],
     isJetSetPick: false,
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Mercado+Municipal+de+Pinheiros+Sao+Paulo',
-    website: 'https://www.mercadomunicipaldepinheiros.com/',
+    // Link audit catch: mercadomunicipaldepinheiros.com is a fan/community
+    // page (explicit "no ties to any public or private agency" disclaimer,
+    // plus dubious future-dated posts) — not the market's official site. No
+    // official site found; mapUrl only, same honesty rule applied to the
+    // Sé Cathedral link earlier.
     tags: ['market', 'produce', 'local'],
   },
   {
@@ -301,7 +305,7 @@ export const saoPauloReadyMadeItinerary: Itinerary = {
       day: 1,
       theme: 'Centro: Cathedral, Market + Architecture',
       activities: [
-        { id: 'sp-a1', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'sp-a1', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'sp-a2', time: '10:30', label: 'Sé Cathedral', placeId: 'pl-se-cathedral' },
         { id: 'sp-a3', time: '13:00', label: 'Lunch', placeId: 'pl-hocca-bar' },
         { id: 'sp-a4', time: '15:00', label: 'Edifício Copan', placeId: 'pl-edificio-copan' },
@@ -312,7 +316,7 @@ export const saoPauloReadyMadeItinerary: Itinerary = {
       day: 2,
       theme: 'Paulista + Luz: Museums',
       activities: [
-        { id: 'sp-a6', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'sp-a6', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'sp-a7', time: '10:30', label: 'MASP', placeId: 'pl-masp' },
         { id: 'sp-a8', time: '12:00', label: 'Walk Avenida Paulista', placeId: 'pl-avenida-paulista' },
         { id: 'sp-a9', time: '14:00', label: 'Pinacoteca de São Paulo', placeId: 'pl-pinacoteca' },
@@ -323,7 +327,7 @@ export const saoPauloReadyMadeItinerary: Itinerary = {
       day: 3,
       theme: 'Vila Madalena + Jardins: Street Art + Shopping',
       activities: [
-        { id: 'sp-a11', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'sp-a11', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'sp-a12', time: '10:30', label: 'Beco do Batman', placeId: 'pl-beco-do-batman' },
         { id: 'sp-a13', time: '13:00', label: 'Lunch at Mercado de Pinheiros', placeId: 'pl-mercado-pinheiros' },
         { id: 'sp-a14', time: '15:30', label: 'Shop Rua Oscar Freire', placeId: 'pl-rua-oscar-freire' },
@@ -345,6 +349,7 @@ export const saoPauloDestination: Destination = {
     overview:
       'São Paulo runs from the neo-Gothic Sé Cathedral and neoclassical Mercado Municipal downtown, up Avenida Paulista\'s skyscraper spine to MASP, out to Oscar Niemeyer\'s Ibirapuera pavilions, and back into Vila Madalena\'s ever-repainted Beco do Batman alley. Ten verified places across landmarks, museums, a working market, a shopping street, a rooftop and a park — enough to build a real multi-day trip, not just a highlight reel.',
     whyGo: 'Brazil\'s biggest, densest city, with real architectural weight (Niemeyer, Lina Bo Bardi), a serious museum scene, and street life that rewards slow wandering as much as a checklist.',
+    bestTime: 'June–September (Southern Hemisphere winter): mild, dry and the most comfortable for walking. December–March is hot and rainy, with heavy afternoon downpours common.',
   },
   neighborhoods: saoPauloNeighborhoods,
   placeIds: [

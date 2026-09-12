@@ -175,6 +175,12 @@ export function DestinationDetail() {
                     <dt className="text-cream/50">Neighborhoods</dt>
                     <dd>{destination.neighborhoods.map((n) => n.name).join(', ')}</dd>
                   </div>
+                  {destination.content.bestTime && (
+                    <div>
+                      <dt className="text-cream/50">Best time to go</dt>
+                      <dd>{destination.content.bestTime}</dd>
+                    </div>
+                  )}
                 </dl>
               </div>
             </div>

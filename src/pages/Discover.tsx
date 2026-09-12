@@ -5,6 +5,7 @@ import { PostcardGallery } from '@/components/PostcardGallery'
 import { flagshipDestination, guides, getJetSetPicks, destinations, getPlacesByDestination, getDestinationForPlace } from '@/data'
 import { cdmxPhotos } from '@/assets/cdmx'
 import { rioPhotos } from '@/assets/rio'
+import { saoPauloPhotos } from '@/assets/sao-paulo'
 import { appFamilyList, CREATOR_PORTFOLIO_URL } from '@/config/appFamily'
 import { openExternal } from '@/lib/links'
 import { Link } from 'react-router-dom'
@@ -50,14 +51,23 @@ export function Discover() {
   const fieldNoteTierDestinations = destinations.filter((d) => d.status === 'field-note')
   // A full-width visual break highlighting the destinations beyond the
   // flagship — deliberately excludes Mexico City so the hero above doesn't
-  // repeat itself here.
-  const destinationMoments = destinations.filter((d) => d.status !== 'coming-soon' && d.id !== flagshipDestination.id)
+  // repeat itself here. Prioritizes the most recently content-enriched
+  // destinations (São Paulo, Buenos Aires, Playa del Carmen) so this pass's
+  // archive-mining work is actually visible here, not just on their own
+  // destination pages — Rio/Cartagena/Guadalajara already get plenty of
+  // Discover real estate elsewhere (Postcards, Art + Design, Weekend
+  // Somewhere).
+  const priorityOrder = ['sao-paulo', 'buenos-aires', 'playa-del-carmen', 'rio-de-janeiro', 'cartagena', 'tulum', 'guadalajara']
+  const destinationMoments = destinations
+    .filter((d) => d.status !== 'coming-soon' && d.id !== flagshipDestination.id)
+    .sort((a, b) => priorityOrder.indexOf(a.id) - priorityOrder.indexOf(b.id))
   const eatAndDrink = interleave([
     getPlacesByDestination('mexico-city').filter((p) => p.category === 'cafe'),
     getPlacesByDestination('rio-de-janeiro').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('cartagena').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('sao-paulo').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('buenos-aires').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
+    getPlacesByDestination('playa-del-carmen').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
   ]).slice(0, 6)
   // ART + DESIGN — museum/landmark places with real category variety across
   // every built destination, not CDMX-only.
@@ -295,6 +305,27 @@ export function Discover() {
             { src: rioPhotos.christRedeemerSunset, seed: 'disc-rio-christ-sunset', alt: 'Christ the Redeemer at sunset', caption: 'Cristo Redentor catches the last light before the city goes gold, then dark.' },
             { src: rioPhotos.kobraMural, seed: 'disc-rio-kobra', alt: 'Kobra street mural' },
             { src: rioPhotos.santaTeresaTram, seed: 'disc-rio-tram', alt: 'Santa Teresa tram' },
+          ]}
+        />
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* POSTCARDS FROM SÃO PAULO — real trip photography, mural alley +   */}
+      {/* the cathedral, since São Paulo went live this pass.               */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="mb-5 flex items-baseline justify-between">
+          <div>
+            <p className="font-display text-3xl text-ink md:text-4xl">Postcards From São Paulo</p>
+            <p className="text-sm text-ink-soft/60">Beco do Batman's mural alley and the twin towers of Catedral da Sé.</p>
+          </div>
+          <Link to="/destinations/sao-paulo" className="shrink-0 text-xs uppercase tracking-[0.1em] text-terracotta">Full gallery</Link>
+        </div>
+        <PostcardGallery
+          images={[
+            { src: saoPauloPhotos.becoDoBatmanDragonMural, seed: 'disc-sp-dragon', alt: 'Dragon mural, Beco do Batman', caption: 'Beco do Batman — Vila Madalena\'s open-air mural alley, repainted constantly, never the same visit twice.' },
+            { src: saoPauloPhotos.seCathedralTwinTowers, seed: 'disc-sp-cathedral', alt: 'Catedral da Sé twin towers' },
+            { src: saoPauloPhotos.becoDoBatmanButterflyMural, seed: 'disc-sp-butterfly', alt: 'Butterfly mural, Beco do Batman' },
           ]}
         />
       </section>
