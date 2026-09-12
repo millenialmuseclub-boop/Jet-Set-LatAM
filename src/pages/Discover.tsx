@@ -51,14 +51,23 @@ export function Discover() {
   const fieldNoteTierDestinations = destinations.filter((d) => d.status === 'field-note')
   // A full-width visual break highlighting the destinations beyond the
   // flagship — deliberately excludes Mexico City so the hero above doesn't
-  // repeat itself here.
-  const destinationMoments = destinations.filter((d) => d.status !== 'coming-soon' && d.id !== flagshipDestination.id)
+  // repeat itself here. Prioritizes the most recently content-enriched
+  // destinations (São Paulo, Buenos Aires, Playa del Carmen) so this pass's
+  // archive-mining work is actually visible here, not just on their own
+  // destination pages — Rio/Cartagena/Guadalajara already get plenty of
+  // Discover real estate elsewhere (Postcards, Art + Design, Weekend
+  // Somewhere).
+  const priorityOrder = ['sao-paulo', 'buenos-aires', 'playa-del-carmen', 'rio-de-janeiro', 'cartagena', 'tulum', 'guadalajara']
+  const destinationMoments = destinations
+    .filter((d) => d.status !== 'coming-soon' && d.id !== flagshipDestination.id)
+    .sort((a, b) => priorityOrder.indexOf(a.id) - priorityOrder.indexOf(b.id))
   const eatAndDrink = interleave([
     getPlacesByDestination('mexico-city').filter((p) => p.category === 'cafe'),
     getPlacesByDestination('rio-de-janeiro').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('cartagena').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('sao-paulo').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
     getPlacesByDestination('buenos-aires').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
+    getPlacesByDestination('playa-del-carmen').filter((p) => ['restaurant', 'cafe'].includes(p.category)),
   ]).slice(0, 6)
   // ART + DESIGN — museum/landmark places with real category variety across
   // every built destination, not CDMX-only.
