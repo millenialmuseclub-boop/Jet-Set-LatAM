@@ -6,7 +6,10 @@ import { generateItinerary } from '@/lib/planner'
 import { addUpcomingTrip, saveUserItinerary } from '@/lib/storage'
 import { Photo } from '@/components/Photo'
 import { ItineraryEditor } from '@/components/ItineraryEditor'
-import { Check, Pencil, Baby } from 'lucide-react'
+import {
+  Check, Pencil, Baby, User, Heart, Users, Utensils, Landmark, Waves,
+  ShoppingBag, Moon, Leaf, Wallet, Coffee, Gem, Turtle, Scale, Zap, Compass,
+} from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // A destination is offered in the planner only once it has enough real
@@ -26,46 +29,70 @@ const PLANNER_READY_DESTINATIONS = destinations.filter(
 )
 
 const DAY_OPTIONS = [3, 4, 5, 7]
-const COMPANION_OPTIONS: { value: TripCompanions; label: string }[] = [
-  { value: 'solo', label: 'Solo' }, { value: 'couple', label: 'Couple' },
-  { value: 'friends', label: 'Friends' }, { value: 'family', label: 'Family' },
+const COMPANION_OPTIONS: { value: TripCompanions; label: string; icon: typeof User }[] = [
+  { value: 'solo', label: 'Solo', icon: User }, { value: 'couple', label: 'Couple', icon: Heart },
+  { value: 'friends', label: 'Friends', icon: Users }, { value: 'family', label: 'Family', icon: Baby },
 ]
-const INTEREST_OPTIONS: { value: TripInterest; label: string }[] = [
-  { value: 'food', label: 'Food' }, { value: 'culture', label: 'Culture' },
-  { value: 'beach', label: 'Beach' }, { value: 'shopping', label: 'Shopping' },
-  { value: 'nightlife', label: 'Nightlife' }, { value: 'relaxation', label: 'Relaxation' },
+const INTEREST_OPTIONS: { value: TripInterest; label: string; icon: typeof User }[] = [
+  { value: 'food', label: 'Food', icon: Utensils }, { value: 'culture', label: 'Culture', icon: Landmark },
+  { value: 'beach', label: 'Beach', icon: Waves }, { value: 'shopping', label: 'Shopping', icon: ShoppingBag },
+  { value: 'nightlife', label: 'Nightlife', icon: Moon }, { value: 'relaxation', label: 'Relaxation', icon: Leaf },
 ]
-const STYLE_OPTIONS: { value: TripStyle; label: string }[] = [
-  { value: 'value', label: 'Value' }, { value: 'comfortable', label: 'Comfortable' }, { value: 'luxe', label: 'Luxe' },
+const STYLE_OPTIONS: { value: TripStyle; label: string; icon: typeof User; hint: string }[] = [
+  { value: 'value', label: 'Value', icon: Wallet, hint: 'Smart picks, real experiences' },
+  { value: 'comfortable', label: 'Comfortable', icon: Coffee, hint: 'A balance of nice and easy' },
+  { value: 'luxe', label: 'Luxe', icon: Gem, hint: 'The best of the best' },
 ]
-const PACE_OPTIONS: { value: TripPace; label: string }[] = [
-  { value: 'slow', label: 'Slow' }, { value: 'balanced', label: 'Balanced' }, { value: 'pack-it-in', label: 'Pack It In' },
+const PACE_OPTIONS: { value: TripPace; label: string; icon: typeof User; hint: string }[] = [
+  { value: 'slow', label: 'Slow', icon: Turtle, hint: '3 activities a day, room to wander' },
+  { value: 'balanced', label: 'Balanced', icon: Scale, hint: '4 activities a day' },
+  { value: 'pack-it-in', label: 'Pack It In', icon: Zap, hint: '6 activities a day, go go go' },
 ]
 
 function OptionGrid<T extends string>({
-  options, value, onChange, multi,
-}: { options: { value: T; label: string }[]; value: T[] | T | null; onChange: (v: T) => void; multi?: boolean }) {
+  options, value, onChange, multi, columns = 2,
+}: {
+  options: { value: T; label: string; icon?: typeof User; hint?: string }[]
+  value: T[] | T | null
+  onChange: (v: T) => void
+  multi?: boolean
+  columns?: 2 | 1
+}) {
   const isSelected = (v: T) => (multi ? (value as T[]).includes(v) : value === v)
   return (
-    <div className="grid grid-cols-2 gap-2.5">
-      {options.map((opt) => (
-        <motion.button
-          key={opt.value}
-          whileTap={{ scale: 0.96 }}
-          onClick={() => onChange(opt.value)}
-          className={`flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
-            isSelected(opt.value) ? 'bg-terracotta text-cream' : 'bg-cream text-ink-soft ring-1 ring-ink/10'
-          }`}
-        >
-          {opt.label}
-          {isSelected(opt.value) && <Check size={15} />}
-        </motion.button>
-      ))}
+    <div className={`grid gap-2.5 ${columns === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
+      {options.map((opt) => {
+        const Icon = opt.icon
+        const selected = isSelected(opt.value)
+        return (
+          <motion.button
+            key={opt.value}
+            layout
+            whileTap={{ scale: 0.96 }}
+            onClick={() => onChange(opt.value)}
+            className={`flex items-center gap-3 rounded-2xl px-4 py-3.5 text-left text-sm font-medium transition-colors ${
+              selected ? 'bg-terracotta text-cream shadow-sm shadow-terracotta/20' : 'bg-cream text-ink-soft ring-1 ring-ink/10 active:bg-ink/5'
+            }`}
+          >
+            {Icon && (
+              <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${selected ? 'bg-cream/20' : 'bg-ink/5'}`}>
+                <Icon size={16} className={selected ? 'text-cream' : 'text-terracotta'} />
+              </span>
+            )}
+            <span className="min-w-0 flex-1">
+              <span className="block leading-tight">{opt.label}</span>
+              {opt.hint && <span className={`mt-0.5 block text-xs font-normal leading-snug ${selected ? 'text-cream/75' : 'text-ink-soft/50'}`}>{opt.hint}</span>}
+            </span>
+            {selected && <Check size={16} className="shrink-0" />}
+          </motion.button>
+        )
+      })}
     </div>
   )
 }
 
 const STEPS = ['destination', 'days', 'companions', 'interests', 'style', 'pace'] as const
+const STEP_LABELS = ['Destination', 'Trip length', 'Companions', 'Interests', 'Style', 'Pace']
 
 export function PlanTrip() {
   const [params] = useSearchParams()
@@ -84,6 +111,7 @@ export function PlanTrip() {
   const [itinerary, setItinerary] = useState<Itinerary | null>(null)
   const [savedMsg, setSavedMsg] = useState(false)
   const [editingTitle, setEditingTitle] = useState(false)
+  const [generating, setGenerating] = useState(false)
 
   const selectedDestination = destinations.find((d) => d.id === destinationId) ?? flagshipDestination
 
@@ -91,11 +119,18 @@ export function PlanTrip() {
 
   function next() {
     if (step < STEPS.length - 1) return setStep(step + 1)
+    // A brief, real "curating" beat before the itinerary appears — this is a
+    // deterministic, near-instant computation, but a trip you'll spend real
+    // money on should feel considered, not spat out. Kept short on purpose.
+    setGenerating(true)
     const answers: TripQuizAnswers = {
       destinationId: destinationId ?? flagshipDestination.id,
       days: days!, companions: companions!, interests, style: style!, pace: pace!,
     }
-    setItinerary(generateItinerary(answers))
+    window.setTimeout(() => {
+      setItinerary(generateItinerary(answers))
+      setGenerating(false)
+    }, 900)
   }
 
   // Saving persists both the trip record (what Saved lists) AND the
@@ -115,6 +150,26 @@ export function PlanTrip() {
       status: 'upcoming',
     })
     setSavedMsg(true)
+  }
+
+  if (generating) {
+    return (
+      <div className="animate-fade-in mx-auto flex max-w-lg flex-col items-center px-5 pt-6 md:px-8">
+        <div className="relative -mx-5 mb-8 w-[calc(100%+2.5rem)] overflow-hidden md:mx-0 md:w-full md:rounded-3xl">
+          <Photo src={selectedDestination.heroPhoto} seed={selectedDestination.id} alt="" className="h-48 w-full" rounded="rounded-none" />
+          <div className="absolute inset-0 bg-ink/50" />
+        </div>
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 1.4, repeat: Infinity, ease: 'linear' }}
+          className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-terracotta/10"
+        >
+          <Compass size={20} className="text-terracotta" />
+        </motion.div>
+        <p className="font-display text-xl text-ink">Curating your {selectedDestination.city} trip</p>
+        <p className="mt-1.5 text-center text-sm text-ink-soft/60">Pulling real places from the Jet Set LatAm database — not AI-generated.</p>
+      </div>
+    )
   }
 
   if (itinerary) {
@@ -179,9 +234,21 @@ export function PlanTrip() {
         </div>
       </div>
 
+      <div className="mb-2 flex items-baseline justify-between">
+        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-terracotta">
+          Step {step + 1} of {STEPS.length}
+        </p>
+        <p className="text-[11px] uppercase tracking-[0.1em] text-ink-soft/40">{STEP_LABELS[step]}</p>
+      </div>
       <div className="mb-6 flex gap-1.5">
         {STEPS.map((_, i) => (
-          <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i <= step ? 'bg-terracotta' : 'bg-ink/10'}`} />
+          <motion.div
+            key={i}
+            initial={false}
+            animate={{ backgroundColor: i <= step ? 'var(--color-terracotta)' : 'rgba(26,22,20,0.1)' }}
+            transition={{ duration: 0.3 }}
+            className="h-1.5 flex-1 rounded-full"
+          />
         ))}
       </div>
 
@@ -191,7 +258,7 @@ export function PlanTrip() {
           initial={{ opacity: 0, x: 16 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -16 }}
-          transition={{ duration: 0.25 }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
           className="space-y-8"
         >
           {step === 0 && (
@@ -203,16 +270,20 @@ export function PlanTrip() {
                     key={d.id}
                     whileTap={{ scale: 0.96 }}
                     onClick={() => setDestinationId(d.id)}
-                    className={`relative overflow-hidden rounded-2xl text-left ${destinationId === d.id ? 'ring-2 ring-terracotta' : ''}`}
+                    className={`relative overflow-hidden rounded-2xl text-left transition-shadow ${destinationId === d.id ? 'ring-2 ring-terracotta shadow-md shadow-terracotta/20' : 'ring-1 ring-ink/5'}`}
                   >
                     <Photo src={d.heroPhoto} seed={d.id} alt={d.city} className="h-28 w-full" rounded="rounded-none" />
-                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/85 to-transparent p-3">
+                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/85 via-ink/10 to-transparent p-3">
                       <p className="font-display text-lg leading-tight text-cream">{d.city}</p>
                     </div>
                     {destinationId === d.id && (
-                      <span className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-terracotta text-cream">
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-terracotta text-cream"
+                      >
                         <Check size={14} />
-                      </span>
+                      </motion.span>
                     )}
                   </motion.button>
                 ))}
@@ -224,8 +295,14 @@ export function PlanTrip() {
               <h2 className="font-display text-2xl text-ink">How long?</h2>
               <div className="grid grid-cols-4 gap-2">
                 {DAY_OPTIONS.map((d) => (
-                  <motion.button whileTap={{ scale: 0.94 }} key={d} onClick={() => setDays(d)} className={`rounded-xl py-4 text-center text-sm font-medium ${days === d ? 'bg-terracotta text-cream' : 'bg-cream text-ink-soft ring-1 ring-ink/10'}`}>
-                    {d}d
+                  <motion.button
+                    whileTap={{ scale: 0.94 }}
+                    key={d}
+                    onClick={() => setDays(d)}
+                    className={`rounded-2xl py-4 text-center text-sm font-medium transition-colors ${days === d ? 'bg-terracotta text-cream shadow-sm shadow-terracotta/20' : 'bg-cream text-ink-soft ring-1 ring-ink/10 active:bg-ink/5'}`}
+                  >
+                    <span className="block text-base font-semibold">{d}</span>
+                    <span className="block text-[10px] uppercase tracking-wide opacity-70">days</span>
                   </motion.button>
                 ))}
               </div>
@@ -239,8 +316,10 @@ export function PlanTrip() {
           )}
           {step === 3 && (
             <div className="space-y-4">
-              <h2 className="font-display text-2xl text-ink">What matters most?</h2>
-              <p className="text-xs text-ink-soft/60">Select all that apply</p>
+              <div>
+                <h2 className="font-display text-2xl text-ink">What matters most?</h2>
+                <p className="mt-1 text-xs text-ink-soft/50">Select all that apply</p>
+              </div>
               <OptionGrid
                 options={INTEREST_OPTIONS}
                 value={interests}
@@ -252,13 +331,13 @@ export function PlanTrip() {
           {step === 4 && (
             <div className="space-y-4">
               <h2 className="font-display text-2xl text-ink">Trip style</h2>
-              <OptionGrid options={STYLE_OPTIONS} value={style} onChange={setStyle} />
+              <OptionGrid options={STYLE_OPTIONS} value={style} onChange={setStyle} columns={1} />
             </div>
           )}
           {step === 5 && (
             <div className="space-y-4">
               <h2 className="font-display text-2xl text-ink">Pace</h2>
-              <OptionGrid options={PACE_OPTIONS} value={pace} onChange={setPace} />
+              <OptionGrid options={PACE_OPTIONS} value={pace} onChange={setPace} columns={1} />
             </div>
           )}
         </motion.div>
@@ -266,15 +345,15 @@ export function PlanTrip() {
 
       <div className="mt-8 flex gap-3">
         {step > 0 && (
-          <button onClick={() => setStep(step - 1)} className="rounded-full bg-cream px-5 py-3 text-sm font-medium text-ink-soft ring-1 ring-ink/10">
+          <button onClick={() => setStep(step - 1)} className="rounded-full bg-cream px-5 py-3 text-sm font-medium text-ink-soft ring-1 ring-ink/10 active:bg-ink/5">
             Back
           </button>
         )}
         <motion.button
-          whileTap={{ scale: 0.97 }}
+          whileTap={canAdvance ? { scale: 0.97 } : undefined}
           disabled={!canAdvance}
           onClick={next}
-          className="flex-1 rounded-full bg-terracotta py-3 text-sm font-medium text-cream disabled:opacity-30"
+          className="flex-1 rounded-full bg-terracotta py-3 text-sm font-medium text-cream shadow-sm shadow-terracotta/20 transition-opacity disabled:opacity-30 disabled:shadow-none"
         >
           {step === STEPS.length - 1 ? 'Build my itinerary' : 'Continue'}
         </motion.button>
