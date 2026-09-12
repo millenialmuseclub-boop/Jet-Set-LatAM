@@ -87,9 +87,10 @@ export function Saved() {
           <p className="font-display text-xl text-ink">Saved Destinations</p>
           <div className="grid grid-cols-2 gap-3">
             {savedDests.map((d) => d && (
-              <Link key={d.id} to={`/destinations/${d.slug}`}>
-                <Photo src={d.heroPhoto} seed={d.id} alt={d.city} className="h-24 w-full" />
-                <p className="mt-1 font-display text-base text-ink">{d.city}</p>
+              <Link key={d.id} to={`/destinations/${d.slug}`} className="group overflow-hidden rounded-xl">
+                <Photo src={d.heroPhoto} seed={d.id} alt={d.city} className="h-24 w-full transition-transform duration-500 group-hover:scale-105" />
+                <p className="mt-1.5 font-display text-base leading-tight text-ink">{d.city}</p>
+                <p className="text-[10px] uppercase tracking-[0.1em] text-terracotta">{d.country}</p>
               </Link>
             ))}
           </div>
@@ -150,11 +151,15 @@ export function Saved() {
       )}
 
       {savedGuides.length > 0 && (
-        <section className="space-y-3">
+        <section className="space-y-2">
           <p className="font-display text-xl text-ink">Saved Guides</p>
           {savedGuides.map((g) => g && (
-            <Link key={g.id} to={`/guides/${g.id}`} className="block rounded-xl bg-cream p-3 ring-1 ring-ink/5">
-              <p className="font-display text-base text-ink">{g.title}</p>
+            <Link key={g.id} to={`/guides/${g.id}`} className="flex items-center gap-3 rounded-xl bg-cream p-2.5 ring-1 ring-ink/5">
+              <Photo src={g.heroPhoto} seed={g.id} alt={g.title} className="h-14 w-14 shrink-0" />
+              <div className="min-w-0">
+                <p className="text-[10px] uppercase tracking-[0.1em] text-terracotta">{g.section}</p>
+                <p className="font-display text-base leading-tight text-ink">{g.title}</p>
+              </div>
             </Link>
           ))}
         </section>
