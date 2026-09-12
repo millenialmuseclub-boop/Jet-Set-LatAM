@@ -155,11 +155,22 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
     }
     const repeatable = pool.filter((p) => !usedToday.has(p.id) && REPEATABLE_CATEGORIES.has(p.category))
     if (repeatable.length > 0) {
-      return [...repeatable].sort((a, b) => {
+      const byUseThenScore = (a: Place, b: Place) => {
         const countDiff = (useCount.get(a.id) ?? 0) - (useCount.get(b.id) ?? 0)
         if (countDiff !== 0) return countDiff
         return scoreForSlot(b, dayNeighborhoods) - scoreForSlot(a, dayNeighborhoods)
-      })[0]
+      }
+      // On a thin destination, a naive "least-used wins" tie-break can
+      // surface a category the traveler never asked for (e.g. Nightlife
+      // filling days on a food/culture/shopping trip just because it's
+      // been touched less than the cafés) — and once that place drives a
+      // day's activity count, the theme label reads as if the trip were
+      // about nightlife. Prefer repeatable places that actually match a
+      // requested interest; only fall back to the traveler's least-favorite
+      // repeatable category once nothing interest-relevant is left either.
+      const relevant = repeatable.filter((p) => scorePlace(p, answers.interests) > 0)
+      const candidates = relevant.length > 0 ? relevant : repeatable
+      return [...candidates].sort(byUseThenScore)[0]
     }
     return undefined
   }
