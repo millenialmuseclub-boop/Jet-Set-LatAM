@@ -100,6 +100,24 @@ export function deriveWardrobeMoments(itinerary: Itinerary): string[] {
  *  hardcoded per destination: the sentence structure and occasion choice
  *  are computed from the trip; only the closing flavor phrase is looked up
  *  by city name. */
+// Headline templates, keyed by the strongest signal an itinerary actually
+// has. Every template still needs the destination name filled in, so the
+// headline is always destination-specific — never the same static line
+// repeated across cities. Selection is deterministic (based on the trip's
+// own occasion mix and day count, not random), so the same trip always
+// renders the same headline.
+function pickHeadline(context: TripContext, moments: string[]): string {
+  const city = context.destinationName.toUpperCase()
+  const hasBeach = moments.includes('Beach Day')
+  const hasNightlife = moments.includes('Night Out')
+  const hasDinner = moments.includes('Dinner')
+
+  if (hasBeach) return `PACK FOR ${city}`
+  if (hasNightlife && !hasDinner) return `WHAT ARE YOU WEARING IN ${city}?`
+  if (context.days >= 5) return `BUILD MY ${city} WARDROBE`
+  return `DRESS FOR ${city}`
+}
+
 export function generateLuxeJetterCopy(context: TripContext, moments: string[]): LuxeJetterCopy {
   const dayWord = context.days === 1 ? 'One day' : `${numberWord(context.days)} days`
   const flavor = CITY_FLAVOR[context.destinationName]
@@ -110,7 +128,7 @@ export function generateLuxeJetterCopy(context: TripContext, moments: string[]):
     : `${dayWord} in ${context.destinationName}${momentPhrase ? `, including ${momentPhrase.toLowerCase()}` : ''}.`
 
   return {
-    headline: 'What Are You Wearing?',
+    headline: pickHeadline(context, moments),
     body,
     cta: `Plan My ${context.destinationName} Wardrobe →`,
   }
