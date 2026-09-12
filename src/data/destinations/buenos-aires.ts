@@ -274,6 +274,42 @@ export const buenosAiresPlaces: Place[] = [
     sourceUrl: 'https://thebrunchmanifesto.blog',
     tags: ['boutique', 'bohemian', 'argentine-brand'],
   },
+
+  // --- Pass 16 addition: two more real, independently verifiable
+  // landmarks (Wikipedia-sourced, same honesty pattern as São Paulo's
+  // Avenida Paulista/Edifício Copan) — adds category depth for a city
+  // that otherwise has just one landmark (Plaza Armenia).
+  {
+    id: 'pl-recoleta-cemetery',
+    name: 'Recoleta Cemetery',
+    country: 'Argentina',
+    city: 'Buenos Aires',
+    neighborhood: 'Recoleta',
+    category: 'landmark',
+    description:
+      'A city of elaborate marble mausoleums built for Argentina\'s wealthiest families since 1822 — narrow tree-lined "streets" between statuary and crypts, most famously holding Eva Perón\'s tomb.',
+    photos: [],
+    isJetSetPick: false,
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Recoleta+Cemetery+Buenos+Aires',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Recoleta_Cemetery',
+    tags: ['cemetery', 'landmark', 'recoleta'],
+  },
+  {
+    id: 'pl-teatro-colon',
+    name: 'Teatro Colón',
+    country: 'Argentina',
+    city: 'Buenos Aires',
+    neighborhood: 'Centro / Monserrat',
+    category: 'landmark',
+    description:
+      'Buenos Aires\' grand opera house, opened in 1908 and regarded as one of the world\'s finest for acoustics — a gilded, Beaux-Arts interior worth seeing on a guided tour even outside a performance.',
+    photos: [],
+    isJetSetPick: false,
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Teatro+Colon+Buenos+Aires',
+    website: 'https://teatrocolon.org.ar/en',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Teatro_Col%C3%B3n',
+    tags: ['opera-house', 'architecture', 'landmark'],
+  },
 ]
 
 export const buenosAiresReadyMadeItinerary: Itinerary = {
@@ -330,7 +366,7 @@ export const buenosAiresDestination: Destination = {
   status: 'live',
   content: {
     overview:
-      'Buenos Aires is the strongest untapped city in the Jet Set LatAm archive by its own tag count — a walking tour through Palermo Soho\'s independent boutiques, a honeymoon guide naming Recoleta\'s grand hotels and MALBA, and a culture-and-nightlife piece anchored by Café Tortoni, the city\'s oldest café. Twelve places across restaurant, museum, park, landmark, cafe, nightlife, hotel, bar and shop categories, spanning six neighborhoods from Palermo Soho to Puerto Madero.',
+      'Buenos Aires is the strongest untapped city in the Jet Set LatAm archive by its own tag count — a walking tour through Palermo Soho\'s independent boutiques, a honeymoon guide naming Recoleta\'s grand hotels and MALBA, and a culture-and-nightlife piece anchored by Café Tortoni, the city\'s oldest café. Fourteen places across restaurant, museum, park, landmark, cafe, nightlife, hotel, bar and shop categories, spanning six neighborhoods from Palermo Soho to Puerto Madero.',
     whyGo: 'World-class steak, serious museums, and tango ranging from a hidden milonga feel to Faena\'s full theatrical spectacle — a city with real range, not just one postcard image.',
     bestTime: 'September–November (spring) and March–May (fall): mild and pleasant, with jacaranda blooms in spring. December–February is hot and humid, but also peak nightlife season; June–August is cool and quieter — best for museums and steakhouse dinners.',
   },
@@ -348,6 +384,8 @@ export const buenosAiresDestination: Destination = {
     'pl-casa-rincon',
     'pl-humawaca',
     'pl-rapsodia',
+    'pl-recoleta-cemetery',
+    'pl-teatro-colon',
   ],
   guideIds: [],
   itineraryIds: [buenosAiresReadyMadeItinerary.id],

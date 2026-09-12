@@ -21,11 +21,19 @@ import { saoPauloPhotos } from '@/assets/sao-paulo'
 // (and future destinations) past the "needs 6 blog-sourced places" trap
 // without pretending Jordann has personally been to or endorsed all of them.
 //
-// This is why status is now 'live' (PLAN tier): 10 real Places across 7
+// This is why status is now 'live' (PLAN tier): 21 real Places across 7
 // categories (landmark, museum, restaurant, experience, shop, nightlife,
 // park) and 7 neighborhoods — enough category spread for Plan a Trip's
 // planner to build a real, varied itinerary, not just repeat the same two
 // places.
+//
+// Pass 16: mined Jet Set LatAm's own "Best Designer Boutiques In São
+// Paulo's Jardins District" post for 8 real, named, addressed shops, plus
+// Bar Brahma (Wikipedia-sourced, historic Centro samba bar) for nightlife.
+// This was specifically to fix a repeatable-category thinness bug: with
+// only 1 shop/1 nightlife/1 park place, a 5+ day planner trip degenerated
+// into visiting the same 3 places on every remaining day (confirmed via
+// simulation) — 9 more repeatable places (8 shop + 1 nightlife) fixes that.
 // ---------------------------------------------------------------------------
 
 export const saoPauloNeighborhoods: Neighborhood[] = [
@@ -278,6 +286,154 @@ export const saoPauloPlaces: Place[] = [
     website: 'https://www.terracoitalia.com.br/',
     tags: ['rooftop', 'skyline', 'sunset'],
   },
+  // --- Pass 16 addition: real boutiques mined from Jet Set LatAm's own
+  // "Best Designer Boutiques In São Paulo's Jardins District" post — fixes
+  // São Paulo having only 1 repeatable-category (shop) place, which was
+  // causing the planner to degrade on 5+ day trips (see planner.ts
+  // REPEATABLE_CATEGORIES). All eight are real, named, addressed shops.
+  {
+    id: 'pl-alexandre-herchcovitch',
+    name: 'Alexandre Herchcovitch',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Rua Melo Alves, Jardins',
+    description: 'One of Brazil\'s most influential designers, known for bold silhouettes and his signature skull motif.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Alexandre+Herchcovitch+Rua+Melo+Alves+Jardins+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['boutique', 'brazilian-designer', 'jardins'],
+  },
+  {
+    id: 'pl-adriana-barra',
+    name: 'Adriana Barra',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Alameda Franca, Jardins',
+    description: 'Colorful, print-driven pieces with bohemian elegance — the boutique also has an in-house manicure studio.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Adriana+Barra+Alameda+Franca+Jardins+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['boutique', 'brazilian-designer', 'jardins'],
+  },
+  {
+    id: 'pl-darouche',
+    name: "D'Arouche",
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Alameda Lorena, Jardins',
+    description: 'Refined tailoring blended with a contemporary, edgy design aesthetic.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=D%27Arouche+Alameda+Lorena+Jardins+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['boutique', 'brazilian-designer', 'jardins'],
+  },
+  {
+    id: 'pl-carlos-miele',
+    name: 'Carlos Miele',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Rua Oscar Freire, Jardins',
+    description: 'Celebrated for glamorous eveningwear and sculptural dresses — high-end luxury on São Paulo\'s premier shopping street.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Carlos+Miele+Rua+Oscar+Freire+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['boutique', 'eveningwear', 'oscar-freire'],
+  },
+  {
+    id: 'pl-lenny-niemeyer',
+    name: 'Lenny Niemeyer',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Rua Oscar Freire, Jardins',
+    description: 'Brazil\'s iconic luxury swimwear designer, offering elegant, grown-up beachwear with refined cuts.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Lenny+Niemeyer+Rua+Oscar+Freire+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['boutique', 'swimwear', 'oscar-freire'],
+  },
+  {
+    id: 'pl-granado',
+    name: 'Granado',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    description: 'A historic Brazilian apothecary, founded in 1870, selling soaps, fragrances and skincare in old-world packaging.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Granado+Jardins+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['apothecary', 'historic', 'jardins'],
+  },
+  {
+    id: 'pl-surface-to-air',
+    name: 'Surface to Air',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Alameda Lorena, Jardins',
+    description: 'A young creative collective blending fashion, design and art with an urban aesthetic.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Surface+to+Air+Alameda+Lorena+Jardins+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['boutique', 'concept-store', 'jardins'],
+  },
+  {
+    id: 'pl-bluxo',
+    name: 'B.Luxo',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Rua Augusta, Jardins',
+    description: 'A curated mix of vintage and original pieces, with Brazilian interpretations of European trends.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=B.Luxo+Rua+Augusta+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
+    tags: ['boutique', 'vintage', 'rua-augusta'],
+  },
+  {
+    id: 'pl-bar-brahma',
+    name: 'Bar Brahma',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Centro',
+    category: 'nightlife',
+    description:
+      'A historic samba and choro bar at the corner of Avenida São João and Ipiranga in Centro, open since the 1940s — live music most nights, in the heart of downtown São Paulo\'s old commercial core.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Bar+Brahma+Avenida+Sao+Joao+Sao+Paulo',
+    sourceUrl: 'https://en.wikipedia.org/wiki/Bar_Brahma',
+    tags: ['live-music', 'samba', 'historic-bar'],
+  },
   {
     id: 'pl-ibirapuera-park',
     name: 'Ibirapuera Park',
@@ -347,7 +503,7 @@ export const saoPauloDestination: Destination = {
   status: 'live',
   content: {
     overview:
-      'São Paulo runs from the neo-Gothic Sé Cathedral and neoclassical Mercado Municipal downtown, up Avenida Paulista\'s skyscraper spine to MASP, out to Oscar Niemeyer\'s Ibirapuera pavilions, and back into Vila Madalena\'s ever-repainted Beco do Batman alley. Ten verified places across landmarks, museums, a working market, a shopping street, a rooftop and a park — enough to build a real multi-day trip, not just a highlight reel.',
+      'São Paulo runs from the neo-Gothic Sé Cathedral and neoclassical Mercado Municipal downtown, up Avenida Paulista\'s skyscraper spine to MASP, out to Oscar Niemeyer\'s Ibirapuera pavilions, into Jardins\' designer boutique row, and back into Vila Madalena\'s ever-repainted Beco do Batman alley. Twenty-one verified places across landmarks, museums, a working market, boutiques, a historic samba bar, a rooftop and a park — enough to build a real multi-day trip, not just a highlight reel.',
     whyGo: 'Brazil\'s biggest, densest city, with real architectural weight (Niemeyer, Lina Bo Bardi), a serious museum scene, and street life that rewards slow wandering as much as a checklist.',
     bestTime: 'June–September (Southern Hemisphere winter): mild, dry and the most comfortable for walking. December–March is hot and rainy, with heavy afternoon downpours common.',
   },
@@ -365,6 +521,15 @@ export const saoPauloDestination: Destination = {
     'pl-dom-restaurante',
     'pl-terraco-italia',
     'pl-ibirapuera-park',
+    'pl-alexandre-herchcovitch',
+    'pl-adriana-barra',
+    'pl-darouche',
+    'pl-carlos-miele',
+    'pl-lenny-niemeyer',
+    'pl-granado',
+    'pl-surface-to-air',
+    'pl-bluxo',
+    'pl-bar-brahma',
   ],
   guideIds: [],
   itineraryIds: [saoPauloReadyMadeItinerary.id],
