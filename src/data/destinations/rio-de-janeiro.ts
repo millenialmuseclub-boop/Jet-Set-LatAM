@@ -476,7 +476,7 @@ export const rioReadyMadeItinerary: Itinerary = {
       day: 2,
       theme: 'Icons + Porto Maravilha',
       activities: [
-        { id: 'r7', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified pick yet' },
+        { id: 'r7', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'r8', time: '10:30', label: 'Christ the Redeemer', placeId: 'pl-christ-redeemer' },
         { id: 'r9', time: '13:00', label: 'Lunch', placeId: 'pl-gajos-douro' },
         { id: 'r10', time: '15:00', label: 'Museu do Amanhã', placeId: 'pl-museu-do-amanha' },

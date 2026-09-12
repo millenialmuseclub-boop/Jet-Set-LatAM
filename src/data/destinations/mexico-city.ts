@@ -588,7 +588,7 @@ export const cdmxReadyMadeItinerary: Itinerary = {
         { id: 'a1', time: '9:00', label: 'Breakfast', placeId: 'pl-cicatriz' },
         { id: 'a2', time: '10:30', label: 'Boutique walk', placeId: 'pl-180-shop', notes: 'Start at Fuente de Cibeles' },
         { id: 'a3', time: '12:00', label: 'Explore', placeId: 'pl-carla-fernandez-roma' },
-        { id: 'a4', time: '14:00', label: 'Lunch', notes: 'Open block — no verified pick yet' },
+        { id: 'a4', time: '14:00', label: 'Lunch', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'a5', time: '16:00', label: 'Design detour', placeId: 'pl-utilitario-mexicano' },
         { id: 'a6', time: '18:00', label: 'Reset', placeId: 'pl-onora-casa' },
       ],
@@ -599,7 +599,7 @@ export const cdmxReadyMadeItinerary: Itinerary = {
       activities: [
         { id: 'a7', time: '9:00', label: 'Breakfast', placeId: 'pl-panaderia-rosetta' },
         { id: 'a8', time: '10:30', label: 'Cycle Chapultepec', placeId: 'pl-chapultepec-park' },
-        { id: 'a9', time: '13:00', label: 'Lunch', notes: 'Open block — no verified pick yet' },
+        { id: 'a9', time: '13:00', label: 'Lunch', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'a10', time: '15:00', label: 'Explore Coyoacán', notes: 'Historic center — guide coming soon' },
         { id: 'a11', time: '18:00', label: 'Sunset at Zócalo', placeId: 'pl-zocalo' },
       ],
@@ -610,7 +610,7 @@ export const cdmxReadyMadeItinerary: Itinerary = {
       activities: [
         { id: 'a12', time: '9:00', label: 'Breakfast', placeId: 'pl-cafe-nin' },
         { id: 'a13', time: '10:30', label: 'Shop Juárez', placeId: 'pl-carla-fernandez-juarez' },
-        { id: 'a14', time: '13:00', label: 'Lunch + departure prep', notes: 'Open block' },
+        { id: 'a14', time: '13:00', label: 'Lunch + departure prep', notes: 'Grab something quick near your hotel before heading to the airport.' },
       ],
     },
   ],

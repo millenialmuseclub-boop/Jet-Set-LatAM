@@ -439,7 +439,7 @@ export const cartagenaReadyMadeItinerary: Itinerary = {
       activities: [
         { id: 'c7', time: '9:00', label: 'Fortress morning', placeId: 'pl-castillo-san-felipe' },
         { id: 'c8', time: '11:30', label: 'Museums', placeId: 'pl-gold-museum-cartagena' },
-        { id: 'c9', time: '13:00', label: 'Lunch', notes: 'Open block — no verified pick yet' },
+        { id: 'c9', time: '13:00', label: 'Lunch', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'c10', time: '17:30', label: 'Evening plaza', placeId: 'pl-plaza-santo-domingo' },
         { id: 'c11', time: '18:30', label: 'Sunset at the walls', placeId: 'pl-las-murallas' },
         { id: 'c12', time: '21:00', label: 'Drinks', placeId: 'pl-mondo-bar' },
@@ -449,7 +449,7 @@ export const cartagenaReadyMadeItinerary: Itinerary = {
       day: 3,
       theme: 'Easy Pace',
       activities: [
-        { id: 'c13', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified pick yet' },
+        { id: 'c13', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'c14', time: '11:30', label: 'Island escape', placeId: 'pl-blue-apple-resort' },
         { id: 'c15', time: '19:30', label: 'Dinner', placeId: 'pl-el-sombreron-osteria' },
       ],

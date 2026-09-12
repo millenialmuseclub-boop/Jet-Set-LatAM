@@ -139,11 +139,11 @@ export const saoPauloPlaces: Place[] = [
     neighborhood: 'Centro',
     category: 'restaurant',
     description:
-      'A counter inside Mercado Municipal de São Paulo, known for one thing above all: the mortadella sandwich, stacked thick, that regulars line up for at lunch.',
+      'A local institution inside Mercado Municipal de São Paulo, home of the legendary mortadella sandwich stacked thick enough to share — claim a counter seat and watch the morning unfold as Paulistanos trade stories over cold beers.',
     photos: [],
     isJetSetPick: false,
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Hocca+Bar+Mercado+Municipal+Sao+Paulo',
-    sourceUrl: 'https://jetsetlatam.com',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2025/10/20/mercado-municipal-de-sao-paulo-a-flavorful-landmark-in-the-heart-of-the-city/',
     tags: ['market', 'sandwich', 'lunch'],
   },
   {
@@ -305,7 +305,7 @@ export const saoPauloReadyMadeItinerary: Itinerary = {
       day: 1,
       theme: 'Centro: Cathedral, Market + Architecture',
       activities: [
-        { id: 'sp-a1', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'sp-a1', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'sp-a2', time: '10:30', label: 'Sé Cathedral', placeId: 'pl-se-cathedral' },
         { id: 'sp-a3', time: '13:00', label: 'Lunch', placeId: 'pl-hocca-bar' },
         { id: 'sp-a4', time: '15:00', label: 'Edifício Copan', placeId: 'pl-edificio-copan' },
@@ -316,7 +316,7 @@ export const saoPauloReadyMadeItinerary: Itinerary = {
       day: 2,
       theme: 'Paulista + Luz: Museums',
       activities: [
-        { id: 'sp-a6', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'sp-a6', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'sp-a7', time: '10:30', label: 'MASP', placeId: 'pl-masp' },
         { id: 'sp-a8', time: '12:00', label: 'Walk Avenida Paulista', placeId: 'pl-avenida-paulista' },
         { id: 'sp-a9', time: '14:00', label: 'Pinacoteca de São Paulo', placeId: 'pl-pinacoteca' },
@@ -327,7 +327,7 @@ export const saoPauloReadyMadeItinerary: Itinerary = {
       day: 3,
       theme: 'Vila Madalena + Jardins: Street Art + Shopping',
       activities: [
-        { id: 'sp-a11', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'sp-a11', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'sp-a12', time: '10:30', label: 'Beco do Batman', placeId: 'pl-beco-do-batman' },
         { id: 'sp-a13', time: '13:00', label: 'Lunch at Mercado de Pinheiros', placeId: 'pl-mercado-pinheiros' },
         { id: 'sp-a14', time: '15:30', label: 'Shop Rua Oscar Freire', placeId: 'pl-rua-oscar-freire' },

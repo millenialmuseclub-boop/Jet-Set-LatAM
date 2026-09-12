@@ -286,11 +286,11 @@ export const buenosAiresReadyMadeItinerary: Itinerary = {
       day: 1,
       theme: 'Palermo Soho: Boutiques + Plaza',
       activities: [
-        { id: 'ba-a1', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'ba-a1', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'ba-a2', time: '10:30', label: 'Plaza Armenia', placeId: 'pl-plaza-armenia' },
         { id: 'ba-a3', time: '11:00', label: 'Boutique walk', placeId: 'pl-casa-rincon' },
         { id: 'ba-a4', time: '12:00', label: 'Shop', placeId: 'pl-humawaca' },
-        { id: 'ba-a5', time: '13:00', label: 'Lunch', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'ba-a5', time: '13:00', label: 'Lunch', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'ba-a6', time: '15:00', label: 'Shop', placeId: 'pl-rapsodia' },
         { id: 'ba-a7', time: '19:30', label: 'Dinner', placeId: 'pl-don-julio' },
       ],
@@ -299,7 +299,7 @@ export const buenosAiresReadyMadeItinerary: Itinerary = {
       day: 2,
       theme: 'Recoleta: Museums + Grand Hotels',
       activities: [
-        { id: 'ba-a8', time: '9:00', label: 'Breakfast', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'ba-a8', time: '9:00', label: 'Breakfast', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'ba-a9', time: '10:30', label: 'MALBA', placeId: 'pl-malba' },
         { id: 'ba-a10', time: '13:00', label: 'Museo Nacional de Bellas Artes', placeId: 'pl-museo-bellas-artes' },
         { id: 'ba-a11', time: '15:00', label: 'Walk past Alvear Palace Hotel', placeId: 'pl-alvear-palace' },
@@ -311,8 +311,8 @@ export const buenosAiresReadyMadeItinerary: Itinerary = {
       theme: 'Centro + Puerto Madero: History + Tango',
       activities: [
         { id: 'ba-a13', time: '9:00', label: 'Breakfast at Café Tortoni', placeId: 'pl-cafe-tortoni' },
-        { id: 'ba-a14', time: '11:00', label: 'Explore Centro', notes: 'Open block — no verified place yet for this slot' },
-        { id: 'ba-a15', time: '13:00', label: 'Lunch', notes: 'Open block — no verified place yet for this slot' },
+        { id: 'ba-a14', time: '11:00', label: 'Explore Centro', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
+        { id: 'ba-a15', time: '13:00', label: 'Lunch', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
         { id: 'ba-a16', time: '15:30', label: 'Parque Tres de Febrero', placeId: 'pl-parque-tres-de-febrero' },
         { id: 'ba-a17', time: '21:00', label: 'Rojo Tango', placeId: 'pl-rojo-tango' },
       ],
