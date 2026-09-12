@@ -600,7 +600,7 @@ export const cdmxReadyMadeItinerary: Itinerary = {
         { id: 'a7', time: '9:00', label: 'Breakfast', placeId: 'pl-panaderia-rosetta' },
         { id: 'a8', time: '10:30', label: 'Cycle Chapultepec', placeId: 'pl-chapultepec-park' },
         { id: 'a9', time: '13:00', label: 'Lunch', notes: 'Nothing pinned here — grab whatever looks good nearby.' },
-        { id: 'a10', time: '15:00', label: 'Explore Coyoacán', notes: 'Historic center — guide coming soon' },
+        { id: 'a10', time: '15:00', label: 'Explore Coyoacán', placeId: 'pl-museo-frida-kahlo' },
         { id: 'a11', time: '18:00', label: 'Sunset at Zócalo', placeId: 'pl-zocalo' },
       ],
     },
