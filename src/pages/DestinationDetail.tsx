@@ -1,7 +1,8 @@
 import { useParams, Link, useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
-import { getDestinationBySlug, getPlacesByDestination, getGuidesByDestination, getItinerary } from '@/data'
+import { getDestinationBySlug, getPlacesByDestination, getGuidesByDestination, getItinerary, getMediaMomentsByDestination } from '@/data'
 import { Photo } from '@/components/Photo'
+import { MediaMomentPlayer } from '@/components/MediaMoment'
 import { JetSetPickCard } from '@/components/JetSetPickCard'
 import { EmptyState } from '@/components/EmptyState'
 import { AddToTripControl } from '@/components/AddToTripControl'
@@ -84,6 +85,7 @@ export function DestinationDetail() {
   const places = getPlacesByDestination(destination.id)
   const guides = getGuidesByDestination(destination.id)
   const picks = places.filter((p) => p.isJetSetPick)
+  const mediaMoments = getMediaMomentsByDestination(destination.id)
   const readyMade = destination.itineraryIds.map(getItinerary).filter(Boolean)
 
   const placesForTab = (section: string) => {
@@ -235,6 +237,54 @@ export function DestinationDetail() {
               { src: cartagenaPhotos.murallasSunset, seed: 'pc-cart-murallas', alt: 'Las Murallas at sunset' },
             ]}
           />
+        )}
+
+        {tab === 'overview' && destination.id === 'cartagena' && mediaMoments.length > 0 && (
+          <section className="space-y-4">
+            <div>
+              <p className="font-display text-2xl text-ink md:text-3xl">Cartagena In Motion</p>
+              <p className="text-sm text-ink-soft/60">Real video from a real trip — tap a clip for sound.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {mediaMoments.map((m) => (
+                <MediaMomentPlayer key={m.id} moment={m} className="aspect-[9/16] w-full" />
+              ))}
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div className="col-span-2 overflow-hidden rounded-2xl">
+                <Photo
+                  src={cartagenaPhotos.clocktowerSunset}
+                  seed="pc-cart-clocktower"
+                  alt="Torre del Reloj at sunset"
+                  className="h-40 w-full md:h-56"
+                  rounded="rounded-2xl"
+                />
+              </div>
+              <div className="overflow-hidden rounded-2xl">
+                <Photo
+                  src={cartagenaPhotos.weddingSetupFort}
+                  seed="pc-cart-fort-event"
+                  alt="An event set up on the fort walls at dusk"
+                  className="h-40 w-full md:h-56"
+                  rounded="rounded-2xl"
+                />
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl">
+              <Photo
+                src={cartagenaPhotos.tacoStandSunset}
+                seed="pc-cart-foodstand"
+                alt="A seafood stand on the waterfront promenade at sunset"
+                className="h-44 w-full md:h-64"
+                rounded="rounded-2xl"
+              />
+            </div>
+            <div className="space-y-1 text-xs text-ink-soft/55">
+              <p>Golden hour over the Torre del Reloj and the cathedral dome.</p>
+              <p>An event set up along the fort walls at dusk — colonial rooftops behind it.</p>
+              <p>A seafood stand glowing on the waterfront promenade as the sun goes down.</p>
+            </div>
+          </section>
         )}
 
         {tab === 'overview' && destination.id === 'tulum' && (

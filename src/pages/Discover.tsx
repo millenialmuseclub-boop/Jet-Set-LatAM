@@ -2,7 +2,8 @@ import { Photo } from '@/components/Photo'
 import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
 import { JetSetPickCard } from '@/components/JetSetPickCard'
 import { PostcardGallery } from '@/components/PostcardGallery'
-import { flagshipDestination, guides, getJetSetPicks, destinations, getPlacesByDestination, getDestinationForPlace } from '@/data'
+import { MediaMomentPlayer } from '@/components/MediaMoment'
+import { flagshipDestination, guides, getJetSetPicks, destinations, getPlacesByDestination, getDestinationForPlace, getMediaMomentsByDestination } from '@/data'
 import { cdmxPhotos } from '@/assets/cdmx'
 import { rioPhotos } from '@/assets/rio'
 import { saoPauloPhotos } from '@/assets/sao-paulo'
@@ -83,6 +84,7 @@ export function Discover() {
   // WEEKEND SOMEWHERE — the GUIDE-tier destinations, framed as a shorter,
   // less-planned trip rather than hidden as second-class.
   const weekendSomewhere = destinations.filter((d) => d.status === 'guide')
+  const cartagenaMoments = getMediaMomentsByDestination('cartagena')
 
   return (
     <div className="space-y-14 pb-6 md:space-y-24">
@@ -329,6 +331,28 @@ export function Discover() {
           ]}
         />
       </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* CARTAGENA IN MOTION — real trip video, first video feature in the */}
+      {/* app. Generic MediaMoment model underneath, ready for Rio Carnival */}
+      {/* once real footage exists — see src/data/media.ts.                 */}
+      {/* ---------------------------------------------------------------- */}
+      {cartagenaMoments.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="mb-5 flex items-baseline justify-between">
+            <div>
+              <p className="font-display text-3xl text-ink md:text-4xl">Cartagena In Motion</p>
+              <p className="text-sm text-ink-soft/60">A folkloric dance in the Walled City, and an evening on a Getsemaní terrace.</p>
+            </div>
+            <Link to="/destinations/cartagena" className="shrink-0 text-xs uppercase tracking-[0.1em] text-terracotta">Full gallery</Link>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {cartagenaMoments.map((m) => (
+              <MediaMomentPlayer key={m.id} moment={m} className="aspect-[9/16] w-full" />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ---------------------------------------------------------------- */}
       {/* WEEKEND SOMEWHERE — GUIDE-tier destinations, framed intentionally */}
