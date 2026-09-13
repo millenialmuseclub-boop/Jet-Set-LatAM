@@ -418,6 +418,45 @@ export const saoPauloPlaces: Place[] = [
     sourceUrl: 'https://thebrunchmanifesto.blog/2025/11/27/the-best-designer-boutiques-in-sao-paulos-jardins-district/',
     tags: ['boutique', 'vintage', 'rua-augusta'],
   },
+  // --- Pass (media/mining follow-up): two real, named, addressed Jardins
+  // shops mined from Jet Set LatAm's own September 2026 posts — each a
+  // single-brand feature rather than a roundup, but the exact business,
+  // address and specialty are all drawn directly from the source article.
+  {
+    id: 'pl-martha-medeiros',
+    name: 'Martha Medeiros',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'Rua Melo Alves, 248, Jardins',
+    description:
+      'A Brazilian couture house specializing in handcrafted renascença and guipure lace, made with over 450 artisans from Brazil\'s Northeast — bridal pieces alongside tailored jackets and skirts built to pair lace with quieter, structured basics.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$$$',
+    tags: ['boutique', 'lace', 'couture', 'jardins'],
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Martha+Medeiros+Rua+Melo+Alves+248+Jardins+Sao+Paulo',
+    practicalNotes: 'Mon–Fri 10am–8pm, Sat 10am–5pm — confirm before visiting. Also has locations at Shopping Iguatemi and Palácio Tangará.',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/09/12/martha-medeiros-sao-paulo-brazilian-lace/',
+  },
+  {
+    id: 'pl-ara-vartanian',
+    name: 'Ara Vartanian',
+    country: 'Brazil',
+    city: 'São Paulo',
+    neighborhood: 'Jardins',
+    category: 'shop',
+    address: 'NK Store, Rua Haddock Lobo, 1592, Jardins',
+    description:
+      'A Brazilian fine-jewelry house known for "inverted diamonds" — settings that expose the underside of a stone rather than hiding it — plus sculptural pieces like the Bone Earring; also at Iguatemi São Paulo and by private-atelier appointment.',
+    photos: [],
+    isJetSetPick: false,
+    priceLevel: '$$$$',
+    tags: ['jewelry', 'fine-jewelry', 'jardins'],
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Ara+Vartanian+NK+Store+Rua+Haddock+Lobo+1592+Jardins+Sao+Paulo',
+    sourceUrl: 'https://thebrunchmanifesto.blog/2026/09/09/ara-vartanian-sao-paulo-jewelry/',
+  },
   {
     id: 'pl-bar-brahma',
     name: 'Bar Brahma',
@@ -503,7 +542,7 @@ export const saoPauloDestination: Destination = {
   status: 'live',
   content: {
     overview:
-      'São Paulo runs from the neo-Gothic Sé Cathedral and neoclassical Mercado Municipal downtown, up Avenida Paulista\'s skyscraper spine to MASP, out to Oscar Niemeyer\'s Ibirapuera pavilions, into Jardins\' designer boutique row, and back into Vila Madalena\'s ever-repainted Beco do Batman alley. Twenty-one verified places across landmarks, museums, a working market, boutiques, a historic samba bar, a rooftop and a park — enough to build a real multi-day trip, not just a highlight reel.',
+      'São Paulo runs from the neo-Gothic Sé Cathedral and neoclassical Mercado Municipal downtown, up Avenida Paulista\'s skyscraper spine to MASP, out to Oscar Niemeyer\'s Ibirapuera pavilions, into Jardins\' designer boutique row, and back into Vila Madalena\'s ever-repainted Beco do Batman alley. Twenty-three verified places across landmarks, museums, a working market, boutiques, a historic samba bar, a rooftop and a park — enough to build a real multi-day trip, not just a highlight reel.',
     whyGo: 'Brazil\'s biggest, densest city, with real architectural weight (Niemeyer, Lina Bo Bardi), a serious museum scene, and street life that rewards slow wandering as much as a checklist.',
     bestTime: 'June–September (Southern Hemisphere winter): mild, dry and the most comfortable for walking. December–March is hot and rainy, with heavy afternoon downpours common.',
   },
@@ -529,6 +568,8 @@ export const saoPauloDestination: Destination = {
     'pl-granado',
     'pl-surface-to-air',
     'pl-bluxo',
+    'pl-martha-medeiros',
+    'pl-ara-vartanian',
     'pl-bar-brahma',
   ],
   guideIds: [],

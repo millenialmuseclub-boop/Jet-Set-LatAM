@@ -16,7 +16,7 @@ missing verified content or authentic photography.
   hotel/restaurant/cafe/nightlife/beach, 4 Guides, a 3-day ready-made
   itinerary. Planner-ready.
 
-## Cartagena — LIVE, built out (Pass 5)
+## Cartagena — LIVE, built out (Pass 5; media pass added below)
 
 - 5 real photos in `src/assets/cartagena/` (skyline from Muelle de la
   Bodeguita, walled-city street, Palenqueras street scene, Murallas at
@@ -30,6 +30,20 @@ missing verified content or authentic photography.
   `src/data/destinations/cartagena.ts`).
 - Planner-ready: clears the ≥6-places threshold with real category
   variety (shop/restaurant/nightlife/museum/hotel).
+- **Media pass (Cartagena video/photo feature):** 3 more real photos in
+  `src/assets/cartagena/` (clocktower/Torre del Reloj at sunset, a
+  waterfront seafood-stand sunset, an event set up on the fort walls at
+  dusk) — Jordann's own phone photography, sent directly, resized/
+  recompressed for bundle size only. 2 real video clips in
+  `src/assets/cartagena/video/` (a folkloric dance procession in the
+  Walled City; an evening on a Getsemaní plaza terrace), transcoded from
+  source .mov to H.264 MP4 at 720x1280 with generated poster frames — see
+  `src/types/index.ts` (`MediaMoment`), `src/data/media.ts`, and
+  `src/components/MediaMoment.tsx`. Surfaced on the Cartagena destination
+  page ("Cartagena In Motion") and as a Discover teaser module. This is
+  explicitly NOT Rio Carnival footage — the dance clip is undated/
+  unconfirmed as any named event and is never labeled "Carnival"; real Rio
+  Carnival footage is still pending from Jordann.
 
 ## Guadalajara — GUIDE tier, built out (Pass 5)
 
@@ -224,3 +238,23 @@ exhaustively — see caveat below):
   Carmen (15 tagged posts, only 3 Places currently used) is the clearest
   next candidate to mine deeper with that same per-destination approach
   used for Buenos Aires.
+
+## Cartagena media pass + light mining follow-up (this pass)
+
+- Built the Cartagena video/photo editorial feature described above
+  (3 new real photos, 2 real video clips, the generic `MediaMoment` type/
+  data/component). See the updated Cartagena entry above for details.
+- Checked `thebrunchmanifesto.blog`'s destination archive for anything new
+  on Cartagena, Buenos Aires, São Paulo and Guadalajara. Found and mined
+  2 genuinely new, real, addressed São Paulo boutiques not previously in
+  the dataset — Martha Medeiros (handcrafted Brazilian lace, Rua Melo
+  Alves 248, Jardins) and Ara Vartanian (fine jewelry/"inverted diamonds",
+  NK Store, Rua Haddock Lobo 1592, Jardins) — added as
+  `pl-martha-medeiros` and `pl-ara-vartanian` in
+  `src/data/destinations/sao-paulo.ts` (São Paulo: 21 → 23 Places).
+  A September 2026 single-boutique Cartagena article
+  (`agua-by-agua-bendita-cartagena-resortwear`) covers a place already in
+  the dataset (`pl-agua-by-agua-bendita`) — no new Place needed.
+  Buenos Aires and Guadalajara turned up nothing new this pass beyond what
+  Pass 15/5 already captured. Time-boxed — did not attempt the full
+  per-post Playa del Carmen deep-mine flagged as the next candidate above.
