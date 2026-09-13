@@ -287,6 +287,27 @@ export function DestinationDetail() {
           </section>
         )}
 
+        {/* Rio Carnival — real footage from Jordann's own trip to the
+            Sambadrome (Carnaval 2025), verified by the event banner visible
+            in-frame. Only one clip exists so far; more may be added here as
+            real footage arrives, but this section never pads itself with
+            invented moments. Kept as one layer of the Rio page, not a
+            takeover — the rest of the destination (beaches, food, art,
+            neighborhoods) still leads. */}
+        {tab === 'overview' && destination.id === 'rio-de-janeiro' && mediaMoments.length > 0 && (
+          <section className="space-y-4">
+            <div>
+              <p className="font-display text-2xl text-ink md:text-3xl">Carnaval, As It Actually Felt</p>
+              <p className="text-sm text-ink-soft/60">Real footage from the Sambadrome — tap for sound.</p>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {mediaMoments.map((m) => (
+                <MediaMomentPlayer key={m.id} moment={m} className="aspect-[9/16] w-full" />
+              ))}
+            </div>
+          </section>
+        )}
+
         {tab === 'overview' && destination.id === 'tulum' && (
           <PostcardGallery
             title="Postcards From Tulum"

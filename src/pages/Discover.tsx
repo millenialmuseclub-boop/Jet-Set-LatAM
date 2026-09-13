@@ -85,6 +85,7 @@ export function Discover() {
   // less-planned trip rather than hidden as second-class.
   const weekendSomewhere = destinations.filter((d) => d.status === 'guide')
   const cartagenaMoments = getMediaMomentsByDestination('cartagena')
+  const rioMoments = getMediaMomentsByDestination('rio-de-janeiro')
 
   return (
     <div className="space-y-14 pb-6 md:space-y-24">
@@ -333,9 +334,30 @@ export function Discover() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
+      {/* CARNAVAL 2025 — real Sambadrome footage from Jordann's own trip,  */}
+      {/* verified by the visible event banner in-frame. One clip so far;  */}
+      {/* a small, honest module, not a takeover of the page.               */}
+      {/* ---------------------------------------------------------------- */}
+      {rioMoments.length > 0 && (
+        <section className="mx-auto max-w-6xl px-5 md:px-8">
+          <div className="mb-5 flex items-baseline justify-between">
+            <div>
+              <p className="font-display text-3xl text-ink md:text-4xl">Carnaval, As It Actually Felt</p>
+              <p className="text-sm text-ink-soft/60">Real footage from the Sambadrome — Rio de Janeiro, 2025.</p>
+            </div>
+            <Link to="/destinations/rio-de-janeiro" className="shrink-0 text-xs uppercase tracking-[0.1em] text-terracotta">See Rio</Link>
+          </div>
+          <div className="mx-auto max-w-xs sm:max-w-sm">
+            {rioMoments.map((m) => (
+              <MediaMomentPlayer key={m.id} moment={m} className="aspect-[9/16] w-full" />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ---------------------------------------------------------------- */}
       {/* CARTAGENA IN MOTION — real trip video, first video feature in the */}
-      {/* app. Generic MediaMoment model underneath, ready for Rio Carnival */}
-      {/* once real footage exists — see src/data/media.ts.                 */}
+      {/* app. Generic MediaMoment model underneath.                        */}
       {/* ---------------------------------------------------------------- */}
       {cartagenaMoments.length > 0 && (
         <section className="mx-auto max-w-6xl px-5 md:px-8">
