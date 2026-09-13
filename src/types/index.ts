@@ -139,6 +139,46 @@ export interface Destination {
   }
 }
 
+// ---------------------------------------------------------------------------
+// Editorial media moments (video/photo features)
+//
+// A reusable, destination-agnostic shape for a single editorial video (or
+// video-led) moment — e.g. a Cartagena street-dance clip today, a Rio
+// Carnival clip once real footage exists. Kept generic on purpose: nothing
+// here is Cartagena- or Rio-specific, so the same type and player component
+// serve any destination. See src/components/MediaMoment.tsx.
+// ---------------------------------------------------------------------------
+
+/** Where the underlying footage actually came from. Always set honestly —
+ *  never inferred, never left to imply something stronger than it is. */
+export type MediaSource = 'user-footage' | 'archive' | 'stock'
+
+export interface MediaMoment {
+  id: string
+  destinationId: string
+  /** Year the footage was captured, when known — not a publish/edit date. */
+  year: number
+  /** Short factual line: what's actually visible, no invented event names,
+   *  dates or context beyond what the footage shows (e.g. "A folkloric
+   *  dance procession in the Walled City", not "Carnival"). */
+  caption: string
+  /** Longer optional editorial line for detail views. */
+  dek?: string
+  videoSrc: string
+  posterSrc: string
+  /** Seconds, rounded — for UI duration badges, not playback logic. */
+  durationSeconds: number
+  orientation: 'portrait' | 'landscape' | 'square'
+  /** Honest provenance — see MediaSource. These are real, user-shot trip
+   *  footage, so always 'user-footage' for now; never claimed as 'archive'
+   *  or 'stock' unless genuinely true. */
+  source: MediaSource
+  relatedGuideIds?: string[]
+  relatedPlaceIds?: string[]
+  autoplayMuted: boolean
+  tapToPlay: boolean
+}
+
 export type GuideSection =
   | 'stay' | 'eat' | 'drink' | 'see' | 'shop' | 'beaches' | 'nightlife' | 'experiences'
 

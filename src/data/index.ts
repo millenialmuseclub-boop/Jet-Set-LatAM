@@ -9,6 +9,8 @@ import { playaDelCarmenDestination, playaDelCarmenPlaces } from './destinations/
 import { buenosAiresDestination, buenosAiresPlaces, buenosAiresReadyMadeItinerary } from './destinations/buenos-aires'
 import type { Destination, Place, Guide, Itinerary } from '@/types'
 
+export { mediaMoments, getMediaMomentsByDestination } from './media'
+
 export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, ...comingSoonDestinations]
 export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces]
 export const guides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides]
