@@ -10,10 +10,21 @@ import palenquerasStreet from './palenqueras-street.jpg'
 import murallasSunset from './murallas-sunset.jpg'
 import walledCityCourtyard from './walled-city-courtyard.jpg'
 
+// Second batch — Jordann's own phone photography from her Cartagena trip,
+// captured 2026 and sent to us directly (not the WordPress media library,
+// not stock). Resized/re-compressed for the app bundle only; framing and
+// content are untouched. See docs/CONTENT_INVENTORY.md.
+import clocktowerSunset from './cartagena-clocktower-sunset.jpg'
+import tacoStandSunset from './cartagena-taco-stand-sunset.jpg'
+import weddingSetupFort from './cartagena-wedding-setup-fort.jpg'
+
 export const cartagenaPhotos = {
   cartagenaSkyline,
   walledCityStreet,
   palenquerasStreet,
   murallasSunset,
   walledCityCourtyard,
+  clocktowerSunset,
+  tacoStandSunset,
+  weddingSetupFort,
 }
