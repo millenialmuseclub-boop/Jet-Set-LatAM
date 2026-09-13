@@ -1,0 +1,127 @@
+{
+  "report": [
+    {
+      "name": "outdoors",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "rallii-journey",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "tulum-rail",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "maya-stories",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "maya-guide",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "itinerary",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "trip",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "world",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "outdoors",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "rallii-journey",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "tulum-rail",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "maya-stories",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "maya-guide",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "itinerary",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "trip",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "world",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    }
+  ],
+  "links": [
+    {
+      "label": "Explore",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/rallii/id6804085679",
+      "title": "‎Rallii App - App Store"
+    },
+    {
+      "label": "Our World",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/rallii/id6804085679",
+      "title": "‎Rallii App - App Store"
+    },
+    {
+      "label": "Explore",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/rallii/id6804085679",
+      "title": "‎Rallii App - App Store"
+    },
+    {
+      "label": "Our World",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/rallii/id6804085679",
+      "title": "‎Rallii App - App Store"
+    }
+  ],
+  "errors": []
+}

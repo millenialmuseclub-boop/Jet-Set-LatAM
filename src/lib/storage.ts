@@ -1,3 +1,4 @@
+import { dayNumber } from './tripLifecycle'
 import type { SavedLibrary, SavedTrip, Itinerary } from '@/types'
 import { getItinerary } from '@/data'
 
@@ -152,6 +153,15 @@ export function removeTrip(tripId: string) {
 export function getTrip(tripId: string): SavedTrip | undefined {
   return getSavedTrips().find((t) => t.id === tripId)
 }
+export function setTripStatus(tripId: string, status: SavedTrip['status']) {
+  saveSavedTrips(getSavedTrips().map(t => t.id === tripId ? { ...t, status } : t))
+  const lib = getLibrary()
+  lib.upcomingTripIds = lib.upcomingTripIds.filter(id => id !== tripId)
+  lib.pastTripIds = lib.pastTripIds.filter(id => id !== tripId)
+  if (status === 'past') lib.pastTripIds.push(tripId)
+  else lib.upcomingTripIds.push(tripId)
+  saveLibrary(lib)
+}
 /** Renames a saved trip — updates both the trip record's title (what Saved
  *  lists) and the underlying itinerary's title (what Trip Detail/Plan a
  *  Trip display), so the two never drift apart. */
@@ -163,3 +173,15 @@ export function renameTrip(tripId: string, title: string) {
   const itinerary = getEffectiveItinerary(trip.itineraryId)
   if (itinerary) saveUserItinerary({ ...itinerary, title })
 }
+
+export function setTripStartDate(tripId:string,startDate:string) {
+ if(startDate && !Number.isFinite(dayNumber(startDate)))throw new Error('Choose a valid calendar date.')
+ saveSavedTrips(getSavedTrips().map(t=>t.id===tripId?{...t,startDate:startDate||undefined}:t))
+ window.dispatchEvent(new Event('jetset-storage'))
+}
+export function toggleActivityVisited(tripId:string,key:string) {
+ saveSavedTrips(getSavedTrips().map(t=>{if(t.id!==tripId)return t;const set=new Set(t.visitedActivityIds||[]);if(set.has(key))set.delete(key);else set.add(key);return {...t,visitedActivityIds:[...set]}}))
+ window.dispatchEvent(new Event('jetset-storage'))
+}
+
+export function saveStoryNote(tripId:string,day:number,note:string) {saveSavedTrips(getSavedTrips().map(t=>t.id===tripId?{...t,storyNotes:{...t.storyNotes,[day]:note.slice(0,2000)}}:t));window.dispatchEvent(new Event('jetset-storage'))}

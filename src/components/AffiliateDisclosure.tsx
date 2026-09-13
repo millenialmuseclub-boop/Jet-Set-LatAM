@@ -4,8 +4,8 @@
 // stays consistent wherever it's needed.
 export function AffiliateDisclosure({ className = '' }: { className?: string }) {
   return (
-    <p className={`text-[10px] leading-relaxed text-ink-soft/45 ${className}`}>
-      Contains affiliate links. We may earn a small commission at no extra cost to you.
+    <p className={`text-xs leading-relaxed text-ink-soft/75 ${className}`}>
+      Some product links may earn Jet Set LatAm or Luxe Jetter a commission at no additional cost to you. Editorial recommendations remain independent.
     </p>
   )
 }

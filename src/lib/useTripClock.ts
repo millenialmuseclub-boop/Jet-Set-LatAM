@@ -1,0 +1,2 @@
+import { useEffect,useState } from 'react'
+export function useTripClock() {const [now,setNow]=useState(()=>new Date());useEffect(()=>{const update=()=>setNow(new Date());const timer=setInterval(update,30000);window.addEventListener('jetset-storage',update);window.addEventListener('storage',update);return()=>{clearInterval(timer);window.removeEventListener('jetset-storage',update);window.removeEventListener('storage',update)}},[]);return now}

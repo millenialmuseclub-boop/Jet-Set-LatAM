@@ -1,0 +1,189 @@
+{
+  "report": [
+    {
+      "name": "explore-style",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "rio-offer",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "destination-style",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "stays-offer",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "carnival-style",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "trip-style",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "our-world",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "explore-style",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "rio-offer",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "destination-style",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "stays-offer",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "carnival-style",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "trip-style",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "our-world",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    }
+  ],
+  "links": [
+    {
+      "label": "clothing offer",
+      "width": 390,
+      "url": "https://shopmy.us/collections/embed/2687505",
+      "title": "ShopMy | The Growth Platform for Elite Creators and Brands",
+      "rendered": "___"
+    },
+    {
+      "label": "Explore handoff",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "destination handoff",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "stays offer",
+      "width": 390,
+      "url": "https://shopmy.us/collections/embed/2799513",
+      "title": "ShopMy | The Growth Platform for Elite Creators and Brands",
+      "rendered": "___"
+    },
+    {
+      "label": "Carnival handoff",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "Trip handoff",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "Our World handoff",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "clothing offer",
+      "width": 430,
+      "url": "https://shopmy.us/collections/embed/2687505",
+      "title": "ShopMy | The Growth Platform for Elite Creators and Brands",
+      "rendered": "___"
+    },
+    {
+      "label": "Explore handoff",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Search\nToday\nGames\nApps\nArcade\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "destination handoff",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nCategories\nCategories\nPhoto & Video\nHealth & Fitness\nProductivity\nEntertainment\nAction\nAdventure\nPu"
+    },
+    {
+      "label": "stays offer",
+      "width": 430,
+      "url": "https://shopmy.us/collections/embed/2799513",
+      "title": "ShopMy | The Growth Platform for Elite Creators and Brands",
+      "rendered": "___"
+    },
+    {
+      "label": "Carnival handoff",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "Trip handoff",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "Our World handoff",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Today\nGames\nApps\nArcade\nSearch\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    }
+  ],
+  "errors": []
+}

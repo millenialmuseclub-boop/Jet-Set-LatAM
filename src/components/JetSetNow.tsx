@@ -1,0 +1,28 @@
+import { useTripClock } from '@/lib/useTripClock';
+import { CarnivalSeasonNote } from './CarnivalSeasonNote';
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getSavedTrips,getEffectiveItinerary,getLibrary,toggleActivityVisited } from '@/lib/storage'
+import { getDestinationById,getPlace,getPlacesByDestination,getGuidesByDestination } from '@/data'
+import { activeDayIndex,tripPhase,activityVisitKey,destinationZones } from '@/lib/tripLifecycle'
+import { StoryCard } from './StoryCard'
+import { openMap } from '@/lib/links'
+export function JetSetNow() {
+ const now=useTripClock();const [selected,setSelected]=useState('')
+ const trips=getSavedTrips().filter(t=>tripPhase(t,getEffectiveItinerary(t.itineraryId),now)==='active').sort((a,b)=>(b.startDate||'').localeCompare(a.startDate||'')||a.id.localeCompare(b.id))
+ const trip=trips.find(t=>t.id===selected)||trips[0];if(!trip)return null
+ const itinerary=getEffectiveItinerary(trip.itineraryId)!;const day=itinerary.days[activeDayIndex(trip,now)];const dest=getDestinationById(trip.destinationId);if(!dest||!day)return null
+ const hour=Number(new Intl.DateTimeFormat('en-US',{timeZone:destinationZones[dest.id],hour:'numeric',hourCycle:'h23'}).format(now));const greeting=hour<12?'Good morning':hour<18?'Good afternoon':'Good evening'
+ const neighborhoods=new Set(day.activities.map(a=>a.placeId?getPlace(a.placeId)?.neighborhood:undefined).filter(Boolean));const allUsed=new Set(itinerary.days.flatMap(d=>d.activities.map(a=>a.placeId)))
+ const detours=getPlacesByDestination(dest.id).filter(p=>!allUsed.has(p.id)&&p.neighborhood&&neighborhoods.has(p.neighborhood)).slice(0,3)
+ const stories=getGuidesByDestination(dest.id).filter(g=>g.placeIds.some(id=>{const p=getPlace(id);return p?.neighborhood&&neighborhoods.has(p.neighborhood)})).slice(0,2)
+ const tonight=day.activities.filter(a=>a.label==='Dinner'||a.placeId&&['bar','nightlife'].includes(getPlace(a.placeId)?.category||''))
+ const savedTonight=getLibrary().savedPlaceIds.map(getPlace).filter(p=>p&&p.city===dest.city&&['restaurant','bar','nightlife'].includes(p.category)&&!allUsed.has(p.id)).slice(0,2)
+ return <div className={"mx-auto max-w-3xl px-5 py-6 now-"+(hour<12?"morning":"evening")}><p className="eyebrow text-terracotta">Jet Set Now · {dest.city} time</p><h1 className="motion-reveal mt-3 font-display text-4xl italic">{greeting} from {dest.city}.</h1><p className="mt-3 text-sm text-ink-soft">{new Intl.DateTimeFormat('en-US',{timeZone:destinationZones[dest.id],weekday:'long'}).format(now)} · Day {day.day} of {itinerary.days.length}</p>{trips.length>1&&<label className="mt-4 block text-xs">Active trip<select aria-label="Active trip" value={trip.id} onChange={e=>setSelected(e.target.value)} className="mt-2 block max-w-full border p-3">{trips.map(t=><option value={t.id} key={t.id}>{t.title}</option>)}</select></label>}
+ {dest.id==='rio-de-janeiro'&&<CarnivalSeasonNote now={now} compact/>}
+ <section className="motion-reveal my-6 rounded-2xl bg-cream p-5"><p className="eyebrow text-terracotta">Today</p><h2 className="my-3 font-display text-3xl">{day.theme}</h2><p className="mb-4 text-xs text-ink-soft">Your plan for today. Check a stop only after you visit.</p>{day.activities.map(a=>{const place=a.placeId?getPlace(a.placeId):undefined;const key=activityVisitKey(day.day,a.id);return <div key={a.id} className="flex gap-3 border-t border-ink/10 py-4"><span className="w-12 shrink-0 text-xs text-terracotta">{a.time}</span><div className="min-w-0 flex-1"><p className="text-sm">{place?.name||a.label}</p><p className="mt-1 text-xs text-ink-soft">{place?.neighborhood||a.notes}</p>{place&&<label className="mt-2 flex min-h-11 items-center gap-2 text-xs"><input type="checkbox" checked={trip.visitedActivityIds?.includes(key)||false} onChange={()=>toggleActivityVisited(trip.id,key)}/>Visited · confirmed by me</label>}{place?.mapUrl&&<button className="min-h-11 text-xs text-terracotta" onClick={()=>openMap(place.mapUrl)}>Open map ↗</button>}</div></div>})}<Link className="inline-block min-h-11 py-3 text-sm text-terracotta" to={'/saved/trips/'+trip.id}>Open your full trip →</Link></section>
+ {stories.length>0&&<section className="my-7"><h2 className="mb-4 font-display text-2xl">Near this part of your trip</h2><p className="mb-3 text-xs text-ink-soft">From neighborhoods on today’s itinerary; no live location used.</p><div className="grid gap-5 sm:grid-cols-2">{stories.map(g=><StoryCard key={g.id} guide={g}/>)}</div></section>}
+ {detours.length>0&&<section className="my-7"><h2 className="font-display text-2xl">Worth a detour</h2><p className="my-2 text-xs text-ink-soft">Unplanned options in today’s neighborhoods.</p>{detours.map(p=><p className="my-3 text-sm" key={p.id}>{p.name} · {p.neighborhood}{p.mapUrl&&<button className="ml-3 min-h-11 text-xs text-terracotta" onClick={()=>openMap(p.mapUrl)}>Map ↗</button>}</p>)}</section>}
+ <section className="my-7"><h2 className="font-display text-2xl">Tonight</h2>{tonight.map(a=><p className="my-3 text-sm" key={a.id}>{a.time} · {a.placeId?getPlace(a.placeId)?.name:a.label} · planned</p>)}{savedTonight.map(p=><p className="my-3 text-sm" key={p!.id}>{p!.name} · saved option, not planned</p>)}{!tonight.length&&!savedTonight.length&&<p className="my-3 text-sm text-ink-soft">Your evening is open.</p>}</section>
+ <div className="flex flex-wrap gap-4 border-t border-ink/15 pt-5"><Link to={'/ask?trip='+trip.id} className="min-h-11 text-sm text-terracotta">Ask about your day →</Link><Link to="/?discover=1" className="min-h-11 text-sm text-terracotta">Browse Discover →</Link><Link to="/explore" className="min-h-11 text-sm text-terracotta">Into the journal →</Link></div></div>
+}

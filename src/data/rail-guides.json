@@ -1,0 +1,44 @@
+[
+  {
+    "id": "wp-2142",
+    "title": "How to Ride the Tren Maya in Style",
+    "destinationId": "tulum",
+    "relatedDestinationIds": [
+      "playa-del-carmen"
+    ],
+    "section": "experiences",
+    "dek": "A journey through the Yucatán, from the Jet Set LatAm rail archive.",
+    "body": "The Tren Maya is transforming travel through Mexico’s Yucatán Peninsula, offering a scenic and sophisticated way to explore ancient ruins, colonial towns, and Caribbean coastlines. Stretching over 1,500 km, this new rail line connects cultural landmarks like Chichén Itzá and Mérida with coastal gems such as Tulum and Cancún — making it an exciting new option for travelers seeking elegance and efficiency.\n\n🚆 Scenic immersion — glide through tropical jungles, cenotes, and historic towns without the stress of driving. 🛋 First-class carriages offer wider seats, panoramic windows, and onboard dining, turning the journey itself into part of the experience. ⏱ Smart routing connects key cultural and beach destinations seamlessly.\n\n📅 Book tickets early — first-class compartments are limited and increasingly in demand. 🌅 Ride during daylight hours to enjoy the full scenery, especially between Mérida and Valladolid. 🧍‍♀️ Combine train legs with private transfers for flexibility at each stop. ✈️ Fly into Cancún (CUN) via LATAM Airlines, then board the train to explore inland in comfort.\n\nFor current routes, station transfers and departure times, check Tren Maya’s official website before planning a rail day.",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/11/13/how-to-ride-the-tren-maya-in-style/",
+    "placeIds": [],
+    "publishedAt": "2025-11-13T08:55:03-08:00",
+    "categories": [
+      "Rail",
+      "Outdoors + Journeys"
+    ],
+    "relatedGuideIds": [
+      "wp-1832"
+    ]
+  },
+  {
+    "id": "wp-1832",
+    "title": "Yucatán by Rail: A Scenic Guide to Mexico’s Tren Maya",
+    "destinationId": "tulum",
+    "relatedDestinationIds": [
+      "playa-del-carmen"
+    ],
+    "section": "experiences",
+    "dek": "A journey through the Yucatán, from the Jet Set LatAm rail archive.",
+    "body": "The Tren Maya is transforming travel across the Yucatán Peninsula, linking Cancún, Tulum, Mérida, Campeche, and Palenque through lush jungle, cenotes, and archaeological sites.I based myself in Mérida and rode a few day segments — the stretch toward Valladolid was my favorite, with sunlight flickering through trees and glimpses of ruins beyond the tracks. It’s a new way to explore the Yucatán slowly and intentionally, away from crowded highways.\n\n✨ Pro Tip: Pair your train journey with cenote swims and ruin tours — the stops are as memorable as the ride.\n\nFor current routes, station transfers and departure times, check Tren Maya’s official website before planning a rail day.",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/10/11/yucatan-by-rail-a-scenic-guide-to-mexicos-tren-maya/",
+    "placeIds": [],
+    "publishedAt": "2025-10-11T22:07:28-07:00",
+    "categories": [
+      "Rail",
+      "Outdoors + Journeys"
+    ],
+    "relatedGuideIds": [
+      "wp-2142"
+    ]
+  }
+]

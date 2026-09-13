@@ -6,3 +6,9 @@ ios/App/App/build/
 ios/App/Pods/
 *.log
 .DS_Store
+
+archive-source/
+visual-qa/
+
+# Local Git transfer backups
+*.bundle

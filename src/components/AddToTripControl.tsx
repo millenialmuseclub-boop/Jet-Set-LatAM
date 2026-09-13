@@ -1,3 +1,4 @@
+import { tripPhase } from '@/lib/tripLifecycle'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { Place } from '@/types'
@@ -16,7 +17,7 @@ export function AddToTripControl({ place }: { place: Place }) {
 
   const destination = getDestinationForPlace(place)
   const trips = destination
-    ? getSavedTrips().filter((t) => t.status === 'upcoming' && t.destinationId === destination.id)
+    ? getSavedTrips().filter((t) => tripPhase(t,getEffectiveItinerary(t.itineraryId)) !== 'ended' && t.destinationId === destination.id)
     : []
 
   if (added) {

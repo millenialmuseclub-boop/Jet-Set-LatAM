@@ -1,0 +1,46 @@
+:root{--motion-fast:180ms;--motion-reveal:420ms;--motion-hero:760ms;--motion-ease:cubic-bezier(.22,.68,.2,1);--motion-gold:var(--color-gold,#bb984d)}
+/* All content remains visible without this sheet, JS, observers or animation support. */
+.app-header{transition:background-color var(--motion-reveal),box-shadow var(--motion-reveal);background:#fbf5f1a6;backdrop-filter:none}
+.app-header[data-scrolled="true"]{background:#fbf5f1f5;backdrop-filter:blur(12px);box-shadow:0 3px 16px #38272e08}
+.app-header a[aria-label="Jet Set LatAm home"]{transform-origin:left center;transition:transform var(--motion-reveal) var(--motion-ease)}
+.app-header[data-scrolled="true"] a[aria-label="Jet Set LatAm home"]{transform:scale(.96)}
+.gold-glint,.soft-shimmer,.save-glint,.style-bridge>button:first-of-type{position:relative;isolation:isolate}
+.gold-glint::after,.soft-shimmer::after,.save-glint::after,.style-bridge.motion-arrived>button:first-of-type::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(110deg,transparent 20%,#e8cc8760 48%,transparent 72%);opacity:0}
+.motion-arrived .gold-glint::after,.save-glint::after,.style-bridge.motion-arrived>button:first-of-type::after{animation:gold-light 680ms var(--motion-ease) 1}
+.gold-rule-reveal::before,.jet-set-pick::after{content:"";display:block;width:42px;height:1px;background:var(--motion-gold);transform-origin:left}
+.jet-set-pick{position:relative}.jet-set-pick::after{position:absolute;left:16px;bottom:8px}
+.motion-arrived .gold-rule-reveal::before,.jet-set-pick.motion-arrived::after{animation:rule-draw 560ms var(--motion-ease) 1}
+.story-card,.jet-set-pick,a[href^="#/destinations/"],a[href^="#/trails/"]{transition:transform var(--motion-fast) var(--motion-ease)}
+.story-card img,.jet-set-pick img,a[href^="#/destinations/"] img{transition:transform var(--motion-reveal) var(--motion-ease)}
+.story-card:active,.jet-set-pick:active,a[href^="#/destinations/"]:active,a[href^="#/trails/"]:active{transform:scale(.99)}
+button{touch-action:manipulation}button:enabled:active{scale:.985}button{transition:scale var(--motion-fast) var(--motion-ease)}
+@media(hover:hover){.story-card:hover img,.jet-set-pick:hover img,a[href^="#/destinations/"]:hover img{transform:scale(1.025)}a:hover>svg,button:hover>svg{translate:2px 0}a>svg,button>svg{transition:translate var(--motion-fast) var(--motion-ease)}}
+.itinerary-day{scroll-margin-top:90px}.itinerary-day.motion-arrived .itinerary-row .w-px{transform-origin:top;animation:rule-draw 650ms var(--motion-ease) 1}
+.itinerary-row:focus-within{box-shadow:0 5px 14px #38272e08;z-index:1}
+.trail-path{position:relative;padding-left:18px}.trail-path::before{content:"";position:absolute;top:0;bottom:0;left:3px;width:1px;background:var(--motion-gold)}
+.trail-path>li{position:relative}.trail-path>li::before{content:"";position:absolute;width:7px;height:7px;border-radius:50%;background:var(--motion-gold);left:-19px;top:26px}
+.trail-path>li.motion-arrived::before{animation:marker-settle 420ms var(--motion-ease)}
+[aria-label="Trip constellation"]>div:first-of-type{position:relative}[aria-label="Trip constellation"]>div:first-of-type::after{content:"";position:absolute;left:50%;top:100%;height:20px;width:1px;background:var(--motion-gold);transform-origin:top}
+[aria-label="Trip constellation"]>div.motion-arrived:first-of-type::after{animation:vertical-draw 560ms var(--motion-ease)}
+.rallii-motion{border-left:2px solid var(--color-terracotta)}.rallii-motion.motion-arrived button{animation:route-nudge 460ms var(--motion-ease)}
+.curating-rule{height:2px;background:#bb984d25;overflow:hidden}.curating-rule::after{content:"";display:block;height:100%;width:40%;background:var(--motion-gold);animation:curating-line 900ms var(--motion-ease)}
+.curating-photo{animation:photo-crossfade 850ms var(--motion-ease)}.curating-phrases p{position:absolute;inset:0;opacity:0;animation:curating-phrase 300ms linear}.curating-phrases p:nth-child(2){animation-delay:300ms}.curating-phrases p:nth-child(3){animation-delay:600ms;animation-fill-mode:forwards}
+.carnival-flourish{position:relative;height:0;pointer-events:none;z-index:2}.carnival-flourish i{position:absolute;left:50%;top:18px;width:3px;height:6px;background:var(--motion-gold);opacity:0;animation:carnival-spark 820ms var(--motion-ease) 1}.carnival-flourish i:nth-child(3n){background:var(--color-terracotta)}
+.carnival-page{position:relative}.carnival-page::before{content:"";position:absolute;inset:0 0 auto;height:220px;pointer-events:none;background:radial-gradient(ellipse at top,#c98c4730,transparent 70%);opacity:0;animation:carnival-wash 900ms var(--motion-ease)}
+.now-morning>section:first-of-type{background:linear-gradient(140deg,#edce8b18,var(--color-cream))}.now-evening>section:first-of-type{background:linear-gradient(140deg,#a4476012,var(--color-cream))}
+[aria-label="Jet Set answer"]{scroll-margin-top:90px}button[disabled].soft-shimmer::after{animation:gold-light 650ms var(--motion-ease)}
+video{transition:opacity var(--motion-reveal)}.video-play-control{animation:marker-settle 300ms var(--motion-ease)}.video-sound-control{opacity:.65;transition:opacity var(--motion-fast)}.video-sound-control:hover,.video-sound-control:focus-visible{opacity:1}
+@keyframes gold-light{0%{opacity:0;transform:translateX(-8px)}35%{opacity:.7}100%{opacity:0;transform:translateX(8px)}}
+@keyframes rule-draw{from{transform:scaleX(.15)}to{transform:scaleX(1)}}@keyframes vertical-draw{from{transform:scaleY(.15)}to{transform:scaleY(1)}}
+@keyframes marker-settle{from{transform:scale(.88);opacity:.7}to{transform:scale(1);opacity:1}}@keyframes route-nudge{from{transform:translateX(-5px)}to{transform:translateX(0)}}
+@keyframes curating-line{from{transform:translateX(-100%)}to{transform:translateX(350%)}}@keyframes photo-crossfade{from{opacity:0;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}@keyframes curating-phrase{0%{opacity:0}15%,85%{opacity:1}100%{opacity:0}}
+@keyframes carnival-spark{0%{opacity:0;transform:translate(0,10px)}20%{opacity:.8}100%{opacity:0;transform:translate(var(--spark-x),var(--spark-y)) rotate(var(--spark-turn))}}
+@keyframes carnival-wash{0%,100%{opacity:0}35%{opacity:1}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.carnival-flourish,.carnival-page::before,.gold-glint::after,.save-glint::after,.soft-shimmer::after{display:none!important}.app-header a,button:enabled:active,.story-card:active,a[href^="#/destinations/"]:active,.story-card:hover img,.jet-set-pick:hover img,a[href^="#/destinations/"]:hover img{transform:none!important;scale:none!important}.curating-phrases p{display:none}.curating-phrases p:first-child{display:block;opacity:1}}
+
+.motion-check{animation:marker-settle 260ms var(--motion-ease)}.motion-reveal button{transition:background-color var(--motion-fast),box-shadow var(--motion-fast),scale var(--motion-fast)}
+[aria-label="Story photographs"] figure,.carnival-page figure{overflow:hidden}[aria-label="Story photographs"] figcaption,.carnival-page figcaption{transition:opacity var(--motion-reveal)}
+.trail-path:has(.motion-arrived)::before{transform-origin:top;animation:vertical-draw 700ms var(--motion-ease)}
+@supports(animation-timeline:view()){ @media(prefers-reduced-motion:no-preference){[aria-label="Story photographs"] figure img{animation:photo-drift linear both;animation-timeline:view();animation-range:entry 0% exit 100%}@keyframes photo-drift{from{transform:scale(1.025) translateY(-3px)}to{transform:scale(1.025) translateY(3px)}}}}
+@media(prefers-reduced-motion:reduce){.jet-set-pick:active,a[href^="#/trails/"]:active{transform:none!important}a>svg,button>svg{translate:none!important}}
+@media(prefers-reduced-motion:reduce){main button{transform:none!important;scale:none!important}}

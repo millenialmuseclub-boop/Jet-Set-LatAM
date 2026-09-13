@@ -1,3 +1,4 @@
+import publishedIcons from './appIcons.json'
 import { Compass, Shirt, Baby, Bike, UtensilsCrossed, type LucideIcon } from 'lucide-react'
 import type { TripContext } from '@/types'
 
@@ -32,6 +33,7 @@ export interface AppFamilyMember {
   icon: LucideIcon
   webURL?: string
   iOSURL?: string
+  iconUrl?: string
   deepLinkScheme?: string
   status: 'live' | 'coming-soon'
   /** A short, tasteful one-line description of what this app does for the
@@ -61,8 +63,9 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     description: 'Destination-led wardrobes, complete looks and beauty rituals for the way you actually travel.',
     icon: Shirt,
     iOSURL: 'https://apps.apple.com/us/app/luxejetter/id6808023085',
+    iconUrl: publishedIcons['6808023085'],
     status: 'live',
-    oneLiner: 'Dress for it',
+    oneLiner: 'Dress the trip',
     supportedDestinations: 'all',
   },
   'little-jetter': {
@@ -76,10 +79,11 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
   },
   rallii: {
     id: 'rallii',
-    name: 'Rallii Rail',
-    description: 'Seat guidance, scenic moments and planning tools for 36 remarkable rail journeys.',
+    name: 'Rallii',
+    description: 'Discover adventures by rail, trail, mountain bike, golf course and snow.',
     icon: Bike,
     iOSURL: 'https://apps.apple.com/us/app/rallii-rail/id6804085679',
+    iconUrl: publishedIcons['6804085679'],
     status: 'live',
     oneLiner: 'Take the scenic route',
     // Scoped to destinations with a verified railiiConnection only (see the
@@ -93,8 +97,9 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     description: 'Cakes, ramen, cookies and noodles — stories, global traditions, flavor guides and pairings.',
     icon: UtensilsCrossed,
     iOSURL: 'https://apps.apple.com/us/app/let-them-eat/id6801655009',
+    iconUrl: publishedIcons['6801655009'],
     status: 'live',
-    oneLiner: 'Taste the trip',
+    oneLiner: 'Taste the world',
     supportedDestinations: 'all',
   },
 }

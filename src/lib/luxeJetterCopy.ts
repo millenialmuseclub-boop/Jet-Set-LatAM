@@ -66,32 +66,18 @@ const KEYWORD_OVERRIDES: [RegExp, string][] = [
  *  activities and the Places they reference. Never fabricates a moment that
  *  isn't backed by a real activity in the itinerary. */
 export function deriveWardrobeMoments(itinerary: Itinerary): string[] {
-  const moments: string[] = []
-  const seen = new Set<string>()
-
-  for (const day of itinerary.days) {
-    let dayMoment: string | undefined
-    for (const activity of day.activities) {
-      const text = `${activity.label} ${activity.notes ?? ''}`
-      const override = KEYWORD_OVERRIDES.find(([re]) => re.test(text))
-      if (override) { dayMoment = override[1]; break }
-      if (activity.label === 'Dinner') { dayMoment = 'Dinner'; break }
-      const place = activity.placeId ? getPlace(activity.placeId) : undefined
-      const label = place ? OCCASION_LABEL_BY_CATEGORY[place.category] : undefined
-      if (label && !dayMoment) dayMoment = label
-    }
-    const chosen = dayMoment ?? (day.day === 1 ? 'Travel Day' : undefined)
-    if (chosen && !seen.has(chosen)) {
-      seen.add(chosen)
-      moments.push(chosen)
-    }
+  const moments = new Set<string>()
+  for (const day of itinerary.days) for (const activity of day.activities) {
+    const text = activity.label + ' ' + (activity.notes ?? '')
+    const keyword = KEYWORD_OVERRIDES.find(([re]) => re.test(text))
+    const place = activity.placeId ? getPlace(activity.placeId) : undefined
+    const label = /carnival|carnaval|bloco/i.test(text) ? 'Carnival' : (keyword?.[1]
+      ?? (activity.label === 'Dinner' ? 'Dinner' : undefined)
+      ?? (place?.neighborhood === 'Centro' ? 'Centro' : undefined)
+      ?? (place?.category === 'landmark' ? 'City Walk' : place ? OCCASION_LABEL_BY_CATEGORY[place.category] : undefined))
+    if (label) moments.add(label)
   }
-
-  // Always ground the first day as arrival if nothing more specific was
-  // found and there's room — a real, honest default, not a fabricated one.
-  if (moments.length === 0) moments.push('Travel Day')
-
-  return moments.slice(0, 6)
+  return [...moments].slice(0, 8)
 }
 
 /** Generates a headline/body/CTA for the Luxe Jetter "Make It Yours" card
@@ -107,6 +93,7 @@ export function deriveWardrobeMoments(itinerary: Itinerary): string[] {
 // own occasion mix and day count, not random), so the same trip always
 // renders the same headline.
 function pickHeadline(context: TripContext, moments: string[]): string {
+  if (context.destinationId === 'rio-de-janeiro') return 'WHAT ARE YOU WEARING IN RIO?'
   const city = context.destinationName.toUpperCase()
   const hasBeach = moments.includes('Beach Day')
   const hasNightlife = moments.includes('Night Out')
@@ -130,7 +117,7 @@ export function generateLuxeJetterCopy(context: TripContext, moments: string[]):
   return {
     headline: pickHeadline(context, moments),
     body,
-    cta: `Plan My ${context.destinationName} Wardrobe →`,
+    cta: context.destinationId === 'rio-de-janeiro' ? 'Build My Rio Wardrobe → Luxe Jetter' : `Plan My ${context.destinationName} Wardrobe →`,
   }
 }
 

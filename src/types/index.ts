@@ -195,6 +195,12 @@ export interface Guide {
   placeIds: string[]
   sourceUrl: string
   publishedAt?: string
+  photos?: { src: string; caption: string }[]
+  photoCaption?: string
+  relatedDestinationIds?: string[]
+  relatedGuideIds?: string[]
+  categories?: string[]
+  itineraryRelevance?: string[]
 }
 
 // ---------------------------------------------------------------------------
@@ -244,6 +250,9 @@ export interface SavedTrip {
   title: string
   createdAt: string
   status: 'upcoming' | 'past'
+  startDate?: string
+  visitedActivityIds?: string[]
+  storyNotes?: Record<string,string>
 }
 
 export interface SavedLibrary {
@@ -285,4 +294,26 @@ export interface TripContext {
    *  lets a sibling product know which real, named places this trip
    *  actually touches without re-deriving it from storage itself. */
   selectedPlaces?: string[]
+}
+
+/** Commercial collection, independent of Places and editorial ranking. */
+export interface StyleOffer extends Offer {
+  id: string
+  kind: 'wardrobe' | 'stay'
+  title: string
+  network: 'ShopMy'
+  cta: string
+  destinationIds: string[]
+  source: string
+  verifiedAt: string
+  status: 'active' | 'disabled'
+  previewItems?: string[]
+}
+/** Local, versioned wardrobe brief. No receiving API is assumed. */
+export interface StyleHandoff {
+  version: 1
+  source: 'jet-set-latam'
+  trip: Pick<TripContext, 'destinationId' | 'destinationName' | 'country' | 'days' | 'startDate' | 'endDate' | 'companions' | 'interests' | 'pace' | 'style'>
+  occasions: string[]
+  moments: { day: number; theme: string; activities: string[] }[]
 }

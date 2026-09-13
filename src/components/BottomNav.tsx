@@ -1,16 +1,18 @@
-import { NavLink } from 'react-router-dom'
-import { Compass, MapPin, Sparkles, Bookmark } from 'lucide-react'
+import { NavLink } from "react-router-dom";
+import { Compass, MapPin, Sparkles } from "lucide-react";
 
 const TABS = [
-  { to: '/', label: 'Discover', icon: Compass, end: true },
-  { to: '/destinations', label: 'Destinations', icon: MapPin },
-  { to: '/plan', label: 'Plan a Trip', icon: Sparkles },
-  { to: '/saved', label: 'Saved', icon: Bookmark },
-]
+  { to: "/", label: "Discover", icon: Compass, end: true },
+  { to: "/destinations", label: "Destinations", icon: MapPin },
+  { to: "/plan", label: "Plan", icon: Sparkles },
+];
 
 export function BottomNav() {
   return (
-    <nav className="pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-cream/90 backdrop-blur-md md:hidden">
+    <nav
+      aria-label="Main navigation"
+      className="pb-safe fixed inset-x-0 bottom-0 z-40 border-t border-ink/10 bg-cream/95 backdrop-blur-md"
+    >
       <div className="mx-auto flex max-w-md items-stretch justify-between px-2">
         {TABS.map(({ to, label, icon: Icon, end }) => (
           <NavLink
@@ -19,7 +21,7 @@ export function BottomNav() {
             end={end}
             className={({ isActive }) =>
               `flex flex-1 flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition-colors ${
-                isActive ? 'text-terracotta' : 'text-ink-soft/60'
+                isActive ? "text-terracotta" : "text-ink-soft/60"
               }`
             }
           >
@@ -33,5 +35,5 @@ export function BottomNav() {
         ))}
       </div>
     </nav>
-  )
+  );
 }

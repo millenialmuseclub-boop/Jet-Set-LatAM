@@ -1,0 +1,3 @@
+import { Link } from 'react-router-dom'
+import { rio2025 } from '@/data/rio-2025'
+export function RioStoryLinks() { return <section className="my-8"><p className="eyebrow text-terracotta">Firsthand · March 2025</p><h2 className="mt-2 mb-4 font-display text-3xl italic">Rio, in the details.</h2><div className="grid grid-cols-2 gap-3">{[{to:'/carnival',title:'Carnival in Rio',photo:rio2025[3]},{to:'/guides/rio-centro-2025',title:'Centro in Details',photo:rio2025[9]}].map(s=><Link key={s.to} to={s.to}><img src={s.photo.src} alt={s.photo.subject} loading="lazy" style={{objectPosition:s.photo.focalPoint}} className="h-48 w-full rounded-2xl object-cover"/><h3 className="mt-2 font-display text-xl">{s.title} ↗</h3></Link>)}</div></section> }

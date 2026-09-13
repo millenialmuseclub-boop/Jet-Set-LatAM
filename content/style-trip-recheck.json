@@ -1,0 +1,33 @@
+{
+  "report": [
+    {
+      "name": "trip-style",
+      "width": 390,
+      "overflow": false,
+      "broken": []
+    },
+    {
+      "name": "trip-style",
+      "width": 430,
+      "overflow": false,
+      "broken": []
+    }
+  ],
+  "links": [
+    {
+      "label": "Trip handoff",
+      "width": 390,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Search\nToday\nGames\nApps\nArcade\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    },
+    {
+      "label": "Trip handoff",
+      "width": 430,
+      "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+      "title": "‎LuxeJetter App - App Store",
+      "rendered": "Search\nToday\nGames\nApps\nArcade\nPlatform\niPhone\niPad\nMac\nVision\nWatch\nTV\nLuxeJetter\n\nStyle every journey.\n\nFree · Designed for iPad"
+    }
+  ],
+  "errors": []
+}

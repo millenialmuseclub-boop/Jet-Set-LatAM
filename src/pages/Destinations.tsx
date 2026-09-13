@@ -1,64 +1,102 @@
-import { destinations } from '@/data'
-import { Photo } from '@/components/Photo'
-import { PhotoPlaceholder } from '@/components/PhotoPlaceholder'
-import { appFamily, CREATOR_PORTFOLIO_URL } from '@/config/appFamily'
-import { openExternal } from '@/lib/links'
-import { Link } from 'react-router-dom'
-import type { Destination } from '@/types'
+import { destinations, getGuidesByDestination } from "@/data";
+import { Photo } from "@/components/Photo";
+import { PhotoPlaceholder } from "@/components/PhotoPlaceholder";
+import { appFamily, CREATOR_PORTFOLIO_URL } from "@/config/appFamily";
+import { openExternal } from "@/lib/links";
+import { Link } from "react-router-dom";
+import type { Destination } from "@/types";
 
 // Country grouping so the index reads as an atlas rather than a flat grid —
 // order reflects how much of the world Jet Set LatAm actually covers today.
-const COUNTRY_ORDER = ['Mexico', 'Colombia', 'Brazil']
+const COUNTRY_ORDER = ["Mexico", "Colombia", "Brazil"];
 
 function groupByCountry(dests: Destination[]) {
-  const groups = new Map<string, Destination[]>()
+  const groups = new Map<string, Destination[]>();
   for (const d of dests) {
-    const list = groups.get(d.country) ?? []
-    list.push(d)
-    groups.set(d.country, list)
+    const list = groups.get(d.country) ?? [];
+    list.push(d);
+    groups.set(d.country, list);
   }
-  const ordered = [...COUNTRY_ORDER, ...[...groups.keys()].filter((c) => !COUNTRY_ORDER.includes(c))]
-  return ordered.filter((c) => groups.has(c)).map((c) => ({ country: c, cities: groups.get(c)! }))
+  const ordered = [
+    ...COUNTRY_ORDER,
+    ...[...groups.keys()].filter((c) => !COUNTRY_ORDER.includes(c)),
+  ];
+  return ordered
+    .filter((c) => groups.has(c))
+    .map((c) => ({ country: c, cities: groups.get(c)! }));
 }
 
 export function Destinations() {
-  const groups = groupByCountry(destinations)
+  const groups = groupByCountry(
+    destinations.filter((d) => d.status !== "coming-soon"),
+  );
 
   return (
     <div className="animate-fade-in mx-auto max-w-5xl space-y-10 pt-6 pb-6 md:pt-10">
       <header className="px-5 md:px-8">
-        <h1 className="font-display text-3xl text-ink md:text-4xl">Destinations</h1>
-        <p className="text-sm text-ink-soft/70">A growing map of Latin America, one real city at a time.</p>
+        <p className="eyebrow mb-2 text-terracotta">
+          The destination collection
+        </p>
+        <h1 className="font-display text-4xl text-ink md:text-4xl">
+          Somewhere wonderful.
+        </h1>
+        <p className="text-sm text-ink-soft/70">
+          A growing map of Latin America, one real city at a time.
+        </p>
       </header>
       {groups.map(({ country, cities }) => (
         <section key={country} className="space-y-3">
           <div className="px-5 md:px-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-terracotta">{country}</p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-terracotta">
+              {country}
+            </p>
           </div>
           <div className="grid grid-cols-2 gap-3 px-5 md:grid-cols-4 md:gap-5 md:px-8">
             {cities.map((d) => {
-              const clickable = d.status !== 'coming-soon'
+              const clickable = d.status !== "coming-soon";
               return (
                 <Link
                   key={d.id}
-                  to={clickable ? `/destinations/${d.slug}` : '#'}
+                  to={clickable ? `/destinations/${d.slug}` : "#"}
                   aria-disabled={!clickable}
-                  className={!clickable ? 'pointer-events-none opacity-50' : ''}
+                  className={!clickable ? "pointer-events-none opacity-50" : ""}
                 >
                   {d.heroPhoto ? (
-                    <Photo src={d.heroPhoto} seed={d.id} alt={d.city} className="h-36 w-full md:h-52" />
+                    <Photo
+                      src={d.heroPhoto}
+                      seed={d.id}
+                      alt={d.city}
+                      className="h-36 w-full md:h-52"
+                    />
                   ) : (
-                    <PhotoPlaceholder seed={d.id} label={d.country} className="h-36 w-full md:h-52" />
+                    <PhotoPlaceholder
+                      seed={d.id}
+                      label={d.country}
+                      className="h-36 w-full md:h-52"
+                    />
                   )}
                   <div className="mt-2">
-                    <p className="font-display text-xl leading-tight text-ink">{d.city}</p>
-                    <p className={`text-xs uppercase tracking-[0.1em] ${
-                      d.status === 'live' ? 'text-terracotta' : d.status === 'guide' ? 'text-jungle' : d.status === 'field-note' ? 'text-gold' : 'text-ink-soft/50'
-                    }`}>
-                      {d.status === 'live' && 'Plan'}
-                      {d.status === 'guide' && 'Explore'}
-                      {d.status === 'field-note' && 'Field Note'}
-                      {d.status === 'coming-soon' && 'Coming soon'}
+                    <p className="font-display text-xl leading-tight text-ink">
+                      {d.city}
+                    </p>
+                    <p className="mt-1 text-xs text-ink-soft/65">
+                      {getGuidesByDestination(d.id).length} stories to discover
+                    </p>
+                    <p
+                      className={`text-xs uppercase tracking-[0.1em] ${
+                        d.status === "live"
+                          ? "text-terracotta"
+                          : d.status === "guide"
+                            ? "text-jungle"
+                            : d.status === "field-note"
+                              ? "text-gold"
+                              : "text-ink-soft/50"
+                      }`}
+                    >
+                      {d.status === "live" && "Plan"}
+                      {d.status === "guide" && "Explore"}
+                      {d.status === "field-note" && "Field Note"}
+                      {d.status === "coming-soon" && "Coming soon"}
                     </p>
                     {d.railiiConnection && (
                       <p className="mt-0.5 flex items-center gap-1 text-[10px] text-ink-soft/40">
@@ -67,18 +105,22 @@ export function Destinations() {
                     )}
                   </div>
                 </Link>
-              )
+              );
             })}
           </div>
         </section>
       ))}
       <p className="px-5 pt-2 text-center text-[11px] italic text-ink-soft/35 md:px-8">
-        A{' '}
-        <button type="button" onClick={() => openExternal(CREATOR_PORTFOLIO_URL)} className="underline decoration-ink-soft/20 underline-offset-2">
+        A{" "}
+        <button
+          type="button"
+          onClick={() => openExternal(CREATOR_PORTFOLIO_URL)}
+          className="underline decoration-ink-soft/20 underline-offset-2"
+        >
           @jordypop
-        </button>
-        {' '}project
+        </button>{" "}
+        project
       </p>
     </div>
-  )
+  );
 }

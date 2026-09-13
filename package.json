@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "build:preview": "vite build --config vite.config.preview.ts"
+    "build:preview": "vite build --config vite.config.preview.ts",
+    "content:refresh": "node scripts/ingest-archive.mjs",
+    "check:content": "node scripts/check-content.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.1",
@@ -32,8 +34,10 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "autoprefixer": "^10.5.6",
+    "cheerio": "^1.2.0",
     "oxlint": "^1.81.0",
     "postcss": "^8.5.28",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "vite": "^8.3.0",

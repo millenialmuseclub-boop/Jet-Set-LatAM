@@ -1,0 +1,4 @@
+import { calendarDate,dayNumber,dateAfter } from './tripLifecycle'
+export const carnivalSeasons=[{year:2027,start:'2027-02-07',end:'2027-02-13',source:'https://liesa.org.br/noticias/260416.html',scope:'Grupo Especial parades February 7–9; Champions Parade February 13',verifiedAt:'2026-09-13'}]
+export function carnivalState(now=new Date()):'upcoming'|'during'|'archive' {const today=dayNumber(calendarDate(now,'rio-de-janeiro'));for(const season of carnivalSeasons){const start=dayNumber(season.start),end=dayNumber(season.end);if(today>=start&&today<=end)return 'during';if(today>=start-30&&today<start)return 'upcoming'}return 'archive'}
+export function tripOverlapsCarnival(destinationId:string,startDate:string|undefined,days:number) {return destinationId==='rio-de-janeiro'&&!!startDate&&carnivalSeasons.some(s=>dayNumber(startDate)<=dayNumber(s.end)&&dayNumber(dateAfter(startDate,days-1))>=dayNumber(s.start))}

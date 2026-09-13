@@ -1,3 +1,4 @@
+import { dateAfter } from './tripLifecycle'
 import type { TripContext } from '@/types'
 import { getDestinationById } from '@/data'
 import { getTrip, getEffectiveItinerary } from '@/lib/storage'
@@ -34,5 +35,7 @@ export function getTripContext(tripId: string): TripContext | undefined {
     style: answers?.style,
     pace: answers?.pace,
     selectedPlaces,
+    startDate: trip.startDate,
+    endDate: trip.startDate && itinerary ? dateAfter(trip.startDate,itinerary.days.length-1) : undefined,
   }
 }

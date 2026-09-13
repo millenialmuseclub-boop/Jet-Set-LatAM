@@ -187,7 +187,7 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
       // candidate rather than an open block if none of those are left.
       const mealPool = ranked.filter((p) => ['cafe', 'restaurant'].includes(p.category))
       const candidate = isMeal
-        ? (pickBest(mealPool, usedToday, dayNeighborhoods) ?? pickBest(ranked, usedToday, dayNeighborhoods))
+        ? pickBest(mealPool, usedToday, dayNeighborhoods)
         : pickBest(ranked, usedToday, dayNeighborhoods)
       if (candidate) {
         usedToday.add(candidate.id)

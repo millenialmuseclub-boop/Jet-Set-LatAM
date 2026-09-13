@@ -1,115 +1,199 @@
-import { useParams, Link } from 'react-router-dom'
-import { getGuide, getPlacesByIds, guides } from '@/data'
-import { Photo } from '@/components/Photo'
-import { JetSetPickCard } from '@/components/JetSetPickCard'
-import { EmptyState } from '@/components/EmptyState'
-import { ExternalLink, Bookmark } from 'lucide-react'
-import { useState } from 'react'
-import { isSavedPlace, toggleSavedPlace } from '@/lib/storage'
-import { openExternal } from '@/lib/links'
-
+import { useParams, Link } from "react-router-dom";
+import { useState } from "react";
+import {
+  getGuide,
+  getPlacesByIds,
+  getDestinationById,
+  getGuidesByDestination,
+  getPlacePhoto,
+} from "@/data";
+import { Photo } from "@/components/Photo";
+import { StoryCard } from "@/components/StoryCard";
+import { EmptyState } from "@/components/EmptyState";
+import { AddToTripControl } from "@/components/AddToTripControl";
+import { Bookmark, BookmarkCheck, ExternalLink } from "lucide-react";
+import { isSavedGuide, toggleSavedGuide } from "@/lib/storage";
+import { openExternal } from "@/lib/links";
 export function GuideDetail() {
-  const { id } = useParams()
-  const guide = id ? getGuide(id) : undefined
-  if (!guide) return <EmptyState title="Guide not found" />
-  const places = getPlacesByIds(guide.placeIds)
-  const pickPlaces = places.filter((p) => p.isJetSetPick)
-  const otherPlaces = places.filter((p) => !p.isJetSetPick)
-  const issueNo = String(guides.findIndex((g) => g.id === guide.id) + 1).padStart(2, '0')
-  const nextGuide = guides[(guides.findIndex((g) => g.id === guide.id) + 1) % guides.length]
-  const pairPhotos = pickPlaces.slice(0, 2).filter((p) => p.photos[0])
-
+  const { id } = useParams();
+  const [saved, setSaved] = useState(() => (id ? isSavedGuide(id) : false));
+  const guide = id ? getGuide(id) : undefined;
+  if (!guide) return <EmptyState title="Guide not found" />;
+  const destination = getDestinationById(guide.destinationId);
+  const places = getPlacesByIds(guide.placeIds);
+  const related = getGuidesByDestination(guide.destinationId)
+    .filter((g) => g.id !== guide.id)
+    .sort(
+      (a, b) =>
+        Number(b.section === guide.section) -
+        Number(a.section === guide.section),
+    )
+    .slice(0, 3);
+  const relatedDests = [
+    ...new Set([guide.destinationId, ...(guide.relatedDestinationIds || [])]),
+  ]
+    .map(getDestinationById)
+    .filter((d) => !!d);
   return (
-    <div className="animate-fade-in pb-10">
-      <div className="relative">
-        <Photo src={guide.heroPhoto} seed={guide.id} alt={guide.title} priority className="h-80 w-full md:h-[32rem]" rounded="rounded-none" />
-        <p className="absolute left-5 top-5 rounded-full bg-ink/50 px-3 py-1 text-[10px] uppercase tracking-[0.16em] text-cream backdrop-blur-sm md:left-8 md:top-8">
-          Field Notes No. {issueNo}
-        </p>
-      </div>
-      <div className="mx-auto max-w-2xl space-y-6 px-5 pt-6 md:px-8">
+    <article className="pb-10">
+      {guide.heroPhoto ? (
+        <figure>
+          <Photo
+            src={guide.heroPhoto}
+            seed={guide.id}
+            alt={guide.photoCaption || guide.title}
+            priority
+            className="h-[290px] w-full md:h-[450px]"
+            rounded="rounded-none"
+          />
+          <figcaption className="mx-auto max-w-3xl px-5 pt-2 text-[10px] text-ink-soft/55">
+            {guide.photoCaption}
+          </figcaption>
+        </figure>
+      ) : (
+        <div className="bg-jungle-dark px-5 py-10 text-cream">
+          <p className="eyebrow">A letter from</p>
+          <p className="font-display text-5xl">{destination?.city}</p>
+        </div>
+      )}
+      <div className="mx-auto max-w-3xl space-y-7 px-5 pt-6 md:px-8">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.14em] text-terracotta">{guide.section}</p>
-          <h1 className="font-display text-4xl leading-[1.05] text-ink md:text-5xl">{guide.title}</h1>
-          <p className="mt-3 border-l-2 border-gold pl-4 font-display text-xl italic leading-snug text-ink-soft/80">{guide.dek}</p>
-          {guide.publishedAt && (
-            <p className="mt-2 text-xs uppercase tracking-[0.1em] text-ink-soft/40">
-              Jet Set LatAm · {new Date(guide.publishedAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}
-            </p>
+          <div className="flex items-center justify-between gap-3">
+            <Link
+              to={`/destinations/${destination?.slug}`}
+              className="eyebrow text-terracotta"
+            >
+              {destination?.city} / {guide.section}
+            </Link>
+            <button
+              aria-label={saved ? "Unsave guide" : "Save guide"}
+              onClick={() => setSaved(toggleSavedGuide(guide.id))}
+              className="flex min-h-11 items-center gap-2 text-xs text-terracotta"
+            >
+              {saved ? <BookmarkCheck size={17} /> : <Bookmark size={17} />}{" "}
+              {saved ? "Saved" : "Save story"}
+            </button>
+          </div>
+          <h1 className="mt-3 font-display text-4xl leading-[1.06] md:text-5xl">
+            {guide.title}
+          </h1>
+          <p className="mt-4 border-l-2 border-gold pl-4 font-display text-xl italic text-ink-soft">
+            {guide.dek}
+          </p>
+          <p className="mt-4 text-[10px] uppercase tracking-widest text-ink-soft/50">
+            Jet Set LatAm{" "}
+            {guide.publishedAt &&
+              `· ${new Date(guide.publishedAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}`}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {relatedDests.map((d) => (
+            <Link
+              key={d.id}
+              to={`/destinations/${d.slug}`}
+              className="rounded-full border border-ink/15 px-4 py-3 text-xs"
+            >
+              Explore {d.city} ↗
+            </Link>
+          ))}
+          {destination?.status === "live" && (
+            <Link
+              to={`/plan?destination=${destination.slug}`}
+              className="rounded-full bg-jungle-dark px-4 py-3 text-xs text-cream"
+            >
+              Plan this trip ↗
+            </Link>
           )}
         </div>
-
-        <p className="text-[17px] leading-[1.7] text-ink-soft">{guide.body}</p>
-
-        {pairPhotos.length === 2 && (
-          <div className="-mx-5 grid grid-cols-2 gap-2 md:mx-0">
-            {pairPhotos.map((p) => (
-              <Photo key={p.id} src={p.photos[0]} seed={p.id} alt={p.name} className="h-56 w-full" rounded="rounded-none" />
+        <div className="article-body text-ink-soft">
+          {guide.body.split(/\n\n+/).map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+        {!!guide.photos?.length && (
+          <section aria-label="Story photographs">
+            <h2 className="mb-4 font-display text-3xl">Through our lens</h2>
+            <div className="grid grid-cols-2 gap-3">
+              {guide.photos.map((p, i) => (
+                <figure key={p.src} className={i % 5 === 0 ? "col-span-2" : ""}>
+                  <Photo
+                    src={p.src}
+                    seed={p.src}
+                    alt={p.caption}
+                    className={`${i % 5 === 0 ? "h-64" : "h-52"} w-full`}
+                  />
+                  <figcaption className="mt-2 text-xs leading-relaxed text-ink-soft/65">
+                    {p.caption}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+        {!!places.length && (
+          <section>
+            <h2 className="mb-4 font-display text-3xl">Places in this story</h2>
+            <div className="space-y-3">
+              {places.map((p) => {
+                const photo = getPlacePhoto(p);
+                return (
+                  <div
+                    key={p.id}
+                    className="flex gap-3 rounded-2xl bg-cream p-3"
+                  >
+                    <figure className="w-20 shrink-0">
+                      <Photo
+                        src={photo.src}
+                        seed={p.id}
+                        alt={photo.caption}
+                        className="h-20 w-20"
+                      />
+                      {!p.photos.length && (
+                        <figcaption className="mt-1 text-[9px] text-ink-soft/50">
+                          City context
+                        </figcaption>
+                      )}
+                    </figure>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-display text-xl">{p.name}</p>
+                      <p className="text-xs text-terracotta">
+                        {p.neighborhood}
+                        {p.isJetSetPick ? " · Jet Set Pick" : ""}
+                      </p>
+                      <AddToTripControl place={p} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+        <div className="border-t border-ink/15 pt-5">
+          {guide.sourceUrl && <button
+            onClick={() => openExternal(guide.sourceUrl)}
+            className="flex min-h-11 items-center gap-2 text-xs text-terracotta"
+          >
+            Read the original published story <ExternalLink size={13} />
+          </button>}
+          <p className="mt-2 text-xs leading-relaxed text-ink-soft/55">
+            From the Jet Set LatAm archive. Opening hours, prices and
+            availability may have changed since publication.
+          </p>
+        </div>
+        <section>
+          <div className="section-heading">
+            <h2>Stay a little longer</h2>
+            <Link to={`/explore?destination=${guide.destinationId}`}>
+              All stories ↗
+            </Link>
+          </div>
+          <div className="photo-rail">
+            {related.map((g) => (
+              <StoryCard key={g.id} guide={g} compact />
             ))}
           </div>
-        )}
-
-        {pickPlaces.length > 0 && (
-          <div className="space-y-3 pt-2">
-            <p className="font-display text-2xl text-ink">Jet Set Picks in this story</p>
-            <div className="-mx-5 flex snap-x gap-4 overflow-x-auto px-5 md:mx-0 md:px-0">
-              {pickPlaces.map((p) => <JetSetPickCard key={p.id} place={p} />)}
-            </div>
-          </div>
-        )}
-
-        {otherPlaces.length > 0 && (
-          <div className="space-y-2 pt-2">
-            <p className="font-display text-xl text-ink">Also mentioned</p>
-            {otherPlaces.map((p) => <MentionedPlaceRow key={p.id} placeId={p.id} name={p.name} address={p.address} />)}
-          </div>
-        )}
-
-        <p className="border-t border-ink/10 pt-4 text-xs leading-relaxed text-ink-soft/50">
-          Jet Set LatAm may earn a commission on bookings made through partner links at no extra cost to you. Editorial
-          recommendations are never influenced by affiliate relationships.
-        </p>
-
-        <button
-          onClick={() => openExternal(guide.sourceUrl)}
-          className="flex items-center gap-1.5 text-xs text-ink-soft/50"
-        >
-          Original story on jetsetlatam.com <ExternalLink size={12} />
-        </button>
-        <Link to={`/destinations/${guide.destinationId}`} className="block text-sm text-terracotta">
-          ← Back to destination
-        </Link>
-
-        {nextGuide && nextGuide.id !== guide.id && (
-          <Link to={`/guides/${nextGuide.id}`} className="group block overflow-hidden rounded-2xl border-t border-ink/10 pt-6">
-            <p className="text-[11px] uppercase tracking-[0.14em] text-ink-soft/40">Next Story</p>
-            <div className="mt-2 flex items-center gap-3">
-              <Photo src={nextGuide.heroPhoto} seed={nextGuide.id} alt={nextGuide.title} className="h-16 w-16 shrink-0" />
-              <p className="font-display text-xl leading-tight text-ink transition-colors group-hover:text-terracotta">{nextGuide.title}</p>
-            </div>
-          </Link>
-        )}
+        </section>
       </div>
-    </div>
-  )
-}
-
-function MentionedPlaceRow({ placeId, name, address }: { placeId: string; name: string; address?: string }) {
-  const [saved, setSaved] = useState(() => isSavedPlace(placeId))
-  return (
-    <div className="flex items-center justify-between gap-3 rounded-xl bg-cream p-3 ring-1 ring-ink/5">
-      <div className="min-w-0">
-        <p className="font-display text-base leading-tight text-ink">{name}</p>
-        {address && <p className="truncate text-xs text-ink-soft/60">{address}</p>}
-      </div>
-      <button
-        onClick={() => setSaved(toggleSavedPlace(placeId))}
-        className={`flex shrink-0 items-center gap-1 rounded-full px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.06em] ${
-          saved ? 'bg-terracotta text-cream' : 'bg-parchment text-ink-soft ring-1 ring-ink/10'
-        }`}
-      >
-        <Bookmark size={11} /> {saved ? 'Added' : 'Add to My Trip'}
-      </button>
-    </div>
-  )
+    </article>
+  );
 }

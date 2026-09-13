@@ -1,0 +1,1 @@
+export function CarnivalFlourish(){return <div className="carnival-flourish" aria-hidden="true">{Array.from({length:7},(_,i)=><i key={i} style={{'--spark-x':(i-3)*22+'px','--spark-y':(-22-(i%3)*18)+'px','--spark-turn':(i*43)+'deg'} as React.CSSProperties}/>)}</div>}
