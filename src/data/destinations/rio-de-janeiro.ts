@@ -208,6 +208,23 @@ export const rioPlaces: Place[] = [
 
   // --- Restaurants & cafés --------------------------------------------
   {
+    id: 'pl-cafe-do-alto',
+    name: 'Café do Alto',
+    country: 'Brazil',
+    city: 'Rio de Janeiro',
+    neighborhood: 'Santa Teresa',
+    category: 'restaurant',
+    description:
+      'An eclectic, art-covered restaurant and craft-beer bar at the top of Santa Teresa—a bit of everything on the menu, tucked behind a rolled-up garage door that opens onto the neighborhood’s cobbled streets.',
+    photos: [rioPhotos.cafeDoAltoInterior, rioPhotos.cafeDoAltoTerraceView, rioPhotos.cafeDoAltoStreetView, rioPhotos.cafeDoAltoFood],
+    isJetSetPick: false,
+    priceLevel: '$$',
+    tags: ['Brazilian', 'craft beer', 'Santa Teresa', 'eclectic'],
+    mapUrl: 'https://www.google.com/maps/search/?api=1&query=Caf%C3%A9+do+Alto+Santa+Teresa+Rio+de+Janeiro',
+    relatedGuideIds: ['gd-rio-santa-teresa'],
+    sourceUrl: 'https://riotur.rio/en/onde_comer/cafe-do-alto-2/',
+  },
+  {
     id: 'pl-joaquina',
     name: 'Joaquina',
     country: 'Brazil',
@@ -447,7 +464,7 @@ export const rioGuides: Guide[] = [
     heroPhoto: rioPhotos.santaTeresaTram,
     body:
       'Perched above the rush of Rio, Santa Teresa feels like a secret kept by artists and poets. Cobbled streets curve past pastel homes and bougainvillea-draped balconies; the historic yellow bonde tram still rattles uphill past hand-painted doors and quiet ateliers. There’s no itinerary to follow here — mornings unfold slowly over strong coffee and views of Guanabara Bay, and by evening the neighborhood glows, glasses clinking, Rio feeling intimate rather than vast. Wear comfortable shoes and let the streets decide your route.',
-    placeIds: ['pl-santa-teresa-hotel'],
+    placeIds: ['pl-santa-teresa-hotel', 'pl-cafe-do-alto'],
     sourceUrl: 'https://thebrunchmanifesto.blog/2026/01/01/santa-teresa-rio-de-janeiro-where-time-slows-and-color-lingers/',
     publishedAt: '2026-01-01',
   },
