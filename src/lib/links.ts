@@ -1,27 +1,29 @@
 import { Capacitor } from '@capacitor/core'
 import { Browser } from '@capacitor/browser'
+import { AppLauncher } from '@capacitor/app-launcher'
 
-// Shared external-link handling. Centralized so the Capacitor swap (native
-// apps should open Maps/Website links via a system-style browser, not by
-// navigating the WebView away from the app) stayed a one-file change instead
-// of a find-and-replace across every Place card.
-//
-// Web behavior: a safe new-tab navigation.
-// Native (iOS/Android) behavior: Capacitor's in-app SFSafariViewController /
-// Custom Tabs via @capacitor/browser — keeps the user inside the app shell
-// instead of backgrounding it into Safari, and is the standard pattern for
-// Capacitor apps opening Map/Website links from a Place card.
+/** Avoid popup-dependent navigation: embedded previews may silently discard it.
+ * iOS opens the partner in the system browser (or its associated app).
+ * The existing in-app browser is a fallback if the OS refuses the handoff. */
 export function openExternal(url?: string) {
   if (!url) return
-  if (Capacitor.isNativePlatform()) {
-    Browser.open({ url }).catch(() => {
-      // Fall back to a plain window.open if the plugin ever fails to load —
-      // better a backgrounded app than a dead tap.
-      window.open(url, '_blank', 'noopener,noreferrer')
-    })
+  if (!Capacitor.isNativePlatform()) {
+    window.location.assign(url)
     return
   }
-  window.open(url, '_blank', 'noopener,noreferrer')
+  void openNative(url)
+}
+
+async function openNative(url: string) {
+  try {
+    const result = await AppLauncher.openUrl({ url })
+    if (result.completed) return
+  } catch { /* Try the installed browser plugin next. */ }
+  try {
+    await Browser.open({ url })
+  } catch {
+    window.alert(`This link could not open. Please try again, or open this address in Safari:\n\n${url}`)
+  }
 }
 
 // Extracts a search query from a Google Maps URL (the shape every mapUrl in
@@ -66,5 +68,5 @@ export function openMap(url?: string) {
  *  right-click/long-press support on web. Native taps should still prefer
  *  openExternal() so they route through @capacitor/browser. */
 export function externalLinkProps(url: string) {
-  return { href: url, target: '_blank', rel: 'noreferrer' } as const
+  return { href: url } as const
 }

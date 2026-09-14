@@ -1,17 +1,27 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ArrowUpRight, ArrowLeft, Menu, X } from "lucide-react";
 import { CREATOR_PORTFOLIO_URL } from "@/config/appFamily";
 import { openExternal } from "@/lib/links";
 const moreLinks = [
-  ["/saved", "Saved — your travel collection"],
-  ["/explore", "Explore the journal"],
-  ["/about", "About Jet Set LatAm"],
+  ["/saved", "Saved"],
+  ["/explore", "Journal"],
+  ["/about", "About Jet Set"],
   ["/privacy", "Privacy"],
   ["/disclosure", "Affiliate disclosure"],
   ["/our-world", "Our World"],
 ];
 export function TopNav() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const showBack = location.pathname !== '/' || Boolean(location.search);
+  function goBack() {
+    if (typeof window.history.state?.idx === 'number' && window.history.state.idx > 0) navigate(-1);
+    else if (location.pathname.startsWith('/destinations/')) navigate('/destinations', {replace:true});
+    else if (location.pathname.startsWith('/guides/') || location.pathname.startsWith('/trails/') || location.search) navigate('/explore', {replace:true});
+    else if (location.pathname.startsWith('/saved/trips/')) navigate('/saved', {replace:true});
+    else navigate('/', {replace:true});
+  }
   const [scrolled,setScrolled]=useState(false);
   useEffect(()=>{const onScroll=()=>setScrolled(window.scrollY>16);onScroll();window.addEventListener('scroll',onScroll,{passive:true});return()=>window.removeEventListener('scroll',onScroll)},[]);
   const [open, setOpen] = useState(false);
@@ -31,16 +41,17 @@ export function TopNav() {
     <>
       <header className="app-header" data-scrolled={scrolled}>
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-5 md:px-8">
+            <div className="app-brand-row">
+            {showBack && <button className="app-back" onClick={goBack} aria-label="Go back"><ArrowLeft size={21}/></button>}
             <Link
               to="/"
               aria-label="Jet Set LatAm home"
               className="font-display text-[27px] leading-none tracking-tight"
             >
-              Jet Set <span className="italic text-terracotta">LatAm</span>
-              <span className="mt-1.5 block font-sans text-[8px] uppercase tracking-[.28em] text-ink-soft/65">
-                A Latin American love letter
-              </span>
+              Jet Set <span className="text-terracotta">LatAm</span>
+
             </Link>
+            </div>
           <button
             ref={trigger}
             onClick={() => setOpen(true)}
@@ -63,11 +74,9 @@ export function TopNav() {
         className="more-dialog"
         aria-labelledby="more-title"
       >
-        <div className="travel-drawer-handle" aria-hidden="true"/>
-        <p className="eyebrow mb-3 text-terracotta">Your travel drawer</p>
         <div className="flex items-center justify-between border-b border-ink/10 pb-4">
           <h2 id="more-title" className="font-display text-3xl">
-            A little further.
+            More
           </h2>
           <button onClick={close} aria-label="Close menu" className="p-3">
             <X size={20} />

@@ -8,7 +8,7 @@ import { useTripClock } from '@/lib/useTripClock';
 import { getSavedTrips,getEffectiveItinerary } from '@/lib/storage';
 import { tripPhase } from '@/lib/tripLifecycle';
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles, Footprints, MapPin, PartyPopper } from "lucide-react";
 import { Photo } from "@/components/Photo";
 import { StoryCard } from "@/components/StoryCard";
 import {
@@ -18,6 +18,12 @@ import {
   getPlacePhoto,
 } from "@/data";
 import { sambadrome2025 } from "@/data/sambadrome-2025";
+const quickActions = [
+  {label:'Ask',to:'/ask',icon:Sparkles},
+  {label:'Trails',to:'/explore?category=Trails',icon:Footprints},
+  {label:'Carnival',to:'/carnival',icon:PartyPopper},
+  {label:'Guides',to:'/explore?category=City+Guides',icon:MapPin},
+];
 export function Discover() {
   const now=useTripClock(); const [params]=useSearchParams();
   if(params.get('discover')!=='1'&&getSavedTrips().some(t=>tripPhase(t,getEffectiveItinerary(t.itineraryId),now)==='active'))return <JetSetNow/>;
@@ -52,7 +58,7 @@ export function Discover() {
               Rio de Janeiro · Carnival 2025
             </p>
             <h1 className="mt-2 font-display text-[52px] leading-none md:text-7xl">
-              Rio, after dark.
+              Rio.<br/><em>After dark.</em>
             </h1>
             <p className="mt-3 max-w-sm text-sm text-cream/85">
               From the Jet Set archive. One extraordinary night, through our lens.
@@ -66,19 +72,22 @@ export function Discover() {
           </div>
         </div>
       </section>
+      <nav aria-label="Quick explore" className="quick-explore">
+        {quickActions.map(({label,to,icon:Icon}) => <Link key={label} to={to}><Icon size={22}/><span>{label}</span></Link>)}
+      </nav>
       <section aria-labelledby="jetting-title" className="home-section">
         <div className="section-heading">
-          <h2 id="jetting-title">Currently Jetting</h2>
+          <h2 id="jetting-title">Your next obsession</h2>
           <Link to="/destinations">All destinations ↗</Link>
         </div>
-        <div className="photo-rail">
+        <div className="destination-launch-grid">
           {destinations
-            .filter((d) => d.status !== "coming-soon")
+            .filter((d) => d.status !== "coming-soon").slice(0, 4)
             .map((d) => (
               <Link
                 key={d.id}
                 to={`/destinations/${d.slug}`}
-                className="w-[130px] shrink-0 snap-start"
+                className="destination-launch-tile"
               >
                 <Photo
                   src={d.heroPhoto}

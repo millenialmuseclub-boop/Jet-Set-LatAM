@@ -16,6 +16,7 @@ export function MotionCanvas({children}:{children:ReactNode}) {
     if(typeof el.animate!=='function')return
     const a=el.animate(frames,{duration,delay,easing:motionTiming.easing,fill:'none'});animations.add(a);a.onfinish=()=>animations.delete(a)
    }
+   animate(root,[{opacity:.82,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],240)
    const reveal=(el:Element)=>{el.classList.add('motion-arrived');animate(el,[{transform:'translateY(10px)',opacity:.78},{transform:'translateY(0)',opacity:1}],motionTiming.reveal,(stagger++%3)*motionTiming.stagger)}
    const observer=typeof IntersectionObserver==='function'?new IntersectionObserver(entries=>{stagger=0;entries.forEach(e=>{if(e.isIntersecting){reveal(e.target);observer?.unobserve(e.target)}})},{threshold:.06}):undefined
    const heading=root.querySelector('h1,h2');if(heading&&!root.querySelector('[aria-label="Featured destination"]'))animate(heading,[{opacity:.86,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],280)
