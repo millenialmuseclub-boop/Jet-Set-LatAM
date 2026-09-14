@@ -1,0 +1,49 @@
+name: Validate Google Play Android bundles
+on:
+  push:
+    branches: [codex/google-play-android-20260913]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - app: jet-set-latam
+            directory: .
+    defaults:
+      run:
+        working-directory: ${{ matrix.directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - run: npm ci
+      - run: npm run build
+      - run: npx cap sync android
+      - name: Compile unsigned validation bundle
+        run: |
+          chmod +x android/gradlew
+          cd android
+          ./gradlew bundleRelease lintRelease --no-daemon -PALLOW_UNSIGNED_VALIDATION=true
+      - name: Check bundle structure and manifest
+        run: |
+          curl -fsSL https://github.com/google/bundletool/releases/download/1.18.3/bundletool-all-1.18.3.jar -o "$RUNNER_TEMP/bundletool.jar"
+          java -jar "$RUNNER_TEMP/bundletool.jar" validate --bundle=android/app/build/outputs/bundle/release/app-release.aab
+          java -jar "$RUNNER_TEMP/bundletool.jar" dump manifest --bundle=android/app/build/outputs/bundle/release/app-release.aab > android/app/build/outputs/bundle/release/manifest.xml
+          java -jar "$RUNNER_TEMP/bundletool.jar" dump config --bundle=android/app/build/outputs/bundle/release/app-release.aab > android/app/build/outputs/bundle/release/bundle-config.txt
+          unzip -l android/app/build/outputs/bundle/release/app-release.aab > android/app/build/outputs/bundle/release/bundle-files.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.app }}-UNSIGNED-validation
+          path: ${{ matrix.directory }}/android/app/build/outputs/bundle/release/
+          if-no-files-found: error

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Jet Set LatAm</string>
+    <string name="title_activity_main">Jet Set LatAm</string>
+    <string name="package_name">com.jetsetlatam.app</string>
+    <string name="custom_url_scheme">com.jetsetlatam.app</string>
+</resources>
