@@ -1,3 +1,4 @@
+import { rioCityGuides } from './rio-city-guides';
 import railGuideRecords from './rail-guides.json'
 import { rio2025, rioPhotoGuides } from './rio-2025'
 import { mexicoCityDestination, cdmxPlaces, cdmxGuides, cdmxReadyMadeItinerary } from './destinations/mexico-city'
@@ -18,7 +19,7 @@ export { mediaMoments, getMediaMomentsByDestination } from './media'
 export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, ...comingSoonDestinations]
 export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces]
 const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides]
-export const guides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...railGuideRecords as Guide[]]
+export const guides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[]]
 for (const guide of guides) {
   const dest = destinations.find(d => d.id === guide.destinationId)
   const original = originalGuides.find(g => g.id === guide.id)

@@ -1,3 +1,4 @@
+import { rioCity2025 } from '@/data/rio-city-2025';
 import { RalliiBridge } from './RalliiBridge';
 import { getDestinationById } from '@/data';
 import { rio2025 } from '@/data/rio-2025';
@@ -169,7 +170,7 @@ export function ItineraryEditor({
           >
             <div className="relative">
               <Photo
-                src={dayPhoto ?? (itinerary.destinationId === "rio-de-janeiro" && day.activities.some(a => a.placeId && ["museum", "landmark"].includes(getPlace(a.placeId)?.category || "")) ? rio2025[dayIndex % 2 ? 7 : 9].src : fallbackHero)}
+                src={dayPhoto ?? (itinerary.destinationId === "rio-de-janeiro" && day.activities.some(a => a.placeId && ["museum", "landmark"].includes(getPlace(a.placeId)?.category || "")) ? rio2025[dayIndex % 2 ? 7 : 9].src : itinerary.destinationId === "rio-de-janeiro" ? rioCity2025[[8,3,2][dayIndex % 3]].src : fallbackHero)}
                 seed={`day-${day.day}`}
                 alt={day.theme}
                 className="h-24 w-full"

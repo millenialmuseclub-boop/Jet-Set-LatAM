@@ -1,3 +1,5 @@
+import { rioCity2025 } from '@/data/rio-city-2025';
+import { sambadrome2025 } from '@/data/sambadrome-2025';
 import { useState } from 'react'
 import type { Destination, TripContext, Itinerary } from '@/types'
 import { destinationStyle, styleOffers } from '@/data/style'
@@ -10,9 +12,10 @@ export function StyleBridge({destination,context,itinerary,carnival=false,commer
  const copy=destinationStyle[destination.id]; if(!copy) return null
  const handoff=context&&itinerary?buildStyleHandoff(context,itinerary):undefined
  const occasions=handoff?.occasions || (carnival?['Bloco','Sambadrome','Beach Day','Dinner','Travel Day']:copy.occasions)
- const offer=commerce&&!carnival?styleOffers.find(o=>o.kind==='wardrobe'&&o.status==='active'&&o.destinationIds.includes(destination.id)):undefined
+ const offer=commerce&&!carnival&&destination.id!=='rio-de-janeiro'?styleOffers.find(o=>o.kind==='wardrobe'&&o.status==='active'&&o.destinationIds.includes(destination.id)):undefined
  const city=destination.id==='rio-de-janeiro'?'Rio':destination.city
  return <section aria-label={'Style for '+(carnival?'Carnival':destination.city)} className="style-bridge rounded-2xl border border-terracotta/20 bg-cream p-5 text-left">
+ {destination.id==='rio-de-janeiro'&&<img src={carnival?sambadrome2025[5].src:rioCity2025[7].src} alt={carnival?sambadrome2025[5].caption:rioCity2025[7].caption} loading="lazy" className="mb-5 h-44 w-full rounded-xl object-cover"/>}
  <p className="eyebrow text-terracotta">Jet Set LatAm plans the trip. Luxe Jetter dresses it.</p>
  <h2 className="my-3 font-display text-3xl italic">{carnival?'What are you wearing to Carnival?':copy.headline}</h2>
  <p className="text-sm leading-relaxed text-ink-soft">{handoff?handoff.trip.days+' days in '+destination.city+', with a wardrobe for the plans you’ve made.':copy.body}</p>

@@ -1,3 +1,4 @@
+import { rioCity2025 } from '../rio-city-2025';
 import type { Destination, Neighborhood, Place, Guide, Itinerary } from '@/types'
 import { rioPhotos } from '@/assets/rio'
 
@@ -67,7 +68,7 @@ export const rioPlaces: Place[] = [
     category: 'landmark',
     description:
       'Rio’s defining silhouette, arms open over the city from the top of Corcovado Mountain — one of the New Seven Wonders of the World, and unmissable at golden hour when the statue turns to shadow against the sky.',
-    photos: [rioPhotos.christRedeemer, rioPhotos.christRedeemerSunset],
+    photos: [rioCity2025[1].src, rioPhotos.christRedeemer, rioPhotos.christRedeemerSunset],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The view from the top — Guanabara Bay, Sugarloaf and the whole city laid out below.',
@@ -502,7 +503,7 @@ export const rioDeJaneiroDestination: Destination = {
   slug: 'rio-de-janeiro',
   city: 'Rio de Janeiro',
   country: 'Brazil',
-  heroPhoto: rioPhotos.sugarloafPanorama,
+  heroPhoto: rioCity2025[2].src,
   tagline: 'Beaches, bossa nova, and the city that moves to its own rhythm.',
   status: 'live',
   content: {

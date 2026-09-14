@@ -1,3 +1,4 @@
+import { WebsitePlanning } from '@/components/WebsitePlanning';
 import { CuratingTrip } from '@/components/CuratingTrip';
 import { editorialMotion,gentleSpring } from '@/lib/motion';
 import { RalliiBridge } from '@/components/RalliiBridge';
@@ -393,6 +394,7 @@ export function PlanTrip() {
         </div>
       </div>
 
+      {step === 0 && <WebsitePlanning/>}
       <div className="mb-2 flex items-baseline justify-between">
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-terracotta">
           Step {step + 1} of {STEPS.length}
@@ -561,3 +563,4 @@ export function PlanTrip() {
     </div>
   );
 }
+

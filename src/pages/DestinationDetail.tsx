@@ -1,3 +1,4 @@
+import { rioCity2025 } from '@/data/rio-city-2025';
 import { TrailLinks } from '@/components/TrailLinks';
 import { TrenMayaStories } from '@/components/TrenMayaStories';
 import { RalliiBridge } from '@/components/RalliiBridge';
@@ -105,13 +106,11 @@ function PlaceActions({ place }: { place: Place }) {
 
 export function DestinationDetail() {
   const { slug } = useParams();
-  const [params] = useSearchParams();
+  const [params, setParams] = useSearchParams();
   const destination = slug ? getDestinationBySlug(slug) : undefined;
   const initialTab =
     (params.get("tab") as (typeof TABS)[number]["key"]) || "overview";
-  const [tab, setTab] = useState<(typeof TABS)[number]["key"]>(
-    TABS.some((t) => t.key === initialTab) ? initialTab : "overview",
-  );
+  const tab = TABS.some(t => t.key === initialTab) ? initialTab : "overview";
   const [saved, setSaved] = useState(() =>
     destination ? isSavedDestination(destination.id) : false,
   );
@@ -139,13 +138,13 @@ export function DestinationDetail() {
 
   return (
     <div className="animate-fade-in pb-6">
-      <div className="relative">
+      <div className={destination.id === "rio-de-janeiro" ? "rio-dancing-hero relative" : "relative"}>
         <Photo
           src={destination.heroPhoto}
           seed={destination.id}
           alt={destination.city}
           priority
-          className="h-72 w-full md:h-[26rem]"
+          className={destination.id === "rio-de-janeiro" ? "h-[420px] w-full md:h-[540px]" : "h-72 w-full md:h-[26rem]"}
           rounded="rounded-none"
         />
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-5 pt-16 md:p-14 md:pt-32">
@@ -180,7 +179,7 @@ export function DestinationDetail() {
         {TABS.map((t) => (
           <button
             key={t.key}
-            onClick={() => setTab(t.key)}
+            onClick={() => setParams(previous => { const next = new URLSearchParams(previous); next.set("tab", t.key); return next; }, { replace: true, preventScrollReset: true })}
             className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm transition-colors ${
               tab === t.key
                 ? "bg-terracotta text-cream"
@@ -194,6 +193,7 @@ export function DestinationDetail() {
 
       <div className="mx-auto max-w-5xl space-y-6 px-5 pt-2 md:px-8">
         {tab === "overview" && destination.id === "rio-de-janeiro" && <RioStoryLinks />}
+        {destination.id === "rio-de-janeiro" && (tab === "eat" || tab === "drink") && <Link to="/guides/rio-table-2025" className="my-6 flex items-center gap-5 rounded-2xl bg-cream p-4"><img src={rioCity2025[5].src} alt={rioCity2025[5].caption} loading="lazy" className="h-40 w-28 rounded-xl object-cover"/><div><p className="eyebrow text-terracotta">From our Rio diary</p><h2 className="my-2 font-display text-3xl">A little taste of Rio ↗</h2><p className="text-xs text-ink-soft">A drink and a moment at the table. Venue unconfirmed.</p></div></Link>}
         {tab === "overview" && (
           <div className="space-y-6 md:grid md:grid-cols-3 md:gap-8 md:space-y-0">
             <div className="space-y-5 md:col-span-2">
@@ -372,37 +372,7 @@ export function DestinationDetail() {
         {tab === "overview" && destination.id === "rio-de-janeiro" && (
           <PostcardGallery
             title="Postcards From Rio de Janeiro"
-            images={[
-              {
-                src: rioPhotos.sugarloafPanorama,
-                seed: "pc-rio-sugarloaf",
-                alt: "Sugarloaf Mountain panorama",
-                caption:
-                  "Pão de Açúcar at golden hour — the classic Rio panorama, cable car included.",
-              },
-              {
-                src: rioPhotos.christRedeemerSunset,
-                seed: "pc-rio-christ-sunset",
-                alt: "Christ the Redeemer at sunset",
-              },
-              {
-                src: rioPhotos.kobraMural,
-                seed: "pc-rio-kobra",
-                alt: "Kobra street mural",
-              },
-              {
-                src: rioPhotos.christRedeemer,
-                seed: "pc-rio-christ",
-                alt: "Christ the Redeemer",
-                caption:
-                  "Cristo Redentor watches over the city from Corcovado — go early to beat both the crowds and the clouds.",
-              },
-              {
-                src: rioPhotos.santaTeresaTram,
-                seed: "pc-rio-tram",
-                alt: "Santa Teresa tram",
-              },
-            ]}
+            images={[...([8,1,0,3] as const).map(i=>({src:rioCity2025[i].src,seed:rioCity2025[i].id,alt:rioCity2025[i].caption,caption:rioCity2025[i].caption+' · Jet Set archive, 2025'})),{src:rioPhotos.santaTeresaTram,seed:'rio-centro',alt:'Santa Teresa tram',caption:'Another side of Rio · the city archive'}]}
           />
         )}
 

@@ -47,7 +47,11 @@
     "relatedGuideIds": [
       "rio-carnival-2025"
     ],
-    "focalPoint": "50% 72%"
+    "focalPoint": "50% 72%",
+    "setting": "street",
+    "timeOfDay": "day",
+    "posterCandidate": true,
+    "relatedFeature": "/carnival"
   },
   {
     "id": "rio-2025-2",
@@ -70,7 +74,11 @@
     "relatedGuideIds": [
       "rio-carnival-2025"
     ],
-    "focalPoint": "50% 72%"
+    "focalPoint": "50% 72%",
+    "setting": "street",
+    "timeOfDay": "day",
+    "posterCandidate": true,
+    "relatedFeature": "/carnival"
   },
   {
     "id": "rio-2025-3",
@@ -93,7 +101,11 @@
     "relatedGuideIds": [
       "rio-carnival-2025"
     ],
-    "focalPoint": "50% 72%"
+    "focalPoint": "50% 72%",
+    "setting": "street",
+    "timeOfDay": "day",
+    "posterCandidate": true,
+    "relatedFeature": "/carnival"
   },
   {
     "id": "rio-2025-4",
@@ -116,7 +128,11 @@
     "relatedGuideIds": [
       "rio-carnival-2025"
     ],
-    "focalPoint": "50% 72%"
+    "focalPoint": "50% 72%",
+    "setting": "street",
+    "timeOfDay": "day",
+    "posterCandidate": true,
+    "relatedFeature": "/carnival"
   },
   {
     "id": "rio-2025-5",
@@ -139,7 +155,11 @@
     "relatedGuideIds": [
       "rio-carnival-2025"
     ],
-    "focalPoint": "50% 50%"
+    "focalPoint": "50% 50%",
+    "setting": "street",
+    "timeOfDay": "day",
+    "posterCandidate": false,
+    "relatedFeature": "/carnival"
   },
   {
     "id": "rio-2025-6",

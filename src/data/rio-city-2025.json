@@ -1,0 +1,224 @@
+[
+  {
+    "id": "rio-city-2025-0",
+    "file": "0.webp",
+    "original": "Facetune_23-03-2025-06-46-45.jpeg",
+    "sha256": "d8e7d85af070a4a3ca8f37749110b421c8b48057d4632959d12588b48379255f",
+    "caption": "A personal moment at a Rio table",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 1283,
+    "height": 1720,
+    "focalPoint": "50% 50%",
+    "heroCandidate": false,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-table-2025"
+    ],
+    "originalBytes": 588809,
+    "optimizedBytes": 257176
+  },
+  {
+    "id": "rio-city-2025-1",
+    "file": "1.webp",
+    "original": "IMG20250305143121_Original.jpeg",
+    "sha256": "a4b82e3c0802d6f4c54bdbb9330b9ea3c432e2a31c4343ed36d6a8eabb7cb863",
+    "caption": "Christ the Redeemer against the blue sky",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 1152,
+    "height": 1536,
+    "focalPoint": "50% 50%",
+    "heroCandidate": false,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [
+      "pl-christ-redeemer"
+    ],
+    "relatedGuideIds": [
+      "rio-quiet-2025"
+    ],
+    "originalBytes": 292706,
+    "optimizedBytes": 67250
+  },
+  {
+    "id": "rio-city-2025-2",
+    "file": "2.webp",
+    "original": "IMG20250305180703_Original.jpeg",
+    "sha256": "fe2be4c20c23a5ef0363294af817b9b56b5076d49f46c8d0b672f60423a7e4bb",
+    "caption": "Mountains and beach at sunset in Rio",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 1152,
+    "height": 1536,
+    "focalPoint": "50% 64%",
+    "heroCandidate": true,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-quiet-2025"
+    ],
+    "originalBytes": 289484,
+    "optimizedBytes": 68136
+  },
+  {
+    "id": "rio-city-2025-3",
+    "file": "3.webp",
+    "original": "IMG20250305183341_Original.jpeg",
+    "sha256": "cf08f71d56c87d0d0f2ada3061d88cc01298b23db22eb9d25ba429c4b0bef111",
+    "caption": "The beach as the evening lights come on",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 1152,
+    "height": 1536,
+    "focalPoint": "50% 50%",
+    "heroCandidate": true,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-quiet-2025"
+    ],
+    "originalBytes": 314414,
+    "optimizedBytes": 69346
+  },
+  {
+    "id": "rio-city-2025-4",
+    "file": "4.webp",
+    "original": "IMG20250305190814_Original.jpeg",
+    "sha256": "4bfead5c8d129d8204641002834cc2239c8d14800abc9b926766d05c4fe9c499",
+    "caption": "An evening gathering beside the beach",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "landscape",
+    "width": 1536,
+    "height": 1152,
+    "focalPoint": "50% 50%",
+    "heroCandidate": false,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-table-2025"
+    ],
+    "originalBytes": 342809,
+    "optimizedBytes": 81330
+  },
+  {
+    "id": "rio-city-2025-5",
+    "file": "5.webp",
+    "original": "IMG20250306132658_Original.jpeg",
+    "sha256": "bf8bbdcf15f3bfa8e84597be9cb6b82dfbd3fb95096eaa05b49069aa6c4dcc93",
+    "caption": "A golden drink at a Rio table · venue unconfirmed",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 1152,
+    "height": 1536,
+    "focalPoint": "50% 50%",
+    "heroCandidate": false,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-table-2025"
+    ],
+    "originalBytes": 507942,
+    "optimizedBytes": 140548
+  },
+  {
+    "id": "rio-city-2025-6",
+    "file": "6.webp",
+    "original": "IMG_5435.jpeg",
+    "sha256": "24d0e897d88fd4b02c790eac1fd4f6e2be311079f11a15d188a3f9abac4fffde",
+    "caption": "Beach view with embedded black borders",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 709,
+    "height": 1536,
+    "focalPoint": "50% 50%",
+    "heroCandidate": false,
+    "editorialCandidate": false,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-quiet-2025"
+    ],
+    "originalBytes": 169480,
+    "optimizedBytes": 57858
+  },
+  {
+    "id": "rio-city-2025-7",
+    "file": "7.webp",
+    "original": "IMG_5436.jpeg",
+    "sha256": "eec15d5ff9df1be84d4002ca528728d1ab95fe3438843df800a6e17f7765eb56",
+    "caption": "A personal beach-day postcard",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "landscape",
+    "width": 1287,
+    "height": 1121,
+    "focalPoint": "50% 50%",
+    "heroCandidate": false,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-quiet-2025"
+    ],
+    "originalBytes": 355143,
+    "optimizedBytes": 100782
+  },
+  {
+    "id": "rio-city-2025-8",
+    "file": "8.webp",
+    "original": "IMG_5438.jpeg",
+    "sha256": "5a31149467c5bf422e64157ef5b99998def12891891064e7713ce53a47130101",
+    "caption": "Beach umbrellas, city and mountains in daylight",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 1152,
+    "height": 1536,
+    "focalPoint": "50% 50%",
+    "heroCandidate": true,
+    "editorialCandidate": true,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-quiet-2025"
+    ],
+    "originalBytes": 408711,
+    "optimizedBytes": 97286
+  },
+  {
+    "id": "rio-city-2025-9",
+    "file": "9.webp",
+    "original": "IMG_5439.jpeg",
+    "sha256": "de31308808adf3680dfd3b4dad6f6b8ccbba4ac3c4c1eed9fb715a4844f129c8",
+    "caption": "Personal beach screenshot with phone interface",
+    "destinationId": "rio-de-janeiro",
+    "year": 2025,
+    "firsthand": true,
+    "orientation": "portrait",
+    "width": 1290,
+    "height": 2796,
+    "focalPoint": "50% 50%",
+    "heroCandidate": false,
+    "editorialCandidate": false,
+    "relatedPlaceIds": [],
+    "relatedGuideIds": [
+      "rio-quiet-2025"
+    ],
+    "originalBytes": 544440,
+    "optimizedBytes": 149954
+  }
+]

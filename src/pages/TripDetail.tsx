@@ -2,7 +2,7 @@ import { TripConstellation } from '@/components/TripConstellation';
 import { TrailLinks } from '@/components/TrailLinks';
 import { TripDates } from '@/components/TripDates';
 import { RioStoryLinks } from '@/components/RioStoryLinks';
-import { rioPhotos } from '@/assets/rio';
+import { rioCity2025 } from '@/data/rio-city-2025';
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import {
@@ -99,7 +99,7 @@ export function TripDetail() {
     <div className="animate-fade-in pb-6">
       <div className="trip-hero relative">
         <Photo
-          src={destination.id === "rio-de-janeiro" ? rioPhotos.santaTeresaTram : destination.heroPhoto}
+          src={destination.id === "rio-de-janeiro" ? rioCity2025[3].src : destination.heroPhoto}
           seed={destination.id}
           alt={destination.city}
           priority
