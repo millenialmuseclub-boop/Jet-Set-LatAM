@@ -35,6 +35,7 @@ import { tulumPhotos } from '@/assets/tulum'
 export const tulumPlaces: Place[] = [
   {
     id: 'pl-tulum-ruins',
+    practicalNotes: 'Start with the ruins, then leave a separate block for the beach. Check current access and admission before leaving; pack water and sun protection.',
     name: 'Tulum Archaeological Zone',
     country: 'Mexico',
     city: 'Tulum',
@@ -51,6 +52,7 @@ export const tulumPlaces: Place[] = [
   },
   {
     id: 'pl-cenote-cristalino',
+    practicalNotes: 'Treat this as a separate excursion: arrange the outward and return journey, and check current swim rules before you go.',
     name: 'Cenote Cristalino',
     country: 'Mexico',
     city: 'Tulum',
@@ -63,6 +65,7 @@ export const tulumPlaces: Place[] = [
   },
   {
     id: 'pl-cenote-azul',
+    practicalNotes: 'Choose one cenote for an unhurried swim rather than scheduling every cenote in the same morning. Confirm current admission and transport.',
     name: 'Cenote Azul',
     country: 'Mexico',
     city: 'Tulum',
@@ -75,6 +78,7 @@ export const tulumPlaces: Place[] = [
   },
   {
     id: 'pl-jardin-del-eden',
+    practicalNotes: 'Check the current entry rules and which activities are offered before planning a visit. Swimming and a specialist dive should be planned separately.',
     name: 'Jardín del Edén',
     country: 'Mexico',
     city: 'Tulum',

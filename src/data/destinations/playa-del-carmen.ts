@@ -1,3 +1,4 @@
+import { finalTravelPhotos } from '../final-travel-photos'
 import type { Destination, Place, Neighborhood } from '@/types'
 import { playaDelCarmenPhotos } from '@/assets/playa-del-carmen'
 
@@ -54,6 +55,7 @@ export const playaDelCarmenNeighborhoods: Neighborhood[] = [
 export const playaDelCarmenPlaces: Place[] = [
   {
     id: 'pl-la-cueva-del-chango',
+    practicalNotes: 'Use this as the breakfast anchor of a downtown day. Allow a flexible arrival rather than a tightly timed transfer afterward.',
     name: 'La Cueva del Chango',
     country: 'Mexico',
     city: 'Playa del Carmen',
@@ -69,6 +71,7 @@ export const playaDelCarmenPlaces: Place[] = [
   },
   {
     id: 'pl-el-fogon',
+    practicalNotes: 'A casual dinner stop for your downtown day. Check which branch works best with the rest of your route.',
     name: 'El Fogón',
     country: 'Mexico',
     city: 'Playa del Carmen',
@@ -84,6 +87,7 @@ export const playaDelCarmenPlaces: Place[] = [
   },
   {
     id: 'pl-ah-cacao',
+    practicalNotes: 'An easy pause between other stops; choose the branch closest to your route.',
     name: 'Ah Cacao',
     country: 'Mexico',
     city: 'Playa del Carmen',
@@ -145,6 +149,7 @@ export const playaDelCarmenPlaces: Place[] = [
   },
   {
     id: 'pl-xcaret-butterfly-sanctuary',
+    practicalNotes: 'Inside Xcaret: plan admission and transport for the wider park. Leave a full day rather than treating the sanctuary as a quick downtown stop.',
     name: 'Xcaret Butterfly Sanctuary',
     country: 'Mexico',
     city: 'Playa del Carmen',
@@ -167,13 +172,13 @@ export const playaDelCarmenDestination: Destination = {
   slug: 'playa-del-carmen',
   city: 'Playa del Carmen',
   country: 'Mexico',
-  heroPhoto: playaDelCarmenPhotos.xcaretLagoonCove,
+  heroPhoto: finalTravelPhotos["playa-del-carmen"][0].src,
   tagline: 'The Riviera Maya\'s beating heart, with Xcaret at its doorstep',
   status: 'guide',
   content: {
     overview:
-      'Source articles consistently frame Playa del Carmen as the "beating heart" of the Riviera Maya, with Xcaret as a day-trip cluster reachable from it — a park built around natural lagoons, underground rivers, and a walk-through butterfly sanctuary. Downtown itself runs along Quinta Avenida and the waterfront Parque Fundadores, with a quieter beach-club scene north in Coco Beach.',
-    whyGo: 'The region\'s most-written-about beach town in the archive — garden breakfasts, a chocolate café, a landmark plaza and Xcaret\'s butterfly sanctuary, all real and sourced.',
+      'Make downtown Playa one day and Xcaret another. Start with a garden breakfast, pause for chocolate, and finish around the waterfront Parque Fundadores. Keep a separate day for the park’s lagoons and butterfly sanctuary so transfers and a long afternoon never compete with a dinner reservation.',
+    whyGo: 'For a trip that moves between garden tables, the waterfront and a full park day at Xcaret. Use the short itinerary as a starting point, then save the places you want to return to.',
     bestTime: 'November–April: dry season, the best beach and cenote weather — also the busiest and priciest. June–November is hurricane season, hot and humid with real storm risk, heaviest August–October.',
   },
   neighborhoods: playaDelCarmenNeighborhoods,

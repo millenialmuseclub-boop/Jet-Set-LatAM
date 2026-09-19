@@ -1,3 +1,6 @@
+import { finalTravelPhotos } from '@/data/final-travel-photos';
+import { WebsitePlanning } from '@/components/WebsitePlanning';
+import { appFamily } from '@/config/appFamily';
 import { rioCity2025 } from '@/data/rio-city-2025';
 import { TrailLinks } from '@/components/TrailLinks';
 import { TrenMayaStories } from '@/components/TrenMayaStories';
@@ -126,10 +129,10 @@ export function DestinationDetail() {
   const placesForTab = (section: string) => {
     const catMap: Record<string, string[]> = {
       shop: ["shop"],
-      experiences: ["experience", "park"],
+      experiences: ["experience", "park", "beach"],
       see: ["landmark", "museum"],
       eat: ["restaurant"],
-      drink: ["cafe", "bar"],
+      drink: ["cafe", "bar", "nightlife"],
       stay: ["hotel"],
     };
     const cats = catMap[section] ?? [];
@@ -176,9 +179,10 @@ export function DestinationDetail() {
       </div>
 
       <div className="sticky top-[var(--app-header-height)] z-10 flex gap-1 overflow-x-auto bg-parchment/95 px-5 py-3 backdrop-blur-sm md:justify-center md:px-8">
-        {TABS.map((t) => (
+        {TABS.filter(t => t.key === "overview" || t.key === "stay" || (t.key === "neighborhoods" ? destination.neighborhoods.length > 0 : placesForTab(t.key).length > 0)).map((t) => (
           <button
             key={t.key}
+            aria-pressed={tab === t.key}
             onClick={() => setParams(previous => { const next = new URLSearchParams(previous); next.set("tab", t.key); return next; }, { replace: true, preventScrollReset: true })}
             className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm transition-colors ${
               tab === t.key
@@ -202,7 +206,7 @@ export function DestinationDetail() {
               </p>
               {readyMade.length > 0 && readyMade[0] && (
                 <Link
-                  to={`/plan?destination=${destination.slug}`}
+                  to={`/plan?destination=${destination.slug}&itinerary=${readyMade[0]!.id}`}
                   className="block rounded-2xl bg-terracotta p-4 text-cream"
                 >
                   <p className="text-[11px] uppercase tracking-[0.14em] text-cream/80">
@@ -251,12 +255,12 @@ export function DestinationDetail() {
                     <dt className="text-cream/50">Why go</dt>
                     <dd>{destination.content.whyGo}</dd>
                   </div>
-                  <div>
+                  {destination.neighborhoods.length > 0 && <div>
                     <dt className="text-cream/50">Neighborhoods</dt>
                     <dd>
                       {destination.neighborhoods.map((n) => n.name).join(", ")}
                     </dd>
-                  </div>
+                  </div>}
                   {destination.content.bestTime && (
                     <div>
                       <dt className="text-cream/50">Best time to go</dt>
@@ -269,7 +273,7 @@ export function DestinationDetail() {
           </div>
         )}
 
-        {tab === "overview" && (
+        {tab === "overview" && guides.length > 4 && (
           <section className="space-y-4">
             <div className="section-heading">
               <h2>More from {destination.city}</h2>
@@ -372,7 +376,7 @@ export function DestinationDetail() {
         {tab === "overview" && destination.id === "rio-de-janeiro" && (
           <PostcardGallery
             title="Postcards From Rio de Janeiro"
-            images={[...([8,1,0,3] as const).map(i=>({src:rioCity2025[i].src,seed:rioCity2025[i].id,alt:rioCity2025[i].caption,caption:rioCity2025[i].caption+' · Jet Set archive, 2025'})),{src:rioPhotos.santaTeresaTram,seed:'rio-centro',alt:'Santa Teresa tram',caption:'Another side of Rio · the city archive'}]}
+            images={[...finalTravelPhotos.rio,...([8,1,0,3] as const).map(i=>({src:rioCity2025[i].src,seed:rioCity2025[i].id,alt:rioCity2025[i].caption,caption:rioCity2025[i].caption+' · Jet Set archive, 2025'})),{src:rioPhotos.santaTeresaTram,seed:'rio-centro',alt:'Santa Teresa tram',caption:'Another side of Rio · the city archive'}]}
           />
         )}
 
@@ -380,6 +384,7 @@ export function DestinationDetail() {
           <PostcardGallery
             title="Postcards From Cartagena"
             images={[
+              ...finalTravelPhotos.cartagena,
               {
                 src: cartagenaPhotos.cartagenaSkyline,
                 seed: "pc-cart-skyline",
@@ -519,7 +524,7 @@ export function DestinationDetail() {
                 seed: "pc-tulum-cliff",
                 alt: "Tulum ruins atop the cliff over the sea",
                 caption:
-                  "The Tulum ruins, cliffside over the Caribbean — the only Maya site built to face the sunrise over open water.",
+                  "The Tulum ruins, cliffside over the Caribbean — from the Jet Set photo archive.",
               },
               {
                 src: tulumPhotos.tulumBoardwalkBeach,
@@ -537,8 +542,9 @@ export function DestinationDetail() {
 
         {tab === "overview" && destination.id === "sao-paulo" && (
           <PostcardGallery
-            title="Beco do Batman In Color"
+            title="Postcards From São Paulo"
             images={[
+              ...finalTravelPhotos["sao-paulo"],
               {
                 src: saoPauloPhotos.becoDoBatmanBirdMural,
                 seed: "pc-sp-bird",
@@ -574,8 +580,9 @@ export function DestinationDetail() {
 
         {tab === "overview" && destination.id === "playa-del-carmen" && (
           <PostcardGallery
-            title="An Afternoon At Xcaret"
+            title="Postcards From Playa del Carmen"
             images={[
+              ...finalTravelPhotos["playa-del-carmen"],
               {
                 src: playaDelCarmenPhotos.xcaretLagoonCove,
                 seed: "pc-pdc-lagoon",
@@ -683,6 +690,7 @@ export function DestinationDetail() {
                     <p className="mt-0.5 line-clamp-2 text-xs text-ink-soft/70">
                       {p.description}
                     </p>
+                    {p.practicalNotes && <p className="mt-2 text-xs leading-relaxed text-ink-soft">{p.practicalNotes}</p>}
                     <PlaceActions place={p} />
                     {!p.photos.length && (
                       <p className="text-[9px] text-ink-soft/55">
@@ -709,6 +717,8 @@ export function DestinationDetail() {
           </div>
         )}
 
+        {tab === "stay" && <WebsitePlanning />}
+        {tab === "eat" && placesForTab('eat').length > 0 && <section className="border-t border-ink/10 py-5"><h2 className="font-display text-2xl">Go deeper into food</h2><p className="my-2 text-sm text-ink-soft">Keep these {destination.city} tables in your trip. For food stories, flavors and traditions beyond this guide, explore Let Them Eat.</p><button className="min-h-11 text-sm text-terracotta" onClick={() => openExternal(appFamily['let-them-eat'].iOSURL)}>Explore Let Them Eat ↗</button></section>}
         {tab === "overview" && <TrailLinks destinationId={destination.id}/>}
         {tab === "overview" && <TrenMayaStories destinationId={destination.id} />}
         {tab === "overview" && <RalliiBridge destination={destination} />}

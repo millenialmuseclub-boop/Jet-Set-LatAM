@@ -35,7 +35,8 @@ function write<T>(key: string, value: T) {
 }
 
 export function getLibrary(): SavedLibrary {
-  return read(LIB_KEY, emptyLibrary)
+  const stored = read<Partial<SavedLibrary>>(LIB_KEY, {})
+  return Object.fromEntries(Object.entries(emptyLibrary).map(([key, fallback]) => [key, Array.isArray(stored?.[key as keyof SavedLibrary]) ? [...new Set(stored[key as keyof SavedLibrary])] : [...fallback]])) as unknown as SavedLibrary
 }
 function saveLibrary(lib: SavedLibrary) {
   write(LIB_KEY, lib)
@@ -116,6 +117,7 @@ export function isSavedGuide(guideId: string) {
 // going forward.
 export function addPlaceToTripItinerary(itinerary: Itinerary, placeId: string, dayIndex?: number) {
   const targetIndex = dayIndex ?? itinerary.days.length - 1
+  if (!itinerary.days[targetIndex] || itinerary.days[targetIndex].activities.some(a => a.placeId === placeId)) return itinerary
   const days = itinerary.days.length
     ? itinerary.days.map((d, i) =>
         i === targetIndex
@@ -136,9 +138,10 @@ export function addPlaceToTripItinerary(itinerary: Itinerary, placeId: string, d
 
 export function addUpcomingTrip(trip: SavedTrip) {
   const trips = getSavedTrips()
-  saveSavedTrips([...trips.filter((t) => t.id !== trip.id), trip])
+  const existing = trips.find(t => t.id === trip.id)
+  saveSavedTrips([...trips.filter((t) => t.id !== trip.id), { ...trip, ...existing, title: trip.title }])
   const lib = getLibrary()
-  if (!lib.upcomingTripIds.includes(trip.id)) {
+  if (!existing && !lib.upcomingTripIds.includes(trip.id)) {
     lib.upcomingTripIds.push(trip.id)
     saveLibrary(lib)
   }

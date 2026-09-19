@@ -76,7 +76,7 @@ export function ItineraryEditor({
         activities[target],
         activities[idx],
       ];
-      return { ...day, activities };
+      return { ...day, activities: activities.map((activity, index) => ({ ...activity, time: day.activities[index].time })) };
     });
   }
 
@@ -94,6 +94,8 @@ export function ItineraryEditor({
     );
     const pool = candidatePlaces.filter(
       (p) =>
+        p.category !== 'hotel' &&
+        (itinerary.answers?.companions !== 'family' || !['bar', 'nightlife'].includes(p.category) && !p.tags.some(tag => /tequila|adults.only/i.test(tag))) &&
         !todayIds.has(p.id) &&
         (!["Breakfast", "Lunch", "Dinner"].includes(current?.label || "") ||
           ["cafe", "restaurant"].includes(p.category)),
@@ -247,6 +249,12 @@ export function ItineraryEditor({
                             {a.notes}
                           </p>
                         )}
+                        {place && (a.notes || place.practicalNotes) && <p className="mt-2 text-xs leading-relaxed text-ink-soft">{a.notes || place.practicalNotes}</p>}
+                        <details className="mt-2 text-xs text-ink-soft">
+                          <summary className="cursor-pointer py-2">Edit time &amp; personal notes</summary>
+                          <label className="block">Time<input aria-label={`Time for ${place?.name || a.label}`} value={a.time} maxLength={30} className="my-1 block min-h-11 w-full border border-ink/20 bg-parchment p-2" onChange={e => mutateDay(dayIndex, d => ({...d, activities:d.activities.map(item => item.id === a.id ? {...item,time:e.target.value} : item)}))}/></label>
+                          <label className="block">Notes<textarea aria-label={`Notes for ${place?.name || a.label}`} value={a.notes || ''} maxLength={1000} className="my-1 block w-full border border-ink/20 bg-parchment p-2" onChange={e => mutateDay(dayIndex, d => ({...d, activities:d.activities.map(item => item.id === a.id ? {...item,notes:e.target.value} : item)}))}/></label>
+                        </details>
                       </div>
                       <div className="activity-controls flex flex-wrap items-start gap-0.5">
                         {place?.mapUrl && (
@@ -255,7 +263,7 @@ export function ItineraryEditor({
                               e.stopPropagation();
                               openMap(place.mapUrl);
                             }}
-                            className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
+                            className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
                             aria-label={`Open ${place.name} in Maps`}
                           >
                             <Map size={14} />
@@ -267,7 +275,7 @@ export function ItineraryEditor({
                               e.stopPropagation();
                               openExternal(place.website);
                             }}
-                            className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
+                            className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
                             aria-label={`Open ${place.name}'s website`}
                           >
                             <Globe size={14} />
@@ -277,7 +285,7 @@ export function ItineraryEditor({
                           onClick={() => moveActivity(dayIndex, a.id, -1)}
                           disabled={i === 0}
                           aria-label="Move earlier"
-                          className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-ink disabled:opacity-20"
+                          className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-ink disabled:opacity-20"
                         >
                           <ArrowUp size={14} />
                         </button>
@@ -285,14 +293,14 @@ export function ItineraryEditor({
                           onClick={() => moveActivity(dayIndex, a.id, 1)}
                           disabled={isLast}
                           aria-label="Move later"
-                          className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-ink disabled:opacity-20"
+                          className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-ink disabled:opacity-20"
                         >
                           <ArrowDown size={14} />
                         </button>
                         <button
                           onClick={() => replaceActivity(dayIndex, a.id)}
                           aria-label="Swap for another place"
-                          className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
+                          className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
                         >
                           <Shuffle size={14} />
                         </button>
@@ -305,7 +313,7 @@ export function ItineraryEditor({
                             })
                           }
                           aria-label="Remove from itinerary"
-                          className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft/60 active:bg-red-500/10 active:text-red-500"
+                          className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-red-500/10 active:text-red-500"
                         >
                           <Trash2 size={14} />
                         </button>
@@ -325,7 +333,8 @@ export function ItineraryEditor({
                       </p>
                       <button
                         onClick={() => setAddingToDay(null)}
-                        className="text-ink-soft/40 hover:text-ink"
+                        aria-label="Close saved places"
+                        className="min-h-11 min-w-11 text-ink-soft/40 hover:text-ink"
                       >
                         <X size={12} />
                       </button>

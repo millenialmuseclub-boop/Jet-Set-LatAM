@@ -109,12 +109,13 @@ export function Saved() {
                 : tab === "Active Trip" ? "Add dates to a saved trip. It will appear here while you are traveling." : `Save ${tab === "Saved Places" ? "places" : tab === "Saved Destinations" ? "cities" : "stories"} as you explore. They’ll be waiting here.`}
           </p>
           <Link
-            to={tab === "My Trips" ? "/plan" : "/explore"}
+            to={tab === "My Trips" ? "/plan" : tab === "Active Trip" ? "/saved" : "/explore"}
+            onClick={() => { if (tab === "Active Trip") setTab("My Trips"); }}
             className="mt-5 inline-flex min-h-11 items-center rounded-full bg-jungle-dark px-5 text-xs text-cream"
           >
             {tab === "My Trips"
               ? "Plan a little escape"
-              : "Find your next favorite"}{" "}
+              : tab === "Active Trip" ? "Choose a trip and add dates" : "Find your next favorite"}{" "}
             ↗
           </Link>
         </div>
@@ -136,6 +137,7 @@ export function Saved() {
                   <div className="p-4">
                     <p className="eyebrow text-terracotta">{d?.city}</p>
                     <h3 className="mt-1 font-display text-2xl">{t.title}</h3>
+                    <p className="mt-2 text-xs text-ink-soft">{getEffectiveItinerary(t.itineraryId)?.days.length || 0} days · {t.startDate || "Add dates in your trip"}</p>
                     <span className="mt-3 inline-block text-xs text-terracotta">
                       {tab === "Trip Stories" ? "Open story ↗" : "Open trip ↗"}
                     </span>

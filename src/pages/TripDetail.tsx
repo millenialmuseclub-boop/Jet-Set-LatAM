@@ -1,3 +1,4 @@
+import { WebsitePlanning } from '@/components/WebsitePlanning';
 import { TripConstellation } from '@/components/TripConstellation';
 import { TrailLinks } from '@/components/TrailLinks';
 import { TripDates } from '@/components/TripDates';
@@ -108,7 +109,8 @@ export function TripDetail() {
         />
         <Link
           to="/saved"
-          className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-ink/50 text-cream backdrop-blur-sm"
+          aria-label="Back to Saved"
+          className="absolute left-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-ink/50 text-cream backdrop-blur-sm"
         >
           <ArrowLeft size={16} />
         </Link>
@@ -119,6 +121,7 @@ export function TripDetail() {
           {editingTitle ? (
             <input
               autoFocus
+              aria-label="Trip title"
               value={titleDraft}
               onChange={(e) => setTitleDraft(e.target.value)}
               onBlur={commitTitle}
@@ -182,7 +185,8 @@ export function TripDetail() {
           addablePlaces={addablePlaces}
         />
 
-        <div className="flex gap-3 pt-2">
+        <WebsitePlanning />
+        <div className="flex flex-wrap gap-3 pt-2">
           <Link
             to={`/destinations/${destination.slug}`}
             className="flex-1 rounded-full bg-cream py-3 text-center text-sm font-medium text-ink-soft ring-1 ring-ink/10"
@@ -211,7 +215,7 @@ export function TripDetail() {
         <ConfirmSheet
           open={confirmingDelete}
           title="Delete this trip?"
-          body={`"${itinerary.title}" and its itinerary will be removed from this device. This can't be undone.`}
+          body={`"${itinerary.title}" will be removed from My Trips. This can't be undone.`}
           confirmLabel="Delete Trip"
           onCancel={() => setConfirmingDelete(false)}
           onConfirm={handleDelete}

@@ -39,13 +39,11 @@ const CATEGORY_THEME_WORD: Record<Place['category'], string> = {
   bar: 'Nights', nightlife: 'Nights', hotel: 'Leisure',
 }
 
-const PACE_ACTIVITIES_PER_DAY: Record<TripQuizAnswers['pace'], number> = {
-  slow: 3,
-  balanced: 4,
-  'pack-it-in': 6,
+const PACE_SLOTS: Record<TripQuizAnswers['pace'], string[]> = {
+  slow: ['10:30', '13:00', '19:30'],
+  balanced: ['9:00', '10:30', '15:00', '19:30'],
+  'pack-it-in': ['9:00', '10:30', '13:00', '15:00', '17:30', '19:30'],
 }
-
-const DAY_SLOTS = ['9:00', '10:30', '13:00', '15:00', '17:30', '19:30', '21:00']
 const SLOT_LABELS: Record<string, string> = {
   '9:00': 'Breakfast',
   '10:30': 'Experience',
@@ -115,10 +113,9 @@ function themeFromDay(dayNum: number, interests: TripInterest[], dayPlaces: { pl
 }
 
 export function generateItinerary(answers: TripQuizAnswers): Itinerary {
-  const allPlaces = getPlacesByDestination(answers.destinationId)
+  const allPlaces = getPlacesByDestination(answers.destinationId).filter(p => p.category !== 'hotel' && (answers.companions !== 'family' || !['bar', 'nightlife'].includes(p.category) && !p.tags.some(tag => /tequila|adults.only/i.test(tag))))
   const ranked = [...allPlaces].sort((a, b) => scorePlace(b, answers.interests) - scorePlace(a, answers.interests))
 
-  const perDay = PACE_ACTIVITIES_PER_DAY[answers.pace]
   const days: ItineraryDay[] = []
   const destCity = destinations.find((d) => d.id === answers.destinationId)?.city ?? 'Trip'
 
@@ -137,6 +134,11 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
   // stay in one part of the city instead of bouncing across it.
   function scoreForSlot(place: Place, dayNeighborhoods: Map<string, number>): number {
     let score = scorePlace(place, answers.interests)
+    const price = place.priceLevel?.length
+    if (price) {
+      const target = answers.style === 'value' ? 1 : answers.style === 'luxe' ? 4 : 2
+      score += Math.max(0, 2 - Math.abs(price - target))
+    }
     if (place.neighborhood && dayNeighborhoods.has(place.neighborhood)) score += 3
     return score
   }
@@ -176,7 +178,7 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
   }
 
   for (let d = 1; d <= answers.days; d++) {
-    const slots = DAY_SLOTS.slice(0, perDay)
+    const slots = PACE_SLOTS[answers.pace]
     const usedToday = new Set<string>()
     const dayNeighborhoods = new Map<string, number>()
     const dayPlaces: { place: Place; isMeal: boolean }[] = []

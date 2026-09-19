@@ -1,3 +1,4 @@
+import { shortItineraries } from './short-itineraries';
 import { rioCityGuides } from './rio-city-guides';
 import railGuideRecords from './rail-guides.json'
 import { rio2025, rioPhotoGuides } from './rio-2025'
@@ -40,7 +41,11 @@ for (const place of places.filter(p => p.city === 'Cartagena' && !p.photos.lengt
 }
 const cartagenaHero = archivePhotos.find(p => p.caption.includes('Torre del Reloj'))
 if (cartagenaHero) destinations.find(d => d.id === 'cartagena')!.heroPhoto = cartagenaHero.src
-export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary]
+export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary, ...shortItineraries]
+for (const itinerary of shortItineraries) {
+ const destination = destinations.find(d => d.id === itinerary.destinationId)
+ if (destination && !destination.itineraryIds.includes(itinerary.id)) destination.itineraryIds.push(itinerary.id)
+}
 
 export const flagshipDestination = mexicoCityDestination
 export function getPlacePhoto(place: Place) {
@@ -59,7 +64,7 @@ export function getDestinationById(id: string) {
  *  the Destination a Place belongs to, for wiring "Add to Trip" and similar
  *  cross-cutting actions from anywhere a Place is rendered. */
 export function getDestinationForPlace(place: Place) {
-  return destinations.find((d) => d.city === place.city)
+  return destinations.find((d) => d.placeIds.includes(place.id)) ?? destinations.find((d) => d.city === place.city)
 }
 export function getPlace(id: string) {
   return places.find((p) => p.id === id)

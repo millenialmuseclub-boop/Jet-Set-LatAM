@@ -1,0 +1,189 @@
+{
+  "count": 13,
+  "totalBytes": 2212550,
+  "originals": "Original ZIPs retained unchanged in repository root; destination established by supplied folder only. Venue identities not inferred.",
+  "photos": [
+    {
+      "file": "rio-8.webp",
+      "original": "IMG20250314140230_Original.jpeg",
+      "destination": "rio",
+      "bytes": 193070,
+      "alt": "Brick interior with hanging fabric in Rio de Janeiro"
+    },
+    {
+      "file": "rio-4.webp",
+      "original": "IMG20250313144632_01_Original.jpeg",
+      "destination": "rio",
+      "bytes": 148222,
+      "alt": "Beach and green mountain skyline in Rio de Janeiro"
+    },
+    {
+      "file": "rio-1.webp",
+      "original": "Facetune_24-03-2025-16-36-48.jpeg",
+      "destination": "rio",
+      "bytes": 175920,
+      "alt": "A traveler overlooking Rio rooftops"
+    },
+    {
+      "file": "playa-del-carmen-1.webp",
+      "original": "IMG20260222183745_Original.jpeg",
+      "destination": "playa-del-carmen",
+      "bytes": 177668,
+      "alt": "Palms and boats along the Playa del Carmen shore at dusk"
+    },
+    {
+      "file": "playa-del-carmen-7.webp",
+      "original": "IMG20260222184941_Original.jpeg",
+      "destination": "playa-del-carmen",
+      "bytes": 173864,
+      "alt": "Pedestrians and lights on a Playa del Carmen street"
+    },
+    {
+      "file": "playa-del-carmen-8.webp",
+      "original": "IMG20260222200248_Original.jpeg",
+      "destination": "playa-del-carmen",
+      "bytes": 230844,
+      "alt": "Colorful hanging decorations in a Playa del Carmen shop"
+    },
+    {
+      "file": "cartagena-7.webp",
+      "original": "IMG20260217090215_Original.jpeg",
+      "destination": "cartagena",
+      "bytes": 220654,
+      "alt": "Painted walls and pedestrians in Cartagena"
+    },
+    {
+      "file": "cartagena-0.webp",
+      "original": "IMG20260217081944_Original.jpeg",
+      "destination": "cartagena",
+      "bytes": 252240,
+      "alt": "Colorful street with overhead flags in Cartagena"
+    },
+    {
+      "file": "cartagena-2.webp",
+      "original": "IMG20260217084243_Original.jpeg",
+      "destination": "cartagena",
+      "bytes": 66020,
+      "alt": "Tea and a pastry during a Cartagena morning"
+    },
+    {
+      "file": "cartagena-3.webp",
+      "original": "IMG20260217090156_BURST000_COVER_Original.jpeg",
+      "destination": "cartagena",
+      "bytes": 162676,
+      "alt": "A mural of a woman and bird in Cartagena"
+    },
+    {
+      "file": "sao-paulo-1.webp",
+      "original": "IMG20250312142523_Original.jpeg",
+      "destination": "sao-paulo",
+      "bytes": 31676,
+      "alt": "Dark abstract installation in a São Paulo gallery"
+    },
+    {
+      "file": "sao-paulo-4.webp",
+      "original": "IMG20250312145420_Original.jpeg",
+      "destination": "sao-paulo",
+      "bytes": 166094,
+      "alt": "Linked metal forms on a São Paulo gallery floor"
+    },
+    {
+      "file": "sao-paulo-6.webp",
+      "original": "IMG20250313095355_Original.jpeg",
+      "destination": "sao-paulo",
+      "bytes": 213602,
+      "alt": "Greenery and brick steps in São Paulo"
+    }
+  ],
+  "unused": [
+    {
+      "destination": "jetset-final-photo-batch-cartagena",
+      "original": "IMG20260217082202_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-cartagena",
+      "original": "IMG20260217090156_BURST001_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-cartagena",
+      "original": "IMG20260217090156_BURST002_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-cartagena",
+      "original": "IMG20260217090158_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-cartagena",
+      "original": "IMG20260217090217_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-playa-del-carmen",
+      "original": "IMG20260222183708_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-playa-del-carmen",
+      "original": "IMG20260222183750_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-playa-del-carmen",
+      "original": "IMG20260222183756_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-playa-del-carmen",
+      "original": "IMG20260222183806_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-playa-del-carmen",
+      "original": "IMG20260222183809_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-playa-del-carmen",
+      "original": "IMG20260222184610_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-playa-del-carmen",
+      "original": "IMG_3553.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-rio",
+      "original": "Facetune_24-03-2025-16-35-25.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-rio",
+      "original": "IMG20250313144349_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-rio",
+      "original": "IMG20250313144357_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-rio",
+      "original": "IMG20250313144700_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-rio",
+      "original": "IMG20250314133737_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-rio",
+      "original": "IMG20250314134031_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-sao-paulo",
+      "original": "EFC77A97-E8F4-40AB-AE3E-2696231E9036.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-sao-paulo",
+      "original": "IMG20250312145249_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-sao-paulo",
+      "original": "IMG20250312145250_Original.jpeg"
+    },
+    {
+      "destination": "jetset-final-photo-batch-sao-paulo",
+      "original": "IMG20250313095353_Original.jpeg"
+    }
+  ],
+  "notes": "22 stills and one Rio video omitted: duplicate/near-duplicate scenes or less useful compositions. No ambiguous destination folders. Existing strong heroes retained except Playa, now represented by its own shore instead of Xcaret."
+}

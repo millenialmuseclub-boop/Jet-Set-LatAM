@@ -55,7 +55,7 @@ export default function App() {
             <Route path="/plan" element={<PlanTrip />} />
             <Route path="/saved" element={<Saved />} />
             <Route path="/saved/trips/:tripId/story" element={<TripStory />} />
-            <Route path="/saved/trips/:tripId" element={<TripDetail />} />
+            <Route path="/saved/trips/:tripId" element={<TripDetailRoute />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </MotionCanvas>
@@ -70,6 +70,10 @@ function ScrollReset() {
     window.scrollTo(0, 0);
   }, [pathname]);
   return null;
+}
+function TripDetailRoute() {
+  const { pathname } = useLocation();
+  return <TripDetail key={pathname} />;
 }
 function DestinationRoute() {
   const { pathname } = useLocation();

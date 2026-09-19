@@ -4,7 +4,7 @@ import { editorialMotion,gentleSpring } from '@/lib/motion';
 import { RalliiBridge } from '@/components/RalliiBridge';
 import { rio2025 } from '@/data/rio-2025';
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import type {
   TripCompanions,
   TripInterest,
@@ -14,6 +14,7 @@ import type {
   Itinerary,
 } from "@/types";
 import {
+  getItinerary,
   getGuidesByDestination,
   flagshipDestination,
   destinations,
@@ -157,6 +158,7 @@ function OptionGrid<T extends string>({
         return (
           <motion.button
             key={opt.value}
+            aria-pressed={selected}
             layout
             whileTap={{ scale: 0.985 }}
             onClick={() => onChange(opt.value)}
@@ -228,13 +230,18 @@ export function PlanTrip() {
   const [interests, setInterests] = useState<TripInterest[]>([]);
   const [style, setStyle] = useState<TripStyle | null>(null);
   const [pace, setPace] = useState<TripPace | null>(null);
-  const [itinerary, setItinerary] = useState<Itinerary | null>(null);
+  const [itinerary, setItinerary] = useState<Itinerary | null>(() => {
+    const requested = params.get('itinerary');
+    const destination = destinations.find(d => d.slug === params.get('destination'));
+    const template = getItinerary(requested || (destination?.status !== 'live' ? destination?.itineraryIds[0] || '' : ''));
+    return template ? { ...structuredClone(template), id: `it-copy-${crypto.randomUUID()}`, isReadyMade: false } : null;
+  });
   const [savedMsg, setSavedMsg] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
   const [generating, setGenerating] = useState(false);
 
   const selectedDestination =
-    destinations.find((d) => d.id === destinationId) ?? flagshipDestination;
+    destinations.find((d) => d.id === (itinerary?.destinationId ?? destinationId)) ?? flagshipDestination;
 
   const canAdvance = [
     !!destinationId,
@@ -284,6 +291,8 @@ export function PlanTrip() {
     setSavedMsg(true);
   }
 
+  function updateItinerary(updated: Itinerary) { setItinerary(updated); setSavedMsg(false); }
+
   if (generating) return <CuratingTrip destination={selectedDestination}/>;
 
   if (itinerary) {
@@ -296,9 +305,10 @@ export function PlanTrip() {
           {editingTitle ? (
             <input
               autoFocus
+              aria-label="Trip title"
               value={itinerary.title}
               onChange={(e) =>
-                setItinerary({ ...itinerary, title: e.target.value })
+                updateItinerary({ ...itinerary, title: e.target.value })
               }
               onBlur={() => setEditingTitle(false)}
               onKeyDown={(e) => e.key === "Enter" && setEditingTitle(false)}
@@ -319,7 +329,7 @@ export function PlanTrip() {
         <RalliiBridge destination={selectedDestination} itinerary={itinerary} />
           <ItineraryEditor
           itinerary={itinerary}
-          onChange={setItinerary}
+          onChange={updateItinerary}
           fallbackHero={selectedDestination.heroPhoto}
           candidatePlaces={getPlacesByDestination(itinerary.destinationId)}
         />
@@ -339,6 +349,7 @@ export function PlanTrip() {
           <button
             onClick={() => {
               setItinerary(null);
+              setSavedMsg(false);
               setStep(0);
             }}
             className="flex-1 rounded-full bg-cream py-3 text-sm font-medium text-ink-soft ring-1 ring-ink/10"
@@ -352,6 +363,7 @@ export function PlanTrip() {
             {savedMsg ? "Saved ✓" : "Save trip"}
           </button>
         </div>
+        {savedMsg && <Link className="block min-h-11 text-center text-terracotta" to={`/saved/trips/trip-${itinerary.id}`}>Open saved trip →</Link>}
         <p className="text-center text-[11px] text-ink-soft/40">
           Assembled from the Jet Set LatAm {selectedDestination.city} Place
           database — not AI-generated. Tap an activity's icons to reorder, swap
@@ -364,7 +376,7 @@ export function PlanTrip() {
               <span className="font-medium text-ink">
                 Little Jetters coming too?
               </span>{" "}
-              Let them get ready for the trip. Explore Little Jetter.
+              Leave time for meals and rest, and keep a packing list for each child.
             </p>
           </div>
         )}

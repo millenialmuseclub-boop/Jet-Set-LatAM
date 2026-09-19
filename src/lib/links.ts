@@ -49,7 +49,7 @@ function extractMapQuery(url: string): string | undefined {
  *  itself, not an in-app browser tab of Google Maps) when a query can be
  *  extracted from the stored Google Maps URL; otherwise falls back to
  *  openExternal() with the original URL unchanged. Web behavior is
- *  untouched — always the original URL in a new tab. No new Capacitor
+ *  the original URL in the current browser tab. No new Capacitor
  *  plugin: this is a plain URL-scheme substitution. */
 export function openMap(url?: string) {
   if (!url) return

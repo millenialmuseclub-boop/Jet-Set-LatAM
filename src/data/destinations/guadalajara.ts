@@ -43,6 +43,7 @@ export const guadalajaraNeighborhoods: Neighborhood[] = [
 export const guadalajaraPlaces: Place[] = [
   {
     id: 'pl-instituto-cabanas',
+    practicalNotes: 'Make the murals your morning anchor, then leave time for lunch in Centro. Check current opening days before setting the date.',
     name: 'Instituto Cultural Cabañas',
     country: 'Mexico',
     city: 'Guadalajara',
@@ -83,6 +84,7 @@ export const guadalajaraPlaces: Place[] = [
   },
   {
     id: 'pl-matices-hotel-de-barricas',
+    practicalNotes: 'This stay is in Tequila, outside Guadalajara. Choose it for an overnight in the agave region and plan the onward transfer.',
     name: 'Matices Hotel de Barricas',
     country: 'Mexico',
     city: 'Tequila',
@@ -96,6 +98,7 @@ export const guadalajaraPlaces: Place[] = [
   },
   {
     id: 'pl-casa-salles-hotel-boutique',
+    practicalNotes: 'This stay is in Tequila. Compare it with a same-day return before adding an overnight to your Guadalajara trip.',
     name: 'Casa Salles Hotel Boutique',
     country: 'Mexico',
     city: 'Tequila',
