@@ -1,3 +1,5 @@
+import { ShopMyEdit } from '@/components/ShopMyEdit'
+import { TravelCompanion } from '@/components/TravelCompanion';
 import { CarnivalFireworks } from '@/components/CarnivalFireworks';
 import { rioCity2025 } from '@/data/rio-city-2025';
 import { CarnivalFlourish } from '@/components/CarnivalFlourish';
@@ -75,6 +77,7 @@ export function Discover() {
       <nav aria-label="Quick explore" className="quick-explore">
         {quickActions.map(({label,to,icon:Icon}) => <Link key={label} to={to}><Icon size={22}/><span>{label}</span></Link>)}
       </nav>
+      <TravelCompanion/>
       <section aria-labelledby="jetting-title" className="home-section">
         <div className="section-heading">
           <h2 id="jetting-title">Your next obsession</h2>
@@ -175,6 +178,7 @@ export function Discover() {
           </div>
         </Link>
       </section>
+      <div className="home-section"><ShopMyEdit packing/></div>
       <section aria-labelledby="continue-title" className="home-section">
         <Link
           to="/explore"

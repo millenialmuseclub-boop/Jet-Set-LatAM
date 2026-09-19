@@ -112,7 +112,7 @@ function themeFromDay(dayNum: number, interests: TripInterest[], dayPlaces: { pl
   return fallbackThemeForDay(dayNum, interests)
 }
 
-export function generateItinerary(answers: TripQuizAnswers): Itinerary {
+export function generateItinerary(answers: TripQuizAnswers, savedPlaceIds: string[] = []): Itinerary {
   const allPlaces = getPlacesByDestination(answers.destinationId).filter(p => p.category !== 'hotel' && (answers.companions !== 'family' || !['bar', 'nightlife'].includes(p.category) && !p.tags.some(tag => /tequila|adults.only/i.test(tag))))
   const ranked = [...allPlaces].sort((a, b) => scorePlace(b, answers.interests) - scorePlace(a, answers.interests))
 
@@ -132,14 +132,18 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
   // neighborhood has been visited today, a same-neighborhood place gets a
   // scoring bonus for the rest of the day, so a generated day tends to
   // stay in one part of the city instead of bouncing across it.
-  function scoreForSlot(place: Place, dayNeighborhoods: Map<string, number>): number {
+  function scoreForSlot(place: Place, dayNeighborhoods: Map<string, number>, time: string): number {
     let score = scorePlace(place, answers.interests)
+    if (savedPlaceIds.includes(place.id)) score += 4
+    if(time === '9:00' && place.category === 'cafe') score += 6
+    if(['13:00','19:30'].includes(time) && place.category === 'restaurant') score += 4
+    if(['10:30','15:00','17:30'].includes(time) && !['cafe','restaurant'].includes(place.category) && answers.interests.some(i=>INTEREST_TO_CATEGORY[i].includes(place.category))) score += 3
     const price = place.priceLevel?.length
     if (price) {
       const target = answers.style === 'value' ? 1 : answers.style === 'luxe' ? 4 : 2
       score += Math.max(0, 2 - Math.abs(price - target))
     }
-    if (place.neighborhood && dayNeighborhoods.has(place.neighborhood)) score += 3
+    if (place.neighborhood && dayNeighborhoods.has(place.neighborhood)) score += 5
     return score
   }
 
@@ -150,17 +154,17 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
   // fine-dining restaurant or one-time experience is never revisited just
   // to fill a slot; the caller falls back to an intentional free block
   // instead of an absurd "visit the same museum twice."
-  function pickBest(pool: Place[], usedToday: Set<string>, dayNeighborhoods: Map<string, number>): Place | undefined {
+  function pickBest(pool: Place[], usedToday: Set<string>, dayNeighborhoods: Map<string, number>, time: string): Place | undefined {
     const unused = pool.filter((p) => !usedToday.has(p.id) && (useCount.get(p.id) ?? 0) === 0)
     if (unused.length > 0) {
-      return [...unused].sort((a, b) => scoreForSlot(b, dayNeighborhoods) - scoreForSlot(a, dayNeighborhoods))[0]
+      return [...unused].sort((a, b) => scoreForSlot(b, dayNeighborhoods, time) - scoreForSlot(a, dayNeighborhoods, time))[0]
     }
     const repeatable = pool.filter((p) => !usedToday.has(p.id) && REPEATABLE_CATEGORIES.has(p.category))
     if (repeatable.length > 0) {
       const byUseThenScore = (a: Place, b: Place) => {
         const countDiff = (useCount.get(a.id) ?? 0) - (useCount.get(b.id) ?? 0)
         if (countDiff !== 0) return countDiff
-        return scoreForSlot(b, dayNeighborhoods) - scoreForSlot(a, dayNeighborhoods)
+        return scoreForSlot(b, dayNeighborhoods, time) - scoreForSlot(a, dayNeighborhoods, time)
       }
       // On a thin destination, a naive "least-used wins" tie-break can
       // surface a category the traveler never asked for (e.g. Nightlife
@@ -187,10 +191,11 @@ export function generateItinerary(answers: TripQuizAnswers): Itinerary {
       const isMeal = label === 'Breakfast' || label === 'Lunch' || label === 'Dinner'
       // Meal slots prefer a café/restaurant, but fall back to any
       // candidate rather than an open block if none of those are left.
-      const mealPool = ranked.filter((p) => ['cafe', 'restaurant'].includes(p.category))
+      const breakfastPlaces = ranked.filter(p=>p.category==='cafe')
+      const mealPool = time==='9:00'&&breakfastPlaces.length ? breakfastPlaces : ranked.filter((p) => ['cafe', 'restaurant'].includes(p.category))
       const candidate = isMeal
-        ? pickBest(mealPool, usedToday, dayNeighborhoods)
-        : pickBest(ranked, usedToday, dayNeighborhoods)
+        ? pickBest(mealPool, usedToday, dayNeighborhoods, time)
+        : pickBest(ranked, usedToday, dayNeighborhoods, time)
       if (candidate) {
         usedToday.add(candidate.id)
         useCount.set(candidate.id, (useCount.get(candidate.id) ?? 0) + 1)

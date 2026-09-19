@@ -1,8 +1,8 @@
 import { MotionCanvas } from '@/components/MotionCanvas';
-import { AskJetSet } from '@/pages/AskJetSet';
-import { TripStory } from '@/pages/TripStory';
-import { TrailDetail } from '@/pages/TrailDetail';
-import { Carnival } from '@/pages/Carnival';
+const AskJetSet = lazy(() => import('@/pages/AskJetSet').then(module => ({default:module.AskJetSet})));
+const TripStory = lazy(() => import('@/pages/TripStory').then(module => ({default:module.TripStory})));
+const TrailDetail = lazy(() => import('@/pages/TrailDetail').then(module => ({default:module.TrailDetail})));
+const Carnival = lazy(() => import('@/pages/Carnival').then(module => ({default:module.Carnival})));
 import {
   HashRouter,
   Routes,
@@ -10,20 +10,20 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { MotionConfig } from "framer-motion";
 import { BottomNav } from "@/components/BottomNav";
 import { TopNav } from "@/components/TopNav";
 import { Discover } from "@/pages/Discover";
-import { Destinations } from "@/pages/Destinations";
-import { DestinationDetail } from "@/pages/DestinationDetail";
-import { PlanTrip } from "@/pages/PlanTrip";
-import { Saved } from "@/pages/Saved";
-import { TripDetail } from "@/pages/TripDetail";
-import { GuideDetail } from "@/pages/GuideDetail";
-import { Explore } from "@/pages/Explore";
-import { InfoPage } from "@/pages/InfoPage";
-import { About } from "@/pages/About";
+const Destinations = lazy(() => import('@/pages/Destinations').then(module => ({default:module.Destinations})));
+const DestinationDetail = lazy(() => import('@/pages/DestinationDetail').then(module => ({default:module.DestinationDetail})));
+const PlanTrip = lazy(() => import('@/pages/PlanTrip').then(module => ({default:module.PlanTrip})));
+const Saved = lazy(() => import('@/pages/Saved').then(module => ({default:module.Saved})));
+const TripDetail = lazy(() => import('@/pages/TripDetail').then(module => ({default:module.TripDetail})));
+const GuideDetail = lazy(() => import('@/pages/GuideDetail').then(module => ({default:module.GuideDetail})));
+const Explore = lazy(() => import('@/pages/Explore').then(module => ({default:module.Explore})));
+const InfoPage = lazy(() => import('@/pages/InfoPage').then(module => ({default:module.InfoPage})));
+const About = lazy(() => import('@/pages/About').then(module => ({default:module.About})));
 
 export default function App() {
   return (
@@ -32,6 +32,7 @@ export default function App() {
         <ScrollReset />
         <TopNav />
         <MotionCanvas>
+          <Suspense fallback={<div role="status" className="mx-auto max-w-xl px-5 py-16 text-sm">Opening your next chapter…</div>}>
           <Routes>
             <Route path="/" element={<Discover />} />
             <Route path="/destinations" element={<Destinations />} />
@@ -58,6 +59,7 @@ export default function App() {
             <Route path="/saved/trips/:tripId" element={<TripDetailRoute />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </Suspense>
         </MotionCanvas>
         <BottomNav />
       </HashRouter>

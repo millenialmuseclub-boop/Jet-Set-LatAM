@@ -20,7 +20,7 @@ export function InfoPage({
         <div className="space-y-5 text-sm leading-relaxed">
           <h2 className="font-display text-2xl">Privacy in the app</h2>
           <p>
-            Saved places, guides, destinations and itineraries are stored
+            Recent destinations and your last planner preferences stay on this device; clear them from Recently explored. Saved places, guides, destinations and itineraries are stored
             locally on this device. This version has no account or cloud sync.
             Your saved library is not sent to Jet Set LatAm when you use the
             planner.
@@ -69,9 +69,10 @@ export function InfoPage({
                 className="flex items-center gap-4 rounded-2xl bg-cream p-5"
               >
                 {app.iconUrl && <img src={app.iconUrl} alt={app.name + " app icon"} loading="lazy" className="h-14 w-14 shrink-0 rounded-xl" />}
-                <div className="flex-1">
+                <div className="min-w-0 flex-1">
                   <h2 className="font-display text-2xl">{app.name}</h2>
                   <p className="text-sm text-ink-soft/65">{app.oneLiner}</p>
+                  {app.status === "coming-soon" && <p className="mt-2 text-xs text-terracotta">Coming soon</p>}
                   {(app.iOSURL || app.webURL) && (
                     <button
                       onClick={() => openExternal(app.iOSURL || app.webURL)}

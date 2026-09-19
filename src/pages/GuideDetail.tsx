@@ -1,3 +1,4 @@
+import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import {
@@ -180,6 +181,7 @@ export function GuideDetail() {
             availability may have changed since publication.
           </p>
         </div>
+        <ShopMyEdit destinationId={guide.destinationId}/>
         <section>
           <div className="section-heading">
             <h2>Stay a little longer</h2>

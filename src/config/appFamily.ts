@@ -1,4 +1,8 @@
-import publishedIcons from './appIcons.json'
+import jetSetIcon from '@/assets/family/jet-set-latam.webp'
+import luxeIcon from '@/assets/family/luxe-jetter.webp'
+import littleIcon from '@/assets/family/little-jetter.webp'
+import ralliiIcon from '@/assets/family/rallii.webp'
+import eatIcon from '@/assets/family/let-them-eat.webp'
 import { Compass, Shirt, Baby, Bike, UtensilsCrossed, type LucideIcon } from 'lucide-react'
 import type { TripContext } from '@/types'
 
@@ -10,12 +14,8 @@ import type { TripContext } from '@/types'
 // the only data a sibling app could ever read, and only if a future pass
 // wires up a real handoff.
 //
-// All five apps are published (per Jordann, Sept 2026) — none of them are
-// framed as "coming soon" or ordered/numbered relative to each other in any
-// UI. iOSURL values below are verified live App Store IDs (fetched and
-// confirmed against apps.apple.com, developer: Jordann Lopez, Sept 2026).
-// Little Jetter's URL isn't verified yet — its card just isn't a clickable
-// link until one lands here; that's not a statement the app isn't real.
+// Icons use the current local iOS app assets. Little Jetter is awaiting
+// approval; keep it visible without an outbound link until a URL is supplied.
 // ---------------------------------------------------------------------------
 
 export type AppFamilyId = 'jet-set-latam' | 'luxe-jetter' | 'little-jetter' | 'rallii' | 'let-them-eat'
@@ -52,6 +52,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     name: 'Jet Set LatAm',
     description: 'Real, editorial travel guides and a trip planner for Latin America — this app.',
     icon: Compass,
+    iconUrl: jetSetIcon,
     webURL: 'https://jetsetlatam.com',
     status: 'live',
     oneLiner: 'Plan the trip',
@@ -63,7 +64,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     description: 'Destination-led wardrobes, complete looks and beauty rituals for the way you actually travel.',
     icon: Shirt,
     iOSURL: 'https://apps.apple.com/us/app/luxejetter/id6808023085',
-    iconUrl: publishedIcons['6808023085'],
+    iconUrl: luxeIcon,
     status: 'live',
     oneLiner: 'Dress the trip',
     supportedDestinations: 'all',
@@ -73,7 +74,8 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     name: 'Little Jetter',
     description: 'A parent-facing companion for traveling with kids — prep and packing, not a kids\' app.',
     icon: Baby,
-    status: 'live',
+    iconUrl: littleIcon,
+    status: 'coming-soon',
     oneLiner: 'Bring the little travelers along',
     supportedDestinations: 'all',
   },
@@ -83,7 +85,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     description: 'Discover adventures by rail, trail, mountain bike, golf course and snow.',
     icon: Bike,
     iOSURL: 'https://apps.apple.com/us/app/rallii-rail/id6804085679',
-    iconUrl: publishedIcons['6804085679'],
+    iconUrl: ralliiIcon,
     status: 'live',
     oneLiner: 'Take the scenic route',
     // Scoped to destinations with a verified railiiConnection only (see the
@@ -97,7 +99,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     description: 'Cakes, ramen, cookies and noodles — stories, global traditions, flavor guides and pairings.',
     icon: UtensilsCrossed,
     iOSURL: 'https://apps.apple.com/us/app/let-them-eat/id6801655009',
-    iconUrl: publishedIcons['6801655009'],
+    iconUrl: eatIcon,
     status: 'live',
     oneLiner: 'Taste the world',
     supportedDestinations: 'all',

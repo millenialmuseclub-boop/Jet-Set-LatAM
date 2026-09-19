@@ -1,3 +1,4 @@
+import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { WebsitePlanning } from '@/components/WebsitePlanning';
 import { TripConstellation } from '@/components/TripConstellation';
 import { TrailLinks } from '@/components/TrailLinks';
@@ -183,6 +184,7 @@ export function TripDetail() {
           fallbackHero={destination.heroPhoto}
           candidatePlaces={getPlacesByDestination(destination.id)}
           addablePlaces={addablePlaces}
+          protectedActivityKeys={trip.visitedActivityIds}
         />
 
         <WebsitePlanning />
@@ -242,6 +244,7 @@ export function TripDetail() {
 
         {destination.id === "rio-de-janeiro" && <RioStoryLinks />}
         <TrailLinks destinationId={destination.id}/>
+        <ShopMyEdit destinationId={destination.id} packing/>
         <TripConstellation
           destination={destination}
           tripId={trip.id}

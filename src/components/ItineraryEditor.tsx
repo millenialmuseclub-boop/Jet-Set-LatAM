@@ -1,8 +1,10 @@
+import { activityVisitKey } from '@/lib/tripLifecycle';
+import { DayTuner } from './DayTuner';
 import { rioCity2025 } from '@/data/rio-city-2025';
 import { RalliiBridge } from './RalliiBridge';
 import { getDestinationById } from '@/data';
 import { rio2025 } from '@/data/rio-2025';
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { Itinerary, ItineraryDay, Place } from "@/types";
 import { getPlace } from "@/data";
 import { Photo } from "./Photo";
@@ -32,6 +34,7 @@ export function ItineraryEditor({
   fallbackHero,
   candidatePlaces,
   addablePlaces,
+  protectedActivityKeys = [],
 }: {
   itinerary: Itinerary;
   onChange: (itinerary: Itinerary) => void;
@@ -41,7 +44,11 @@ export function ItineraryEditor({
   /** When provided, each day gets an "Add a saved place" affordance drawing from this list
    *  (e.g. the user's saved Places for this destination not already in the itinerary). */
   addablePlaces?: Place[];
+  protectedActivityKeys?: string[];
 }) {
+  const swipeStart = useRef<{x:number;y:number}|null>(null);
+  const [selectedDay, setSelectedDay] = useState(0);
+  const [showAll, setShowAll] = useState(false);
   const [addingToDay, setAddingToDay] = useState<number | null>(null);
   const [pendingRemoval, setPendingRemoval] = useState<{
     dayIndex: number;
@@ -161,7 +168,10 @@ export function ItineraryEditor({
           setPendingRemoval(null);
         }}
       />
+      <nav className="day-selector" aria-label="Itinerary days">{itinerary.days.map((d,i)=><button key={d.day} aria-pressed={!showAll&&selectedDay===i} onClick={()=>{setSelectedDay(i);setShowAll(false)}}>Day {d.day}<small>{d.activities.length} stops</small></button>)}</nav>
+      <div className="day-deck-controls"><span>{showAll?'Your complete itinerary':'Day '+(selectedDay+1)+' of '+itinerary.days.length}</span><button aria-pressed={showAll} onClick={()=>setShowAll(v=>!v)}>{showAll?'Focus on one day':'See all days'}</button></div>
       {itinerary.days.map((day, dayIndex) => {
+        if(!showAll&&dayIndex!==selectedDay)return null;
         const dayPhoto = day.activities
           .map((a) => (a.placeId ? getPlace(a.placeId)?.photos[0] : undefined))
           .find(Boolean);
@@ -170,7 +180,7 @@ export function ItineraryEditor({
             key={day.day}
             className="itinerary-day overflow-hidden rounded-2xl bg-cream ring-1 ring-ink/5"
           >
-            <div className="relative">
+            <div className="relative" onTouchStart={e=>{const t=e.touches[0];swipeStart.current={x:t.clientX,y:t.clientY}}} onTouchEnd={e=>{const start=swipeStart.current;swipeStart.current=null;if(!start||showAll)return;const t=e.changedTouches[0],dx=t.clientX-start.x,dy=t.clientY-start.y;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5)setSelectedDay(i=>Math.max(0,Math.min(itinerary.days.length-1,i+(dx<0?1:-1))))}}>
               <Photo
                 src={dayPhoto ?? (itinerary.destinationId === "rio-de-janeiro" && day.activities.some(a => a.placeId && ["museum", "landmark"].includes(getPlace(a.placeId)?.category || "")) ? rio2025[dayIndex % 2 ? 7 : 9].src : itinerary.destinationId === "rio-de-janeiro" ? rioCity2025[[8,3,2][dayIndex % 3]].src : fallbackHero)}
                 seed={`day-${day.day}`}
@@ -189,6 +199,7 @@ export function ItineraryEditor({
                 </div>
               </div>
             </div>
+            <DayTuner key={day.day} itinerary={itinerary} index={dayIndex} onChange={onChange} protectedIds={day.activities.filter(a=>protectedActivityKeys.includes(activityVisitKey(day.day,a.id))).map(a=>a.id)}/>
             <div className="space-y-0 px-4 py-3">
               <AnimatePresence initial={false}>
                 {day.activities.map((a, i) => {
@@ -256,7 +267,7 @@ export function ItineraryEditor({
                           <label className="block">Notes<textarea aria-label={`Notes for ${place?.name || a.label}`} value={a.notes || ''} maxLength={1000} className="my-1 block w-full border border-ink/20 bg-parchment p-2" onChange={e => mutateDay(dayIndex, d => ({...d, activities:d.activities.map(item => item.id === a.id ? {...item,notes:e.target.value} : item)}))}/></label>
                         </details>
                       </div>
-                      <div className="activity-controls flex flex-wrap items-start gap-0.5">
+                      <details className="activity-tools"><summary>Options</summary><div className="activity-controls flex flex-wrap items-start gap-0.5">
                         {place?.mapUrl && (
                           <button
                             onClick={(e) => {
@@ -300,6 +311,8 @@ export function ItineraryEditor({
                         <button
                           onClick={() => replaceActivity(dayIndex, a.id)}
                           aria-label="Swap for another place"
+                          disabled={protectedActivityKeys.includes(activityVisitKey(day.day,a.id))}
+                          title={protectedActivityKeys.includes(activityVisitKey(day.day,a.id))?"Confirmed visits stay attached to their original place":undefined}
                           className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
                         >
                           <Shuffle size={14} />
@@ -317,7 +330,7 @@ export function ItineraryEditor({
                         >
                           <Trash2 size={14} />
                         </button>
-                      </div>
+                      </div></details>
                     </motion.div>
                   );
                 })}

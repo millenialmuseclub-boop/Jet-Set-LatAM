@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { Sheet } from './Sheet'
 import type { ReactNode } from 'react'
 import { Photo } from './Photo'
 
@@ -14,7 +16,7 @@ export interface PostcardImage {
 // optional caption/detail block, then a full-width image, repeat. Only used
 // where a destination has enough real, verified photography to earn it (see
 // docs/CONTENT_INVENTORY.md for photo counts per destination).
-export function PostcardGallery({ images, title }: { images: PostcardImage[]; title?: string }) {
+function PostcardSpread({ images, title }: { images: PostcardImage[]; title?: string }) {
   if (images.length === 0) return null
 
   const beats: ReactNode[] = []
@@ -75,4 +77,10 @@ export function PostcardGallery({ images, title }: { images: PostcardImage[]; ti
       <div className="space-y-5">{beats}</div>
     </section>
   )
+}
+
+export function PostcardGallery({images,title}:{images:PostcardImage[];title?:string}) {
+ const [open,setOpen]=useState(false)
+ if(!images.length)return null
+ return <section><button className="photo-drawer-cover" aria-haspopup="dialog" onClick={()=>setOpen(true)}><Photo src={images[0].src} seed={images[0].seed} alt={images[0].alt} className="h-64 w-full md:h-80" rounded="rounded-none"/><span><strong>{title||'Through our lens'}</strong><small>Open {images.length} photos ＋</small></span></button><Sheet open={open} title={title||'Through our lens'} onClose={()=>setOpen(false)}><PostcardSpread images={images}/></Sheet></section>
 }

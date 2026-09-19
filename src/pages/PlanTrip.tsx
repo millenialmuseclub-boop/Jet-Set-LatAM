@@ -1,3 +1,6 @@
+import { ShopMyEdit } from '@/components/ShopMyEdit'
+import { getTravelMemory, rememberPreferences } from '@/lib/travelMemory';
+import { getLibrary } from '@/lib/storage';
 import { WebsitePlanning } from '@/components/WebsitePlanning';
 import { CuratingTrip } from '@/components/CuratingTrip';
 import { editorialMotion,gentleSpring } from '@/lib/motion';
@@ -215,21 +218,24 @@ const STEP_LABELS = [
 
 export function PlanTrip() {
   const [params] = useSearchParams();
+  const [preferences] = useState(()=>getTravelMemory().preferences);
   const [step, setStep] = useState(0);
   const [destinationId, setDestinationId] = useState<string | null>(() => {
     const fromQuery = params.get("destination");
     const preselected =
       fromQuery && PLANNER_READY_DESTINATIONS.find((d) => d.slug === fromQuery);
     if (preselected) return preselected.id;
+    const recent=getTravelMemory().preferences?.destinationId;
+    if(!fromQuery&&PLANNER_READY_DESTINATIONS.some(d=>d.id===recent))return recent!;
     return PLANNER_READY_DESTINATIONS.length === 1
       ? PLANNER_READY_DESTINATIONS[0].id
       : null;
   });
-  const [days, setDays] = useState<number | null>(null);
-  const [companions, setCompanions] = useState<TripCompanions | null>(null);
-  const [interests, setInterests] = useState<TripInterest[]>([]);
-  const [style, setStyle] = useState<TripStyle | null>(null);
-  const [pace, setPace] = useState<TripPace | null>(null);
+  const [days, setDays] = useState<number | null>(preferences?.days??null);
+  const [companions, setCompanions] = useState<TripCompanions | null>(preferences?.companions??null);
+  const [interests, setInterests] = useState<TripInterest[]>(preferences?.interests??[]);
+  const [style, setStyle] = useState<TripStyle | null>(preferences?.style??null);
+  const [pace, setPace] = useState<TripPace | null>(preferences?.pace??null);
   const [itinerary, setItinerary] = useState<Itinerary | null>(() => {
     const requested = params.get('itinerary');
     const destination = destinations.find(d => d.slug === params.get('destination'));
@@ -267,7 +273,8 @@ export function PlanTrip() {
       pace: pace!,
     };
     window.setTimeout(() => {
-      setItinerary(generateItinerary(answers));
+      rememberPreferences(answers);
+      setItinerary(generateItinerary(answers, getLibrary().savedPlaceIds));
       setGenerating(false);
     }, 900);
   }
@@ -345,7 +352,7 @@ export function PlanTrip() {
               ))}
           </div>
         </section>
-        <div className="flex gap-3 pt-2">
+        <div className="trip-save-bar flex gap-3 pt-2">
           <button
             onClick={() => {
               setItinerary(null);
@@ -366,9 +373,10 @@ export function PlanTrip() {
         {savedMsg && <Link className="block min-h-11 text-center text-terracotta" to={`/saved/trips/trip-${itinerary.id}`}>Open saved trip →</Link>}
         <p className="text-center text-[11px] text-ink-soft/40">
           Assembled from the Jet Set LatAm {selectedDestination.city} Place
-          database — not AI-generated. Tap an activity's icons to reorder, swap
+          database — not AI-generated. Open an activity’s Options to reorder, swap
           or remove it.
         </p>
+        <ShopMyEdit destinationId={selectedDestination.id} packing/>
         {itinerary.answers?.companions === "family" && (
           <div className="flex items-center gap-2.5 rounded-2xl bg-jungle/10 p-3.5 ring-1 ring-jungle/15">
             <Baby size={16} className="shrink-0 text-jungle" />
@@ -406,6 +414,7 @@ export function PlanTrip() {
         </div>
       </div>
 
+      {step === 0 && preferences && <p className="mb-4 text-xs text-ink-soft">Your last trip preferences are filled in. Change any choice below.</p>}
       {step === 0 && <WebsitePlanning/>}
       <div className="mb-2 flex items-baseline justify-between">
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-terracotta">

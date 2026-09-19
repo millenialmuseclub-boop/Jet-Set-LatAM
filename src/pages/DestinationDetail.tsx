@@ -1,3 +1,5 @@
+import { CartagenaShopMyStays } from '@/components/ShopMyEdit'
+import { rememberDestination } from '@/lib/travelMemory';
 import { finalTravelPhotos } from '@/data/final-travel-photos';
 import { WebsitePlanning } from '@/components/WebsitePlanning';
 import { appFamily } from '@/config/appFamily';
@@ -8,7 +10,7 @@ import { RalliiBridge } from '@/components/RalliiBridge';
 import { StyleBridge } from '@/components/StyleBridge';
 import { RioStoryLinks } from '@/components/RioStoryLinks';
 import { useParams, Link, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StoryCard } from "@/components/StoryCard";
 import { archivePhotos, getPlacePhoto } from "@/data";
 import {
@@ -118,6 +120,8 @@ export function DestinationDetail() {
     destination ? isSavedDestination(destination.id) : false,
   );
 
+  useEffect(()=>{if(destination)rememberDestination(destination.id)},[destination]);
+
   if (!destination) return <EmptyState title="Destination not found" />;
 
   const places = getPlacesByDestination(destination.id);
@@ -220,7 +224,7 @@ export function DestinationDetail() {
                   <p className="font-display text-xl text-ink">
                     From the Journal
                   </p>
-                  {guides.slice(0, 4).map((g) => (
+                  {guides.slice(0, 2).map((g) => (
                     <Link
                       key={g.id}
                       to={`/guides/${g.id}`}
@@ -246,7 +250,7 @@ export function DestinationDetail() {
               )}
             </div>
             <div className="space-y-5">
-              <div className="rounded-2xl bg-jungle-dark p-4">
+              <details className="destination-disclosure rounded-2xl bg-jungle-dark p-4"><summary>Know before you go</summary>
                 <p className="text-[11px] uppercase tracking-[0.14em] text-gold-light">
                   Know Before You Go
                 </p>
@@ -268,13 +272,13 @@ export function DestinationDetail() {
                     </div>
                   )}
                 </dl>
-              </div>
+              </details>
             </div>
           </div>
         )}
 
-        {tab === "overview" && guides.length > 4 && (
-          <section className="space-y-4">
+        {tab === "overview" && guides.length > 2 && (
+          <details className="destination-disclosure"><summary>More stories from {destination.city}</summary>
             <div className="section-heading">
               <h2>More from {destination.city}</h2>
               <Link to={"/explore?destination=" + destination.id}>
@@ -282,11 +286,11 @@ export function DestinationDetail() {
               </Link>
             </div>
             <div className="photo-rail">
-              {guides.slice(4, 8).map((g) => (
+              {guides.slice(2, 8).map((g) => (
                 <StoryCard key={g.id} guide={g} compact />
               ))}
             </div>
-          </section>
+          </details>
         )}
         {tab === "overview" && destination.id === "cartagena" && (
           <section>
@@ -723,6 +727,7 @@ export function DestinationDetail() {
         {tab === "overview" && <TrenMayaStories destinationId={destination.id} />}
         {tab === "overview" && <RalliiBridge destination={destination} />}
 
+        {tab === "stay" && destination.id === "cartagena" && <CartagenaShopMyStays/>}
         {tab === "overview" && <StyleBridge destination={destination} />}
       </div>
     </div>

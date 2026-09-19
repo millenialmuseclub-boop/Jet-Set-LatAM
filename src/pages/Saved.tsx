@@ -1,3 +1,4 @@
+import { TravelCompanion } from '@/components/TravelCompanion';
 import { tripPhase } from '@/lib/tripLifecycle';
 import { getEffectiveItinerary } from '@/lib/storage';
 import { useTripClock } from '@/lib/useTripClock';
@@ -76,6 +77,7 @@ export function Saved() {
           </p>
         </div>
       </div>
+      <TravelCompanion library/>
       <div
         className="-mx-5 mb-7 mt-6 flex gap-2 overflow-x-auto px-5 pb-3"
         aria-label="Saved collections"
