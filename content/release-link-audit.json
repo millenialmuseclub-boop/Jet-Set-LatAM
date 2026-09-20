@@ -1,0 +1,177 @@
+[
+  {
+    "url": "https://jordypop.vercel.app",
+    "status": 200,
+    "finalUrl": "https://jordypop.vercel.app/",
+    "title": "JordyPop — Artist &amp; Studio Art Student",
+    "files": [
+      "src/config/appFamily.ts"
+    ]
+  },
+  {
+    "url": "https://jetsetlatam.com",
+    "status": 200,
+    "finalUrl": "https://thebrunchmanifesto.blog/",
+    "title": "Jet Set LatAM | Latin America, Curated",
+    "files": [
+      "src/config/appFamily.ts"
+    ]
+  },
+  {
+    "url": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+    "status": 200,
+    "finalUrl": "https://apps.apple.com/us/app/luxejetter/id6808023085",
+    "title": "‎LuxeJetter App - App Store",
+    "files": [
+      "src/config/appFamily.ts"
+    ]
+  },
+  {
+    "url": "https://apps.apple.com/us/app/rallii-rail/id6804085679",
+    "status": 200,
+    "finalUrl": "https://apps.apple.com/us/app/rallii/id6804085679",
+    "title": "‎Rallii App - App Store",
+    "files": [
+      "src/config/appFamily.ts"
+    ]
+  },
+  {
+    "url": "https://apps.apple.com/us/app/let-them-eat/id6801655009",
+    "status": 200,
+    "finalUrl": "https://apps.apple.com/us/app/let-them-eat/id6801655009",
+    "title": "‎Let Them Eat App - App Store",
+    "files": [
+      "src/config/appFamily.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/jetsetjordy",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/jetsetjordy",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2819889",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2819889",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2819878",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2819878",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2852525",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2852525",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2819893",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2819893",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2819898",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2819898",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2819905",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2819905",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/3158487",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/3158487",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/3171401",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/3171401",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/3147308",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/3147308",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2697615",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2697615",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/shop/collections/2722905",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/shop/collections/2722905",
+    "files": [
+      "src/data/shopmy.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/collections/embed/2687505",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/collections/embed/2687505",
+    "files": [
+      "src/data/style.ts"
+    ]
+  },
+  {
+    "url": "https://shopmy.us/collections/embed/2799513",
+    "status": 200,
+    "finalUrl": "https://shopmy.us/collections/embed/2799513",
+    "files": [
+      "src/data/style.ts"
+    ]
+  },
+  {
+    "url": "https://thebrunchmanifesto.blog/plan-your-trip/",
+    "status": 200,
+    "finalUrl": "https://thebrunchmanifesto.blog/plan-your-trip/",
+    "title": "Plan A Latin America Trip | Jet Set LatAM",
+    "files": [
+      "src/components/WebsitePlanning.tsx"
+    ]
+  },
+  {
+    "url": "https://vrbo.tpk.lv/8h4b3cce",
+    "status": 429,
+    "finalUrl": "https://www.vrbo.com/?k_clickid=493a8e65b53011f180e400dc0a1eba8e&CID=a_cj_101545529&utm_source=aff_cj&utm_medium=partner&utm_campaign=Go+Travel+Un+Limited_101545529&utm_content=12665348_8d817589df364c99aa9bad86d-673999&CJEVENT=493a8e65b53011f180e400dc0a1eba8e&affcid=VRBO-UK.NETWORK.CJ.101545529",
+    "title": "Bot or Not?",
+    "files": [
+      "src/components/WebsitePlanning.tsx"
+    ]
+  }
+]

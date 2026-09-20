@@ -30,6 +30,13 @@ const INTEREST_TO_CATEGORY: Record<TripInterest, Place['category'][]> = {
 // one-time tours/activities, not a flexible drop-in.
 export const REPEATABLE_CATEGORIES = new Set<Place['category']>(['cafe', 'park', 'beach', 'shop', 'nightlife', 'bar'])
 
+/** Broad daypart guard, not a claim about live venue opening hours. */
+export function suitableDaypart(place: Place, time: string): boolean {
+  if (!['bar', 'nightlife'].includes(place.category)) return true
+  const hour = Number(time.split(':')[0])
+  return Number.isFinite(hour) && hour >= 19
+}
+
 // A short, destination-agnostic word for what a category contributes to a
 // day's theme — used to build a real theme like "Art + Jardins" from what
 // was actually scheduled, never a hardcoded per-city phrase.
@@ -182,7 +189,14 @@ export function generateItinerary(answers: TripQuizAnswers, savedPlaceIds: strin
   }
 
   for (let d = 1; d <= answers.days; d++) {
-    const slots = PACE_SLOTS[answers.pace]
+    const slots = [...PACE_SLOTS[answers.pace]]
+    if (answers.companions !== 'family' && answers.interests.includes('nightlife')) {
+      // Keep the chosen pace's stop count; move its last exploration slot
+      // after dinner instead of recommending an evening venue in the morning.
+      const index = slots.reduce((last, time, i) => ['10:30', '15:00', '17:30'].includes(time) ? i : last, -1)
+      if (index >= 0) slots[index] = '21:00'
+      slots.sort((a,b)=>Number(a.split(':')[0])*60+Number(a.split(':')[1])-Number(b.split(':')[0])*60-Number(b.split(':')[1]))
+    }
     const usedToday = new Set<string>()
     const dayNeighborhoods = new Map<string, number>()
     const dayPlaces: { place: Place; isMeal: boolean }[] = []
@@ -195,7 +209,7 @@ export function generateItinerary(answers: TripQuizAnswers, savedPlaceIds: strin
       const mealPool = time==='9:00'&&breakfastPlaces.length ? breakfastPlaces : ranked.filter((p) => ['cafe', 'restaurant'].includes(p.category))
       const candidate = isMeal
         ? pickBest(mealPool, usedToday, dayNeighborhoods, time)
-        : pickBest(ranked, usedToday, dayNeighborhoods, time)
+        : pickBest(ranked.filter(p => suitableDaypart(p,time) && (time !== '21:00' || ['bar','nightlife'].includes(p.category))), usedToday, dayNeighborhoods, time)
       if (candidate) {
         usedToday.add(candidate.id)
         useCount.set(candidate.id, (useCount.get(candidate.id) ?? 0) + 1)

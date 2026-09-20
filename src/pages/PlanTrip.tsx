@@ -240,7 +240,7 @@ export function PlanTrip() {
     const requested = params.get('itinerary');
     const destination = destinations.find(d => d.slug === params.get('destination'));
     const template = getItinerary(requested || (destination?.status !== 'live' ? destination?.itineraryIds[0] || '' : ''));
-    return template ? { ...structuredClone(template), id: `it-copy-${crypto.randomUUID()}`, isReadyMade: false } : null;
+    return template ? { ...template, days:template.days.map(day=>({...day,activities:day.activities.map(a=>({...a}))})), id: `it-copy-${(crypto.randomUUID?.() ?? Array.from(crypto.getRandomValues(new Uint8Array(16)), n=>n.toString(16).padStart(2,'0')).join(''))}`, isReadyMade: false } : null;
   });
   const [savedMsg, setSavedMsg] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
@@ -584,4 +584,3 @@ export function PlanTrip() {
     </div>
   );
 }
-

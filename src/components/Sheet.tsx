@@ -27,11 +27,10 @@ export function Sheet({open, title, onClose, children}: {open:boolean; title:str
     }
     const keepFocus=(event:FocusEvent)=>{if(!native&&!dialog.contains(event.target as Node))dialog.querySelector<HTMLElement>('button')?.focus()}
     const keys=(event:KeyboardEvent)=>{
-      if(native)return
-      if(event.key==='Escape'){event.preventDefault();close()}
+      if(!native&&event.key==='Escape'){event.preventDefault();close()}
       if(event.key==='Tab'){
-        const items=[...dialog.querySelectorAll<HTMLElement>('button:not(:disabled),a[href],input,textarea,select')]
-        const first=items[0],last=items.at(-1)
+        const items=[...dialog.querySelectorAll<HTMLElement>('button,a[href],input,textarea,select')].filter(el=>!el.hasAttribute('disabled')&&el.getClientRects().length>0)
+        const first=items[0],last=items[items.length-1]
         if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus()}
         else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus()}
       }

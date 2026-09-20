@@ -1,6 +1,6 @@
 import type { Itinerary, ItineraryDay, Place } from '@/types'
 import { getPlace, getPlacesByDestination } from '@/data'
-import { REPEATABLE_CATEGORIES } from './planner'
+import { REPEATABLE_CATEGORIES, suitableDaypart } from './planner'
 export const dayAdjustments=[['lighter','Leave room to wander'],['food','More food'],['culture','More art & culture'],['outdoors','More outdoors'],['shopping','More shopping'],['value','Spend less'],['family','Family adjustment']] as const
 export type DayAdjustment=typeof dayAdjustments[number][0]
 const categories:Partial<Record<DayAdjustment,Place['category'][]>>={food:['restaurant','cafe'],culture:['museum','landmark'],outdoors:['park','beach','experience'],shopping:['shop']}
@@ -17,11 +17,11 @@ export function dayAdvice(day:ItineraryDay):string[] {
 /** Preview only. Never mutates the source, other days, activity IDs, times or personal notes. */
 export function adjustDay(itinerary:Itinerary,index:number,kind:DayAdjustment, protectedIds:string[]=[]):{day:ItineraryDay;message:string;changed:boolean} {
   const source=itinerary.days[index]
-  const day=structuredClone(source)
+  const day={...source,activities:source.activities.map(a=>({...a}))}
   const current=day.activities.map(a=>a.placeId?getPlace(a.placeId):undefined)
   if(kind==='lighter') {
     const candidates=day.activities.map((a,i)=>({a,i})).filter(({a})=>!protectedIds.includes(a.id)&&!a.notes&&!['Breakfast','Lunch','Dinner'].includes(a.label)&&a.placeId)
-    const item=candidates.at(-1)
+    const item=candidates[candidates.length-1]
     if(item&&day.activities.length>2)day.activities.splice(item.i,1)
   } else {
     const usedOther=new Set(itinerary.days.filter((_,i)=>i!==index).flatMap(d=>d.activities.map(a=>a.placeId)))
@@ -36,7 +36,7 @@ export function adjustDay(itinerary:Itinerary,index:number,kind:DayAdjustment, p
       if(kind==='value'&&(!old?.priceLevel||old.priceLevel.length<=2))continue
       if(categories[kind]?.includes(old?.category as Place['category']))continue
       if(['Breakfast','Lunch','Dinner'].includes(activity.label)&&kind!=='food'&&kind!=='value'&&kind!=='family')continue
-      const pool=getPlacesByDestination(itinerary.destinationId).filter(p=>p.category!=='hotel'&&(!family||familySuitable(p))&&!usedToday.has(p.id)&&(!usedOther.has(p.id)||REPEATABLE_CATEGORIES.has(p.category))&&(!categories[kind]||categories[kind]!.includes(p.category))&&(!['Breakfast','Lunch','Dinner'].includes(activity.label)||['cafe','restaurant'].includes(p.category))&&(kind!=='value'||!!p.priceLevel&&p.priceLevel.length<(old?.priceLevel?.length||0)))
+      const pool=getPlacesByDestination(itinerary.destinationId).filter(p=>p.category!=='hotel'&&suitableDaypart(p,activity.time)&&(!family||familySuitable(p))&&!usedToday.has(p.id)&&(!usedOther.has(p.id)||REPEATABLE_CATEGORIES.has(p.category))&&(!categories[kind]||categories[kind]!.includes(p.category))&&(!['Breakfast','Lunch','Dinner'].includes(activity.label)||['cafe','restaurant'].includes(p.category))&&(kind!=='value'||!!p.priceLevel&&p.priceLevel.length<(old?.priceLevel?.length||0)))
       pool.sort((a,b)=>Number(neighborhoods.has(b.neighborhood))-Number(neighborhoods.has(a.neighborhood))||Number(usedOther.has(a.id))-Number(usedOther.has(b.id))||(a.priceLevel?.length||2)-(b.priceLevel?.length||2))
       const next=pool[0]
       if(!next)continue

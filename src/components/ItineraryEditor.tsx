@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { openExternal, openMap } from "@/lib/links";
-import { REPEATABLE_CATEGORIES } from "@/lib/planner";
+import { REPEATABLE_CATEGORIES, suitableDaypart } from "@/lib/planner";
 import { ConfirmSheet } from "./ConfirmSheet";
 
 // Shared day-by-day itinerary UI — used by both Plan a Trip (right after
@@ -96,12 +96,15 @@ export function ItineraryEditor({
     const current = itinerary.days[dayIndex].activities.find(
       (a) => a.id === activityId,
     );
+    // Notes can contain reservations. Never erase them as a side effect of a swap.
+    if (!current || current.notes || protectedActivityKeys.includes(activityVisitKey(itinerary.days[dayIndex].day, activityId))) return;
     const todayIds = new Set(
       itinerary.days[dayIndex].activities.map((a) => a.placeId),
     );
     const pool = candidatePlaces.filter(
       (p) =>
         p.category !== 'hotel' &&
+        suitableDaypart(p, current.time) &&
         (itinerary.answers?.companions !== 'family' || !['bar', 'nightlife'].includes(p.category) && !p.tags.some(tag => /tequila|adults.only/i.test(tag))) &&
         !todayIds.has(p.id) &&
         (!["Breakfast", "Lunch", "Dinner"].includes(current?.label || "") ||
@@ -121,7 +124,7 @@ export function ItineraryEditor({
       activities: day.activities.map((a) =>
         a.id === activityId
           ? candidate
-            ? { ...a, placeId: candidate.id, notes: undefined }
+            ? { ...a, placeId: candidate.id, label: ["Breakfast", "Lunch", "Dinner"].includes(a.label) ? a.label : candidate.category[0].toUpperCase() + candidate.category.slice(1), notes: undefined }
             : {
                 ...a,
                 placeId: undefined,
@@ -311,8 +314,8 @@ export function ItineraryEditor({
                         <button
                           onClick={() => replaceActivity(dayIndex, a.id)}
                           aria-label="Swap for another place"
-                          disabled={protectedActivityKeys.includes(activityVisitKey(day.day,a.id))}
-                          title={protectedActivityKeys.includes(activityVisitKey(day.day,a.id))?"Confirmed visits stay attached to their original place":undefined}
+                          disabled={!!a.notes || protectedActivityKeys.includes(activityVisitKey(day.day,a.id))}
+                          title={a.notes ? "Clear notes before swapping this activity" : protectedActivityKeys.includes(activityVisitKey(day.day,a.id))?"Confirmed visits stay attached to their original place":undefined}
                           className="flex h-11 w-11 items-center justify-center rounded-full text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
                         >
                           <Shuffle size={14} />
@@ -330,6 +333,7 @@ export function ItineraryEditor({
                         >
                           <Trash2 size={14} />
                         </button>
+                        {a.notes && <p className="w-full py-2 text-xs text-ink-soft">Clear this activity’s notes to enable swapping.</p>}
                       </div></details>
                     </motion.div>
                   );

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import { Volume2, VolumeX, Play } from "lucide-react";
 import type { MediaMoment as MediaMomentType } from "@/types";
 
@@ -31,6 +32,7 @@ export function MediaMomentPlayer({
   const [inView, setInView] = useState(false);
   const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const el = containerRef.current;
@@ -49,14 +51,14 @@ export function MediaMomentPlayer({
   useEffect(() => {
     const v = videoRef.current;
     if (!v || !everInView) return;
-    if (inView && moment.autoplayMuted) {
+    if (inView && moment.autoplayMuted && !reduceMotion) {
       v.muted = true;
       claimPlayback(v);
       v.play().catch(() => {});
-    } else if (!inView) {
+    } else if (!inView || reduceMotion) {
       v.pause();
     }
-  }, [inView, everInView, moment.autoplayMuted]);
+  }, [inView, everInView, moment.autoplayMuted, reduceMotion]);
 
   function toggleSound(e: React.MouseEvent) {
     e.stopPropagation();

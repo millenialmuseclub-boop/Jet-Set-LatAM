@@ -28,10 +28,30 @@ export function TopNav() {
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   useEffect(() => {
+    const el=dialog.current;
+    if(!open || !el)return;
     const previous=document.body.style.overflow;
-    if (open) { dialog.current?.showModal(); document.body.style.overflow="hidden"; }
-    else dialog.current?.close();
-    return ()=>{document.body.style.overflow=previous;};
+    const triggerElement=trigger.current;
+    const native=typeof el.showModal==='function';
+    if(native)el.showModal();
+    else {el.setAttribute('open','');el.classList.add('more-fallback');el.querySelector('button')?.focus();}
+    const keepFocus=(event:FocusEvent)=>{if(!native&&!el.contains(event.target as Node))el.querySelector('button')?.focus();};
+    const keys=(event:KeyboardEvent)=>{
+      if(!native&&event.key==='Escape'){event.preventDefault();setOpen(false);}
+      if(event.key==='Tab'){
+        const items=[...el.querySelectorAll<HTMLElement>('button,a[href]')];
+        const first=items[0],last=items[items.length-1];
+        if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
+        else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}
+      }
+    };
+    document.addEventListener('keydown',keys);document.addEventListener('focusin',keepFocus);
+    document.body.style.overflow='hidden';
+    return ()=>{
+      document.removeEventListener('keydown',keys);document.removeEventListener('focusin',keepFocus);
+      if(native)el.close();else {el.removeAttribute('open');el.classList.remove('more-fallback');}
+      document.body.style.overflow=previous;triggerElement?.focus();
+    };
   }, [open]);
   function close() {
     setOpen(false);
@@ -67,6 +87,8 @@ export function TopNav() {
       </header>
       <dialog
         ref={dialog}
+        role="dialog"
+        aria-modal="true"
         onCancel={() => setOpen(false)}
         onClick={(e) => {
           if (e.target === dialog.current) close();

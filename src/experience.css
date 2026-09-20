@@ -13,3 +13,6 @@
 .experience-sheet:not([open]){display:none}.experience-sheet.sheet-fallback{display:block;z-index:1000;box-shadow:0 0 0 100vmax #21152f99}
 .sheet-legacy-backdrop{position:fixed;inset:0;z-index:999;background:#21152f88;backdrop-filter:blur(5px)}.experience-sheet{max-height:90vh;max-height:90dvh}.experience-sheet.sheet-fallback{box-shadow:0 -18px 80px #21152f45}
 .experience-sheet,.experience-sheet *{border-radius:0!important}
+
+.more-dialog.more-fallback{display:block;position:fixed;z-index:1000;box-shadow:0 0 0 100vmax #21152f99}
+@media(max-width:767px){main input,main textarea{font-size:16px}}
