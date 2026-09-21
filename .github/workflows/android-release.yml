@@ -1,0 +1,81 @@
+name: Build signed Android release
+
+# Builds and signs the Play Store release AAB on a hosted runner, so no
+# local Java/Android SDK is needed. Manual runs and workflow-only edits on
+# the Android preparation branch build an artifact without publishing.
+#
+# Required repo secrets (Settings -> Secrets and variables -> Actions),
+# scoped to an environment named "android-release":
+#   ANDROID_KEYSTORE_BASE64   - `base64 -w0 release.keystore` output
+#   ANDROID_KEYSTORE_PASSWORD
+#   ANDROID_KEY_ALIAS
+#   ANDROID_KEY_PASSWORD
+# None of these belong in Git. See ANDROID_RELEASE.md for how to generate
+# the keystore and add these secrets.
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [codex/editorial-product-pass]
+    paths: [.github/workflows/android-release.yml]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android-release
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build signed release AAB
+    runs-on: ubuntu-latest
+    environment: android-release
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Build web app and sync Capacitor
+        run: |
+          npm ci
+          npm run build
+          npx cap sync android
+
+      - name: Decode release keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/app/release.keystore
+
+      - name: Build signed release AAB
+        working-directory: android
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          ./gradlew bundleRelease \
+            -Pandroid.injected.signing.store.file="$PWD/app/release.keystore" \
+            -Pandroid.injected.signing.store.password="$ANDROID_KEYSTORE_PASSWORD" \
+            -Pandroid.injected.signing.key.alias="$ANDROID_KEY_ALIAS" \
+            -Pandroid.injected.signing.key.password="$ANDROID_KEY_PASSWORD"
+
+      - name: Remove decoded keystore
+        if: always()
+        run: rm -f android/app/release.keystore
+
+      - name: Upload signed AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: jet-set-latam-release-aab
+          path: android/app/build/outputs/bundle/release/app-release.aab
+          retention-days: 14
