@@ -19,3 +19,21 @@
 
 .now-morning .somewhere-prompt strong,.now-evening .somewhere-prompt strong{overflow-wrap:anywhere;font-size:clamp(24px,7vw,34px)}
 @media(max-width:359px){.now-morning .somewhere-prompt img,.now-evening .somewhere-prompt img{width:64px;height:88px}}
+
+/* Journal and commerce share the publication's compact editorial treatment. */
+.journal-story{overflow-wrap:anywhere}.journal-story h1{text-wrap:balance}.editorial-body{max-width:65ch;color:var(--color-ink-soft)}
+.editorial-body h2{font-family:var(--font-display);font-size:clamp(28px,5vw,36px);line-height:1.15;margin:1.6em 0 .65em;padding-top:.6em;border-top:1px solid #49303b25;scroll-margin-top:100px}
+.editorial-body h3{font-family:var(--font-display);font-size:25px;line-height:1.2;margin:1.4em 0 .6em;scroll-margin-top:100px}
+.editorial-body p{white-space:pre-line}.editorial-body a{color:var(--color-terracotta);text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}.editorial-body strong{font-weight:600;color:var(--color-ink)}
+.editorial-body ul,.editorial-body ol{padding-left:1.4em;margin:1em 0 1.5em;line-height:1.75}.editorial-body ul{list-style:disc}.editorial-body ol{list-style:decimal}.editorial-body li{padding-left:.25em;margin:.5em 0}
+.editorial-body blockquote{border-left:3px solid var(--color-gold);padding:10px 20px;margin:28px 0;font-family:var(--font-display);font-size:24px;line-height:1.4}
+.story-tip{background:var(--color-cream);border-left:3px solid var(--color-terracotta);padding:18px;margin:24px 0;font-size:14px;line-height:1.7}
+.story-contents{background:var(--color-cream);border-block:1px solid #49303b25;padding:4px 16px}.story-contents summary{min-height:48px;padding:14px 0;font-size:13px;cursor:pointer}.story-contents nav{display:grid;padding-bottom:12px}.story-contents button{text-align:left;min-height:44px;padding:9px 0;border-top:1px solid #49303b15;font-size:13px}
+.story-plan{display:grid;gap:10px;background:var(--color-jungle-dark);color:var(--color-cream);padding:24px}.story-plan strong{font-family:var(--font-display);font-size:30px;font-weight:400;line-height:1.15}.story-plan>span:last-child{font-size:12px}
+.shopping-editorial{margin:28px 0;border:1px solid #49303b25;background:var(--color-cream);overflow:hidden}.shopping-copy{padding:20px}.shopping-scene{position:relative}.shopping-scene img{border-radius:0}.shopping-scene figcaption{position:absolute;inset:auto 0 0;padding:24px 14px 10px;color:white;background:linear-gradient(transparent,#201322aa);font-size:11px}
+.shopping-collection-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px}.shopping-collection{display:flex;flex-direction:column;align-items:flex-start;gap:12px;text-align:left;padding:16px 12px;min-width:0;background:var(--color-parchment);border:1px solid #49303b25}.shopping-collection .eyebrow{font-size:9px}.shopping-collection strong{font-family:var(--font-display);font-size:24px;line-height:1.15;font-weight:400;overflow-wrap:anywhere}.shopping-collection>span:last-child{font-size:11px;color:var(--color-terracotta);margin-top:auto}
+.luxe-shopping-link{display:flex;width:100%;align-items:center;gap:12px;text-align:left;padding:16px 0;border-block:1px solid #49303b20}.luxe-shopping-link img{flex-shrink:0}.luxe-shopping-link strong,.luxe-shopping-link span span{display:block;font-size:12px}.luxe-shopping-link span span{margin-top:4px;color:var(--color-terracotta)}
+.shopping-compact .shopping-copy{padding:16px}.shopping-compact .shopping-collection-grid{grid-template-columns:1fr}.shopping-compact .shopping-collection{padding:12px}.journal-story button:focus-visible,.journal-story a:focus-visible,.shopping-editorial button:focus-visible{outline:3px solid var(--color-terracotta);outline-offset:3px}
+@media(max-width:359px){.shopping-copy{padding:16px}.shopping-collection-grid{grid-template-columns:1fr}.editorial-body p{font-size:15px;line-height:1.8}}
+
+.journal-story>figure{overflow:hidden}

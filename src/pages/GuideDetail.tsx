@@ -1,3 +1,4 @@
+import { ArticleBody } from '@/components/ArticleBody';
 import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
@@ -17,6 +18,8 @@ import { isSavedGuide, toggleSavedGuide } from "@/lib/storage";
 import { openExternal } from "@/lib/links";
 export function GuideDetail() {
   const { id } = useParams();
+  const [showAllPlaces, setShowAllPlaces] = useState(false);
+  const [showAllPhotos, setShowAllPhotos] = useState(false);
   const [saved, setSaved] = useState(() => (id ? isSavedGuide(id) : false));
   const guide = id ? getGuide(id) : undefined;
   if (!guide) return <EmptyState title="Guide not found" />;
@@ -36,7 +39,7 @@ export function GuideDetail() {
     .map(getDestinationById)
     .filter((d) => !!d);
   return (
-    <article className="pb-10">
+    <article className="journal-story pb-10">
       {guide.heroPhoto ? (
         <figure>
           <Photo
@@ -82,7 +85,7 @@ export function GuideDetail() {
             {guide.dek}
           </p>
           <p className="mt-4 text-[10px] uppercase tracking-widest text-ink-soft/50">
-            Jet Set LatAm{" "}
+            Jet Set LatAm · {Math.max(1, Math.ceil(guide.body.split(/\s+/).length / 220))} min read{" "}
             {guide.publishedAt &&
               `· ${new Date(guide.publishedAt).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}`}
           </p>
@@ -106,16 +109,12 @@ export function GuideDetail() {
             </Link>
           )}
         </div>
-        <div className="article-body text-ink-soft">
-          {guide.body.split(/\n\n+/).map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
+        <ArticleBody body={guide.body}/>
         {!!guide.photos?.length && (
           <section aria-label="Story photographs">
             <h2 className="mb-4 font-display text-3xl">Through our lens</h2>
             <div className="grid grid-cols-2 gap-3">
-              {guide.photos.map((p, i) => (
+              {guide.photos.filter((photo, index, all) => photo.src !== guide.heroPhoto && all.findIndex(p => p.src === photo.src) === index).slice(0, showAllPhotos ? undefined : 6).map((p, i) => (
                 <figure key={p.src} className={i % 5 === 0 ? "col-span-2" : ""}>
                   <Photo
                     src={p.src}
@@ -129,20 +128,21 @@ export function GuideDetail() {
                 </figure>
               ))}
             </div>
+            {guide.photos.length > 7 && !showAllPhotos && <button className="min-h-11 mt-4 text-sm text-terracotta" onClick={() => setShowAllPhotos(true)}>See the full photo essay →</button>}
           </section>
         )}
         {!!places.length && (
           <section>
             <h2 className="mb-4 font-display text-3xl">Places in this story</h2>
             <div className="space-y-3">
-              {places.map((p) => {
+              {places.slice(0, showAllPlaces ? undefined : 4).map((p) => {
                 const photo = getPlacePhoto(p);
                 return (
                   <div
                     key={p.id}
                     className="flex gap-3 rounded-2xl bg-cream p-3"
                   >
-                    <figure className="w-20 shrink-0">
+                    {p.photos.length > 0 && <figure className="w-20 shrink-0">
                       <Photo
                         src={photo.src}
                         seed={p.id}
@@ -154,7 +154,7 @@ export function GuideDetail() {
                           City context
                         </figcaption>
                       )}
-                    </figure>
+                    </figure>}
                     <div className="min-w-0 flex-1">
                       <p className="font-display text-xl">{p.name}</p>
                       <p className="text-xs text-terracotta">
@@ -167,6 +167,7 @@ export function GuideDetail() {
                 );
               })}
             </div>
+            {places.length > 4 && !showAllPlaces && <button className="min-h-11 mt-3 text-sm text-terracotta" onClick={() => setShowAllPlaces(true)}>See all {places.length} places in this story →</button>}
           </section>
         )}
         <div className="border-t border-ink/15 pt-5">
@@ -181,7 +182,8 @@ export function GuideDetail() {
             availability may have changed since publication.
           </p>
         </div>
-        <ShopMyEdit destinationId={guide.destinationId}/>
+        {['shop', 'beaches', 'stay'].includes(guide.section) && <ShopMyEdit destinationId={guide.destinationId} packing/>}
+        {destination && <Link className="story-plan" to={`/plan?destination=${destination.slug}`}><span className="eyebrow">Turn inspiration into a trip</span><strong>Make time for {destination.city} →</strong><span>Explore an itinerary, then make it yours.</span></Link>}
         <section>
           <div className="section-heading">
             <h2>Stay a little longer</h2>
