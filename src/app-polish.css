@@ -154,3 +154,16 @@ main select:focus-visible {border-color:#bd315e!important;box-shadow:4px 5px 0 #
 #root .more-dialog>div:last-child {margin-top:8px;font-size:11px;gap:16px;}
 #root .more-dialog::backdrop {background:#281b2c24;backdrop-filter:none;}
 @media(prefers-reduced-motion:no-preference){#root .more-dialog[open]{animation:compact-menu-in 200ms ease-out;}@keyframes compact-menu-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}}
+
+/* Safe polish pass (Sept 2026): app-family rows press like the other cards,
+   and the "Added" confirmation in AddToTripControl lands with a small gold
+   spark. Both are no-ops under prefers-reduced-motion. */
+.family-row{transition:transform 160ms ease,background-color 160ms ease}
+.family-row:is(button):active{transform:scale(.985)}
+@media(prefers-reduced-motion:no-preference){
+ .added-pop{position:relative;animation:added-pop 360ms cubic-bezier(.2,.8,.2,1.2) 1}
+ .added-pop::after{content:'';position:absolute;left:-3px;top:50%;width:5px;height:5px;border-radius:50%;background:#efcc86;opacity:0;animation:added-spark 620ms ease-out 1}
+ @keyframes added-pop{from{transform:scale(.8);opacity:.4}to{transform:scale(1);opacity:1}}
+ @keyframes added-spark{0%{opacity:0;transform:translate(0,-50%) scale(.6)}30%{opacity:1}100%{opacity:0;transform:translate(-8px,-16px) scale(1.2)}}
+}
+@media(prefers-reduced-motion:reduce){.family-row:is(button):active{transform:none}}

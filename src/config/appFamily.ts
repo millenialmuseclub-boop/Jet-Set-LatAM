@@ -14,15 +14,15 @@ import type { TripContext } from '@/types'
 // the only data a sibling app could ever read, and only if a future pass
 // wires up a real handoff.
 //
-// Icons use the current local iOS app assets. Little Jetter is awaiting
-// approval; keep it visible without an outbound link until a URL is supplied.
+// Icons use the current local iOS app assets. All five apps are live on the
+// App Store (Little Jetter went live Sept 2026); every member carries its
+// real App Store URL.
 // ---------------------------------------------------------------------------
 
 export type AppFamilyId = 'jet-set-latam' | 'luxe-jetter' | 'little-jetter' | 'rallii' | 'let-them-eat'
 
 // The creator's own portfolio — verified live (jordypop.vercel.app: Studio
-// Art student / multidisciplinary digital artist, lists LuxeJetter, Rallii
-// and Let Them Eat as released apps, Little Jetter as a work in progress).
+// Art student / multidisciplinary digital artist; lists the Jordypop apps).
 // Every "@jordypop" credit in the app links here.
 export const CREATOR_PORTFOLIO_URL = 'https://jordypop.vercel.app'
 
@@ -35,7 +35,7 @@ export interface AppFamilyMember {
   iOSURL?: string
   iconUrl?: string
   deepLinkScheme?: string
-  status: 'live' | 'coming-soon'
+  status: 'live'
   /** A short, tasteful one-line description of what this app does for the
    *  traveler — used in the "Our World" section (Discover) and About. Kept
    *  separate from `description` so that copy can stay a longer sentence
@@ -53,6 +53,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     description: 'Real, editorial travel guides and a trip planner for Latin America — this app.',
     icon: Compass,
     iconUrl: jetSetIcon,
+    iOSURL: 'https://apps.apple.com/us/app/jet-set-latam/id6810912801',
     webURL: 'https://jetsetlatam.com',
     status: 'live',
     oneLiner: 'Plan the trip',
@@ -74,8 +75,9 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     name: 'Little Jetter',
     description: 'A parent-facing companion for traveling with kids — prep and packing, not a kids\' app.',
     icon: Baby,
+    iOSURL: 'https://apps.apple.com/us/app/little-jetter/id6810346538',
     iconUrl: littleIcon,
-    status: 'coming-soon',
+    status: 'live',
     oneLiner: 'Bring the little travelers along',
     supportedDestinations: 'all',
   },
@@ -84,7 +86,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
     name: 'Rallii',
     description: 'Discover adventures by rail, trail, mountain bike, golf course and snow.',
     icon: Bike,
-    iOSURL: 'https://apps.apple.com/us/app/rallii-rail/id6804085679',
+    iOSURL: 'https://apps.apple.com/us/app/rallii/id6804085679',
     iconUrl: ralliiIcon,
     status: 'live',
     oneLiner: 'Take the scenic route',

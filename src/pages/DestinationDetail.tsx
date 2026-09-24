@@ -84,7 +84,7 @@ function PlaceActions({ place }: { place: Place }) {
       {place.mapUrl && (
         <button
           onClick={() => openMap(place.mapUrl)}
-          className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
+          className="flex min-h-11 items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
         >
           <Map size={12} /> Map
         </button>
@@ -107,6 +107,26 @@ function PlaceActions({ place }: { place: Place }) {
       <AddToTripControl place={place} />
     </div>
   );
+}
+
+// The hero's "what this city is good for" line, derived from the destination's
+// real Places rather than one hardcoded line shared by every city. Top four
+// labels by place count; ties keep the order listed here.
+const STRENGTH_LABELS: [string, string[]][] = [
+  ["Food", ["restaurant", "cafe"]],
+  ["Culture", ["museum", "landmark"]],
+  ["Nightlife", ["bar", "nightlife"]],
+  ["Shopping", ["shop"]],
+  ["Beaches", ["beach"]],
+  ["Experiences", ["experience", "park"]],
+  ["Stays", ["hotel"]],
+];
+function destinationStrengths(places: { category: string }[]) {
+  return STRENGTH_LABELS.map(([label, cats]) => ({ label, n: places.filter((p) => cats.includes(p.category)).length }))
+    .filter((s) => s.n > 0)
+    .sort((a, b) => b.n - a.n)
+    .slice(0, 4)
+    .map((s) => s.label);
 }
 
 export function DestinationDetail() {
@@ -161,7 +181,7 @@ export function DestinationDetail() {
             </h1>
             <p className="text-sm text-cream/80">{destination.country}</p>
             <p className="mt-2 text-xs uppercase tracking-[0.16em] text-gold-light">
-              Design · Food · Art · Nightlife
+              {destinationStrengths(places).join(" · ")}
             </p>
             <div className="mt-4 flex gap-3">
               <button

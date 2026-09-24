@@ -66,19 +66,20 @@ export function InfoPage({
             {appFamilyList.map((app) => (
               <div
                 key={app.id}
-                className="flex items-center gap-4 rounded-2xl bg-cream p-5"
+                className="family-row flex items-center gap-4 rounded-2xl bg-cream p-5"
               >
                 {app.iconUrl && <img src={app.iconUrl} alt={app.name + " app icon"} loading="lazy" className="h-14 w-14 shrink-0 rounded-xl" />}
                 <div className="min-w-0 flex-1">
                   <h2 className="font-display text-2xl">{app.name}</h2>
                   <p className="text-sm text-ink-soft/65">{app.oneLiner}</p>
-                  {app.status === "coming-soon" && <p className="mt-2 text-xs text-terracotta">Coming soon</p>}
-                  {(app.iOSURL || app.webURL) && (
+                  {app.id === "jet-set-latam" ? (
+                    <p className="mt-2 text-xs text-ink-soft/50">You're here</p>
+                  ) : (app.iOSURL || app.webURL) && (
                     <button
                       onClick={() => openExternal(app.iOSURL || app.webURL)}
-                      className="mt-2 min-h-10 text-xs text-terracotta"
+                      className="mt-1 min-h-11 text-xs text-terracotta"
                     >
-                      Explore {app.name} ↗
+                      View on the App Store ↗
                     </button>
                   )}
                 </div>

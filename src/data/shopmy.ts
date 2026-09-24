@@ -15,7 +15,7 @@ export const shopmyEdits = {
  ba: {title:'Tango and Latin Luxury', url:'https://shopmy.us/shop/collections/2722905'},
 } as const
 export function shoppingEdits(destinationId?:string, packing=false) {
- const regional: Record<string, keyof typeof shopmyEdits> = {'rio-de-janeiro':'rio','sao-paulo':'sp','mexico-city':'cdmx',cartagena:'cartagena','buenos-aires':'ba',tulum:'beach','playa-del-carmen':'resort',guadalajara:'layers'}
+ const regional: Record<string, keyof typeof shopmyEdits> = {'rio-de-janeiro':'rio','sao-paulo':'sp','mexico-city':'cdmx',cartagena:'cartagena','buenos-aires':'ba',tulum:'beach','playa-del-carmen':'resort',guadalajara:'layers',bogota:'layers'}
  const keys: (keyof typeof shopmyEdits)[] = [regional[destinationId || ''] || 'essentials', packing?'airport':'accessories']
  return [...new Set(keys)].map(key=>shopmyEdits[key])
 }

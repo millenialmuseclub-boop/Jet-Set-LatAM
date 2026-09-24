@@ -23,7 +23,7 @@ Capacitor uses dist, the existing iOS project, and AppLauncher/Browser/StatusBar
 ## Links and measurements
 Verified website Plan Your Trip returns 200 and contains both flight-search and hotel-search anchors. Existing Luxe Jetter, Rallii and Let Them Eat App Store pages return 200. Tren Maya official page returns 200. VRBO returns 403 to automated HTTP checks but successfully redirects in the browser to the live VRBO search page with affiliate parameters intact.
 
-Still needed: approved destination/property-specific hotel affiliate URLs; tours/attractions/experience links (including Xcaret, cenotes and José Cuervo Express); transport/transfer/ferry affiliate links; Little Jetter's published URL. No links were invented.
+Still needed: approved destination/property-specific hotel affiliate URLs; tours/attractions/experience links (including Xcaret, cenotes and José Cuervo Express); transport/transfer/ferry affiliate links; Little Jetter's published URL. No links were invented. _(Resolved Sept 2026: Little Jetter is live — https://apps.apple.com/us/app/little-jetter/id6810346538.)_
 
 Analytics is absent, not merely unwired: no analytics SDK, event helper or configuration exists in the repository, and the native documentation/privacy manifest explicitly describe no tracking/collected data. No tracking system was added. Destination views, planner starts/completions, trip saves, affiliate clicks and ecosystem clicks therefore remain unmeasured until a real analytics implementation/destination is supplied or separately approved.
 

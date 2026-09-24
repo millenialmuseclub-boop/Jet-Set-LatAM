@@ -22,7 +22,7 @@ export function AddToTripControl({ place }: { place: Place }) {
 
   if (added) {
     return (
-      <span className="flex items-center gap-1 text-[11px] text-terracotta">
+      <span role="status" className="added-pop flex min-h-11 items-center gap-1 text-[11px] text-terracotta">
         <Check size={12} /> Added
       </span>
     )
@@ -30,7 +30,7 @@ export function AddToTripControl({ place }: { place: Place }) {
 
   if (trips.length === 0) {
     return destination ? (
-      <Link to={`/plan?destination=${destination.slug}`} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
+      <Link to={`/plan?destination=${destination.slug}`} className="flex min-h-11 items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
         <Plus size={12} /> Start a Trip
       </Link>
     ) : null
@@ -38,7 +38,7 @@ export function AddToTripControl({ place }: { place: Place }) {
 
   if (!open) {
     return (
-      <button onClick={() => { setOpen(true); if (trips.length === 1) setTripId(trips[0].id) }} className="flex items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
+      <button onClick={() => { setOpen(true); if (trips.length === 1) setTripId(trips[0].id) }} className="flex min-h-11 items-center gap-1 text-[11px] text-ink-soft/60 hover:text-terracotta">
         <Plus size={12} /> {trips.length === 1 ? `Add to ${trips[0].title}` : 'Add to Trip'}
       </button>
     )
@@ -60,7 +60,7 @@ export function AddToTripControl({ place }: { place: Place }) {
         <div className="space-y-1">
           <p className="text-[10px] uppercase tracking-[0.08em] text-ink-soft/50">Choose trip</p>
           {trips.map((t) => (
-            <button key={t.id} onClick={() => setTripId(t.id)} className="block w-full rounded-md bg-cream px-2 py-1 text-left text-ink hover:bg-terracotta hover:text-cream">
+            <button key={t.id} onClick={() => setTripId(t.id)} className="block min-h-10 w-full rounded-md bg-cream px-2 py-2 text-left text-ink hover:bg-terracotta hover:text-cream">
               {t.title}
             </button>
           ))}
@@ -71,7 +71,7 @@ export function AddToTripControl({ place }: { place: Place }) {
           <p className="text-[10px] uppercase tracking-[0.08em] text-ink-soft/50">Choose day</p>
           <div className="flex flex-wrap gap-1">
             {itinerary.days.map((d, i) => (
-              <button key={d.day} onClick={() => confirmAdd(i)} className="rounded-full bg-cream px-2.5 py-1 text-ink hover:bg-terracotta hover:text-cream">
+              <button key={d.day} onClick={() => confirmAdd(i)} className="min-h-10 rounded-full bg-cream px-3.5 py-2 text-ink hover:bg-terracotta hover:text-cream">
                 Day {d.day}
               </button>
             ))}

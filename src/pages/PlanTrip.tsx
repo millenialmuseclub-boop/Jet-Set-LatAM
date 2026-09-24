@@ -1,4 +1,6 @@
 import { ShopMyEdit } from '@/components/ShopMyEdit'
+import { appFamily } from "@/config/appFamily";
+import { openExternal } from "@/lib/links";
 import { getTravelMemory, rememberPreferences } from '@/lib/travelMemory';
 import { getLibrary } from '@/lib/storage';
 import { WebsitePlanning } from '@/components/WebsitePlanning';
@@ -384,7 +386,10 @@ export function PlanTrip() {
               <span className="font-medium text-ink">
                 Little Jetters coming too?
               </span>{" "}
-              Leave time for meals and rest, and keep a packing list for each child.
+              Leave time for meals and rest, and keep a packing list for each child.{" "}
+              <button type="button" onClick={() => openExternal(appFamily["little-jetter"].iOSURL)} className="min-h-11 font-medium text-jungle underline underline-offset-2">
+                Pack with Little Jetter ↗
+              </button>
             </p>
           </div>
         )}

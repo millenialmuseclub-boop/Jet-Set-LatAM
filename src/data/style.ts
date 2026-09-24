@@ -11,5 +11,10 @@ export const destinationStyle: Record<string,{headline:string;body:string;occasi
  'buenos-aires':{headline:'Pack for Buenos Aires',body:'Long lunches, late dinners and polished city days.',occasions:['City Walk','Lunch','Dinner']},
  guadalajara:{headline:'Dress for Guadalajara',body:'Gallery visits, plaza walks and evenings around the table.',occasions:['City Walk','Gallery Visit','Dinner']},
  tulum:{headline:'Pack for Tulum',body:'Beach afternoons, ruins and an easy change for dinner.',occasions:['Beach Day','Excursion','Dinner']},
- 'playa-del-carmen':{headline:'Your Playa del Carmen wardrobe',body:'Caribbean days, a walk through town and dinner by the coast.',occasions:['Beach Day','City Walk','Dinner']}
+ 'playa-del-carmen':{headline:'Your Playa del Carmen wardrobe',body:'Caribbean days, a walk through town and dinner by the coast.',occasions:['Beach Day','City Walk','Dinner']},
+ // Build 13 destinations — occasions drawn from each ready-made itinerary.
+ santiago:{headline:'Dress for Santiago',body:'Plazas and markets, a hilltop view, then a day in wine country.',occasions:['City Walk','Wine Country','Dinner']},
+ medellin:{headline:'What are you wearing in Medellín?',body:'Street art by day, El Poblado after dark and a lake-town day trip.',occasions:['City Walk','Excursion','Night Out']},
+ bogota:{headline:'Layer up for Bogotá',body:'Cool mountain days: museums, a summit sunset and dinner in Chapinero.',occasions:['Museum Morning','City Walk','Dinner','Night Out']},
+ oaxaca:{headline:'Dress for Oaxaca',body:'Market lunches, a mezcal tasting and a morning among the ruins.',occasions:['City Walk','Excursion','Dinner']}
 }

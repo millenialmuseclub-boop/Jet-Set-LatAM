@@ -28,6 +28,6 @@ Prepared locally: iOS **1.0.1 (12)**, bundle **com.jetsetlatam.app**. No commit,
 ## Remaining gates
 - Physical iPhone smoke test: calendar selection, keyboard, small-screen safe areas/status bar, orientation, swipes, reduced motion, external app/Safari handoff, startup/offline behavior. No haptics implementation exists to test.
 - Mac/Xcode archive and signing validation. Native minimum remains iOS 15; browser fallback source fixes do not certify full rendering on that OS.
-- Human VRBO landing check; optional Little Jetter URL only when approved/available.
+- Human VRBO landing check; optional Little Jetter URL only when approved/available. _(Resolved Sept 2026: Little Jetter is live — https://apps.apple.com/us/app/little-jetter/id6810346538.)_
 
 READY FOR TESTFLIGHT: NO — local repository/build preparation is complete, but native validation remains outstanding. Nothing uploaded or triggered.

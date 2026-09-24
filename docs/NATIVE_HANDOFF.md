@@ -272,6 +272,8 @@ See `docs/CONTENT_INVENTORY.md` for the Tulum destination this pass added.
 - Little Jetter and Rallii remain **not built** as real products — only
   contextual, inert mentions exist, same "ecosystem foundation, not a
   feature" posture as Pass 7.
+  _(Superseded Sept 2026: all five Jordypop apps, including Little Jetter,
+  are live on the App Store and linked from `src/config/appFamily.ts`.)_
 
 ## Explicitly not done (by instruction)
 
@@ -282,3 +284,5 @@ See `docs/CONTENT_INVENTORY.md` for the Tulum destination this pass added.
   have, not skipped by choice.
 - Luxe Jetter and Little Jetter are not built — only the `TripContext` seam
   and a coming-soon teaser exist.
+  _(Superseded Sept 2026: all five Jordypop apps, including Little Jetter,
+  are live on the App Store and linked from `src/config/appFamily.ts`.)_

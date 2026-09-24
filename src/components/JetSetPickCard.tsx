@@ -93,7 +93,7 @@ export function JetSetPickCard({ place }: { place: Place }) {
           {guide ? (
             <Link
               to={`/guides/${guide.id}`}
-              className="flex items-center gap-1 text-xs font-medium uppercase tracking-[0.08em] text-ink"
+              className="flex min-h-11 items-center gap-1 text-xs font-medium uppercase tracking-[0.08em] text-ink"
             >
               View <ArrowRight size={12} />
             </Link>
