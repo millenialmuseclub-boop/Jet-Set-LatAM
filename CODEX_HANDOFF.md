@@ -1,5 +1,25 @@
 # Jet Set LatAM Handoff
 
+## Current release — updated September 24, 2026
+
+This section supersedes the older handoff below. Always verify remote main before editing.
+
+- Build 14 source: `e43481f`, 12 live destinations and 87 Journal articles.
+- OTA bootstrap: `9dc5a6b4e350c7fefe6154a7ec054a9c83a6d0ed`, iOS 1.0.1 build 15.
+- Build 15 succeeded, including TestFlight publishing:
+  https://codemagic.io/app/6aa3635e87dae0b68fd6af11/build/6ab570903f90aeed96588dcd
+- Production OTA publishing succeeded; encrypted bundle and public manifest verified HTTP 200:
+  https://github.com/millenialmuseclub-boop/Let-Them-Eat-Cake/actions/runs/36043852803
+- Read `OTA_UPDATES.md` for the existing publisher, isolated R2 namespace and native compatibility tag.
+- Future ordinary main pushes do not trigger native builds. Explicit `ios-*` tags do.
+- Build 14 cannot receive OTA. Install build 15 once. Apple processing/device installation
+  and actual device OTA activation have not been independently verified.
+- No App Store review was submitted or replaced by this OTA task.
+- Earlier stale growth-pass work is preserved on `codex/editorial-product-pass`; do not
+  merge it wholesale over this newer baseline. Untracked CLAUDE.md/takeover notes are stale.
+
+## Historical handoff (superseded)
+
 _Written 2026-09-24 at the end of a short Claude polish pass. Codex resumes Saturday._
 
 ## Current State
