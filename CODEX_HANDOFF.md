@@ -14,7 +14,10 @@ This section supersedes the older handoff below. Always verify remote main befor
 - Future ordinary main pushes do not trigger native builds. Explicit `ios-*` tags do.
 - Build 14 cannot receive OTA. Install build 15 once. Apple processing/device installation
   and actual device OTA activation have not been independently verified.
-- No App Store review was submitted or replaced by this OTA task.
+- On September 24, 2026, at the user's request, build 14 was withdrawn from review
+  and version 1.0.1 build 15 was submitted. Apple confirmed **Waiting for Review**.
+  Automatic release after approval is retained. Review submission:
+  https://appstoreconnect.apple.com/apps/6810912801/distribution/reviewsubmissions/details/93d0c6b7-9445-4a96-bda2-7a68c934864f
 - Earlier stale growth-pass work is preserved on `codex/editorial-product-pass`; do not
   merge it wholesale over this newer baseline. Untracked CLAUDE.md/takeover notes are stale.
 
