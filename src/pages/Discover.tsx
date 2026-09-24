@@ -1,3 +1,4 @@
+import { DiscoveryCollections } from '@/components/DiscoveryCollections';
 import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { TravelCompanion } from '@/components/TravelCompanion';
 import { CarnivalFireworks } from '@/components/CarnivalFireworks';
@@ -5,7 +6,8 @@ import { rioCity2025 } from '@/data/rio-city-2025';
 import { CarnivalFlourish } from '@/components/CarnivalFlourish';
 import { carnivalState } from '@/lib/carnivalSeason';
 import { useSearchParams } from 'react-router-dom';
-import { JetSetNow } from '@/components/JetSetNow';
+import { lazy, Suspense } from 'react';
+const JetSetNow = lazy(() => import('@/components/JetSetNow').then(module => ({ default: module.JetSetNow })));
 import { useTripClock } from '@/lib/useTripClock';
 import { getSavedTrips,getEffectiveItinerary } from '@/lib/storage';
 import { tripPhase } from '@/lib/tripLifecycle';
@@ -28,7 +30,7 @@ const quickActions = [
 ];
 export function Discover() {
   const now=useTripClock(); const [params]=useSearchParams();
-  if(params.get('discover')!=='1'&&getSavedTrips().some(t=>tripPhase(t,getEffectiveItinerary(t.itineraryId),now)==='active'))return <JetSetNow/>;
+  if(params.get('discover')!=='1'&&getSavedTrips().some(t=>tripPhase(t,getEffectiveItinerary(t.itineraryId),now)==='active'))return <Suspense fallback={<p className="p-6" role="status">Opening today’s plan…</p>}><JetSetNow/></Suspense>;
   const hero = sambadrome2025[3];
   const edit = ["wp-10093", "gd-rio-santa-teresa", "wp-8659"]
     .map((id) => guides.find((g) => g.id === id))
@@ -78,34 +80,7 @@ export function Discover() {
         {quickActions.map(({label,to,icon:Icon}) => <Link key={label} to={to}><Icon size={22}/><span>{label}</span></Link>)}
       </nav>
       <TravelCompanion/>
-      <section aria-labelledby="jetting-title" className="home-section">
-        <div className="section-heading">
-          <h2 id="jetting-title">Your next obsession</h2>
-          <Link to="/destinations">All destinations ↗</Link>
-        </div>
-        <div className="destination-launch-grid">
-          {destinations
-            .filter((d) => d.status !== "coming-soon").slice(0, 4)
-            .map((d) => (
-              <Link
-                key={d.id}
-                to={`/destinations/${d.slug}`}
-                className="destination-launch-tile"
-              >
-                <Photo
-                  src={d.heroPhoto}
-                  seed={d.id}
-                  alt={d.city}
-                  className="h-[110px] w-full"
-                />
-                <p className="mt-2 text-sm font-medium">{d.city}</p>
-                <p className="text-[10px] uppercase tracking-wider text-ink-soft/60">
-                  {d.country}
-                </p>
-              </Link>
-            ))}
-        </div>
-      </section>
+      <DiscoveryCollections/>
       <section aria-labelledby="edit-title" className="home-section">
         <div className="section-heading">
           <h2 id="edit-title">The Edit</h2>

@@ -6,6 +6,7 @@ import './index.css'
 import './motion.css'
 import './app-polish.css'
 import './experience.css'
+import './product-quality.css'
 import App from './App.tsx'
 
 // Belt-and-suspenders alongside capacitor.config.ts's `plugins.StatusBar`

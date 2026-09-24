@@ -3,7 +3,8 @@ import { tripPhase } from '@/lib/tripLifecycle';
 import { getEffectiveItinerary } from '@/lib/storage';
 import { useTripClock } from '@/lib/useTripClock';
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { openMap } from "@/lib/links";
+import { Link, useSearchParams } from "react-router-dom";
 import { Trash2, BookmarkX } from "lucide-react";
 import {
   getLibrary,
@@ -14,6 +15,7 @@ import {
   toggleSavedGuide,
 } from "@/lib/storage";
 import {
+  destinations,
   getPlace,
   getDestinationById,
   getDestinationForPlace,
@@ -35,7 +37,10 @@ const tabs = [
 ] as const;
 type Tab = (typeof tabs)[number];
 export function Saved() {
-  const [tab, setTab] = useState<Tab>("My Trips");
+  const [params] = useSearchParams();
+  const [tab, setTab] = useState<Tab>(() => params.get('tab') === 'places' ? 'Saved Places' : 'My Trips');
+  const [placeLimit, setPlaceLimit] = useState(18);
+  const [city, setCity] = useState(() => params.get('city') || '');
   const [lib, setLib] = useState(getLibrary);
   const [trips, setTrips] = useState(getSavedTrips);
   const [pending, setPending] = useState<string | null>(null);
@@ -43,6 +48,10 @@ export function Saved() {
   const phase=(t: typeof trips[number])=>tripPhase(t,getEffectiveItinerary(t.itineraryId),now);
   const upcoming=trips.filter(t=>['upcoming','undated'].includes(phase(t))),active=trips.filter(t=>phase(t)==='active'),past=trips.filter(t=>phase(t)==='ended');
   const places = lib.savedPlaceIds.map(getPlace).filter((p) => !!p);
+  const cities = [...new Set(places.map(p => p.city))].sort();
+  const selectedCity = destinations.some(d => d.city === city) ? city : '';
+  if (selectedCity && !cities.includes(selectedCity)) cities.unshift(selectedCity);
+  const filteredPlaces = selectedCity ? places.filter(p => p.city === selectedCity) : places;
   const dests = lib.savedDestinationIds
     .map(getDestinationById)
     .filter((d) => !!d);
@@ -77,6 +86,12 @@ export function Saved() {
           </p>
         </div>
       </div>
+      <div className="library-summary" aria-label="Your travel library">
+        <button onClick={() => setTab('My Trips')}><strong>{upcoming.length}</strong> upcoming {upcoming.length === 1 ? 'trip' : 'trips'}</button>
+        <button onClick={() => setTab('Saved Places')}><strong>{places.length}</strong> {places.length === 1 ? 'place' : 'places'}</button>
+        <button onClick={() => setTab('Saved Destinations')}><strong>{dests.length}</strong> {dests.length === 1 ? 'city' : 'cities'}</button>
+      </div>
+      {active.length > 0 && <Link to="/" className="resume-ticket"><div><p className="eyebrow text-terracotta">Travel day</p><h2>Open today’s plan →</h2><p>Your next stop, maps and saved ideas.</p></div></Link>}
       <TravelCompanion library/>
       <div
         className="-mx-5 mb-7 mt-6 flex gap-2 overflow-x-auto px-5 pb-3"
@@ -172,6 +187,7 @@ export function Saved() {
                 <h3 className="mt-2 font-display text-2xl">{d.city}</h3>
                 <p className="text-xs text-terracotta">{d.country}</p>
               </Link>
+              <Link className="inline-flex min-h-11 items-center text-xs text-terracotta" to={`/plan?destination=${d.slug}`}>Plan this escape →</Link>
               <button
                 onClick={() => {
                   toggleSavedDestination(d.id);
@@ -207,9 +223,11 @@ export function Saved() {
           ))}
         </div>
       )}
+      {tab === "Saved Places" && places.length > 0 && <label className="mb-5 block text-sm">Find your places by city<select className="mt-2 block min-h-11 w-full border border-ink/20 bg-cream p-3" value={selectedCity} onChange={e => { setCity(e.target.value); setPlaceLimit(18); }}><option value="">All cities · {places.length} {places.length === 1 ? 'place' : 'places'}</option>{cities.map(value => <option key={value} value={value}>{value} · {places.filter(p => p.city === value).length}</option>)}</select></label>}
+      {tab === "Saved Places" && selectedCity && filteredPlaces.length === 0 && <p className="mb-4 text-sm text-ink-soft">No places saved in {selectedCity} yet. Choose All cities to see your other favorites.</p>}
       {tab === "Saved Places" && (
         <div className="space-y-4">
-          {places.map((p) => {
+          {filteredPlaces.slice(0, placeLimit).map((p) => {
             const d = getDestinationForPlace(p),
               photo = getPlacePhoto(p);
             return (
@@ -231,9 +249,10 @@ export function Saved() {
                   <div className="min-w-0">
                     <Link to={`/destinations/${d?.slug}`}>
                       <h3 className="font-display text-2xl">{p.name}</h3>
-                      <p className="text-xs text-terracotta">{p.city}</p>
+                      <p className="text-xs text-terracotta">{p.city}{p.neighborhood ? ` · ${p.neighborhood}` : ""}</p>
                     </Link>
-                    <AddToTripControl place={p} />
+                    <p className="mt-2 line-clamp-2 text-xs text-ink-soft">{p.pickDetails?.goFor || p.description}</p>
+                    <div className="flex flex-wrap items-center gap-3"><AddToTripControl place={p} />{p.mapUrl && <button className="min-h-11 text-xs text-terracotta" onClick={() => openMap(p.mapUrl)}>Open map ↗</button>}</div>
                   </div>
                 </div>
                 <button
@@ -251,6 +270,7 @@ export function Saved() {
           })}
         </div>
       )}
+      {tab === 'Saved Places' && filteredPlaces.length > placeLimit && <button className="mt-4 min-h-11 border border-ink/20 px-4 text-sm" onClick={() => setPlaceLimit(limit => limit + 18)}>Show more places ({filteredPlaces.length - placeLimit} left)</button>}
       <p className="mt-8 text-center text-xs text-ink-soft/50">
         Saved on this device · no account needed
       </p>

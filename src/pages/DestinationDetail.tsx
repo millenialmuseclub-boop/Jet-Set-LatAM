@@ -1,3 +1,5 @@
+import { NeighborhoodExplorer } from '@/components/NeighborhoodExplorer';
+import { relatedDestinations } from '@/lib/discovery';
 import { CartagenaShopMyStays } from '@/components/ShopMyEdit'
 import { rememberDestination } from '@/lib/travelMemory';
 import { finalTravelPhotos } from '@/data/final-travel-photos';
@@ -92,14 +94,14 @@ function PlaceActions({ place }: { place: Place }) {
       {place.website && (
         <button
           onClick={() => openExternal(place.website)}
-          className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
+          className="flex min-h-11 items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
         >
           <Globe size={12} /> Website
         </button>
       )}
       <button
         onClick={() => setSaved(toggleSavedPlace(place.id))}
-        className="flex items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
+        className="flex min-h-11 items-center gap-1 rounded-full px-2 py-2 text-[11px] text-ink-soft/60 active:bg-ink/5 active:text-terracotta"
       >
         {saved ? <BookmarkCheck size={12} /> : <Bookmark size={12} />}{" "}
         {saved ? "Saved" : "Save"}
@@ -186,14 +188,14 @@ export function DestinationDetail() {
             <div className="mt-4 flex gap-3">
               <button
                 onClick={() => setSaved(toggleSavedDestination(destination.id))}
-                className="flex items-center gap-1.5 rounded-full border border-cream/40 px-4 py-2 text-xs font-medium uppercase tracking-[0.08em] text-cream"
+                className="flex min-h-11 items-center gap-1.5 rounded-full border border-cream/40 px-4 py-2 text-xs font-medium uppercase tracking-[0.08em] text-cream"
               >
                 {saved ? <BookmarkCheck size={14} /> : <Bookmark size={14} />}{" "}
                 {saved ? "Saved" : "Save City"}
               </button>
               <Link
                 to={`/plan?destination=${destination.slug}`}
-                className="rounded-full bg-terracotta px-4 py-2 text-xs font-medium uppercase tracking-[0.08em] text-cream"
+                className="inline-flex min-h-11 items-center rounded-full bg-terracotta px-4 py-2 text-xs font-medium uppercase tracking-[0.08em] text-cream"
               >
                 Plan a Trip
               </Link>
@@ -208,7 +210,7 @@ export function DestinationDetail() {
             key={t.key}
             aria-pressed={tab === t.key}
             onClick={() => setParams(previous => { const next = new URLSearchParams(previous); next.set("tab", t.key); return next; }, { replace: true, preventScrollReset: true })}
-            className={`shrink-0 rounded-full px-3.5 py-1.5 text-sm transition-colors ${
+            className={`min-h-11 shrink-0 rounded-full px-3.5 py-1.5 text-sm transition-colors ${
               tab === t.key
                 ? "bg-terracotta text-cream"
                 : "bg-cream text-ink-soft"
@@ -220,6 +222,16 @@ export function DestinationDetail() {
       </div>
 
       <div className="mx-auto max-w-5xl space-y-6 px-5 pt-2 md:px-8">
+        {tab === "overview" && <section className="city-at-a-glance" aria-label="Your city, at a glance">
+          <p className="eyebrow text-terracotta">Your city, at a glance</p>
+          <div className="intent-strip mt-3">
+            {destination.neighborhoods.length > 0 && <Link to={`?tab=neighborhoods`}>{destination.neighborhoods.length} neighborhoods →</Link>}
+            <Link to={`?tab=eat`}>{placesForTab('eat').length} tables →</Link>
+            <Link to={`/explore?destination=${destination.id}`}>{guides.length} stories →</Link>
+            <button onClick={() => { const panel = document.getElementById("city-practical") as HTMLDetailsElement | null; if (panel) { panel.open = true; panel.scrollIntoView({ block: "center" }); panel.querySelector("summary")?.focus(); } }}>Practical essentials ↓</button>
+          </div>
+          <p className="mt-3 text-sm text-ink-soft">{destination.tagline}</p>
+        </section>}
         {tab === "overview" && destination.id === "rio-de-janeiro" && <RioStoryLinks />}
         {destination.id === "rio-de-janeiro" && (tab === "eat" || tab === "drink") && <Link to="/guides/rio-table-2025" className="my-6 flex items-center gap-5 rounded-2xl bg-cream p-4"><img src={rioCity2025[5].src} alt={rioCity2025[5].caption} loading="lazy" className="h-40 w-28 rounded-xl object-cover"/><div><p className="eyebrow text-terracotta">From our Rio diary</p><h2 className="my-2 font-display text-3xl">A little taste of Rio ↗</h2><p className="text-xs text-ink-soft">A drink and a moment at the table. Venue unconfirmed.</p></div></Link>}
         {tab === "overview" && (
@@ -270,7 +282,7 @@ export function DestinationDetail() {
               )}
             </div>
             <div className="space-y-5">
-              <details className="destination-disclosure rounded-2xl bg-jungle-dark p-4"><summary>Know before you go</summary>
+              <details id="city-practical" className="destination-disclosure rounded-2xl bg-jungle-dark p-4"><summary>Know before you go</summary>
                 <p className="text-[11px] uppercase tracking-[0.14em] text-gold-light">
                   Know Before You Go
                 </p>
@@ -297,6 +309,7 @@ export function DestinationDetail() {
           </div>
         )}
 
+        {tab === "overview" && <section aria-label="Related destinations"><div className="section-heading"><h2>Keep exploring</h2></div><div className="photo-rail">{relatedDestinations(destination).map(d => <Link key={d.id} className="w-40 shrink-0" to={`/destinations/${d.slug}`}><Photo src={d.cardPhoto || d.heroPhoto} seed={d.id} alt={d.city} className="h-28 w-full"/><h3 className="mt-2 font-display text-xl">{d.city}</h3><p className="text-xs text-ink-soft">{d.country}</p></Link>)}</div></section>}
         {tab === "overview" && guides.length > 2 && (
           <details className="destination-disclosure"><summary>More stories from {destination.city}</summary>
             <div className="section-heading">
@@ -630,39 +643,7 @@ export function DestinationDetail() {
           />
         )}
 
-        {tab === "neighborhoods" && (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            {destination.neighborhoods.map((n) => (
-              <div
-                key={n.id}
-                className="overflow-hidden rounded-2xl bg-cream ring-1 ring-ink/5"
-              >
-                <Photo
-                  src={n.heroPhoto || destination.heroPhoto}
-                  seed={n.id}
-                  alt={
-                    n.heroPhoto
-                      ? n.name
-                      : `${destination.city} destination context`
-                  }
-                  className="h-36 w-full"
-                  rounded="rounded-none"
-                />
-                <div className="p-4">
-                  <p className="font-display text-xl text-ink">{n.name}</p>
-                  {!n.heroPhoto && (
-                    <p className="text-[9px] text-ink-soft/50">
-                      {destination.city} · destination context
-                    </p>
-                  )}
-                  <p className="mt-1 text-sm text-ink-soft/80">
-                    {n.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+        {tab === "neighborhoods" && <NeighborhoodExplorer destination={destination} places={places}/>}
 
         {["shop", "experiences", "see", "eat", "drink", "stay"].includes(
           tab,

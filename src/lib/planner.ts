@@ -13,7 +13,7 @@ import { getPlacesByDestination, destinations } from '@/data'
 // curated Jet Set LatAm destination/place database."
 // ---------------------------------------------------------------------------
 
-const INTEREST_TO_CATEGORY: Record<TripInterest, Place['category'][]> = {
+export const INTEREST_TO_CATEGORY: Record<TripInterest, Place['category'][]> = {
   food: ['restaurant', 'cafe'],
   culture: ['museum', 'landmark', 'experience'],
   beach: ['beach'],
@@ -48,7 +48,7 @@ const CATEGORY_THEME_WORD: Record<Place['category'], string> = {
 
 const PACE_SLOTS: Record<TripQuizAnswers['pace'], string[]> = {
   slow: ['10:30', '13:00', '19:30'],
-  balanced: ['9:00', '10:30', '15:00', '19:30'],
+  balanced: ['10:30', '13:00', '15:00', '19:30'],
   'pack-it-in': ['9:00', '10:30', '13:00', '15:00', '17:30', '19:30'],
 }
 const SLOT_LABELS: Record<string, string> = {
@@ -141,7 +141,7 @@ export function generateItinerary(answers: TripQuizAnswers, savedPlaceIds: strin
   // stay in one part of the city instead of bouncing across it.
   function scoreForSlot(place: Place, dayNeighborhoods: Map<string, number>, time: string): number {
     let score = scorePlace(place, answers.interests)
-    if (savedPlaceIds.includes(place.id)) score += 4
+    if (savedPlaceIds.includes(place.id)) score += 12
     if(time === '9:00' && place.category === 'cafe') score += 6
     if(['13:00','19:30'].includes(time) && place.category === 'restaurant') score += 4
     if(['10:30','15:00','17:30'].includes(time) && !['cafe','restaurant'].includes(place.category) && answers.interests.some(i=>INTEREST_TO_CATEGORY[i].includes(place.category))) score += 3
@@ -150,7 +150,7 @@ export function generateItinerary(answers: TripQuizAnswers, savedPlaceIds: strin
       const target = answers.style === 'value' ? 1 : answers.style === 'luxe' ? 4 : 2
       score += Math.max(0, 2 - Math.abs(price - target))
     }
-    if (place.neighborhood && dayNeighborhoods.has(place.neighborhood)) score += 5
+    if (place.neighborhood && dayNeighborhoods.has(place.neighborhood)) score += 5 + Math.min(3, dayNeighborhoods.get(place.neighborhood) ?? 0)
     return score
   }
 
@@ -199,6 +199,14 @@ export function generateItinerary(answers: TripQuizAnswers, savedPlaceIds: strin
     }
     const usedToday = new Set<string>()
     const dayNeighborhoods = new Map<string, number>()
+    // Anchor the day around an unused interest stop, before selecting meals.
+    // Prefer areas with another documented place; never infer walking distances.
+    const anchors = ranked.filter(p => !['cafe', 'restaurant', 'bar', 'nightlife'].includes(p.category) && !useCount.get(p.id) && p.neighborhood)
+    const areaCounts = new Map<string, number>()
+    for (const p of allPlaces) if (p.neighborhood && !useCount.get(p.id)) areaCounts.set(p.neighborhood, (areaCounts.get(p.neighborhood) ?? 0) + 1)
+    const anchorScore = (p: Place) => scorePlace(p, answers.interests) + Math.min(3, (areaCounts.get(p.neighborhood!) ?? 1) - 1)
+    const anchor = [...anchors].sort((a, b) => anchorScore(b) - anchorScore(a))[0]
+    if (anchor?.neighborhood) dayNeighborhoods.set(anchor.neighborhood, 1)
     const dayPlaces: { place: Place; isMeal: boolean }[] = []
     const activities: ItineraryActivity[] = slots.map((time, i) => {
       const label = SLOT_LABELS[time] ?? 'Activity'

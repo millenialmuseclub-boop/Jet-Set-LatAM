@@ -19,17 +19,21 @@ function hashToIndex(seed: string, mod: number) {
 export function PhotoPlaceholder({
   seed,
   label,
+  alt,
   className = '',
   rounded = 'rounded-2xl',
 }: {
   seed: string
   label?: string
+  alt?: string
   className?: string
   rounded?: string
 }) {
   const gradient = GRADIENTS[hashToIndex(seed, GRADIENTS.length)]
   return (
     <div
+      role={alt ? "img" : undefined}
+      aria-label={alt}
       className={`relative overflow-hidden ${rounded} bg-gradient-to-br ${gradient} ${className}`}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_60%)]" />

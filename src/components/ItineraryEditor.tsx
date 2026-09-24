@@ -188,7 +188,7 @@ export function ItineraryEditor({
                 src={dayPhoto ?? (itinerary.destinationId === "rio-de-janeiro" && day.activities.some(a => a.placeId && ["museum", "landmark"].includes(getPlace(a.placeId)?.category || "")) ? rio2025[dayIndex % 2 ? 7 : 9].src : itinerary.destinationId === "rio-de-janeiro" ? rioCity2025[[8,3,2][dayIndex % 3]].src : fallbackHero)}
                 seed={`day-${day.day}`}
                 alt={day.theme}
-                className="h-24 w-full"
+                className="h-36 w-full"
                 rounded="rounded-none"
               />
               <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/80 to-transparent p-4">
@@ -227,25 +227,17 @@ export function ItineraryEditor({
                         )}
                       </div>
 
-                      {place && getDestinationById(itinerary.destinationId) && <RalliiBridge compact destination={getDestinationById(itinerary.destinationId)!} itinerary={itinerary} placeId={place.id} />}
-                      {place?.photos[0] && (
-                        <Photo
-                          src={place.photos[0]}
-                          seed={place.id}
-                          alt={place.name}
-                          className="activity-photo h-11 w-11 shrink-0"
-                        />
-                      )}
-                      <div className="min-w-0 flex-1 pt-0.5">
+                      <div className="activity-body min-w-0 flex-1 pt-0.5">
+                        {place?.photos[0] && place.photos[0] !== dayPhoto && <Photo src={place.photos[0]} seed={place.id} alt={place.name} className="activity-photo float-right ml-3 mb-2 h-20 w-20"/>}
                         <p className="text-[10px] uppercase tracking-[0.1em] text-terracotta/80">
-                          {a.label}
+                          {Number(a.time.split(":")[0]) < 12 ? "Morning" : Number(a.time.split(":")[0]) < 15 ? "Midday" : Number(a.time.split(":")[0]) < 19 ? "Afternoon" : Number.isFinite(Number(a.time.split(":")[0])) ? "Evening" : "Flexible"} · {a.label}
                         </p>
                         {place ? (
                           <>
                             <p className="flex items-center gap-1 text-sm font-medium leading-tight text-ink">
                               {place.name}
                               {place.isJetSetPick && (
-                                <span title="A Jordann/blog firsthand recommendation, not just a verified place">
+                                <span title="A Jet Set editorial pick">
                                   <Sparkle
                                     size={11}
                                     className="shrink-0 fill-gold text-gold"
@@ -263,9 +255,12 @@ export function ItineraryEditor({
                             {a.notes}
                           </p>
                         )}
-                        {place && (a.notes || place.practicalNotes) && <p className="mt-2 text-xs leading-relaxed text-ink-soft">{a.notes || place.practicalNotes}</p>}
+                        {place && <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-ink-soft">{place.pickDetails?.goFor || place.description}</p>}
+                        {place && getDestinationById(itinerary.destinationId) && <RalliiBridge compact destination={getDestinationById(itinerary.destinationId)!} itinerary={itinerary} placeId={place.id} />}
+                        {place && a.notes && <p className="mt-2 text-xs leading-relaxed text-ink-soft">{a.notes}</p>}
+                        {place?.practicalNotes && <details className="activity-practical"><summary>Practical notes</summary><p className="text-xs leading-relaxed text-ink-soft">{place.practicalNotes}</p></details>}
                         <details className="mt-2 text-xs text-ink-soft">
-                          <summary className="cursor-pointer py-2">Edit time &amp; personal notes</summary>
+                          <summary className="min-h-11 cursor-pointer py-3">Edit time &amp; personal notes</summary>
                           <label className="block">Time<input aria-label={`Time for ${place?.name || a.label}`} value={a.time} maxLength={30} className="my-1 block min-h-11 w-full border border-ink/20 bg-parchment p-2" onChange={e => mutateDay(dayIndex, d => ({...d, activities:d.activities.map(item => item.id === a.id ? {...item,time:e.target.value} : item)}))}/></label>
                           <label className="block">Notes<textarea aria-label={`Notes for ${place?.name || a.label}`} value={a.notes || ''} maxLength={1000} className="my-1 block w-full border border-ink/20 bg-parchment p-2" onChange={e => mutateDay(dayIndex, d => ({...d, activities:d.activities.map(item => item.id === a.id ? {...item,notes:e.target.value} : item)}))}/></label>
                         </details>

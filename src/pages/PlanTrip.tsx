@@ -25,7 +25,7 @@ import {
   destinations,
   getPlacesByDestination,
 } from "@/data";
-import { generateItinerary } from "@/lib/planner";
+import { generateItinerary, INTEREST_TO_CATEGORY } from "@/lib/planner";
 import { addUpcomingTrip, saveUserItinerary } from "@/lib/storage";
 import { StoryCard } from "@/components/StoryCard";
 import { Photo } from "@/components/Photo";
@@ -69,7 +69,7 @@ const PLANNER_READY_DESTINATIONS = destinations.filter(
   (d) => d.status === "live" && getPlacesByDestination(d.id).length >= 6,
 );
 
-const DAY_OPTIONS = [3, 4, 5, 7];
+const DAY_OPTIONS = [2, 3, 4, 5, 7];
 const COMPANION_OPTIONS: {
   value: TripCompanions;
   label: string;
@@ -128,7 +128,7 @@ const PACE_OPTIONS: {
     value: "balanced",
     label: "Balanced",
     icon: Scale,
-    hint: "4 activities a day",
+    hint: "Morning, lunch, afternoon and dinner",
   },
   {
     value: "pack-it-in",
@@ -187,7 +187,7 @@ function OptionGrid<T extends string>({
               <span className="block leading-tight">{opt.label}</span>
               {opt.hint && (
                 <span
-                  className={`mt-0.5 block text-xs font-normal leading-snug ${selected ? "text-cream/75" : "text-ink-soft/50"}`}
+                  className={`mt-0.5 block text-xs font-normal leading-snug ${selected ? "text-cream/75" : "text-ink-soft/70"}`}
                 >
                   {opt.hint}
                 </span>
@@ -331,7 +331,7 @@ export function PlanTrip() {
               <h1 className="font-display text-3xl text-ink">
                 {itinerary.title}
               </h1>
-              <Pencil size={15} className="shrink-0 text-ink-soft/40" />
+              <Pencil size={15} className="shrink-0 text-ink-soft/70" />
             </button>
           )}
         </div>
@@ -373,10 +373,8 @@ export function PlanTrip() {
           </button>
         </div>
         {savedMsg && <Link className="block min-h-11 text-center text-terracotta" to={`/saved/trips/trip-${itinerary.id}`}>Open saved trip →</Link>}
-        <p className="text-center text-[11px] text-ink-soft/40">
-          Assembled from the Jet Set LatAm {selectedDestination.city} Place
-          database — not AI-generated. Open an activity’s Options to reorder, swap
-          or remove it.
+        <p className="text-center text-[11px] text-ink-soft/70">
+          Your {selectedDestination.city} shortlist, arranged into days. Open Options to reorder, swap or remove a stop. Check opening hours and reservations before you go.
         </p>
         <ShopMyEdit destinationId={selectedDestination.id} packing/>
         {itinerary.answers?.companions === "family" && (
@@ -421,11 +419,12 @@ export function PlanTrip() {
 
       {step === 0 && preferences && <p className="mb-4 text-xs text-ink-soft">Your last trip preferences are filled in. Change any choice below.</p>}
       {step === 0 && <WebsitePlanning/>}
+      {destinationId && step > 0 && <p className="mb-4 text-sm text-ink-soft">{selectedDestination.city}{days ? ` · ${days} days` : ""}{interests.length ? ` · ${interests.join(" + ")}` : ""}</p>}
       <div className="mb-2 flex items-baseline justify-between">
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-terracotta">
           Step {step + 1} of {STEPS.length}
         </p>
-        <p className="text-[11px] uppercase tracking-[0.1em] text-ink-soft/40">
+        <p className="text-[11px] uppercase tracking-[0.1em] text-ink-soft/70">
           {STEP_LABELS[step]}
         </p>
       </div>
@@ -461,11 +460,12 @@ export function PlanTrip() {
                   <motion.button
                     key={d.id}
                     whileTap={{ scale: 0.985 }}
+                    aria-pressed={destinationId === d.id}
                     onClick={() => setDestinationId(d.id)}
                     className={`relative overflow-hidden rounded-2xl text-left transition-shadow ${destinationId === d.id ? "ring-2 ring-terracotta shadow-md shadow-terracotta/20" : "ring-1 ring-ink/5"}`}
                   >
                     <Photo
-                      src={d.id === "rio-de-janeiro" ? rio2025[7].src : d.heroPhoto}
+                      src={d.cardPhoto || (d.id === "rio-de-janeiro" ? rio2025[7].src : d.heroPhoto)}
                       seed={d.id}
                       alt={d.city}
                       className="h-28 w-full"
@@ -494,11 +494,13 @@ export function PlanTrip() {
           {step === 1 && (
             <div className="space-y-4">
               <h2 className="font-display text-2xl text-ink">How long?</h2>
-              <div className="grid grid-cols-4 gap-2">
+              <p className="text-sm text-ink-soft">A weekend or a longer escape. You can adjust every day after planning.</p>
+              <div className="grid grid-cols-5 gap-2">
                 {DAY_OPTIONS.map((d) => (
                   <motion.button
                     whileTap={{ scale: 0.985 }}
                     key={d}
+                    aria-pressed={days === d}
                     onClick={() => setDays(d)}
                     className={`rounded-2xl py-4 text-center text-sm font-medium transition-colors ${days === d ? "bg-terracotta text-cream shadow-sm shadow-terracotta/20" : "bg-cream text-ink-soft ring-1 ring-ink/10 active:bg-ink/5"}`}
                   >
@@ -527,12 +529,15 @@ export function PlanTrip() {
                 <h2 className="font-display text-2xl text-ink">
                   What matters most?
                 </h2>
-                <p className="mt-1 text-xs text-ink-soft/50">
+                <p className="mt-1 text-xs text-ink-soft/70">
                   Select all that apply
                 </p>
               </div>
               <OptionGrid
-                options={INTEREST_OPTIONS}
+                options={INTEREST_OPTIONS.map(option => {
+                  const count = getPlacesByDestination(selectedDestination.id).filter(place => INTEREST_TO_CATEGORY[option.value].includes(place.category)).length;
+                  return { ...option, hint: count ? `${count} curated ${count === 1 ? 'stop' : 'stops'}` : 'No curated stops here yet' };
+                })}
                 value={interests}
                 multi
                 onChange={(v) =>

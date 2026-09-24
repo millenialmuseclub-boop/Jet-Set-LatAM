@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { PhotoPlaceholder } from './PhotoPlaceholder'
 
 // Renders a real photo when one exists; falls back to the on-brand gradient
@@ -13,11 +14,14 @@ export function Photo({
   alt?: string
   priority?: boolean
 }) {
-  if (!src) return <PhotoPlaceholder seed={seed} label={label} className={className} rounded={rounded} />
+  const [failedSource, setFailedSource] = useState<string>()
+  if (!src || failedSource === src) return <PhotoPlaceholder alt={alt} seed={seed} label={label} className={className} rounded={rounded} />
   return (
     <img
       src={src}
       alt={alt}
+      decoding="async"
+      onError={() => setFailedSource(src)}
       loading={priority ? 'eager' : 'lazy'}
       fetchPriority={priority ? 'high' : 'auto'}
       className={`object-cover ${rounded} ${className}`}

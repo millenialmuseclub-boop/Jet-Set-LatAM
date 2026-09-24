@@ -32,7 +32,7 @@ try {
    }
   }
  }
- for(const d of data.destinations.filter(d=>d.status==='live'))for(const days of [3,4,5,7])for(const companions of ['solo','couple','friends','family'])for(const style of ['value','comfortable','luxe'])for(const pace of ['slow','balanced','pack-it-in'])for(const interests of [['food'],['culture'],['beach','relaxation'],['shopping'],['nightlife'],['food','culture','shopping']]){
+ for(const d of data.destinations.filter(d=>d.status==='live'))for(const days of [2,3,4,5,7])for(const companions of ['solo','couple','friends','family'])for(const style of ['value','comfortable','luxe'])for(const pace of ['slow','balanced','pack-it-in'])for(const interests of [['food'],['culture'],['beach','relaxation'],['shopping'],['nightlife'],['food','culture','shopping']]){
   const it=generateItinerary({destinationId:d.id,days,companions,style,pace,interests})
   verify(it);assert.equal(it.days[0].activities.length,{slow:3,balanced:4,'pack-it-in':6}[pace]);if(companions!=='family'&&interests.includes('nightlife'))assert.equal(it.days[0].activities[it.days[0].activities.length-1].time,'21:00');plans++
   // Exercise changes on the exhausted final day as well as the arrival day.

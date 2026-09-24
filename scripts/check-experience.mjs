@@ -31,12 +31,12 @@ try{
  const visited=generateItinerary({destinationId:'mexico-city',days:3,interests:['culture'],companions:'solo',pace:'balanced',style:'comfortable'})
  const protectedIds=visited.days[0].activities.map(a=>a.id)
  for(const [kind]of dayAdjustments)assert.deepEqual(adjustDay(visited,0,kind,protectedIds).day,visited.days[0],'Confirmed visits protected')
- for(const d of data.destinations.filter(d=>d.status==='live'&&data.getPlacesByDestination(d.id).some(p=>p.category==='cafe'))){const it=generateItinerary({destinationId:d.id,days:3,interests:['food','culture'],companions:'solo',pace:'balanced',style:'comfortable'});for(const day of it.days)assert.equal(data.getPlace(day.activities[0].placeId).category,'cafe','Breakfast prioritizes cafés')}
+ for(const d of data.destinations.filter(d=>d.status==='live'&&data.getPlacesByDestination(d.id).some(p=>p.category==='cafe'))){const it=generateItinerary({destinationId:d.id,days:3,interests:['food','culture'],companions:'solo',pace:'pack-it-in',style:'comfortable'});for(const day of it.days)assert.equal(data.getPlace(day.activities[0].placeId).category,'cafe','Breakfast prioritizes cafés')}
  assert(dayAdvice({day:1,theme:'Test',activities:[{id:'a',time:'13:00',label:'Lunch'},{id:'b',time:'12:00',label:'Walk'}]}).some(s=>s.includes('backwards')))
  const protectedTrip=generateItinerary({destinationId:'mexico-city',days:3,interests:['food'],companions:'solo',pace:'balanced',style:'value'})
  protectedTrip.days[0].activities.forEach(a=>a.notes='Keep')
  assert.equal(adjustDay(protectedTrip,0,'lighter').changed,false)
- const args={destinationId:'mexico-city',days:3,interests:['food','culture'],companions:'solo',pace:'balanced',style:'comfortable'}
+ const args={destinationId:'mexico-city',days:3,interests:['food','culture'],companions:'solo',pace:'pack-it-in',style:'comfortable'}
  const base=generateItinerary(args)
  const cafe=data.getPlacesByDestination(args.destinationId).find(p=>p.category==='cafe'&&p.id!==base.days[0].activities[0].placeId)
  assert(cafe)
@@ -48,6 +48,8 @@ try{
  assert.deepEqual(memory.getTravelMemory().recent,['c','e','d','b'])
  memory.rememberPreferences(args)
  assert.equal(memory.getTravelMemory().preferences.destinationId,'mexico-city')
+ memory.rememberPreferences({...args,days:2})
+ assert.equal(memory.getTravelMemory().preferences.days,2,'Weekend preference persists')
  memory.clearTravelMemory()
  assert.equal(values.get('jsl.savedTrips.v1'),'untouched')
  assert.deepEqual(memory.getTravelMemory().recent,[])
