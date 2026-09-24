@@ -11,7 +11,7 @@ import { comingSoonDestinations } from './destinations/coming-soon'
 import { saoPauloDestination, saoPauloPlaces, saoPauloReadyMadeItinerary } from './destinations/sao-paulo'
 import { playaDelCarmenDestination, playaDelCarmenPlaces } from './destinations/playa-del-carmen'
 import { buenosAiresDestination, buenosAiresPlaces, buenosAiresReadyMadeItinerary } from './destinations/buenos-aires'
-import { oaxacaDestination, oaxacaPlaces, oaxacaReadyMadeItinerary } from './destinations/oaxaca'
+import { oaxacaDestination, oaxacaPlaces, oaxacaGuides, oaxacaReadyMadeItinerary } from './destinations/oaxaca'
 import { santiagoDestination, santiagoPlaces, santiagoGuides, santiagoReadyMadeItinerary } from './destinations/santiago'
 import { medellinDestination, medellinPlaces, medellinGuides, medellinReadyMadeItinerary } from './destinations/medellin'
 import { bogotaDestination, bogotaPlaces, bogotaGuides, bogotaReadyMadeItinerary } from './destinations/bogota'
@@ -23,7 +23,7 @@ export { mediaMoments, getMediaMomentsByDestination } from './media'
 
 export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...comingSoonDestinations]
 export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces]
-const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides]
+const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides, ...oaxacaGuides]
 export const guides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[]]
 for (const guide of guides) {
   const dest = destinations.find(d => d.id === guide.destinationId)

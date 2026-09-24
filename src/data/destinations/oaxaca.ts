@@ -1,4 +1,4 @@
-import type { Destination, Neighborhood, Place, Itinerary } from '@/types'
+import type { Destination, Neighborhood, Place, Itinerary, Guide } from '@/types'
 import { oaxacaPhotos } from '@/assets/oaxaca'
 
 // ---------------------------------------------------------------------------
@@ -307,6 +307,60 @@ export const oaxacaPlaces: Place[] = [
   },
 ]
 
+// Journal guides — written from the same verified reference sources as the
+// Places above (each guide's sourceUrl points at the specific page its facts
+// came from); no fact here goes beyond what's already sourced on the linked
+// Places. Same pattern as Bogotá/Medellín/Santiago's guide sets.
+export const oaxacaGuides: Guide[] = [
+  {
+    id: 'gd-oaxaca-centro-landmarks',
+    title: "Santo Domingo to the Zócalo: Oaxaca's Historic Core",
+    destinationId: 'oaxaca',
+    section: 'see',
+    dek: 'A UNESCO-listed grid laid out in 1529, anchored by a Baroque church and the plaza where the city still gathers.',
+    heroPhoto: oaxacaPhotos.santoDomingoChurch,
+    body:
+      'Start at Templo de Santo Domingo de Guzmán, the twin-towered Baroque church begun in 1572 that\'s the single most recognizable building in the historic center — part of the same 1987 UNESCO World Heritage listing as the rest of the colonial core. Its former convent now houses the Museo de las Culturas de Oaxaca, built from 1608, with pre-Columbian artifacts from Monte Albán including the Mixtec burial offerings excavated from Tomb 7, plus an ethnobotanical garden on the old monastery grounds. From there it\'s a short walk down to the Zócalo (Plaza de la Constitución), the city\'s central plaza since Oaxaca was founded in 1529 — ringed by the Cathedral and café-lined portales, and the natural place to end a first walk through the center.',
+    placeIds: ['pl-templo-santo-domingo', 'pl-museo-culturas-oaxaca', 'pl-zocalo-oaxaca'],
+    sourceUrl: 'https://en.wikipedia.org/wiki/Church_of_Santo_Domingo_de_Guzm%C3%A1n',
+  },
+  {
+    id: 'gd-oaxaca-eat',
+    title: "Where to Eat in Oaxaca's Centro Histórico",
+    destinationId: 'oaxaca',
+    section: 'eat',
+    dek: "Grilled meat by the corridor, mole in a 1976 courtyard, and a chocolate mill still grinding cacao the old way.",
+    heroPhoto: oaxacaPhotos.mercado20Noviembre,
+    body:
+      'For lunch, Mercado 20 de Noviembre is the classic move: a covered food market built around "El Pasillo de las Carnes Asadas," a corridor of grills where you pick raw meat and have it cooked to order with salsa and guacamole. For a sit-down dinner, Los Danzantes serves contemporary Oaxacan cuisine in a patio room of adobe walls and a koi pond just off the pedestrian street leading to Santo Domingo, while Casa Crespo puts tableside-cooked stone soup and stuffed squash blossoms on a rooftop terrace that looks straight across at the Santo Domingo facade. La Catedral has served Oaxacan classics — huitlacoche crepes and all seven moles, including negro and amarillo — from its courtyard since 1976. Before heading out, stop by Chocolate Mayordomo near the market district, a traditional mill still grinding cacao with cinnamon and almonds the old way, with samples and bars to take home.',
+    placeIds: ['pl-mercado-20-noviembre', 'pl-los-danzantes-oaxaca', 'pl-casa-crespo', 'pl-la-catedral-oaxaca', 'pl-chocolate-mayordomo'],
+    sourceUrl: 'https://www.afar.com/travel-tips/where-to-eat-in-oaxaca',
+  },
+  {
+    id: 'gd-oaxaca-mezcal-jalatlaco',
+    title: 'Mezcal, Jalatlaco and a Convent Hotel',
+    destinationId: 'oaxaca',
+    section: 'drink',
+    dek: "A 100-mezcal tasting bar, a muraled former Zapotec village, and a hotel built into a 1576 convent.",
+    body:
+      "In Situ Mezcalería is the reference stop for understanding the spirit before wading into the city's wider mezcalería scene — over 100 varieties, curated by owner and mezcal author Ulises Torrentera, open Monday–Saturday from 1–11pm. Afterward, walk about 20 minutes east to Jalatlaco, a former Zapotec village Time Out named one of the world's 20 coolest neighborhoods in 2019 — cobblestone streets, brightly painted colonial façades and murals around the 17th–18th-century Templo de San Matías Jalatlaco. For a place to stay near the center, Quinta Real Oaxaca is built into the former Convent of Santa Catalina, dating to 1576 and restored from 1972 under the National Institute of Anthropology and History's supervision — original frescoes, a Spanish-colonial courtyard, and a member of Historic Hotels Worldwide since 2012.",
+    placeIds: ['pl-in-situ-mezcaleria', 'pl-templo-san-matias-jalatlaco', 'pl-quinta-real-oaxaca'],
+    sourceUrl: 'https://www.afar.com/places/in-situ-mezcaleria-oaxaca',
+  },
+  {
+    id: 'gd-oaxaca-valles-centrales',
+    title: 'A Day in the Valles Centrales: Ruins, Weaving and Black Clay',
+    destinationId: 'oaxaca',
+    section: 'experiences',
+    dek: 'A hilltop Zapotec city, a village where four in five families still weave, and the pottery Doña Rosa invented in the 1950s.',
+    heroPhoto: oaxacaPhotos.monteAlbanRuins,
+    body:
+      'Monte Albán is the reason to leave the city for a morning — a hilltop Zapotec city founded around 500 BCE and once home to an estimated 17,200 people, about 9km from the center and part of the same 1987 UNESCO listing as the historic core. Its Main Plaza runs 300 by 150 meters, ringed by the carved "Danzantes" stone monuments. From there, Teotitlán del Valle is a weaving village 31km east of the city, roughly 40 minutes by colectivo, where about 80% of families weave — workshops demonstrate natural dyes made from cochineal, indigo and pomegranate and sell rugs directly (cash only; there\'s no ATM in town). San Bartolo Coyotepec, 15km south, makes Oaxaca\'s signature barro negro (black clay) pottery — the shiny-black finish invented in the 1950s by ceramicist Doña Rosa, whose family workshop still welcomes visitors.',
+    placeIds: ['pl-monte-alban', 'pl-teotitlan-del-valle', 'pl-san-bartolo-coyotepec'],
+    sourceUrl: 'https://en.wikipedia.org/wiki/Monte_Alb%C3%A1n',
+  },
+]
+
 // A ready-made itinerary, assembled deterministically from the real Places
 // above (not AI-generated) — same pattern as Cartagena/Mexico City/Rio.
 export const oaxacaReadyMadeItinerary: Itinerary = {
@@ -359,7 +413,7 @@ export const oaxacaDestination: Destination = {
   },
   neighborhoods: oaxacaNeighborhoods,
   placeIds: oaxacaPlaces.map((p) => p.id),
-  guideIds: [],
+  guideIds: oaxacaGuides.map((g) => g.id),
   itineraryIds: [oaxacaReadyMadeItinerary.id],
   photoCredits: [
     { photo: oaxacaPhotos.santoDomingoChurch, credit: "Photo by nan palmero / Wikimedia Commons, CC BY 2.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg' },
