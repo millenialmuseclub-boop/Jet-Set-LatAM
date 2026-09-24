@@ -11,15 +11,19 @@ import { comingSoonDestinations } from './destinations/coming-soon'
 import { saoPauloDestination, saoPauloPlaces, saoPauloReadyMadeItinerary } from './destinations/sao-paulo'
 import { playaDelCarmenDestination, playaDelCarmenPlaces } from './destinations/playa-del-carmen'
 import { buenosAiresDestination, buenosAiresPlaces, buenosAiresReadyMadeItinerary } from './destinations/buenos-aires'
+import { oaxacaDestination, oaxacaPlaces, oaxacaReadyMadeItinerary } from './destinations/oaxaca'
+import { santiagoDestination, santiagoPlaces, santiagoGuides, santiagoReadyMadeItinerary } from './destinations/santiago'
+import { medellinDestination, medellinPlaces, medellinGuides, medellinReadyMadeItinerary } from './destinations/medellin'
+import { bogotaDestination, bogotaPlaces, bogotaGuides, bogotaReadyMadeItinerary } from './destinations/bogota'
 import type { Destination, Place, Guide, Itinerary } from '@/types'
 import { archiveGuides, archivePhotos } from './archive'
 export { archivePhotos, archiveStats } from './archive'
 
 export { mediaMoments, getMediaMomentsByDestination } from './media'
 
-export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, ...comingSoonDestinations]
-export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces]
-const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides]
+export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...comingSoonDestinations]
+export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces]
+const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides]
 export const guides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[]]
 for (const guide of guides) {
   const dest = destinations.find(d => d.id === guide.destinationId)
@@ -41,7 +45,7 @@ for (const place of places.filter(p => p.city === 'Cartagena' && !p.photos.lengt
 }
 const cartagenaHero = archivePhotos.find(p => p.caption.includes('Torre del Reloj'))
 if (cartagenaHero) destinations.find(d => d.id === 'cartagena')!.heroPhoto = cartagenaHero.src
-export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary, ...shortItineraries]
+export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary, oaxacaReadyMadeItinerary, santiagoReadyMadeItinerary, medellinReadyMadeItinerary, bogotaReadyMadeItinerary, ...shortItineraries]
 for (const itinerary of shortItineraries) {
  const destination = destinations.find(d => d.id === itinerary.destinationId)
  if (destination && !destination.itineraryIds.includes(itinerary.id)) destination.itineraryIds.push(itinerary.id)

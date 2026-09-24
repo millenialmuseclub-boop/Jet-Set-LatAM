@@ -18,6 +18,26 @@ import clocktowerSunset from './cartagena-clocktower-sunset.jpg'
 import tacoStandSunset from './cartagena-taco-stand-sunset.jpg'
 import weddingSetupFort from './cartagena-wedding-setup-fort.jpg'
 
+// Third batch — Jordann's own firsthand travel photography from her day
+// trip to Isla Barú, sent to us directly (not the WordPress media library,
+// not stock). Resized/re-compressed for the app bundle only; framing and
+// content are untouched. Two contextual/portrait shots from this same
+// upload were held back at Jordann's request (personal close-up portraits,
+// not destination photography) — only the scenery and food shots below
+// were ingested. The tray photo (a baked seafood-and-tomato dish with
+// garlic bread, on a resort tray table with beach towels underneath) reads
+// as a Blue Apple Beach Resort cabana meal, not El Sombrerón Ostrería
+// (a plastic-chair street stand serving shrimp cocktail) — wired to the
+// resort accordingly rather than assumed from the itinerary write-up.
+//
+// Note: an earlier cloud-sandbox pass also produced a "Getsemaní mural"
+// batch (getsemani-mural-flags.jpg / getsemani-mural-portrait.jpg), but
+// those files were never part of this repo's real history (this branch
+// was reconciled from a stale sandbox snapshot) — left out here rather
+// than importing files that don't exist.
+import islaBaruCabanaSeaGrapeView from './isla-baru-cabana-sea-grape-view.jpg'
+import islaBaruResortTrayMeal from './isla-baru-resort-tray-meal.jpg'
+
 export const cartagenaPhotos = {
   cartagenaSkyline,
   walledCityStreet,
@@ -27,4 +47,6 @@ export const cartagenaPhotos = {
   clocktowerSunset,
   tacoStandSunset,
   weddingSetupFort,
+  islaBaruCabanaSeaGrapeView,
+  islaBaruResortTrayMeal,
 }

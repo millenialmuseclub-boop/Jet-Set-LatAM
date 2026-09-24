@@ -109,6 +109,17 @@ export interface Destination {
   city: string
   country: string
   heroPhoto: string
+  /** Optional alternate photo for small "card" contexts (the Destinations
+   *  atlas grid, the Plan a Trip destination picker, Discover's "Currently
+   *  Jetting" reel) so a destination with enough real photography doesn't
+   *  show the exact same hero image twice in the same scroll. Falls back
+   *  to heroPhoto when unset — most destinations don't need this yet. */
+  cardPhoto?: string
+  /** Required public attribution for any non-Jordann photography (e.g.
+   *  Wikimedia Commons CC-licensed images used to give a new destination
+   *  visual variety beyond Jordann's own archive). Empty/undefined for
+   *  destinations that use only her own firsthand photography. */
+  photoCredits?: { photo: string; credit: string; sourceUrl: string }[]
   tagline: string
   isFlagship?: boolean
   content: DestinationSection

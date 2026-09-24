@@ -54,6 +54,7 @@ export const cartagenaNeighborhoods: Neighborhood[] = [
     city: 'Cartagena',
     description:
       'A short speedboat ride from the city — turquoise water, beach cabanas and a slower pace, reached in about 20 minutes versus the longer, earlier-departing boats out to the Rosario Islands.',
+    heroPhoto: cartagenaPhotos.islaBaruCabanaSeaGrapeView,
   },
 ]
 
@@ -355,7 +356,7 @@ export const cartagenaPlaces: Place[] = [
     category: 'hotel',
     description:
       'A highly rated beach resort on Isla Barú, a relaxed 20-minute speedboat ride from the city — rustic-chic garden cabanas, turquoise water, and an easy day of doing nothing.',
-    photos: [],
+    photos: [cartagenaPhotos.islaBaruCabanaSeaGrapeView, cartagenaPhotos.islaBaruResortTrayMeal],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'A genuine day of rest — the shorter, later-departing boat ride here beats the longer, earlier Rosario Islands trip if you just want to relax.',
@@ -405,6 +406,7 @@ export const cartagenaGuides: Guide[] = [
     destinationId: 'cartagena',
     section: 'beaches',
     dek: 'A 20-minute speedboat, a beach cabana, and a plate of shrimp cocktail that redefines the dish.',
+    heroPhoto: cartagenaPhotos.islaBaruCabanaSeaGrapeView,
     body:
       'When the Old Town routine gets repetitive, Isla Barú is the reset — a relaxed 20-minute speedboat ride, versus the longer, earlier-departing boats out to the Rosario Islands. The Blue Apple Beach Resort makes a good base: turquoise water, a shaded garden cabana, and a day built entirely around doing nothing. Back in the city that evening, El Sombrerón Ostrería — a humble, plastic-chair stand near the murallas — serves an excellent Colombian-style shrimp cocktail, seasoned and bright, nothing like the bland version most travelers expect.',
     placeIds: ['pl-blue-apple-resort', 'pl-el-sombreron-osteria'],
