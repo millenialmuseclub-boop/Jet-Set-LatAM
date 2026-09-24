@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "oxlint",
+    "lint": "oxlint src scripts capacitor.config.ts vite.config.ts",
+    "check:ota": "node scripts/check-ota.mjs",
     "preview": "vite preview",
     "build:preview": "vite build --config vite.config.preview.ts",
     "content:refresh": "node scripts/ingest-archive.mjs",
@@ -20,6 +21,7 @@
     "@capacitor/core": "^8.5.1",
     "@capacitor/ios": "^8.5.1",
     "@capacitor/status-bar": "^8.0.3",
+    "@capgo/capacitor-updater": "8.51.4",
     "@fontsource/cormorant-garamond": "^5.3.0",
     "@fontsource/jost": "^5.3.0",
     "framer-motion": "^13.2.0",

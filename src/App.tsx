@@ -1,4 +1,5 @@
 import { MotionCanvas } from '@/components/MotionCanvas';
+import { markAppReady, checkForOtaUpdate } from '@/lib/otaUpdater';
 const AskJetSet = lazy(() => import('@/pages/AskJetSet').then(module => ({default:module.AskJetSet})));
 const TripStory = lazy(() => import('@/pages/TripStory').then(module => ({default:module.TripStory})));
 const TrailDetail = lazy(() => import('@/pages/TrailDetail').then(module => ({default:module.TrailDetail})));
@@ -59,12 +60,22 @@ export default function App() {
             <Route path="/saved/trips/:tripId" element={<TripDetailRoute />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          <ConfirmBoot />
           </Suspense>
         </MotionCanvas>
         <BottomNav />
       </HashRouter>
     </MotionConfig>
   );
+}
+let confirmedBoot = false;
+function ConfirmBoot() {
+  useEffect(() => {
+    if (confirmedBoot) return;
+    confirmedBoot = true;
+    void markAppReady().then(() => checkForOtaUpdate());
+  }, []);
+  return null;
 }
 function ScrollReset() {
   const { pathname } = useLocation();
