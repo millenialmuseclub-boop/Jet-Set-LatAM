@@ -1,4 +1,5 @@
 import type { Destination, Neighborhood, Place, Guide, Itinerary } from '@/types'
+import { bogotaPhotos } from '@/assets/bogota'
 
 // ---------------------------------------------------------------------------
 // Bogotá — fourth Colombia destination
@@ -16,14 +17,9 @@ import type { Destination, Neighborhood, Place, Guide, Itinerary } from '@/types
 // Quevedo "chicha" price, or a graffiti-tour donation amount that one
 // source garbled, were both omitted).
 //
-// PHOTOGRAPHY: none could be sourced this pass — this sandbox's network
-// egress policy blocks every image host attempted (Wikimedia Commons
-// included). See src/assets/bogota/index.ts for the full explanation and a
-// TODO list of specific Commons files to verify and download once network
-// access allows. Every Place/Neighborhood/Destination entry below uses the
-// same honest empty-photo pattern already used for Buenos Aires and Oaxaca
-// (heroPhoto: '', photos: []), which the shared <Photo> component renders
-// as a seeded placeholder instead of a broken or mismatched image.
+// PHOTOGRAPHY: Wikimedia Commons, CC-licensed — sourced via the real browser
+// (outside this coding sandbox's blocked egress). See src/assets/bogota/
+// index.ts and Destination.photoCredits below for full attribution.
 // ---------------------------------------------------------------------------
 
 export const bogotaNeighborhoods: Neighborhood[] = [
@@ -33,6 +29,7 @@ export const bogotaNeighborhoods: Neighborhood[] = [
     city: 'Bogotá',
     description:
       'The colonial historic core, all Spanish Colonial and Baroque façades around Plaza de Bolívar — Bogotá\'s densest cluster of museums (Botero, Gold Museum), government buildings and the bohemian, street-art-covered Chorro de Quevedo, where the city was founded in 1538.',
+    heroPhoto: bogotaPhotos.laCandelariaStreet,
   },
   {
     id: 'nb-monserrate',
@@ -40,6 +37,7 @@ export const bogotaNeighborhoods: Neighborhood[] = [
     city: 'Bogotá',
     description:
       'The 3,152-meter mountain sanctuary towering over downtown, reached by funicular, cable car or a steep pilgrimage trail — sacred to the Muisca long before Spanish colonization, and Bogotá\'s classic sweeping-city-view stop.',
+    heroPhoto: bogotaPhotos.monserratePanorama,
   },
   {
     id: 'nb-chapinero',
@@ -54,6 +52,7 @@ export const bogotaNeighborhoods: Neighborhood[] = [
     city: 'Bogotá',
     description:
       'A former colonial town absorbed into northern Bogotá, now known for brunch and its long-running weekend flea market — a bohemian, artisan-and-antiques counterpoint to the Candelaria\'s museums.',
+    heroPhoto: bogotaPhotos.usaquenFleaMarket,
   },
 ]
 
@@ -68,7 +67,7 @@ export const bogotaPlaces: Place[] = [
     category: 'landmark',
     description:
       'Bogotá\'s central square, ringed by the Capitolio Nacional, the Primatial Cathedral and the Palace of Justice — the civic heart of the city and the natural starting point for exploring La Candelaria.',
-    photos: [],
+    photos: [bogotaPhotos.plazaDeBolivar],
     isJetSetPick: false,
     priceLevel: '$',
     tags: ['plaza', 'history', 'free', 'Colombia'],
@@ -107,7 +106,7 @@ export const bogotaPlaces: Place[] = [
     address: 'Carrera 6 # 15-88, La Candelaria, Bogotá',
     description:
       'The largest collection of pre-Columbian gold artifacts in the world — 55,000 pieces, 6,000 on display, including the Muisca golden raft that inspired the El Dorado legend.',
-    photos: [],
+    photos: [bogotaPhotos.museoDelOro],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The Muisca golden raft and the darkened, ceremonial final room — the single best museum in the city.',
@@ -168,7 +167,7 @@ export const bogotaPlaces: Place[] = [
     category: 'experience',
     description:
       'A pay-what-you-feel walking tour of La Candelaria\'s street art, founded in 2011 and guided by working street artists themselves — painters, gallery owners and event organizers who know the featured artists personally.',
-    photos: [],
+    photos: [bogotaPhotos.streetGraffiti],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'A guide who is actually part of the scene, not a script — genuine context on Bogotá\'s murals rather than a highlight-reel walk-by.',
@@ -192,7 +191,7 @@ export const bogotaPlaces: Place[] = [
     category: 'landmark',
     description:
       'A 17th-century church at 3,152 meters, housing the shrine of "El Señor Caído," reached by funicular, cable car, or a steep 2.4 km pilgrimage trail — sweeping views over all of downtown Bogotá, best at sunset.',
-    photos: [],
+    photos: [bogotaPhotos.monserratePanorama],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The cable car up and sunset views over the whole city — restaurants and a chapel at the summit make it an easy half-day.',
@@ -281,7 +280,7 @@ export const bogotaPlaces: Place[] = [
     address: 'Calle 119 con Carrera 6a, Usaquén, Bogotá',
     description:
       'A weekend flea market founded in 1990 — handicrafts, antique furniture, vintage clothing and handmade jewelry from vendors across Colombia, plus live music and a food scene, in Usaquén\'s bohemian, artist-filled streets.',
-    photos: [],
+    photos: [bogotaPhotos.usaquenFleaMarket],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'A genuinely local weekend ritual — browse the stalls, then brunch in Usaquén afterward.',
@@ -303,6 +302,7 @@ export const bogotaGuides: Guide[] = [
     destinationId: 'bogota',
     section: 'see',
     dek: 'Bogotá\'s founding plaza, its two best museums, and a graffiti tour led by the artists themselves.',
+    heroPhoto: bogotaPhotos.laCandelariaStreet,
     body:
       'Start at Plaza de Bolívar, ringed by the Capitolio Nacional and the Primatial Cathedral, then walk a few minutes to the Museo Botero — free entry to 123 Boteros plus his own donated Picassos, Monets and Dalís. Just across the way, the Museo del Oro holds the largest gold collection on earth, 6,000 pieces on display including the Muisca golden raft that inspired the El Dorado legend; grab a coffee at Café San Alberto, tucked inside the museum itself. In the afternoon, head up to Chorro de Quevedo, the exact plaza where Bogotá was founded in 1538 and now a bohemian corner of street art and chicha bars — the natural meeting point for the pay-what-you-feel Bogotá Graffiti Tour, led by working street artists who know the featured painters personally.',
     placeIds: [
@@ -317,6 +317,7 @@ export const bogotaGuides: Guide[] = [
     destinationId: 'bogota',
     section: 'experiences',
     dek: 'A 3,152-meter sanctuary, a funicular or cable car ride, and the city\'s best sunset view.',
+    heroPhoto: bogotaPhotos.monserratePanorama,
     body:
       'Monserrate has drawn visitors to its summit long before the Spanish arrived — sacred ground for the Muisca, now home to a 17th-century church and the shrine of "El Señor Caído." Take the funicular or cable car up (the hiking trail is a legitimate option too, but steep, at roughly 25% average grade over 2.4 km) and time the trip for late afternoon: the view stretches over all of downtown Bogotá, and it\'s the city\'s classic sunset spot. Restaurants and cafeterias at the top make it easy to linger.',
     placeIds: ['pl-monserrate'],
@@ -339,6 +340,7 @@ export const bogotaGuides: Guide[] = [
     destinationId: 'bogota',
     section: 'shop',
     dek: 'Antiques, handmade jewelry and a bohemian street scene in Bogotá\'s old colonial north.',
+    heroPhoto: bogotaPhotos.usaquenFleaMarket,
     body:
       'Usaquén was its own colonial town before Bogotá\'s sprawl absorbed it, and it still feels like a village within the city — narrow streets, a central plaza, and a long-running weekend flea market founded in 1990. Vendors from across Colombia sell handicrafts, antique furniture, vintage clothing and handmade jewelry, with live music and food stalls threaded through the stalls. It runs Saturdays, Sundays and holidays, 9:00am–5:30pm, free to enter — budget an hour or two, and pair it with brunch somewhere in the surrounding streets afterward.',
     placeIds: ['pl-usaquen-flea-market'],
@@ -393,7 +395,8 @@ export const bogotaDestination: Destination = {
   slug: 'bogota',
   city: 'Bogotá',
   country: 'Colombia',
-  heroPhoto: '',
+  heroPhoto: bogotaPhotos.monserratePanorama,
+  cardPhoto: bogotaPhotos.laCandelariaStreet,
   tagline: 'A gold museum without equal, a mountaintop sanctuary, and Colombia\'s most ambitious tasting menus.',
   status: 'live',
   content: {
@@ -407,5 +410,13 @@ export const bogotaDestination: Destination = {
   placeIds: bogotaPlaces.map((p) => p.id),
   guideIds: bogotaGuides.map((g) => g.id),
   itineraryIds: [bogotaReadyMadeItinerary.id],
-  photoCredits: [],
+  photoCredits: [
+    { photo: bogotaPhotos.monserratePanorama, credit: "Photo by Yiyi93 / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Foto_panor%C3%A1mica_de_Monserrate.jpg' },
+    { photo: bogotaPhotos.laCandelariaStreet, credit: "Photo by Steffen Schmitz / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Bogot%C3%A1,_La_Candelaria,_2023-06_CN-01.jpg' },
+    { photo: bogotaPhotos.museoDelOro, credit: "Photo by Reg Natarajan / Wikimedia Commons, CC BY 2.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Museo_Del_Oro,_Bogota_(24799274060).jpg' },
+    { photo: bogotaPhotos.plazaDeBolivar, credit: "Photo by Daforerog / Wikimedia Commons, CC BY-SA 3.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Plaza_de_Bol%C3%ADvar_-_Bogot%C3%A1.JPG' },
+    { photo: bogotaPhotos.usaquenFleaMarket, credit: "Photo by Edgar Zuniga Jr. / Wikimedia Commons, CC BY 2.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mercado_de_Pulgas,_Usaqu%C3%A9n,_Bogot%C3%A1,_Colombia.jpg' },
+    { photo: bogotaPhotos.streetGraffiti, credit: "Photo by Sierraluisfer / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Grafitti_Bogota_StkinFish_2025.jpg' },
+    { photo: bogotaPhotos.ajiaco, credit: "Photo by Armando Ávila Carreto / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ajiaco_bogotano.jpg' },
+  ],
 }

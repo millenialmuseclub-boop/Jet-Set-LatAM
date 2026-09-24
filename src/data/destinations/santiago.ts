@@ -1,4 +1,5 @@
 import type { Destination, Neighborhood, Place, Guide, Itinerary } from '@/types'
+import { santiagoPhotos } from '@/assets/santiago'
 
 // ---------------------------------------------------------------------------
 // Santiago, Chile — new destination (Santiago build pass)
@@ -33,6 +34,7 @@ export const santiagoNeighborhoods: Neighborhood[] = [
     city: 'Santiago',
     description:
       'The colonial core, laid out in a checkerboard grid by Pedro de Gamboa in 1541 — the Plaza de Armas, the Metropolitan Cathedral and the cast-iron Mercado Central all sit within a few minutes\' walk of each other.',
+    heroPhoto: santiagoPhotos.cerroSanCristobalPanorama,
   },
   {
     id: 'nb-barrio-lastarria',
@@ -40,6 +42,7 @@ export const santiagoNeighborhoods: Neighborhood[] = [
     city: 'Santiago',
     description:
       'A restored 19th-century quarter around Cerro Santa Lucía and Parque Forestal — cinemas, theaters, museums, independent design shops and Santiago\'s densest cluster of restaurants and wine bars, officially protected as a Zona Típica since 1997.',
+    heroPhoto: santiagoPhotos.barrioLastarria,
   },
   {
     id: 'nb-barrio-bellavista',
@@ -54,6 +57,7 @@ export const santiagoNeighborhoods: Neighborhood[] = [
     city: 'Santiago',
     description:
       'An affluent, tree-lined commune northeast of Centro, blending grand old mansions-turned-offices with a high-rise financial district — one of the highest human-development-index areas in Latin America.',
+    heroPhoto: santiagoPhotos.providenciaArchitecture,
   },
   {
     id: 'nb-las-condes',
@@ -68,6 +72,7 @@ export const santiagoNeighborhoods: Neighborhood[] = [
     city: 'Santiago',
     description:
       'A cool-climate wine valley about 80 km from Santiago via Route 68, roughly an hour\'s drive toward the coast — known for its whites, and a standard half- or full-day trip out of the city.',
+    heroPhoto: santiagoPhotos.casablancaValleyVineyard,
   },
 ]
 
@@ -115,7 +120,7 @@ export const santiagoPlaces: Place[] = [
     category: 'landmark',
     description:
       'A cast-iron market hall opened in 1872, its structure fabricated in Glasgow and shipped to Chile — a central pyramidal, domed roof over Santiago\'s classic seafood-market experience, ringed by fish stalls and sit-down restaurants.',
-    photos: [],
+    photos: [santiagoPhotos.mercadoCentral],
     isJetSetPick: false,
     priceLevel: '$$',
     tags: ['market', 'seafood', 'cast-iron architecture', 'historic'],
@@ -156,7 +161,7 @@ export const santiagoPlaces: Place[] = [
     category: 'landmark',
     description:
       'Santiago\'s third-highest hill at 880 m, reached by the historic Funicular de Santiago, a cable car, or a 45-minute hike — its summit sanctuary holds a 22-meter statue of the Virgin Mary, blessed by Pope John Paul II in 1987, with sweeping views over the city and the Andes.',
-    photos: [],
+    photos: [santiagoPhotos.cerroSanCristobalPanorama],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The funicular ride up and the view from the Virgin statue — the single best panorama of Santiago against the Andes.',
@@ -297,7 +302,7 @@ export const santiagoPlaces: Place[] = [
     category: 'experience',
     description:
       'An easy day trip via Route 68, about 80 km and under an hour from Santiago — a cool-climate valley known for its whites, with cellar/barrel tours, tastings and a vineyard lunch built to pair with the wine.',
-    photos: [],
+    photos: [santiagoPhotos.casablancaValleyVineyard],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'Chile\'s best cool-climate whites, a short drive from the city — book the vineyard lunch ahead, especially on weekends.',
@@ -319,6 +324,7 @@ export const santiagoGuides: Guide[] = [
     destinationId: 'santiago',
     section: 'see',
     dek: 'The 1541 founding square, its neoclassical cathedral, and a cast-iron seafood market shipped from Glasgow in 1872.',
+    heroPhoto: santiagoPhotos.palacioDeLaMoneda,
     body:
       'Start at the Plaza de Armas, laid out the year Santiago was founded and still ringed by the buildings that matter most: the Metropolitan Cathedral, shaped over two decades by Italian architect Joaquín Toesca, and the old Royal Audiencia palace, now the National History Museum. From there it\'s a short walk to the Mercado Central, whose cast-iron roof was fabricated in Glasgow and shipped to Chile for the market\'s 1872 opening. Have lunch inside at Donde Augusto, a long-running seafood spot known for locos, erizos and centolla — the classic way to eat in the market hall.',
     placeIds: ['pl-plaza-de-armas', 'pl-santiago-cathedral', 'pl-mercado-central-santiago', 'pl-donde-augusto'],
@@ -341,6 +347,7 @@ export const santiagoGuides: Guide[] = [
     destinationId: 'santiago',
     section: 'eat',
     dek: 'Santiago\'s bohemian, restaurant-dense quarter — a contemporary arts center, a 250-bottle Chilean wine list, and the city\'s design-forward luxury hotel.',
+    heroPhoto: santiagoPhotos.barrioLastarria,
     body:
       'Barrio Lastarria was restored through the 1990s while keeping its "bohemian and intellectual flavor," and was designated an official Zona Típica in 1997. Spend a late morning at the Centro Cultural Gabriela Mistral (GAM), the contemporary arts center anchoring the neighborhood between the Alameda and Lastarria\'s streets. For dinner, Bocanáriz pours more than 250 Chilean wines alongside a menu built to match them — reserve ahead. The Singular Santiago, a neoclassic luxury hotel with a rooftop bar facing Cerro San Cristóbal, makes a strong base for the whole trip.',
     placeIds: ['pl-gam-centro-cultural', 'pl-bocanariz', 'pl-the-singular-santiago'],
@@ -352,6 +359,7 @@ export const santiagoGuides: Guide[] = [
     destinationId: 'santiago',
     section: 'experiences',
     dek: 'Under an hour from Santiago by car — cool-climate whites, a cellar tour and a vineyard lunch built to pair with the wine.',
+    heroPhoto: santiagoPhotos.casablancaValleyVineyard,
     body:
       'The Casablanca Valley sits about 80 km from Santiago via Route 68, less than an hour toward the coast, and is the standard wine day trip out of the city — closer than the Colchagua or Maipo valleys for a single half-to-full-day outing. A typical day includes a guided cellar and barrel-room tour, a tasting of the valley\'s signature cool-climate whites, and lunch at the vineyard\'s restaurant, with dishes designed around the wine list. Book the lunch and tour ahead, especially on weekends — and note that Chilean law prohibits driving after drinking, so a driver or organized tour is worth arranging.',
     placeIds: ['pl-casablanca-valley-wine-day'],
@@ -405,7 +413,8 @@ export const santiagoDestination: Destination = {
   slug: 'santiago',
   city: 'Santiago',
   country: 'Chile',
-  heroPhoto: '',
+  heroPhoto: santiagoPhotos.palacioDeLaMoneda,
+  cardPhoto: santiagoPhotos.cerroSanCristobalPanorama,
   tagline: 'A colonial core, a hilltop view of the Andes, and an hour to Chile\'s best cool-climate wines.',
   status: 'live',
   content: {
@@ -419,5 +428,13 @@ export const santiagoDestination: Destination = {
   placeIds: santiagoPlaces.map((p) => p.id),
   guideIds: santiagoGuides.map((g) => g.id),
   itineraryIds: [santiagoReadyMadeItinerary.id],
-  photoCredits: [],
+  photoCredits: [
+    { photo: santiagoPhotos.cerroSanCristobalPanorama, credit: "Photo by Omnespsx (D•ES) / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Santiago_de_Chile,_Desde_Cerro_San_Crist%C3%B3bal_(cropped_panorama).jpg' },
+    { photo: santiagoPhotos.barrioLastarria, credit: "Photo by Cristian Coloma / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Barrio_Lastarria_Santiago.jpg' },
+    { photo: santiagoPhotos.mercadoCentral, credit: "Photo by Diego Delso / Wikimedia Commons, CC BY-SA 3.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mercado_Central,_Santiago_de_Chile,_Chile1.jpg' },
+    { photo: santiagoPhotos.providenciaArchitecture, credit: "Photo by Carlos Figueroa Rojas / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Edificio_Nueva_Santa_Mar%C3%ADa,_Providencia,_Santiago_20230323.jpg' },
+    { photo: santiagoPhotos.casablancaValleyVineyard, credit: "Photo by Winniepix / Wikimedia Commons, CC BY 2.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Across_the_vines_of_pinot_gris_at_Bodegas_RE,_Casablanca_Valley,_Chile_(25042417768).jpg' },
+    { photo: santiagoPhotos.palacioDeLaMoneda, credit: "Photo by Chofaska / Wikimedia Commons, CC BY-SA 3.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Palacio_de_la_Moneda._Santiago,_Chile_03.jpg' },
+    { photo: santiagoPhotos.empanadas, credit: "Photo by E4024 / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Empanadas_de_queso.jpg' },
+  ],
 }

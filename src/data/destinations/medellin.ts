@@ -1,4 +1,5 @@
 import type { Destination, Neighborhood, Place, Guide, Itinerary } from '@/types'
+import { medellinPhotos } from '@/assets/medellin'
 
 // ---------------------------------------------------------------------------
 // Medellín, Colombia
@@ -28,6 +29,7 @@ export const medellinNeighborhoods: Neighborhood[] = [
     city: 'Medellín',
     description:
       'Medellín\'s upscale, hilly tourism hub — Parque Lleras at its center, ringed by boutique hotels, coffee shops and the city\'s most talked-about restaurants.',
+    heroPhoto: medellinPhotos.elPobladoNight,
   },
   {
     id: 'nb-laureles',
@@ -42,6 +44,7 @@ export const medellinNeighborhoods: Neighborhood[] = [
     city: 'Medellín',
     description:
       'Once one of Medellín\'s most dangerous hillside barrios, now an open-air gallery of murals reached by a set of public outdoor escalators — the city\'s clearest symbol of its transformation.',
+    heroPhoto: medellinPhotos.comuna13Graffiti,
   },
   {
     id: 'nb-la-candelaria',
@@ -70,6 +73,7 @@ export const medellinNeighborhoods: Neighborhood[] = [
     city: 'Medellín',
     description:
       'A separate lakeside town about two hours east of Medellín, famous for its brightly painted zócalo façades and the 200-meter granite monolith, El Peñón de Guatapé, that rises beside it — the region\'s classic day trip.',
+    heroPhoto: medellinPhotos.guatapeElPenolView,
   },
 ]
 
@@ -84,7 +88,7 @@ export const medellinPlaces: Place[] = [
     category: 'landmark',
     description:
       'A downtown plaza filled with 23 of Fernando Botero\'s voluptuous bronze sculptures, donated by the artist himself — free, outdoors, and busy at almost any hour.',
-    photos: [],
+    photos: [medellinPhotos.plazaBotero],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'Free, outdoor Botero sculptures right in the heart of downtown — no ticket required.',
@@ -133,7 +137,7 @@ export const medellinPlaces: Place[] = [
     category: 'experience',
     description:
       'A hillside barrio once defined by gang violence and 2002\'s Operation Orion, now covered in murals about peace and resilience and threaded by public outdoor escalators — best seen with a local guide who lived the transformation.',
-    photos: [],
+    photos: [medellinPhotos.comuna13Graffiti],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The escalators, the murals and the hip-hop and breakdance performances that happen right on the tour route — Medellín\'s single most powerful stop.',
@@ -192,7 +196,7 @@ export const medellinPlaces: Place[] = [
     category: 'restaurant',
     description:
       'A contemporary Colombian restaurant from chef Carmen Angel that has repeatedly placed among Latin America\'s 50 best — refined, seasonal, and one of Medellín\'s defining tables.',
-    photos: [],
+    photos: [medellinPhotos.bandejaPaisa],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'A serious tasting menu built on regional Colombian ingredients, from a kitchen with real international recognition.',
@@ -251,7 +255,7 @@ export const medellinPlaces: Place[] = [
     category: 'experience',
     description:
       'A gondola-lift transit system built to connect steep hillside barrios the metro couldn\'t reach — Line K was the world\'s first cable car built for scheduled public transit, and Line L continues on into the forest at Parque Arví.',
-    photos: [],
+    photos: [medellinPhotos.metrocable],
     isJetSetPick: false,
     priceLevel: '$',
     tags: ['Colombia', 'public transit', 'urban innovation', 'views'],
@@ -289,7 +293,7 @@ export const medellinPlaces: Place[] = [
     category: 'landmark',
     description:
       'A recreated traditional Antioqueño village atop Cerro Nutibara, built in 1978 from stone salvaged from El Peñol before it was flooded — a stone plaza, church, handicraft shops and sweeping views over the Aburrá Valley.',
-    photos: [],
+    photos: [medellinPhotos.puebloitoPaisa],
     isJetSetPick: false,
     priceLevel: '$',
     tags: ['Colombia', 'viewpoint', 'free', 'traditional architecture'],
@@ -308,7 +312,7 @@ export const medellinPlaces: Place[] = [
     category: 'landmark',
     description:
       'A 65-million-year-old granite monolith towering 200 meters over the El Peñol–Guatapé reservoir, climbed via a 700-plus-step staircase to a three-level viewing platform with a 360° view of the lake\'s fingered inlets.',
-    photos: [],
+    photos: [medellinPhotos.guatapeElPenolView],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The single best view in the region — the reservoir\'s green, island-studded inlets stretching out below the platform.',
@@ -348,6 +352,7 @@ export const medellinGuides: Guide[] = [
     destinationId: 'medellin',
     section: 'experiences',
     dek: 'Botero\'s bronzes on Plaza Botero by morning, the Metrocable and the murals of Comuna 13 by afternoon.',
+    heroPhoto: medellinPhotos.comuna13Graffiti,
     body:
       'Start downtown at Plaza Botero, where 23 of Fernando Botero\'s bronze sculptures sit outdoors and free for the browsing, then step into the Museo de Antioquia next door — the Art Deco former municipal palace holding the world\'s largest Botero collection alongside indigenous Zenú goldwork. In the afternoon, head to Comuna 13: once one of the city\'s most dangerous barrios and the site of 2002\'s Operation Orion, it\'s now covered in murals about peace and resilience, threaded by a set of public outdoor escalators built to help residents up the hillside. Go with a local guide — the history, and the hip-hop and breakdance performances along the route, are worth it. For a scenic way to see how the city solved its hillside-transit problem more broadly, ride the Metrocable gondola.',
     placeIds: ['pl-plaza-botero', 'pl-museo-de-antioquia', 'pl-comuna-13', 'pl-metrocable'],
@@ -359,6 +364,7 @@ export const medellinGuides: Guide[] = [
     destinationId: 'medellin',
     section: 'eat',
     dek: 'El Poblado brings the city\'s best tables and nightlife around Parque Lleras; Laureles — Time Out\'s "coolest neighborhood in the world" — brings the leafy, local, walkable counterpoint.',
+    heroPhoto: medellinPhotos.elPobladoNight,
     body:
       'El Poblado is Medellín\'s tourism center: Parque Lleras anchors a dense cluster of cafés by day and bars by night, and the neighborhood holds some of the city\'s most ambitious kitchens — Carmen, from chef Carmen Angel, has repeatedly placed among Latin America\'s 50 best restaurants, and elciELO, Juan Manuel Barrientos\'s theatrical multisensory tasting-menu concept, started right here before expanding abroad. For coffee, Pergamino near Parque Lleras is one of the names most associated with Medellín\'s specialty scene. A short ride away, Laureles is the quieter counterpoint — flat, tree-lined, primarily residential, and named the coolest neighborhood in the world by Time Out in 2023. Its lower prices and local feel make it worth the trip even just to walk the grid around the Atanasio Girardot sports complex, whose athletics tracks, tennis courts and aquatic center are largely free or low-cost to the public.',
     placeIds: ['pl-parque-lleras', 'pl-pergamino-cafe', 'pl-carmen-medellin', 'pl-el-cielo-medellin', 'pl-estadio-atanasio-girardot'],
@@ -370,6 +376,7 @@ export const medellinGuides: Guide[] = [
     destinationId: 'medellin',
     section: 'experiences',
     dek: 'A colorful lakeside town, a 700-step granite monolith, and the best view in Antioquia.',
+    heroPhoto: medellinPhotos.guatapeElPenolView,
     body:
       'About two hours east of Medellín, Guatapé was rebuilt after 1970s dam construction flooded the original town and created the El Peñol–Guatapé reservoir. What survived — or was rebuilt — is a town covered in colorful, sculpted zócalo façades, each depicting local products, beliefs or family history. Just outside town, El Peñón de Guatapé is impossible to miss: a 65-million-year-old granite monolith rising 200 meters straight up, first climbed in 1954 and now fitted with a staircase of more than 700 steps to a three-level viewing platform. The reward at the top is the region\'s single best view — the reservoir\'s green, finger-shaped inlets stretching out in every direction.',
     placeIds: ['pl-el-penon-guatape', 'pl-guatape-town-zocalos'],
@@ -423,7 +430,8 @@ export const medellinDestination: Destination = {
   slug: 'medellin',
   city: 'Medellín',
   country: 'Colombia',
-  heroPhoto: '',
+  heroPhoto: medellinPhotos.comuna13Graffiti,
+  cardPhoto: medellinPhotos.guatapeElPenolView,
   tagline: 'The city of eternal spring, remade — murals, gondolas, and a granite monolith worth 700 steps.',
   status: 'live',
   content: {

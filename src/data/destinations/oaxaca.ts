@@ -1,4 +1,5 @@
 import type { Destination, Neighborhood, Place, Itinerary } from '@/types'
+import { oaxacaPhotos } from '@/assets/oaxaca'
 
 // ---------------------------------------------------------------------------
 // Oaxaca de Juárez, Mexico — new destination (Oaxaca build pass)
@@ -31,6 +32,7 @@ export const oaxacaNeighborhoods: Neighborhood[] = [
     city: 'Oaxaca de Juárez',
     description:
       'The UNESCO-listed colonial core, laid out in a 16th-century checkerboard grid around the Zócalo — green cantera-stone churches, roughly 1,200 inventoried historic buildings, and the city\'s densest cluster of markets and mezcalerías.',
+    heroPhoto: oaxacaPhotos.santoDomingoChurch,
   },
   {
     id: 'nb-oaxaca-jalatlaco',
@@ -45,6 +47,7 @@ export const oaxacaNeighborhoods: Neighborhood[] = [
     city: 'Oaxaca de Juárez',
     description:
       'The central valleys ringing the city — reachable by colectivo or car in 30-40 minutes — home to the Monte Albán archaeological site and craft villages like Teotitlán del Valle (weaving) and San Bartolo Coyotepec (black pottery).',
+    heroPhoto: oaxacaPhotos.monteAlbanRuins,
   },
 ]
 
@@ -59,7 +62,7 @@ export const oaxacaPlaces: Place[] = [
     category: 'landmark',
     description:
       'A New Spanish Baroque church begun in 1572, its facade topped by twin bell towers — the single most recognizable building in Oaxaca\'s historic center, part of the UNESCO World Heritage listing since 1987.',
-    photos: [],
+    photos: [oaxacaPhotos.santoDomingoChurch],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The gilded interior and the adjoining Regional Museum of Oaxaca (in the former convent), which holds the Mixtec treasures excavated from Monte Albán\'s Tomb 7.',
@@ -114,7 +117,7 @@ export const oaxacaPlaces: Place[] = [
     address: '20 de Noviembre 512, Centro, Oaxaca de Juárez',
     description:
       'A covered food market built around "El Pasillo de las Carnes Asadas," a corridor of grills where you pick raw meat and have it cooked to order with salsa and guacamole — the classic way to eat lunch in the historic center.',
-    photos: [],
+    photos: [oaxacaPhotos.mercado20Noviembre],
     isJetSetPick: false,
     priceLevel: '$',
     tags: ['market', 'grilled meat', 'local', 'lunch'],
@@ -258,7 +261,7 @@ export const oaxacaPlaces: Place[] = [
     category: 'landmark',
     description:
       'The hilltop ruins of an ancient Zapotec city, founded around 500 BCE and once home to an estimated 17,200 people — part of the same 1987 UNESCO listing as Oaxaca\'s historic center, with a 300x150m main plaza and the carved "Danzantes" stone monuments.',
-    photos: [],
+    photos: [oaxacaPhotos.monteAlbanRuins],
     isJetSetPick: true,
     pickDetails: {
       goFor: 'The view from the Main Plaza and the Danzantes gallery — one of Mexico\'s great archaeological sites, about 9km from the city center.',
@@ -278,7 +281,7 @@ export const oaxacaPlaces: Place[] = [
     category: 'experience',
     description:
       'A Zapotec weaving village 31km east of the city, about 40 minutes by colectivo, where roughly 80% of families weave — workshops demonstrate natural dyes made from cochineal, indigo and pomegranate, and sell rugs directly. Cash only; no ATM in town.',
-    photos: [],
+    photos: [oaxacaPhotos.teotitlanWeaving],
     isJetSetPick: false,
     priceLevel: '$$',
     tags: ['textiles', 'weaving', 'day trip', 'Zapotec'],
@@ -343,7 +346,8 @@ export const oaxacaDestination: Destination = {
   slug: 'oaxaca',
   city: 'Oaxaca de Juárez',
   country: 'Mexico',
-  heroPhoto: '',
+  heroPhoto: oaxacaPhotos.santoDomingoChurch,
+  cardPhoto: oaxacaPhotos.mercado20Noviembre,
   tagline: 'Mole, mezcal and a UNESCO-listed colonial core in Mexico\'s culinary capital.',
   status: 'guide',
   content: {
@@ -357,5 +361,12 @@ export const oaxacaDestination: Destination = {
   placeIds: oaxacaPlaces.map((p) => p.id),
   guideIds: [],
   itineraryIds: [oaxacaReadyMadeItinerary.id],
-  photoCredits: [],
+  photoCredits: [
+    { photo: oaxacaPhotos.santoDomingoChurch, credit: "Photo by nan palmero / Wikimedia Commons, CC BY 2.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Templo_de_Santo_Domingo_de_Guzm%C3%A1n-_2023.jpg' },
+    { photo: oaxacaPhotos.mercado20Noviembre, credit: "Photo by ProtoplasmaKid / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mercado_20_de_noviembre_-_Oaxaca_de_Ju%C3%A1rez_-_4_-_Puesto_de_pan.jpg' },
+    { photo: oaxacaPhotos.monteAlbanRuins, credit: "Photo by Infrogmation / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Monte_Alban_Oaxaca_1976_-_Oaxaca_Valley.jpg' },
+    { photo: oaxacaPhotos.alebrijesCraft, credit: "Photo by Roberto Galland / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Alebrijes_en_Oaxaca.jpg' },
+    { photo: oaxacaPhotos.teotitlanWeaving, credit: "Photo by Gengiskanhg / Wikimedia Commons, CC BY-SA 3.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:TapeteEnFabricaci%C3%B3n-Teotitl%C3%A1n_del_Valle-Oaxaca-Mexico.jpg' },
+    { photo: oaxacaPhotos.mezcal, credit: "Photo by Polo Sanchez / Wikimedia Commons, CC BY-SA 4.0", sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mezcal_in_Oaxaca,_Mexico.jpg' },
+  ],
 }
