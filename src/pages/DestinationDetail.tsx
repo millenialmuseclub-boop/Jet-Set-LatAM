@@ -204,6 +204,13 @@ export function DestinationDetail() {
         </div>
       </div>
 
+      {destination.id === "buenos-aires" && destination.photoCredits?.map(credit => (
+        <p key={credit.photo} className="px-5 py-2 text-xs text-ink-soft md:px-8">
+          <button className="text-left underline" onClick={() => openExternal(credit.sourceUrl)}>{credit.credit}</button>{" "}
+          <button className="underline" onClick={() => openExternal("https://creativecommons.org/licenses/by-sa/4.0/")}>License</button>
+        </p>
+      ))}
+
       <div className="sticky top-[var(--app-header-height)] z-10 flex gap-1 overflow-x-auto bg-parchment/95 px-5 py-3 backdrop-blur-sm md:justify-center md:px-8">
         {TABS.filter(t => t.key === "overview" || t.key === "stay" || (t.key === "neighborhoods" ? destination.neighborhoods.length > 0 : placesForTab(t.key).length > 0)).map((t) => (
           <button

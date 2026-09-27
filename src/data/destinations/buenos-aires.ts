@@ -1,4 +1,5 @@
 import type { Destination, Place, Neighborhood, Itinerary } from '@/types'
+import caminitoPhoto from '@/assets/buenos-aires/caminito.webp'
 
 // ---------------------------------------------------------------------------
 // Buenos Aires — PLAN tier (Pass 15, archive-mining pass)
@@ -361,7 +362,12 @@ export const buenosAiresDestination: Destination = {
   slug: 'buenos-aires',
   city: 'Buenos Aires',
   country: 'Argentina',
-  heroPhoto: '',
+  heroPhoto: caminitoPhoto,
+  photoCredits: [{
+    photo: caminitoPhoto,
+    credit: 'Caminito, La Boca — Photo by Andrzej Otrębski / Wikimedia Commons, CC BY-SA 4.0. Resized and converted to WebP.',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Buenos_Aires_Caminito_1.jpg',
+  }],
   tagline: 'Steakhouses, tango and Belle Époque grandeur in Argentina\'s capital',
   status: 'live',
   content: {
