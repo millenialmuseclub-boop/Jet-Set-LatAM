@@ -17,6 +17,7 @@ import { medellinDestination, medellinPlaces, medellinGuides, medellinReadyMadeI
 import { bogotaDestination, bogotaPlaces, bogotaGuides, bogotaReadyMadeItinerary } from './destinations/bogota'
 import type { Destination, Place, Guide, Itinerary } from '@/types'
 import { archiveGuides, archivePhotos } from './archive'
+import { storyCovers } from './story-photography'
 export { archivePhotos, archiveStats } from './archive'
 
 export { mediaMoments, getMediaMomentsByDestination } from './media'
@@ -31,6 +32,14 @@ for (const guide of guides) {
   const photo = guide.photos?.[0]
   guide.heroPhoto = photo?.src || original?.heroPhoto || dest?.heroPhoto
   guide.photoCaption = photo?.caption || (guide.heroPhoto ? `${dest?.city} · destination context` : undefined)
+  const cover = storyCovers[guide.id]
+  if (cover) {
+    guide.heroPhoto = cover.src
+    guide.photoCaption = cover.caption
+    guide.photoCredit = cover.credit
+  }
+  // This imported gallery contained a Cartagena mural, not Rio's Olympic Boulevard.
+  if (guide.id === 'gd-rio-olympic-boulevard') guide.photos = []
   if (dest && !dest.guideIds.includes(guide.id)) dest.guideIds.push(guide.id)
   for (const id of guide.placeIds) {
     const place = places.find(p => p.id === id)

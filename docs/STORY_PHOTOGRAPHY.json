@@ -1,0 +1,600 @@
+{
+  "description": "Explicit story covers; original article bodies and firsthand galleries retained except the erroneous Cartagena image on the Rio Olympic Boulevard guide.",
+  "newImageCount": 31,
+  "newImageBytes": 3003598,
+  "modifications": "New Commons photos resized and converted to WebP; visual display crops to existing cover proportions.",
+  "photos": [
+    {
+      "key": "ba-palermo",
+      "guideId": "wp-12661",
+      "title": "File:Palermo SoHo.jpg",
+      "caption": "Palermo Soho, Buenos Aires — neighborhood context for the design story",
+      "file": "src/assets/story-covers/ba-palermo.webp",
+      "author": "Josiah Mackenzie",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Palermo_SoHo.jpg",
+      "description": "1800 block of Gurruchaga Street, in the Palermo Soho section of Buenos Aires.",
+      "bytes": 89492
+    },
+    {
+      "key": "ba-walking",
+      "guideId": "wp-9978",
+      "title": "File:A cobblestoned street in Palermo Soho.jpg",
+      "caption": "Gurruchaga Street, Palermo Soho, Buenos Aires",
+      "file": "src/assets/story-covers/ba-walking.webp",
+      "author": "Brian Barbutti",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_cobblestoned_street_in_Palermo_Soho.jpg",
+      "description": "Gurruchaga Street - 1600 block. Palermo Soho section, Buenos Aires.",
+      "bytes": 125570
+    },
+    {
+      "key": "ba-waterfront",
+      "guideId": "wp-9834",
+      "title": "File:Puente de la Mujer by night (7565437534).jpg",
+      "caption": "Puente de la Mujer at night, Puerto Madero, Buenos Aires",
+      "file": "src/assets/story-covers/ba-waterfront.webp",
+      "author": "Leandro Neumann Ciuffo",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Puente_de_la_Mujer_by_night_(7565437534).jpg",
+      "description": "Women's Bridge (Santiago Calatrava, 2001) at night. Buenos Aires, Argentina.",
+      "bytes": 56140
+    },
+    {
+      "key": "ba-jacarandas",
+      "guideId": "wp-8657",
+      "title": "File:Avenida del Libertador trees.jpg",
+      "caption": "Jacarandas on Avenida del Libertador, Buenos Aires",
+      "file": "src/assets/story-covers/ba-jacarandas.webp",
+      "author": "tercerojista",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Avenida_del_Libertador_trees.jpg",
+      "description": "Jacarandas (Jacaranda mimosifolia) in bloom at Libertador Avenue and Austria Street, Buenos Aires.",
+      "bytes": 134252
+    },
+    {
+      "key": "ba-cafe",
+      "guideId": "wp-2294",
+      "title": "File:Interior del Café Tortoni 2025 04.jpg",
+      "caption": "Inside Café Tortoni, Buenos Aires",
+      "file": "src/assets/story-covers/ba-cafe.webp",
+      "author": "ProtoplasmaKid",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Interior_del_Caf%C3%A9_Tortoni_2025_04.jpg",
+      "description": "Images of the interior of Café Tortoni 2025. Buenos Aires, Argentina.",
+      "bytes": 91560
+    },
+    {
+      "key": "ba-tango-show",
+      "guideId": "wp-2293",
+      "title": "File:Argentina - Buenos Aires 060 - tango show (6979621857).jpg",
+      "caption": "A tango performance in Buenos Aires — cultural context, not a named venue in this guide",
+      "file": "src/assets/story-covers/ba-tango-show.webp",
+      "author": "McKay Savage from London, UK",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Argentina_-_Buenos_Aires_060_-_tango_show_(6979621857).jpg",
+      "description": "Argentina - Buenos Aires 060 - tango show",
+      "bytes": 55902
+    },
+    {
+      "key": "ba-hotel",
+      "guideId": "wp-2297",
+      "title": "File:Palacio Duhau Park Hyatt 01.jpg",
+      "caption": "Palacio Duhau, Recoleta, Buenos Aires — hotel architecture",
+      "file": "src/assets/story-covers/ba-hotel.webp",
+      "author": "Roberto Fiadone",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Palacio_Duhau_Park_Hyatt_01.jpg",
+      "description": "Palacio Duhau, hoy día Hotel Park Hyatt, Buenos Aires, Argentina",
+      "bytes": 122312
+    },
+    {
+      "key": "ba-subte",
+      "guideId": "wp-2298",
+      "title": "File:Buenos Aires Subte station Peru.jpg",
+      "caption": "A Subte entrance in Buenos Aires",
+      "file": "src/assets/story-covers/ba-subte.webp",
+      "author": "Svenska84",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/File%3ABuenos%20Aires%20Subte%20station%20Peru.jpg",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Buenos_Aires_Subte_station_Peru.jpg",
+      "description": "Entrance to an underground station in Buenos Aires (line A - Station: Perú).",
+      "bytes": 90190
+    },
+    {
+      "key": "ba-theater",
+      "guideId": "wp-2295",
+      "title": "File:Colon-interior-escenario-TM.jpg",
+      "caption": "Inside Teatro Colón, Buenos Aires",
+      "file": "src/assets/story-covers/ba-theater.webp",
+      "author": "HalloweenHJB",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Colon-interior-escenario-TM.jpg",
+      "description": "Interior of the Teatro Colón in Buenos Aires, Argentina",
+      "bytes": 135400
+    },
+    {
+      "key": "ba-tango-dancers",
+      "guideId": "wp-2292",
+      "title": "File:Tango dancers in Buenos Aires, Argentina. (33570798082).jpg",
+      "caption": "Tango dancers in Buenos Aires — cultural context, not a named venue in this guide",
+      "file": "src/assets/story-covers/ba-tango-dancers.webp",
+      "author": "Ralf Steinberger from Milan, Berlin + Munich, Italy + Germany",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tango_dancers_in_Buenos_Aires,_Argentina._(33570798082).jpg",
+      "description": "Tango dancers in Buenos Aires, Argentina.",
+      "bytes": 50850
+    },
+    {
+      "key": "cdmx-roma",
+      "guideId": "gd-designer-boutiques-cdmx",
+      "title": "File:Arquitectura de los alrededores de la Plaza Río de Janeiro de la colonia Roma.jpg",
+      "caption": "Architecture around Plaza Río de Janeiro, Roma Norte — Mexico City design context",
+      "file": "src/assets/story-covers/cdmx-roma.webp",
+      "author": "Pedro Camilo Márquez Vallarta",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arquitectura_de_los_alrededores_de_la_Plaza_R%C3%ADo_de_Janeiro_de_la_colonia_Roma.jpg",
+      "description": "Architecture of the surrounding houses Plaza Rio de Janeiro in the Roma neighborhood of Mexico City.",
+      "bytes": 81762
+    },
+    {
+      "key": "cdmx-park",
+      "guideId": "wp-9784",
+      "title": "File:Lago de Chapultepec 2025.jpg",
+      "caption": "Chapultepec Park, Mexico City",
+      "file": "src/assets/story-covers/cdmx-park.webp",
+      "author": "Polianalista",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lago_de_Chapultepec_2025.jpg",
+      "description": "Panorama del lago de Chapultepec en el 2025",
+      "bytes": 91228
+    },
+    {
+      "key": "cdmx-cycling",
+      "guideId": "wp-2105",
+      "title": "File:Carril ciclista en Paseo de la Reforma.jpg",
+      "caption": "The cycle lane on Paseo de la Reforma, Mexico City",
+      "file": "src/assets/story-covers/cdmx-cycling.webp",
+      "author": "ProtoplasmaKid",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carril_ciclista_en_Paseo_de_la_Reforma.jpg",
+      "description": "A biker using an EcoBici, bicycle sharing system, in Paseo de la Reforma and Bucareli.",
+      "bytes": 105924
+    },
+    {
+      "key": "cdmx-metro",
+      "guideId": "wp-9599",
+      "title": "File:Mexico City Metro.jpg",
+      "caption": "Mexico City Metro",
+      "file": "src/assets/story-covers/cdmx-metro.webp",
+      "author": "Daniel Manrique (Roadmaster)",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mexico_City_Metro.jpg",
+      "description": "Mexico City Metro, A Line 2 Mexico City metro train on a surface track near the General Anaya station on Calzada de Tlalpan",
+      "bytes": 130354
+    },
+    {
+      "key": "cdmx-alameda",
+      "guideId": "wp-2035",
+      "title": "File:Alameda Central - Mexico 2024.jpg",
+      "caption": "Alameda Central, Mexico City",
+      "file": "src/assets/story-covers/cdmx-alameda.webp",
+      "author": "José Luiz",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alameda_Central_-_Mexico_2024.jpg",
+      "description": "Alameda Central - Mexico",
+      "bytes": 83856
+    },
+    {
+      "key": "cdmx-balloons",
+      "guideId": "wp-1788",
+      "title": "File:Pirámide del Sol, Mexico (Unsplash).jpg",
+      "caption": "A hot-air balloon over Teotihuacán, near Mexico City",
+      "file": "src/assets/story-covers/cdmx-balloons.webp",
+      "author": "Bryce Evans artofbryce",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pir%C3%A1mide_del_Sol,_Mexico_(Unsplash).jpg",
+      "description": "Pirámide del Sol, Mexico",
+      "bytes": 39574
+    },
+    {
+      "key": "gdl-americana",
+      "guideId": "gd-guadalajara-colonia-americana",
+      "title": "File:Casa en la colonia Americana Siglo XIX.jpg",
+      "caption": "A historic house in Colonia Americana, Guadalajara",
+      "file": "src/assets/story-covers/gdl-americana.webp",
+      "author": "Encogua",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Casa_en_la_colonia_Americana_Siglo_XIX.jpg",
+      "description": "Casa que en su momento fue una casa de campo en las afueras de la ciudad ahora permanece en el centro de Guadalajara como recuerdo de la arquitectura del S XIX y de épocas más tranquilas",
+      "bytes": 70000
+    },
+    {
+      "key": "gdl-americana-street",
+      "guideId": "wp-8662",
+      "title": "File:Casa dos Pisos Colonia Americana S XIX.jpg",
+      "caption": "Colonia Americana architecture, Guadalajara",
+      "file": "src/assets/story-covers/gdl-americana-street.webp",
+      "author": "Encogua",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Casa_dos_Pisos_Colonia_Americana_S_XIX.jpg",
+      "description": "Casa ubicada en el centro de Guadalajara que alguna vez fue casa de campo. Se conservan como recuerdo de tiempos pasados mas amables y tranquilos.",
+      "bytes": 140402
+    },
+    {
+      "key": "gdl-agave",
+      "guideId": "gd-guadalajara-tequila-express",
+      "title": "File:Agaves - Tequila, Jalisco I.jpg",
+      "caption": "Agave fields in Tequila, Jalisco — day-trip landscape",
+      "file": "src/assets/story-covers/gdl-agave.webp",
+      "author": "Juan Carlos Fonseca Mata",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Agaves_-_Tequila,_Jalisco_I.jpg",
+      "description": "Cultivos de agave (Agave tequilana) en Tequila, Jalisco, México.",
+      "bytes": 99228
+    },
+    {
+      "key": "gdl-agave-landscape",
+      "guideId": "wp-1833",
+      "title": "File:Agaves - Tequila, Jalisco II.jpg",
+      "caption": "The agave landscape of Tequila, Jalisco",
+      "file": "src/assets/story-covers/gdl-agave-landscape.webp",
+      "author": "Juan Carlos Fonseca Mata",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Agaves_-_Tequila,_Jalisco_II.jpg",
+      "description": "Cultivos de agave (Agave tequilana) en Tequila, Jalisco, México.",
+      "bytes": 131924
+    },
+    {
+      "key": "gdl-transit",
+      "guideId": "wp-9630",
+      "title": "File:SITEUR Line 1 train arriving to Juárez station.jpg",
+      "caption": "A Guadalajara light-rail train at Juárez station",
+      "file": "src/assets/story-covers/gdl-transit.webp",
+      "author": "Arturoramos",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:SITEUR_Line_1_train_arriving_to_Ju%C3%A1rez_station.jpg",
+      "description": "SITEUR train at Juárez Station, on the Guadalajara light rail system.",
+      "bytes": 92590
+    },
+    {
+      "key": "tulum-cenote",
+      "guideId": "wp-1829",
+      "title": "File:Cenote Corazon Paraiso, Tulum QR 2023.jpg",
+      "caption": "Cenote Corazón Paraíso near Tulum — regional nature context",
+      "file": "src/assets/story-covers/tulum-cenote.webp",
+      "author": "Erik Cleves Kristensen",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Cenote_Corazon_Paraiso,_Tulum_QR_2023.jpg",
+      "description": "Cenote Corazon Paraiso, Tulum QR 2023",
+      "bytes": 163868
+    },
+    {
+      "key": "tulum-coast",
+      "guideId": "wp-9724",
+      "title": "File:Mexico - beach by Tulum, 2022.jpg",
+      "caption": "The coast near Tulum — destination context, not a hotel photograph",
+      "file": "src/assets/story-covers/tulum-coast.webp",
+      "author": "Mikkie27",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mexico_-_beach_by_Tulum,_2022.jpg",
+      "description": "One of the beautiful beaches of the Gulf of Mexico.",
+      "bytes": 92522
+    },
+    {
+      "key": "maya-train",
+      "guideId": "wp-2142",
+      "title": "File:Tren Maya en operación 8.jpg",
+      "caption": "Tren Maya arriving at Valladolid station, Yucatán",
+      "file": "src/assets/story-covers/maya-train.webp",
+      "author": "ProtoplasmaKid",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tren_Maya_en_operaci%C3%B3n_8.jpg",
+      "description": "Tren Maya arriving at Valladolid station, Yucatan, Mexico.",
+      "bytes": 98292
+    },
+    {
+      "key": "maya-station",
+      "guideId": "wp-1832",
+      "title": "File:Tren Maya Estación Mérida-Teya.jpg",
+      "caption": "Mérida-Teya station on the Tren Maya, Yucatán",
+      "file": "src/assets/story-covers/maya-station.webp",
+      "author": "JhonatanMijangos",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tren_Maya_Estaci%C3%B3n_M%C3%A9rida-Teya.jpg",
+      "description": "Tren Maya Estación Mérida-Teya",
+      "bytes": 22536
+    },
+    {
+      "key": "playa-beach",
+      "guideId": "wp-10066",
+      "title": "File:Playa-del-carmen-beach.jpg",
+      "caption": "Playa del Carmen beach",
+      "file": "src/assets/story-covers/playa-beach.webp",
+      "author": "Scott S Bateman",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Playa-del-carmen-beach.jpg",
+      "description": "Playa Del Carmen beach",
+      "bytes": 120586
+    },
+    {
+      "key": "playa-quinta",
+      "guideId": "wp-9679",
+      "title": "File:Quinta Avenida at Calle 4 Norte - Playa del Carmen, Mexico - August 15, 2014 02.jpg",
+      "caption": "Quinta Avenida at Calle 4 Norte, Playa del Carmen",
+      "file": "src/assets/story-covers/playa-quinta.webp",
+      "author": "Giorgio Galeotti",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Quinta_Avenida_at_Calle_4_Norte_-_Playa_del_Carmen,_Mexico_-_August_15,_2014_02.jpg",
+      "description": "Quinta Avenida at Calle 4 Norte - Playa del Carmen, Mexico - August 15, 2014",
+      "bytes": 40628
+    },
+    {
+      "key": "sp-market",
+      "guideId": "wp-2006",
+      "title": "File:Interior do Mercado Municipal de São Paulo (SP).jpg",
+      "caption": "Inside the Mercado Municipal, São Paulo",
+      "file": "src/assets/story-covers/sp-market.webp",
+      "author": "Marcos Elias de Oliveira Júnior",
+      "license": "CC0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Interior_do_Mercado_Municipal_de_S%C3%A3o_Paulo_(SP).jpg",
+      "description": "Interior do Mercado Municipal de São Paulo, capital do estado de São Paulo, Brasil",
+      "bytes": 77342
+    },
+    {
+      "key": "sp-forest",
+      "guideId": "wp-2089",
+      "title": "File:Parque Estadual da Cantareira 49.jpg",
+      "caption": "Cantareira State Park, São Paulo — forest landscape",
+      "file": "src/assets/story-covers/sp-forest.webp",
+      "author": "Sturm",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parque_Estadual_da_Cantareira_49.jpg",
+      "description": "Parque Estadual da Cantareira has one of the largest areas of native tropical forest in the world, located within a metropolitan region of São Paulo city, Brazil. Its 7,900 hectares are formed by remnants of Atlantic forest.",
+      "bytes": 170832
+    },
+    {
+      "key": "rio-forest",
+      "guideId": "wp-2090",
+      "title": "File:Rio de Janeiro Tijuca Forest (2).jpg",
+      "caption": "Tijuca Forest, Rio de Janeiro — landscape context, not a verified cycling route",
+      "file": "src/assets/story-covers/rio-forest.webp",
+      "author": "Pierre André",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rio_de_Janeiro_Tijuca_Forest_(2).jpg",
+      "description": "Cascatinha Taunay  Tijuca Forest, Rio de Janeiro , Rio de Janeiro (state)  Brésil.",
+      "bytes": 112524
+    },
+    {
+      "key": "amazon-river",
+      "guideId": "wp-2114",
+      "title": "File:Amazon boat in Rio Negro River Manaus AM) - panoramio.jpg",
+      "caption": "A boat on the Rio Negro at Manaus, Brazilian Amazon — regional context",
+      "file": "src/assets/story-covers/amazon-river.webp",
+      "author": "James Martins",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Amazon_boat_in_Rio_Negro_River_Manaus_AM)_-_panoramio.jpg",
+      "description": "amazon boat in Rio Negro River Manaus AM>",
+      "bytes": 85958
+    },
+    {
+      "guideId": "gd-carla-fernandez",
+      "file": "src/assets/cdmx/folk-art-alebrije.jpg",
+      "caption": "Mexican folk art — cultural context for the Mexico City design story",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "gd-cruiser-bike-cdmx",
+      "file": "src/assets/cdmx/unam-library.jpg",
+      "caption": "UNAM Central Library, Mexico City — architecture and culture",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "gd-honeymooners-cdmx",
+      "file": "src/assets/cdmx/gran-hotel-dome.jpg",
+      "caption": "The stained-glass ceiling at Gran Hotel Ciudad de México",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-9580",
+      "file": "src/assets/cdmx/gran-hotel-atrium.jpg",
+      "caption": "Gran Hotel Ciudad de México — architectural context for the city design story",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-8661",
+      "file": "src/assets/cdmx/plaza-garibaldi.jpg",
+      "caption": "Plaza Garibaldi, Mexico City",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-310",
+      "file": "src/assets/cdmx/zocalo.jpg",
+      "caption": "The Zócalo, Centro Histórico — neighborhood context, not Hotel Histórico Central",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "gd-rio-beachfront-neighborhoods",
+      "file": "src/assets/final-travel-photos/rio-4.webp",
+      "caption": "Rio de Janeiro beach and mountain skyline",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "gd-rio-etiquette-nightlife",
+      "file": "src/assets/rio-city-2025/4.webp",
+      "caption": "An evening gathering beside the beach in Rio — city context",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "gd-rio-olympic-boulevard",
+      "file": "src/assets/rio/kobra-mural.jpg",
+      "caption": "Eduardo Kobra mural on Rio de Janeiro’s Olympic Boulevard",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-2135",
+      "file": "src/assets/rio-2025/6.webp",
+      "caption": "A walk through Cinelândia, Rio de Janeiro — Jet Set archive, 2025",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-2102",
+      "file": "src/assets/rio-city-2025/2.webp",
+      "caption": "Rio’s coast and mountains at sunset — city context",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-1886",
+      "file": "src/assets/rio/sugarloaf-panorama.jpg",
+      "caption": "Sugarloaf panorama, Rio de Janeiro — city context",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "gd-cartagena-island",
+      "file": "src/assets/archive/db062c512a66.webp",
+      "caption": "The beach at Blue Apple Resort, Isla Barú",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-12642",
+      "file": "src/assets/cartagena/walled-city-street.jpg",
+      "caption": "Cartagena’s Walled City — neighborhood context for the fashion story",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-10093",
+      "file": "src/assets/archive/a5a7b8cc46a8.webp",
+      "caption": "A Getsemaní mural with living vines, Cartagena",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-10225",
+      "file": "src/assets/archive/6b0276554a11.webp",
+      "caption": "Baluarte de Santo Domingo, Cartagena",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-9810",
+      "file": "src/assets/guadalajara/guadalajara-sign-cathedral.jpg",
+      "caption": "Guadalajara’s sign and cathedral towers",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-9744",
+      "file": "src/assets/tulum/tulum-ruins-cliff.jpg",
+      "caption": "Tulum’s Maya ruins above the Caribbean",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-2103",
+      "file": "src/assets/tulum/tulum-ruins-palm.jpg",
+      "caption": "Palms and Maya ruins in Tulum — coastal route context",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-13008",
+      "file": "src/assets/final-travel-photos/sao-paulo-1.webp",
+      "caption": "An art installation in São Paulo — city design context, not a Martha Medeiros store",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-12840",
+      "file": "src/assets/final-travel-photos/sao-paulo-4.webp",
+      "caption": "Linked metal forms in a São Paulo gallery — city design context, not Ara Vartanian jewelry",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-8659",
+      "file": "src/assets/sao-paulo/beco-do-batman-geometric-mural.jpg",
+      "caption": "Beco do Batman, Vila Madalena — São Paulo design context, not a Jardins boutique",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-10036",
+      "file": "src/assets/final-travel-photos/playa-del-carmen-7.webp",
+      "caption": "An evening street in Playa del Carmen",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-9922",
+      "file": "src/assets/final-travel-photos/playa-del-carmen-8.webp",
+      "caption": "Colorful hanging decorations in a Playa del Carmen shop",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-9909",
+      "file": "src/assets/playa-del-carmen/xcaret-butterfly-sanctuary-sign.jpg",
+      "caption": "Xcaret’s butterfly sanctuary, near Playa del Carmen",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-9684",
+      "file": "src/assets/playa-del-carmen/xcaret-butterfly-sanctuary-portrait.jpg",
+      "caption": "A firsthand travel moment at Xcaret’s butterfly sanctuary",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "wp-2585",
+      "file": "src/assets/playa-del-carmen/xcaret-lagoon-cove.jpg",
+      "caption": "Xcaret lagoon — park context, not a hotel room photograph",
+      "provenance": "Existing Jet Set travel archive"
+    },
+    {
+      "guideId": "gd-oaxaca-mezcal-jalatlaco",
+      "file": "src/assets/oaxaca/oaxaca-mezcal.jpg",
+      "caption": "Mezcal in Oaxaca — regional context",
+      "author": "Polo Sanchez",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mezcal_in_Oaxaca,_Mexico.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "guideId": "gd-santiago-bellavista",
+      "file": "src/assets/santiago/santiago-cerro-san-cristobal-panorama.jpg",
+      "caption": "Santiago seen from Cerro San Cristóbal",
+      "author": "Omnespsx (D•ES)",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Santiago_de_Chile,_Desde_Cerro_San_Crist%C3%B3bal_(cropped_panorama).jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    },
+    {
+      "guideId": "gd-bogota-chapinero",
+      "file": "src/assets/bogota/bogota-street-graffiti.jpg",
+      "caption": "Bogotá street art — city context, not a specific Chapinero venue",
+      "author": "Sierraluisfer",
+      "license": "CC BY-SA 4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Grafitti_Bogota_StkinFish_2025.jpg",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/"
+    }
+  ]
+}

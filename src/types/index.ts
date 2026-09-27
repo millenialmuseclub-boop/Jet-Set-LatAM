@@ -208,6 +208,7 @@ export interface Guide {
   publishedAt?: string
   photos?: { src: string; caption: string }[]
   photoCaption?: string
+  photoCredit?: { author: string; license: string; sourceUrl: string; licenseUrl: string }
   relatedDestinationIds?: string[]
   relatedGuideIds?: string[]
   categories?: string[]

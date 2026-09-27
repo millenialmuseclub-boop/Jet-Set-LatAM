@@ -52,6 +52,7 @@ export function GuideDetail() {
           />
           <figcaption className="mx-auto max-w-3xl px-5 pt-2 text-[10px] text-ink-soft/55">
             {guide.photoCaption}
+            {guide.photoCredit && <span> · <button className="underline" onClick={() => openExternal(guide.photoCredit!.sourceUrl)}>Photo: {guide.photoCredit.author} / Wikimedia Commons</button> · <button className="underline" onClick={() => openExternal(guide.photoCredit!.licenseUrl)}>{guide.photoCredit.license}</button> · Resized for display.</span>}
           </figcaption>
         </figure>
       ) : (
