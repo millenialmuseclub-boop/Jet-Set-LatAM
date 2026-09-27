@@ -1,4 +1,6 @@
 import { TravelCompanion } from '@/components/TravelCompanion';
+import { luxeJetterLink } from '@/lib/luxeJetterLinks';
+import { openExternal } from '@/lib/links';
 import { tripPhase } from '@/lib/tripLifecycle';
 import { getEffectiveItinerary } from '@/lib/storage';
 import { useTripClock } from '@/lib/useTripClock';
@@ -160,6 +162,7 @@ export function Saved() {
                     </span>
                   </div>
                 </Link>
+                {d && tab !== 'Trip Stories' && <button className="mx-4 mb-2 min-h-11 text-xs text-terracotta" onClick={() => openExternal(luxeJetterLink(d.id, 'packing').url)}>Pack for This Trip → Luxe Jetter</button>}
                 <button
                   onClick={() => setPending(t.id)}
                   aria-label={`Delete ${t.title}`}

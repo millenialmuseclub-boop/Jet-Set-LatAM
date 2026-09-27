@@ -4,6 +4,11 @@ export const styleOffers: StyleOffer[] = [
  {id:'rio-stays',kind:'stay',title:'Rio stays collection',network:'ShopMy',affiliateUrl:'https://shopmy.us/collections/embed/2799513',cta:'Explore the stays collection',destinationIds:['rio-de-janeiro'],source:'Existing hotel collection previously mislabeled as a wardrobe edit',verifiedAt:'2026-09-13',status:'active'}
 ]
 export const destinationStyle: Record<string,{headline:string;body:string;occasions:string[]}> = {
+ lima:{headline:'Dress for Lima',body:'Coastal walks, museum afternoons and a change for dinner. Check the forecast before choosing your layers.',occasions:['City Walk','Museum Morning','Dinner']},
+ montevideo:{headline:'Pack for Montevideo',body:'Historic streets, market lunches and time on the Rambla. Leave room for a layer when the waterfront breeze picks up.',occasions:['City Walk','Shopping','Dinner']},
+ 'panama-city':{headline:'Your Panama City wardrobe',body:'Casco streets, a canal outing and museum time. Choose comfortable footwear and check the forecast before you go.',occasions:['City Walk','Museum Morning','Dinner']},
+ 'san-jose-costa-rica':{headline:'Dress for San José',body:'Coffee, collections and a park afternoon, with an easy layer for changes in the day.',occasions:['Museum Morning','City Walk','Coffee']},
+ florianopolis:{headline:'Pack for Florianópolis',body:'One beach, a market lunch and craft shopping in Centro. Build around the island days you actually have planned.',occasions:['Beach Day','Shopping','Dinner']},
  'san-juan':{headline:'Pack for San Juan',body:'Old-city walks, an art afternoon and a change for dinner.',occasions:['City Walk','Beach Day','Dinner']},
  'antigua-guatemala':{headline:'Dress for Antigua',body:'Courtyards, coffee and cobblestone walks, with a light layer for later.',occasions:['City Walk','Craft Shopping','Dinner']},
  'mexico-city':{headline:'Build your CDMX wardrobe',body:'Museums, long lunches, design shops and dinner.',occasions:['Museum Morning','City Walk','Dinner']},

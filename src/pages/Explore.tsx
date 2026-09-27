@@ -9,7 +9,7 @@ import { TrailLinks } from '@/components/TrailLinks';
 import { OutdoorJourneys } from '@/components/OutdoorJourneys';
 import { StyleBridge } from '@/components/StyleBridge';
 import { destinationStyle } from '@/data/style';
-const categories=['All','Food','Art + Design','Beaches','Nightlife','Shopping','Style','Trails','Outdoors + Journeys','City Guides','Field Notes','Postcards','Weekend Somewhere','Carnival'];
+const categories=['All','Food','Art + Design','Beaches','Nightlife','Shopping',...(guides.some(g=>g.shoppingNotes)?['Shopping Notes']:[]),'Style','Trails','Outdoors + Journeys','City Guides','Field Notes','Postcards','Weekend Somewhere','Carnival'];
 const sections:Record<string,string[]>={Food:['eat','drink'],'Art + Design':['see'],Beaches:['beaches'],Nightlife:['nightlife'],Shopping:['shop'],'City Guides':['stay','experiences']};
 const normalize=(s:string)=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 export function Explore(){

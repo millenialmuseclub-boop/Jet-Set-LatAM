@@ -1,0 +1,76 @@
+{
+  "verifiedAt": "2026-09-27",
+  "sourceUrl": "https://luxe-jetter-backend.vercel.app/api/consumer/destinations",
+  "destinations": {
+    "mexico-city": {
+      "id": "cc3da77c-49be-4b26-a9b2-bd4d0bdaaacf",
+      "name": "Mexico City",
+      "country": "Mexico"
+    },
+    "rio-de-janeiro": {
+      "id": "70c907f4-16ca-49ef-a75f-73dce88e7dce",
+      "name": "Rio de Janeiro",
+      "country": "Brazil"
+    },
+    "cartagena": {
+      "id": "dest_cartagena",
+      "name": "Cartagena",
+      "country": "Colombia"
+    },
+    "guadalajara": {
+      "id": "f5d68ae2-b8d8-409e-ad73-3b799966ec5a",
+      "name": "Guadalajara",
+      "country": "Mexico"
+    },
+    "tulum": {
+      "id": "61a07116-2f54-4fbd-a81b-4436281b4dc0",
+      "name": "Tulum / Riviera Maya",
+      "country": "Mexico"
+    },
+    "playa-del-carmen": {
+      "id": "61a07116-2f54-4fbd-a81b-4436281b4dc0",
+      "name": "Tulum / Riviera Maya",
+      "country": "Mexico"
+    },
+    "sao-paulo": {
+      "id": "7735409c-9a27-4fe3-8375-b355472dc002",
+      "name": "São Paulo",
+      "country": "Brazil"
+    },
+    "buenos-aires": {
+      "id": "9df9db1c-339e-490b-977b-f665ece59b2f",
+      "name": "Buenos Aires",
+      "country": "Argentina"
+    },
+    "oaxaca": {
+      "id": "9b8c2a0e-3376-49a1-8814-390e09126660",
+      "name": "Oaxaca",
+      "country": "Mexico"
+    },
+    "santiago": {
+      "id": "dc5e96c1-7c0e-4eed-85c4-c01639c31061",
+      "name": "Santiago",
+      "country": "Chile"
+    },
+    "medellin": {
+      "id": "479ac451-4eef-4364-81f3-3efd46cd0e56",
+      "name": "Medellín",
+      "country": "Colombia"
+    },
+    "bogota": {
+      "id": "5f4ca005-59e0-467a-942b-002b70ed10e0",
+      "name": "Bogotá",
+      "country": "Colombia"
+    },
+    "lima": {
+      "id": "28d9c636-5fe8-40a4-b0ac-2c159428cdfa",
+      "name": "Lima",
+      "country": "Peru"
+    },
+    "florianopolis": {
+      "id": "acce7d02-b698-4c00-8cd6-d4ccf9e367f3",
+      "name": "Florianópolis",
+      "country": "Brazil"
+    }
+  }
+}

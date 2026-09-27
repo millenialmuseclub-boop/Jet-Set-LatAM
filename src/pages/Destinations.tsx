@@ -12,12 +12,12 @@ import { Carousel } from '@/components/Carousel';
 
 // Country grouping so the index reads as an atlas rather than a flat grid —
 // order reflects how much of the world Jet Set LatAm actually covers today.
-const COUNTRY_ORDER = ["Mexico", "Colombia", "Brazil", "Argentina + Chile", "Caribbean + Central America"];
+const COUNTRY_ORDER = ["Mexico", "Colombia", "Brazil", "Southern Cone + Peru", "Caribbean + Central America"];
 
 function groupByCountry(dests: Destination[]) {
   const groups = new Map<string, Destination[]>();
   for (const d of dests) {
-    const region = ['Argentina','Chile'].includes(d.country) ? 'Argentina + Chile' : ['Puerto Rico','Guatemala'].includes(d.country) ? 'Caribbean + Central America' : d.country;
+    const region = ['Argentina','Chile','Uruguay','Peru'].includes(d.country) ? 'Southern Cone + Peru' : ['Puerto Rico','Guatemala','Panama','Costa Rica'].includes(d.country) ? 'Caribbean + Central America' : d.country;
     const list = groups.get(region) ?? [];
     list.push(d);
     groups.set(region, list);

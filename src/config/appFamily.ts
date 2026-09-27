@@ -62,6 +62,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
   'luxe-jetter': {
     id: 'luxe-jetter',
     name: 'LuxeJetter',
+    webURL: 'https://luxe-jetter-frontend.vercel.app',
     description: 'Destination-led wardrobes, complete looks and beauty rituals for the way you actually travel.',
     icon: Shirt,
     iOSURL: 'https://apps.apple.com/us/app/luxejetter/id6808023085',

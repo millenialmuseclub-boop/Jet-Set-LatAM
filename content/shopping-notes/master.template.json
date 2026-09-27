@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "recordType": "editorial-master-template",
+  "status": "template-not-for-import",
+  "guideId": "REPLACE-city-neighborhood-shopping",
+  "revision": 1,
+  "destinationId": "REPLACE-app-destination-id",
+  "city": "",
+  "country": "",
+  "neighborhood": "",
+  "title": "",
+  "dek": "",
+  "canonicalUrl": null,
+  "seo": { "title": "", "description": "", "proposedSlug": "" },
+  "editorial": {
+    "basis": "researched",
+    "introduction": "",
+    "whyShopHere": "",
+    "firsthandNotes": [],
+    "beforeYouGo": ""
+  },
+  "media": [],
+  "places": [
+    {
+      "id": "REPLACE-stable-branch-id",
+      "name": "",
+      "category": "shop",
+      "city": "",
+      "country": "",
+      "neighborhood": "",
+      "status": "needs-verification",
+      "website": null,
+      "address": null,
+      "coordinates": null,
+      "mapUrl": null,
+      "googlePlaceId": null,
+      "description": "",
+      "whatToBuy": [],
+      "priceSnapshots": [],
+      "priceLevel": null,
+      "hoursNote": null,
+      "appointmentNote": null,
+      "accessibilityNote": null,
+      "photos": [],
+      "tags": [],
+      "isJetSetPick": false,
+      "pairWithPlaceId": null,
+      "firsthandNoteIds": [],
+      "verification": {
+        "checkedAt": null,
+        "evidence": [],
+        "needsConfirmation": ["Business status", "Exact branch address", "Map pin", "Current product categories"]
+      },
+      "offer": null
+    }
+  ],
+  "stops": [
+    {
+      "number": 1,
+      "placeId": "REPLACE-stable-branch-id",
+      "reasonToVisit": "",
+      "websiteCopy": "",
+      "appCopy": "",
+      "suggestedBrowseMinutes": null
+    }
+  ],
+  "route": {
+    "status": "not-verified",
+    "basis": "desk-researched",
+    "stopIds": [],
+    "legs": [],
+    "estimatedWalkingMinutes": null,
+    "distanceMeters": null,
+    "suggestedTotalMinutes": null,
+    "shareUrls": [],
+    "checkedAt": null,
+    "mobileTestedAt": null
+  },
+  "internalLinks": {
+    "destinationHubUrl": null,
+    "cityGuideUrl": null,
+    "relatedGuideUrls": [],
+    "incomingLinksConfirmed": []
+  },
+  "appAdaptation": {
+    "section": "shop",
+    "title": "",
+    "dek": "",
+    "body": "",
+    "placeIds": [],
+    "sourceUrl": null,
+    "relatedGuideIds": [],
+    "coverGuideId": "REPLACE-existing-guide-with-bundled-photo",
+    "exportStatus": "blocked-until-verified"
+  },
+  "publication": {
+    "wordpressPostId": null,
+    "websiteRevision": null,
+    "mapRevision": null,
+    "appRevision": null
+  },
+  "maintenance": { "lastReviewedAt": null, "nextReviewAt": null, "changeLog": [] }
+}

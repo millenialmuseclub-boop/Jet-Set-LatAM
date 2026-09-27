@@ -234,7 +234,7 @@ export function DestinationDetail() {
           <p className="eyebrow text-terracotta">Your city, at a glance</p>
           <div className="intent-strip mt-3">
             {destination.neighborhoods.length > 0 && <Link to={`?tab=neighborhoods`}>{destination.neighborhoods.length} neighborhoods →</Link>}
-            <Link to={`?tab=eat`}>{placesForTab('eat').length} tables →</Link>
+            <Link to={`?tab=eat`}>{placesForTab('eat').length} {placesForTab('eat').length === 1 ? 'table' : 'tables'} →</Link>
             <Link to={`/explore?destination=${destination.id}`}>{guides.length} stories →</Link>
             <button onClick={() => { const panel = document.getElementById("city-practical") as HTMLDetailsElement | null; if (panel) { panel.open = true; panel.scrollIntoView({ block: "center" }); panel.querySelector("summary")?.focus(); } }}>Practical essentials ↓</button>
           </div>
@@ -738,6 +738,7 @@ export function DestinationDetail() {
 
         {tab === "stay" && destination.id === "cartagena" && <CartagenaShopMyStays/>}
         {tab === "overview" && <StyleBridge destination={destination} />}
+        {(tab === "shop" || tab === "neighborhoods") && <StyleBridge destination={destination} variant={tab === 'shop' ? 'shopping' : 'neighborhood'} commerce={false}/>}
       </div>
     </div>
   );

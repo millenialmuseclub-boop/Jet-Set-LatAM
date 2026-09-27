@@ -1,4 +1,5 @@
 import { ShopMyEdit } from '@/components/ShopMyEdit'
+import { StyleBridge } from '@/components/StyleBridge'
 import { planningDestinations, canPersonalizeTrip, starterItinerary, copyStarterItinerary } from '@/lib/planningDestinations'
 import { Carousel } from '@/components/Carousel'
 import { appFamily } from "@/config/appFamily";
@@ -330,6 +331,7 @@ export function PlanTrip() {
           )}
         </div>
         <RalliiBridge destination={selectedDestination} itinerary={itinerary} />
+        <StyleBridge destination={selectedDestination} itinerary={itinerary} variant="trip" commerce={false}/>
           <ItineraryEditor
           itinerary={itinerary}
           onChange={updateItinerary}

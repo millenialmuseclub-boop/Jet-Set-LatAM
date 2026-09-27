@@ -214,6 +214,12 @@ export interface Guide {
   relatedGuideIds?: string[]
   categories?: string[]
   itineraryRelevance?: string[]
+  shoppingNotes?: {
+    revision: number
+    checkedAt: string
+    stops: { number: number; placeId: string; reasonToVisit: string; whatToBuy: string[]; browseMinutes?: number }[]
+    legs: { fromPlaceId: string; toPlaceId: string; url: string; walkingMinutes: number; distanceMeters: number; sourceUrl: string; checkedAt: string }[]
+  }
 }
 
 // ---------------------------------------------------------------------------

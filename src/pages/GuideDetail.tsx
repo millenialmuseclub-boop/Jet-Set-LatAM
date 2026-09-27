@@ -1,4 +1,6 @@
 import { ArticleBody } from '@/components/ArticleBody';
+import { StyleBridge } from '@/components/StyleBridge';
+import { ShoppingStops } from '@/components/ShoppingStops';
 import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
@@ -134,7 +136,8 @@ export function GuideDetail() {
             {guide.photos.length > 7 && !showAllPhotos && <button className="min-h-11 mt-4 text-sm text-terracotta" onClick={() => setShowAllPhotos(true)}>See the full photo essay →</button>}
           </section>
         )}
-        {!!places.length && (
+        {guide.shoppingNotes && <ShoppingStops notes={guide.shoppingNotes}/>}
+        {!!places.length && !guide.shoppingNotes && (
           <section>
             <h2 className="mb-4 font-display text-3xl">Places in this story</h2>
             <div className="space-y-3">
@@ -186,6 +189,7 @@ export function GuideDetail() {
           </p>
         </div>
         {['shop', 'beaches', 'stay'].includes(guide.section) && <ShopMyEdit destinationId={guide.destinationId} packing/>}
+        {destination && (guide.section==='shop'||guide.categories?.includes('Style')) && <StyleBridge destination={destination} variant="shopping" commerce={false}/>}
         {destination && <Link className="story-plan" to={`/plan?destination=${destination.slug}`}><span className="eyebrow">Turn inspiration into a trip</span><strong>Make time for {destination.city} →</strong><span>Explore an itinerary, then make it yours.</span></Link>}
         <section>
           <div className="section-heading">
