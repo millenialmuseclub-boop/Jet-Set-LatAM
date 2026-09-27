@@ -37,3 +37,13 @@
 @media(max-width:359px){.shopping-copy{padding:16px}.shopping-collection-grid{grid-template-columns:1fr}.editorial-body p{font-size:15px;line-height:1.8}}
 
 .journal-story>figure{overflow:hidden}
+
+/* Scrollable editorial shelves, with no reserved empty grid cells. */
+.editorial-carousel{min-width:0;max-width:100%}
+.carousel-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:10px;color:var(--color-ink-soft)}
+.carousel-controls>div{display:flex;gap:4px}.carousel-controls button{min-width:44px;min-height:44px;font-size:20px;color:var(--color-terracotta)}
+.carousel-track{display:flex;align-items:flex-start;gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding-inline:3px;padding:3px 3px 14px;scrollbar-width:thin}
+.carousel-track>*{flex:0 0 min(82%,300px);min-width:0;scroll-snap-align:start}
+.carousel-track:focus-visible,.carousel-controls button:focus-visible{outline:2px solid var(--color-terracotta);outline-offset:2px}
+.carousel-track .journal-story{width:auto;grid-column:auto}.carousel-track .journal-story-photo{height:220px;aspect-ratio:auto}
+@media(min-width:768px){.carousel-track>*{flex-basis:300px}}

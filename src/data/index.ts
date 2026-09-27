@@ -18,20 +18,23 @@ import { bogotaDestination, bogotaPlaces, bogotaGuides, bogotaReadyMadeItinerary
 import type { Destination, Place, Guide, Itinerary } from '@/types'
 import { archiveGuides, archivePhotos } from './archive'
 import { storyCovers } from './story-photography'
+import { expansionDestinations, expansionCityGuides, expansionItineraries, sanJuanPlaces, antiguaPlaces } from './destinations/expansion'
+import { planningGuides } from './planning-guides'
+import { buildPlacePhotography, supplementPhotoCredits } from './place-photography'
 export { archivePhotos, archiveStats } from './archive'
 
 export { mediaMoments, getMediaMomentsByDestination } from './media'
 
-export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...comingSoonDestinations]
-export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces]
-const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides, ...oaxacaGuides]
+export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...expansionDestinations, ...comingSoonDestinations]
+export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces, ...sanJuanPlaces, ...antiguaPlaces]
+const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides, ...oaxacaGuides, ...expansionCityGuides, ...planningGuides]
 export const guides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[]]
 for (const guide of guides) {
   const dest = destinations.find(d => d.id === guide.destinationId)
   const original = originalGuides.find(g => g.id === guide.id)
   const photo = guide.photos?.[0]
-  guide.heroPhoto = photo?.src || original?.heroPhoto || dest?.heroPhoto
-  guide.photoCaption = photo?.caption || (guide.heroPhoto ? `${dest?.city} · destination context` : undefined)
+  guide.heroPhoto = photo?.src || guide.heroPhoto || original?.heroPhoto || dest?.heroPhoto
+  guide.photoCaption = photo?.caption || guide.photoCaption || (guide.heroPhoto ? `${dest?.city} · destination context` : undefined)
   const cover = storyCovers[guide.id]
   if (cover) {
     guide.heroPhoto = cover.src
@@ -54,7 +57,7 @@ for (const place of places.filter(p => p.city === 'Cartagena' && !p.photos.lengt
 }
 const cartagenaHero = archivePhotos.find(p => p.caption.includes('Torre del Reloj'))
 if (cartagenaHero) destinations.find(d => d.id === 'cartagena')!.heroPhoto = cartagenaHero.src
-export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary, oaxacaReadyMadeItinerary, santiagoReadyMadeItinerary, medellinReadyMadeItinerary, bogotaReadyMadeItinerary, ...shortItineraries]
+export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary, oaxacaReadyMadeItinerary, santiagoReadyMadeItinerary, medellinReadyMadeItinerary, bogotaReadyMadeItinerary, ...expansionItineraries, ...shortItineraries]
 for (const itinerary of shortItineraries) {
  const destination = destinations.find(d => d.id === itinerary.destinationId)
  if (destination && !destination.itineraryIds.includes(itinerary.id)) destination.itineraryIds.push(itinerary.id)
@@ -62,8 +65,7 @@ for (const itinerary of shortItineraries) {
 
 export const flagshipDestination = mexicoCityDestination
 export function getPlacePhoto(place: Place) {
-  const dest = getDestinationForPlace(place)
-  return { src: place.photos[0] || dest?.heroPhoto, caption: place.photos[0] ? place.name : `${place.city} · destination context` }
+  return placePhotography.get(place.id) || {src:place.photos[0],caption:place.name,context:false}
 }
 
 export function getDestinationBySlug(slug: string) {
@@ -117,3 +119,5 @@ for (const id of ['wp-2135','gd-rio-etiquette-nightlife']) { const g = guides.fi
 if (!rioDeJaneiroDestination.neighborhoods.some(n => n.name === 'Centro')) rioDeJaneiroDestination.neighborhoods.push({id:'nb-rio-centro',name:'Centro',city:'Rio de Janeiro',description:'Theatro Municipal anchors this part of the Rio culture archive. Open Centro in Details for firsthand portraits from Cinelândia and a separate historic café sequence.',heroPhoto:rio2025[0].src})
 
 for (const g of railGuideRecords) if (!playaDelCarmenDestination.guideIds.includes(g.id)) playaDelCarmenDestination.guideIds.push(g.id)
+supplementPhotoCredits(destinations, guides)
+const placePhotography = buildPlacePhotography(destinations, places, guides)

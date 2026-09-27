@@ -1,0 +1,105 @@
+{
+  "retrievedAt": "2026-09-27",
+  "photos": [
+    {
+      "key": "sj-street",
+      "file": "src/assets/expansion/sj-street.webp",
+      "caption": "Colorful residential façades in Old San Juan",
+      "author": "User:Mattes",
+      "license": "CC BY 2.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/de/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_residential_buildings.JPG",
+      "bytes": 59630
+    },
+    {
+      "key": "sj-blue",
+      "file": "src/assets/expansion/sj-blue.webp",
+      "caption": "A turquoise façade in Old San Juan",
+      "author": "User:Mattes",
+      "license": "CC BY 2.0 de",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/de/deed.en",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_unknown_turquoise_residential_building_with_flag.JPG",
+      "bytes": 57058
+    },
+    {
+      "key": "sj-morro",
+      "file": "src/assets/expansion/sj-morro.webp",
+      "caption": "Castillo San Felipe del Morro, San Juan",
+      "author": "Godot13",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:USA-2016-Puerto_Rico-San_Juan-Castillo_San_Felipe_del_Morro_(and_lighthouse)_03.jpg",
+      "bytes": 129988
+    },
+    {
+      "key": "sj-condado",
+      "file": "src/assets/expansion/sj-condado.webp",
+      "caption": "Condado Beach, San Juan",
+      "author": "MJCdetroit",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Condado_Beach,_San_Juan,_PR,_USA.jpg",
+      "bytes": 60672
+    },
+    {
+      "key": "sj-placita",
+      "file": "src/assets/expansion/sj-placita.webp",
+      "caption": "Market mural at La Placita, Santurce",
+      "author": "Šarūnas Burdulis",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mural_en_La_Placita_del_Mercado,_Santurce,_San_Juan,_Puerto_Rico.jpg",
+      "bytes": 90250
+    },
+    {
+      "key": "ag-arch",
+      "file": "src/assets/expansion/ag-arch.webp",
+      "caption": "Santa Catalina Arch, Antigua Guatemala",
+      "author": "Adalberto.H.Vega\nuploaded and derivative work: MrPanyGoff",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Arco_de_Santa_Catalina_Antigua_Guatemala_edit2.jpg",
+      "bytes": 80480
+    },
+    {
+      "key": "ag-street",
+      "file": "src/assets/expansion/ag-street.webp",
+      "caption": "Calle del Arco, Antigua Guatemala",
+      "author": "Chad Davis",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Santa_Catalina_Arch_-_Antigua_Guatemala_Feb_2020.jpg",
+      "bytes": 125092
+    },
+    {
+      "key": "ag-capuchinas",
+      "file": "src/assets/expansion/ag-capuchinas.webp",
+      "caption": "Convento de las Capuchinas, Antigua Guatemala",
+      "author": "Willyman",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Convento_de_las_Capuchinas_Antigua.JPG",
+      "bytes": 55294
+    },
+    {
+      "key": "ag-merced",
+      "file": "src/assets/expansion/ag-merced.webp",
+      "caption": "La Merced Church, Antigua Guatemala",
+      "author": "Rambling Traveler\nderivative work: MrPanyGoff",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:La_Merced_Church_Antigua_Guatemala_2.jpg",
+      "bytes": 114940
+    },
+    {
+      "key": "ag-plaza",
+      "file": "src/assets/expansion/ag-plaza.webp",
+      "caption": "Parque Central, Antigua Guatemala",
+      "author": "amslerPIX",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parque_Central,_Antigua_Guatemala_17.jpg",
+      "bytes": 89580
+    }
+  ]
+}

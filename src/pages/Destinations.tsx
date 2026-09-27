@@ -8,17 +8,19 @@ import { appFamily, CREATOR_PORTFOLIO_URL } from "@/config/appFamily";
 import { openExternal } from "@/lib/links";
 import { Link } from "react-router-dom";
 import type { Destination } from "@/types";
+import { Carousel } from '@/components/Carousel';
 
 // Country grouping so the index reads as an atlas rather than a flat grid —
 // order reflects how much of the world Jet Set LatAm actually covers today.
-const COUNTRY_ORDER = ["Mexico", "Colombia", "Brazil"];
+const COUNTRY_ORDER = ["Mexico", "Colombia", "Brazil", "Argentina + Chile", "Caribbean + Central America"];
 
 function groupByCountry(dests: Destination[]) {
   const groups = new Map<string, Destination[]>();
   for (const d of dests) {
-    const list = groups.get(d.country) ?? [];
+    const region = ['Argentina','Chile'].includes(d.country) ? 'Argentina + Chile' : ['Puerto Rico','Guatemala'].includes(d.country) ? 'Caribbean + Central America' : d.country;
+    const list = groups.get(region) ?? [];
     list.push(d);
-    groups.set(d.country, list);
+    groups.set(region, list);
   }
   const ordered = [
     ...COUNTRY_ORDER,
@@ -59,7 +61,7 @@ export function Destinations() {
               {country}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3 px-5 md:grid-cols-4 md:gap-5 md:px-8">
+          <Carousel label={`${country} destinations`} className="px-5 md:px-8">
             {cities.map((d) => {
               const clickable = d.status !== "coming-soon";
               return (
@@ -115,7 +117,7 @@ export function Destinations() {
                 </Link>
               );
             })}
-          </div>
+          </Carousel>
         </section>
       ))}
       <p className="px-5 pt-2 text-center text-[11px] italic text-ink-soft/35 md:px-8">

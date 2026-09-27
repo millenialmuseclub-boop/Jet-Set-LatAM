@@ -29,6 +29,7 @@ export function GuideDetail() {
     .filter((g) => g.id !== guide.id)
     .sort(
       (a, b) =>
+        Number(guide.relatedGuideIds?.includes(b.id)) - Number(guide.relatedGuideIds?.includes(a.id)) ||
         Number(b.section === guide.section) -
         Number(a.section === guide.section),
     )
@@ -110,6 +111,7 @@ export function GuideDetail() {
             </Link>
           )}
         </div>
+        {saved && <Link className="inline-flex min-h-11 items-center text-xs text-terracotta" to="/saved">Open your saved stories and places →</Link>}
         <ArticleBody body={guide.body}/>
         {!!guide.photos?.length && (
           <section aria-label="Story photographs">
@@ -143,14 +145,14 @@ export function GuideDetail() {
                     key={p.id}
                     className="flex gap-3 rounded-2xl bg-cream p-3"
                   >
-                    {p.photos.length > 0 && <figure className="w-20 shrink-0">
+                    {photo.src && <figure className="w-20 shrink-0">
                       <Photo
                         src={photo.src}
                         seed={p.id}
                         alt={photo.caption}
                         className="h-20 w-20"
                       />
-                      {!p.photos.length && (
+                      {photo.context && (
                         <figcaption className="mt-1 text-[9px] text-ink-soft/50">
                           City context
                         </figcaption>
@@ -176,10 +178,10 @@ export function GuideDetail() {
             onClick={() => openExternal(guide.sourceUrl)}
             className="flex min-h-11 items-center gap-2 text-xs text-terracotta"
           >
-            Read the original published story <ExternalLink size={13} />
+            {guide.editorialSource === 'researched' ? 'Visitor information and source' : 'Read the original published story'} <ExternalLink size={13} />
           </button>}
           <p className="mt-2 text-xs leading-relaxed text-ink-soft/55">
-            From the Jet Set LatAm archive. Opening hours, prices and
+            {guide.editorialSource === 'researched' ? 'Jet Set LatAm planning guide, researched September 2026.' : 'From the Jet Set LatAm archive.'} Opening hours, prices and
             availability may have changed since publication.
           </p>
         </div>

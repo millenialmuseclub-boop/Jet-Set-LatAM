@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Photo } from './Photo'
+import { Carousel } from './Carousel'
 import { discoveryIntents, intentCollections, intentTab, newDestinations, type DiscoveryIntent } from '@/lib/discovery'
 
 export function DiscoveryCollections() {
@@ -27,13 +28,13 @@ export function DiscoveryCollections() {
       <button aria-pressed={!intent} onClick={() => { setIntent(null); setSurprise(null) }}>New to Jet Set</button>
       {discoveryIntents.map(value => <button key={value} aria-pressed={intent === value} onClick={() => { setIntent(value); setSurprise(null) }}>{value}</button>)}
     </div>
-    <div className="section-heading mt-4"><h3 className="font-display text-2xl">{intent ? `${intent} energy` : 'Four fresh perspectives'}</h3><Link to="/destinations">All destinations ↗</Link></div>
-    <div className="discovery-city-grid" aria-live="polite">
+    <div className="section-heading mt-4"><h3 className="font-display text-2xl">{intent ? `${intent} energy` : 'Fresh perspectives'}</h3><Link to="/destinations">All destinations ↗</Link></div>
+    <Carousel key={intent||'new'} label="Destination inspiration">
       {cities.map(d => <Link key={d.id} to={`/destinations/${d.slug}${intent ? `?tab=${intentTab[intent]}` : ''}`} className="discovery-city">
         <Photo src={d.cardPhoto || d.heroPhoto} seed={d.id} alt={d.city} className="h-44 w-full"/>
         <div><p className="text-[10px] uppercase tracking-wider">{d.country}</p><h3 className="font-display text-2xl">{d.city}</h3></div>
       </Link>)}
-    </div>
+    </Carousel>
     {photographed.length > 0 && <div className="mt-5"><h3 className="mb-3 font-display text-2xl">A few places to start</h3><div className="photo-rail">{photographed.map(({ place, destination }) => <Link className="w-44 shrink-0" key={place.id} to={`/destinations/${destination.slug}?tab=${intentTab[intent!]}`}><Photo src={place.photos[0]} seed={place.id} alt={place.name} className="h-32 w-full"/><p className="mt-2 text-xs text-terracotta">{place.city}</p><h4 className="font-display text-xl">{place.name}</h4><p className="line-clamp-2 text-xs text-ink-soft">{place.pickDetails?.goFor || place.description}</p></Link>)}</div></div>}
     <div className="surprise-strip"><button onClick={surpriseMe}>Surprise me ↗</button><div aria-live="polite">{surpriseDestination ? <Link to={`/destinations/${surpriseDestination.slug}`}><strong>{surpriseDestination.city}</strong> · {surpriseDestination.tagline} <span className="underline">Explore →</span></Link> : <p>A little spontaneity, from the Jet Set collection.</p>}</div></div>
   </section>

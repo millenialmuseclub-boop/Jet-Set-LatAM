@@ -1,4 +1,6 @@
 import { ShopMyEdit } from '@/components/ShopMyEdit'
+import { planningDestinations, canPersonalizeTrip, starterItinerary, copyStarterItinerary } from '@/lib/planningDestinations'
+import { Carousel } from '@/components/Carousel'
 import { appFamily } from "@/config/appFamily";
 import { openExternal } from "@/lib/links";
 import { getTravelMemory, rememberPreferences } from '@/lib/travelMemory';
@@ -53,21 +55,8 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// A destination is offered in the planner only once it has enough real
-// Places to generate a useful itinerary without filler — not just because
-// it exists in the destinations list. LIVE destinations with 6+ Places
-// qualify automatically (currently Mexico City, Rio de Janeiro, Cartagena
-// and São Paulo); "Places" here includes both Jet Set Picks (Jordann's own
-// firsthand recommendations) and Verified Places (real, independently
-// researched, sourceUrl-cited places not yet personally covered) — see
-// src/data/destinations/sao-paulo.ts for the isJetSetPick distinction.
-// GUIDE-tier destinations like Guadalajara are excluded on purpose — real
-// content exists, but not enough category variety yet for a trip that
-// doesn't lean on filler. Coming-soon stubs are excluded automatically
-// since getPlacesByDestination returns an empty array for them.
-const PLANNER_READY_DESTINATIONS = destinations.filter(
-  (d) => d.status === "live" && getPlacesByDestination(d.id).length >= 6,
-);
+// Every destination with a usable trip is visible; shorter guides open their existing template.
+const PLANNER_READY_DESTINATIONS = planningDestinations;
 
 const DAY_OPTIONS = [2, 3, 4, 5, 7];
 const COMPANION_OPTIONS: {
@@ -242,7 +231,7 @@ export function PlanTrip() {
     const requested = params.get('itinerary');
     const destination = destinations.find(d => d.slug === params.get('destination'));
     const template = getItinerary(requested || (destination?.status !== 'live' ? destination?.itineraryIds[0] || '' : ''));
-    return template ? { ...template, days:template.days.map(day=>({...day,activities:day.activities.map(a=>({...a}))})), id: `it-copy-${(crypto.randomUUID?.() ?? Array.from(crypto.getRandomValues(new Uint8Array(16)), n=>n.toString(16).padStart(2,'0')).join(''))}`, isReadyMade: false } : null;
+    return template ? copyStarterItinerary(template) : null;
   });
   const [savedMsg, setSavedMsg] = useState(false);
   const [editingTitle, setEditingTitle] = useState(false);
@@ -261,6 +250,11 @@ export function PlanTrip() {
   ][step];
 
   function next() {
+    if (step === 0 && !canPersonalizeTrip(selectedDestination)) {
+      const template = starterItinerary(selectedDestination);
+      if (template) { setItinerary(copyStarterItinerary(template)); setSavedMsg(false); }
+      return;
+    }
     if (step < STEPS.length - 1) return setStep(step + 1);
     // A brief, real "curating" beat before the itinerary appears — this is a
     // deterministic, near-instant computation, but a trip you'll spend real
@@ -455,7 +449,8 @@ export function PlanTrip() {
           {step === 0 && (
             <div className="space-y-4">
               <h2 className="font-display text-2xl text-ink">Where to?</h2>
-              <div className="grid grid-cols-2 gap-3">
+              <p className="text-xs text-ink-soft">{PLANNER_READY_DESTINATIONS.length} destinations · Build a personalized trip or start with an editable itinerary.</p>
+              <Carousel label="Trip destinations">
                 {PLANNER_READY_DESTINATIONS.map((d) => (
                   <motion.button
                     key={d.id}
@@ -488,7 +483,8 @@ export function PlanTrip() {
                     )}
                   </motion.button>
                 ))}
-              </div>
+              </Carousel>
+              {destinationId && !canPersonalizeTrip(selectedDestination) && <p className="text-sm text-ink-soft">Start with our {starterItinerary(selectedDestination)?.days.length}-day {selectedDestination.city} itinerary, then edit the stops and save your trip.</p>}
             </div>
           )}
           {step === 1 && (
@@ -588,7 +584,7 @@ export function PlanTrip() {
           onClick={next}
           className="flex-1 rounded-full bg-terracotta py-3 text-sm font-medium text-cream shadow-sm shadow-terracotta/20 transition-opacity disabled:opacity-30 disabled:shadow-none"
         >
-          {step === STEPS.length - 1 ? "Build my itinerary" : "Continue"}
+          {step === 0 && destinationId && !canPersonalizeTrip(selectedDestination) ? "Open starter itinerary" : step === STEPS.length - 1 ? "Build my itinerary" : "Continue"}
         </motion.button>
       </div>
     </div>

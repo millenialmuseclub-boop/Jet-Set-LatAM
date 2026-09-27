@@ -15,12 +15,13 @@ export function JetSetPickCard({ place }: { place: Place }) {
     : undefined;
   const guideId = place.relatedGuideIds?.[0];
   const guide = guideId ? getGuide(guideId) : undefined;
+  const photo = getPlacePhoto(place);
   return (
     <article className="jet-set-pick min-w-[260px] max-w-[260px] snap-start rounded-2xl bg-cream shadow-sm ring-1 ring-ink/5">
       <div className="relative">
         <Photo
-          src={getPlacePhoto(place).src}
-          alt={getPlacePhoto(place).caption}
+          src={photo.src}
+          alt={photo.caption}
           seed={place.id}
           className="h-40 w-full"
           rounded="rounded-t-2xl"
@@ -40,9 +41,9 @@ export function JetSetPickCard({ place }: { place: Place }) {
         </button>
       </div>
       <div className="p-4">
-        {!place.photos.length && (
+        {photo.context && (
           <p className="mb-2 text-[9px] text-ink-soft/50">
-            Photo: {place.city} context
+            Photo: {photo.caption}
           </p>
         )}
         <div className="flex items-baseline justify-between gap-2">

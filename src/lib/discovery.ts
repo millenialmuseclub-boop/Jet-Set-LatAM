@@ -20,7 +20,7 @@ export const intentCollections = Object.fromEntries(discoveryIntents.map(intent 
     .filter(item => intent === 'Weekend' ? item.destination.status === 'live' : item.places.length > 0)
     .sort((a, b) => b.places.length - a.places.length),
 ])) as Record<DiscoveryIntent, { destination: Destination; places: Place[] }[]>
-const newIds = ['santiago', 'medellin', 'bogota', 'oaxaca']
+const newIds = ['san-juan', 'antigua-guatemala', 'santiago', 'medellin', 'bogota', 'oaxaca']
 export const newDestinations = newIds.flatMap(id => available.filter(d => d.id === id))
 export const intentTab: Record<DiscoveryIntent, string> = { Eat: 'eat', Beach: 'experiences', Culture: 'see', Style: 'shop', Nightlife: 'drink', Nature: 'experiences', Weekend: 'overview' }
 export const normalizeArea = (name: string) => name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()

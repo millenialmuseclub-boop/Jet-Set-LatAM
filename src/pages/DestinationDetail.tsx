@@ -15,6 +15,7 @@ import { useParams, Link, useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { StoryCard } from "@/components/StoryCard";
 import { archivePhotos, getPlacePhoto } from "@/data";
+import { Carousel } from '@/components/Carousel';
 import {
   getDestinationBySlug,
   getPlacesByDestination,
@@ -204,12 +205,12 @@ export function DestinationDetail() {
         </div>
       </div>
 
-      {destination.id === "buenos-aires" && destination.photoCredits?.map(credit => (
-        <p key={credit.photo} className="px-5 py-2 text-xs text-ink-soft md:px-8">
+      {!!destination.photoCredits?.length && <details className="px-5 py-2 text-xs text-ink-soft md:px-8"><summary className="min-h-11 py-3 cursor-pointer">Photo credits</summary>{destination.photoCredits.map(credit => (
+        <p key={credit.photo} className="py-2">
           <button className="text-left underline" onClick={() => openExternal(credit.sourceUrl)}>{credit.credit}</button>{" "}
-          <button className="underline" onClick={() => openExternal("https://creativecommons.org/licenses/by-sa/4.0/")}>License</button>
+          {credit.licenseUrl && <button className="underline" onClick={() => openExternal(credit.licenseUrl)}>License</button>} · Resized for display.
         </p>
-      ))}
+      ))}</details>}
 
       <div className="sticky top-[var(--app-header-height)] z-10 flex gap-1 overflow-x-auto bg-parchment/95 px-5 py-3 backdrop-blur-sm md:justify-center md:px-8">
         {TABS.filter(t => t.key === "overview" || t.key === "stay" || (t.key === "neighborhoods" ? destination.neighborhoods.length > 0 : placesForTab(t.key).length > 0)).map((t) => (
@@ -655,7 +656,7 @@ export function DestinationDetail() {
         {["shop", "experiences", "see", "eat", "drink", "stay"].includes(
           tab,
         ) && (
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          <Carousel label={`${destination.city} ${tab} places`}>
             {placesForTab(tab).length === 0 ? (
               <div className="md:col-span-2">
                 <EmptyState
@@ -704,9 +705,9 @@ export function DestinationDetail() {
                     </p>
                     {p.practicalNotes && <p className="mt-2 text-xs leading-relaxed text-ink-soft">{p.practicalNotes}</p>}
                     <PlaceActions place={p} />
-                    {!p.photos.length && (
+                    {getPlacePhoto(p).context && (
                       <p className="text-[9px] text-ink-soft/55">
-                        Photo: {p.city} context
+                        Photo: {getPlacePhoto(p).caption}
                       </p>
                     )}
                     {p.relatedGuideIds?.[0] && (
@@ -726,7 +727,7 @@ export function DestinationDetail() {
                 </div>
               ))
             )}
-          </div>
+          </Carousel>
         )}
 
         {tab === "stay" && <WebsitePlanning />}

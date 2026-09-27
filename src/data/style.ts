@@ -4,6 +4,8 @@ export const styleOffers: StyleOffer[] = [
  {id:'rio-stays',kind:'stay',title:'Rio stays collection',network:'ShopMy',affiliateUrl:'https://shopmy.us/collections/embed/2799513',cta:'Explore the stays collection',destinationIds:['rio-de-janeiro'],source:'Existing hotel collection previously mislabeled as a wardrobe edit',verifiedAt:'2026-09-13',status:'active'}
 ]
 export const destinationStyle: Record<string,{headline:string;body:string;occasions:string[]}> = {
+ 'san-juan':{headline:'Pack for San Juan',body:'Old-city walks, an art afternoon and a change for dinner.',occasions:['City Walk','Beach Day','Dinner']},
+ 'antigua-guatemala':{headline:'Dress for Antigua',body:'Courtyards, coffee and cobblestone walks, with a light layer for later.',occasions:['City Walk','Craft Shopping','Dinner']},
  'mexico-city':{headline:'Build your CDMX wardrobe',body:'Museums, long lunches, design shops and dinner.',occasions:['Museum Morning','City Walk','Dinner']},
  'rio-de-janeiro':{headline:'What are you wearing in Rio?',body:'Beach by day. Centro by afternoon. Dinner and music after dark.',occasions:['Beach Day','Centro','Dinner','Night Out']},
  cartagena:{headline:'Dress for Cartagena',body:'Heat, color, linen, beach and dinner.',occasions:['Old City','Beach Day','Dinner']},

@@ -119,7 +119,7 @@ export interface Destination {
    *  Wikimedia Commons CC-licensed images used to give a new destination
    *  visual variety beyond Jordann's own archive). Empty/undefined for
    *  destinations that use only her own firsthand photography. */
-  photoCredits?: { photo: string; credit: string; sourceUrl: string }[]
+  photoCredits?: { photo: string; credit: string; sourceUrl: string; licenseUrl?: string }[]
   tagline: string
   isFlagship?: boolean
   content: DestinationSection
@@ -206,6 +206,7 @@ export interface Guide {
   placeIds: string[]
   sourceUrl: string
   publishedAt?: string
+  editorialSource?: 'researched'
   photos?: { src: string; caption: string }[]
   photoCaption?: string
   photoCredit?: { author: string; license: string; sourceUrl: string; licenseUrl: string }
