@@ -38,7 +38,7 @@ try {
     assert(guide.sourceUrl.startsWith('https://'))
   }
   for(const d of expansionDestinations) {
-    assert.equal(d.placeIds.length,12)
+    assert(d.placeIds.length>=12,`${d.id}: preserve the original city place collection`)
     assert.notEqual(d.heroPhoto,d.cardPhoto)
     assert(d.neighborhoods.length>=3)
     assert(d.guideIds.every(id=>data.getGuide(id)))

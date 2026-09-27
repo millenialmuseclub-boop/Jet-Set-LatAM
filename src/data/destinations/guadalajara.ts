@@ -41,6 +41,15 @@ export const guadalajaraNeighborhoods: Neighborhood[] = [
 ]
 
 export const guadalajaraPlaces: Place[] = [
+  ...[
+    ['pl-gdl-tortas-tono', 'Tortas Toño', 'A torta ahogada option from the published Guadalajara food guide. Choose the branch that fits your day, confirm service, and ask about sauce heat.', 'https://www.tortastono.com.mx/'],
+    ['pl-gdl-las-9-esquinas', 'Birriería Las 9 Esquinas', 'A birria stop featured in the Guadalajara food guide. Check the current menu and ask which meat and preparation is served.', 'https://birrierialas9esquinas.com/'],
+    ['pl-gdl-kamilos-333', 'Kamilos 333', 'A Guadalajara option for carne en su jugo, featured in the published food guide. Check current service details before fitting it around sightseeing.', 'https://www.kamilos333.com/'],
+  ].map(([id, name, description, website]): Place => ({
+    id, name, description, website, sourceUrl: 'https://visitjalisco.mx/blog/comida-tipica-que-comer-en-tu-visita-a-guadalajara?lang=es',
+    city: 'Guadalajara', country: 'Mexico', category: 'restaurant', photos: [], isJetSetPick: false, tags: ['Food', 'Guadalajara'],
+    mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${name} Guadalajara Mexico`)}`,
+  })),
   {
     id: 'pl-instituto-cabanas',
     practicalNotes: 'Make the murals your morning anchor, then leave time for lunch in Centro. Check current opening days before setting the date.',

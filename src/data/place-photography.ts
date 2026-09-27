@@ -38,7 +38,7 @@ export function buildPlacePhotography(destinations: Destination[], places: Place
       const cover=storyCovers[guide.id]
       const caption=cover?.caption||guide.photoCaption||`${destination.city} travel context`
       // Keep regional excursions and personal portraits out of unrelated city venue cards.
-      if(!/Amazon|Manaus|Teotihuac|Valladolid|Mérida|Guatapé|Casablanca|traveler|portrait|selfie|butterfly sanctuary/i.test(caption)) add(guide.heroPhoto,caption)
+      if(!/Amazon|Manaus|Teotihuac|Valladolid|Mérida|Guatapé|Casablanca|Tequila|traveler|portrait|selfie|butterfly sanctuary/i.test(caption)) add(guide.heroPhoto,caption)
     }
     for(const p of local) for(const photo of p.photos) if(!contextualPlaceIds.has(p.id)) add(photo,p.name)
     for(const n of destination.neighborhoods) add(n.heroPhoto,n.name)

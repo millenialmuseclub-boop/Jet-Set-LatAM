@@ -21,6 +21,7 @@ import { storyCovers } from './story-photography'
 import { expansionDestinations, expansionCityGuides, expansionItineraries, sanJuanPlaces, antiguaPlaces } from './destinations/expansion'
 import { planningGuides } from './planning-guides'
 import { buildPlacePhotography, supplementPhotoCredits } from './place-photography'
+import { websiteGuides } from './website-guides'
 export { archivePhotos, archiveStats } from './archive'
 
 export { mediaMoments, getMediaMomentsByDestination } from './media'
@@ -28,7 +29,11 @@ export { mediaMoments, getMediaMomentsByDestination } from './media'
 export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...expansionDestinations, ...comingSoonDestinations]
 export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces, ...sanJuanPlaces, ...antiguaPlaces]
 const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides, ...oaxacaGuides, ...expansionCityGuides, ...planningGuides]
-export const guides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[]]
+export const guides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[], ...websiteGuides]
+// Surface the latest published city stories without replacing saved guide IDs.
+for (const destination of destinations) {
+  destination.guideIds = [...new Set([...websiteGuides.filter(g => g.destinationId === destination.id).map(g => g.id), ...destination.guideIds])]
+}
 for (const guide of guides) {
   const dest = destinations.find(d => d.id === guide.destinationId)
   const original = originalGuides.find(g => g.id === guide.id)

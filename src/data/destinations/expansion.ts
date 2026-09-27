@@ -13,6 +13,10 @@ function cityPlaces(city: string, country: string, entries: Entry[]): Place[] {
   }))
 }
 export const sanJuanPlaces = cityPlaces('San Juan', 'Puerto Rico', [
+  ['pl-sj-don-ruiz', 'Café Don Ruiz', 'cafe', 'Old San Juan', 'A Puerto Rican coffee stop inside Cuartel de Ballajá. Pair it with nearby old-city sightseeing and check the current offering before visiting.', 'https://www.discoverpuertorico.com/article/where-to-taste-puerto-rican-coffee'],
+  ['pl-sj-manolin', 'Café Manolín', 'restaurant', 'Old San Juan', 'A small restaurant specializing in Puerto Rican food. A lunch option to compare while exploring the historic district; consult the current menu and service details.', 'https://www.discoverpuertorico.com/profile/cafe-manolin/300'],
+  ['pl-sj-princesa', 'Princesa Gastrobar', 'restaurant', 'Old San Juan', 'Highlighted by Discover Puerto Rico for mofongo. Consider it as one meal choice, then confirm the current menu, location and service directly.', sjTourism],
+  ['pl-sj-chocobar', 'Chocobar Cortés', 'restaurant', 'Old San Juan', 'A chocolate-focused dining option featured in the San Juan food guide. Review the current menu to decide whether it fits a meal or a smaller stop.', sjTourism],
   ['pl-sj-el-morro', 'Castillo San Felipe del Morro', 'landmark', 'Old San Juan', 'Seaward fortifications and open lawns at the western tip of Old San Juan. Allow time for exposed walkways and check the National Park Service for access and tickets.', 'https://www.nps.gov/saju/planyourvisit/index.htm', 'sj-morro'],
   ['pl-sj-san-cristobal', 'Castillo San Cristóbal', 'landmark', 'Old San Juan', 'The landward fortress gives a different perspective on the old city’s defenses. Pair it with a street walk rather than rushing through both forts in the midday heat.', 'https://www.nps.gov/saju/planyourvisit/index.htm'],
   ['pl-sj-paseo', 'Paseo de la Princesa', 'park', 'Old San Juan', 'A waterfront promenade below the city walls, useful for a slower late-afternoon walk.', sjTourism],
