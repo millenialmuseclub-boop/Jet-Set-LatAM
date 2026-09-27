@@ -173,6 +173,7 @@ export const playaDelCarmenDestination: Destination = {
   city: 'Playa del Carmen',
   country: 'Mexico',
   heroPhoto: finalTravelPhotos["playa-del-carmen"][0].src,
+  cardPhoto: finalTravelPhotos["playa-del-carmen"][1].src,
   tagline: 'The Riviera Maya\'s beating heart, with Xcaret at its doorstep',
   status: 'guide',
   content: {

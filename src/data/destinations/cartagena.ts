@@ -465,6 +465,7 @@ export const cartagenaDestination: Destination = {
   city: 'Cartagena',
   country: 'Colombia',
   heroPhoto: cartagenaPhotos.cartagenaSkyline,
+  cardPhoto: cartagenaPhotos.walledCityStreet,
   tagline: 'Colonial romance, Caribbean heat, and boutiques worth the sweat.',
   status: 'live',
   content: {

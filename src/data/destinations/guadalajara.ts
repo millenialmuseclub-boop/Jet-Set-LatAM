@@ -147,6 +147,7 @@ export const guadalajaraDestination: Destination = {
   city: 'Guadalajara',
   country: 'Mexico',
   heroPhoto: guadalajaraPhotos.guadalajaraSignCathedral,
+  cardPhoto: guadalajaraPhotos.institutoCabanasMural,
   tagline: 'Murals, mezcal country next door, and a neighborhood built for wandering.',
   status: 'guide',
   content: {

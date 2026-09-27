@@ -160,6 +160,7 @@ export const tulumDestination: Destination = {
   city: 'Tulum',
   country: 'Mexico',
   heroPhoto: tulumPhotos.tulumBoardwalkBeach,
+  cardPhoto: tulumPhotos.tulumRuinsPalm,
   tagline: 'Ruins above the Caribbean, cenotes inland, and a wellness scene built for slowing down.',
   status: 'guide',
   content: {

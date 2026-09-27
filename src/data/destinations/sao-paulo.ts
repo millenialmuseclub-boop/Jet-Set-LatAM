@@ -43,7 +43,7 @@ export const saoPauloNeighborhoods: Neighborhood[] = [
     city: 'São Paulo',
     description:
       'A hillside neighborhood of narrow cobblestone streets known for Beco do Batman (Batman Alley), an open-air gallery of ever-changing street art and murals, with jewelry and craft vendors set up along the alley.',
-    heroPhoto: saoPauloPhotos.becoDoBatmanDragonMural,
+    heroPhoto: saoPauloPhotos.becoDoBatmanMarketAlley,
   },
   {
     id: 'nb-centro-sp',
@@ -51,7 +51,7 @@ export const saoPauloNeighborhoods: Neighborhood[] = [
     city: 'São Paulo',
     description:
       'The historic downtown core — Praça da Sé and its neo-Gothic cathedral, the neoclassical Mercado Municipal, Oscar Niemeyer\'s wave-shaped Edifício Copan, and Art Deco towers with city-view terraces above it all.',
-    heroPhoto: saoPauloPhotos.seCathedralTwinTowers,
+    heroPhoto: saoPauloPhotos.seCathedralFacadeDetail,
   },
   {
     id: 'nb-bela-vista-paulista',
@@ -538,6 +538,7 @@ export const saoPauloDestination: Destination = {
   city: 'São Paulo',
   country: 'Brazil',
   heroPhoto: saoPauloPhotos.seCathedralTwinTowers,
+  cardPhoto: saoPauloPhotos.becoDoBatmanGeometricMural,
   tagline: 'Murals, museums and the creative pulse of Brazil\'s biggest city',
   status: 'live',
   content: {

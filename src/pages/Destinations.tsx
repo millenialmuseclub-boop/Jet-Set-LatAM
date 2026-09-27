@@ -71,7 +71,7 @@ export function Destinations() {
                 >
                   {d.heroPhoto ? (
                     <Photo
-                      src={d.heroPhoto}
+                      src={d.cardPhoto || d.heroPhoto}
                       seed={d.id}
                       alt={d.city}
                       className="h-36 w-full md:h-52"

@@ -521,6 +521,7 @@ export const rioDeJaneiroDestination: Destination = {
   city: 'Rio de Janeiro',
   country: 'Brazil',
   heroPhoto: rioCity2025[2].src,
+  cardPhoto: rioCity2025[1].src,
   tagline: 'Beaches, bossa nova, and the city that moves to its own rhythm.',
   status: 'live',
   content: {

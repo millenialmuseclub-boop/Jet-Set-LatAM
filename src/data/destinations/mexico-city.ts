@@ -622,6 +622,7 @@ export const mexicoCityDestination: Destination = {
   city: 'Mexico City',
   country: 'Mexico',
   heroPhoto: cdmxPhotos.angelIndependencia,
+  cardPhoto: cdmxPhotos.zocalo,
   tagline: 'Cathedrals, coastlines and culture — the creative capital of Latin America.',
   isFlagship: true,
   status: 'live',
