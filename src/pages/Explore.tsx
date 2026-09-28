@@ -9,6 +9,7 @@ import { TrailLinks } from '@/components/TrailLinks';
 import { OutdoorJourneys } from '@/components/OutdoorJourneys';
 import { StyleBridge } from '@/components/StyleBridge';
 import { destinationStyle } from '@/data/style';
+import { distinctStories } from '@/lib/destinationReading';
 const categories=['All','Food','Art + Design','Beaches','Nightlife','Shopping',...(guides.some(g=>g.shoppingNotes)?['Shopping Notes']:[]),'Style','Trails','Outdoors + Journeys','City Guides','Field Notes','Postcards','Weekend Somewhere','Carnival'];
 const sections:Record<string,string[]>={Food:['eat','drink'],'Art + Design':['see'],Beaches:['beaches'],Nightlife:['nightlife'],Shopping:['shop'],'City Guides':['stay','experiences']};
 const normalize=(s:string)=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -19,7 +20,7 @@ export function Explore(){
  const requestedPage=Number(params.get('page')||1);
  function update(key:string,value:string){const next=new URLSearchParams(params);if(value)next.set(key,value);else next.delete(key);next.delete('page');setParams(next,{replace:true,preventScrollReset:true});}
  const editIds=['rio-table-2025','wp-10225','gd-rio-santa-teresa','wp-8659','rio-centro-2025','wp-10093'];
- const stories=[...guides].sort((a,b)=>{const ai=editIds.indexOf(a.id),bi=editIds.indexOf(b.id);return (ai<0?99:ai)-(bi<0?99:bi)||(b.publishedAt||'').localeCompare(a.publishedAt||'');}).filter(g=>{
+ const stories=distinctStories(guides).sort((a,b)=>{const ai=editIds.indexOf(a.id),bi=editIds.indexOf(b.id);return (ai<0?99:ai)-(bi<0?99:bi)||(b.publishedAt||'').localeCompare(a.publishedAt||'');}).filter(g=>{
   const tags=(g.categories||[]).map(normalize),title=normalize(g.title);
   const matchesCategory=category==='All'||(sections[category]?.includes(g.section))||tags.includes(normalize(category))||(category==='Beaches'&&tags.includes('beach'))||(category==='Field Notes'&&/day \d|adventure|pictures|stroll/.test(title))||(category==='Postcards'&&/postcard|photo|pictures/.test(title))||(category==='Weekend Somewhere'&&/weekend|day|itinerary|escape/.test(title));
   return matchesCategory&&(!destination||g.destinationId===destination||g.relatedDestinationIds?.includes(destination))&&(!query||normalize([g.title,g.dek,...(g.categories||[]),destinations.find(d=>d.id===g.destinationId)?.city].join(' ')).includes(normalize(query)));

@@ -36,5 +36,5 @@ try {
   assert(discovery.neighborhoodPlaces(chapinero, [{ id: 'a', neighborhood: 'Zona G' }, { id: 'b', neighborhood: 'Zona T' }]).some(p => p.id === 'a'))
   assert(!discovery.neighborhoodPlaces({ name: 'Centro' }, [{ neighborhood: 'Centro Histórico' }]).length, 'No guessed neighborhood proximity')
   assert.equal(JSON.stringify(data.destinations), before, 'Selectors do not mutate content')
-  console.log('Discovery: all seven intents, destination ownership, neighborhood relationships and two-day meal structure passed.')
+  console.log('Discovery: all nine intents, destination ownership, neighborhood relationships and two-day meal structure passed.')
 } finally { await server.close() }

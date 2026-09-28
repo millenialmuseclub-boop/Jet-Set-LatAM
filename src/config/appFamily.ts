@@ -4,15 +4,11 @@ import littleIcon from '@/assets/family/little-jetter.webp'
 import ralliiIcon from '@/assets/family/rallii.webp'
 import eatIcon from '@/assets/family/let-them-eat.webp'
 import { Compass, Shirt, Baby, Bike, UtensilsCrossed, type LucideIcon } from 'lucide-react'
-import type { TripContext } from '@/types'
+
 
 // ---------------------------------------------------------------------------
-// The Jordypop family — travel apps sharing one traveler, none of them
-// merged into this one. This is a display/config seam only: no cross-app
-// API, no account linking, no data sync. See `TripContext`
-// (src/types/index.ts) and `getTripContext()` (src/lib/tripContext.ts) for
-// the only data a sibling app could ever read, and only if a future pass
-// wires up a real handoff.
+// App identity and public fallbacks. Contextual URL handoffs are centralized
+// in lib/companionLinks.ts; no cross-app accounts or data synchronization.
 //
 // Icons use the current local iOS app assets. All five apps are live on the
 // App Store (Little Jetter went live Sept 2026); every member carries its
@@ -74,7 +70,7 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
   'little-jetter': {
     id: 'little-jetter',
     name: 'Little Jetter',
-    description: 'A parent-facing companion for traveling with kids — prep and packing, not a kids\' app.',
+    description: 'Destination dress-up and discoveries for little travelers and their grown-ups.',
     icon: Baby,
     iOSURL: 'https://apps.apple.com/us/app/little-jetter/id6810346538',
     iconUrl: littleIcon,
@@ -111,38 +107,4 @@ export const appFamily: Record<AppFamilyId, AppFamilyMember> = {
 
 export const appFamilyList = Object.values(appFamily)
 
-// ---------------------------------------------------------------------------
-// Luxe Jetter deep-link "receiving contract" (Pass 10) — documentation only.
-//
-// Luxe Jetter's deep-link URL isn't wired into this file yet, so this is
-// deliberately NOT a link builder that produces a clickable URL. It's the
-// shape a future handoff would use once `luxe-jetter.webURL` (or a real
-// `deepLinkScheme`) is added above: the query params a real link would
-// carry, generated from the same `TripContext` this app already derives via
-// `getTripContext()` (src/lib/tripContext.ts). Until that URL is wired in,
-// this function is unused by any UI — it exists purely as a written
-// contract so the eventual wiring is a one-line change, not a redesign.
-//
-// Params such a link would carry (all optional, all already real fields on
-// TripContext — nothing new to collect):
-//   destination   — TripContext.destinationName (e.g. "Cartagena")
-//   days          — TripContext.days
-//   style         — TripContext.style ('value' | 'comfortable' | 'luxe')
-//   interests     — TripContext.interests, comma-joined
-//   occasions     — the itinerary's derived moment types (see
-//                    deriveWardrobeMoments in src/lib/luxeJetterCopy.ts),
-//                    comma-joined — e.g. "beach-day,old-city,dinner"
-//   startDate/endDate — TripContext.startDate/endDate, when the app ever
-//                    collects real calendar dates (it doesn't yet)
-export function buildLuxeJetterHandoffParams(context: TripContext, occasions: string[]): Record<string, string> {
-  const params: Record<string, string> = {
-    destination: context.destinationName,
-    days: String(context.days),
-  }
-  if (context.style) params.style = context.style
-  if (context.interests?.length) params.interests = context.interests.join(',')
-  if (occasions.length) params.occasions = occasions.map((o) => o.toLowerCase().replace(/\s+/g, '-')).join(',')
-  if (context.startDate) params.startDate = context.startDate
-  if (context.endDate) params.endDate = context.endDate
-  return params
-}
+// Verified contextual handoffs live in src/lib/companionLinks.ts.

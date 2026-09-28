@@ -1,5 +1,6 @@
 import { TravelCompanion } from '@/components/TravelCompanion';
-import { luxeJetterLink } from '@/lib/luxeJetterLinks';
+import { wardrobeCompanion, foodCompanion } from '@/lib/companionLinks';
+import { CompanionReading } from '@/components/CompanionReading';
 import { openExternal } from '@/lib/links';
 import { tripPhase } from '@/lib/tripLifecycle';
 import { getEffectiveItinerary } from '@/lib/storage';
@@ -162,7 +163,7 @@ export function Saved() {
                     </span>
                   </div>
                 </Link>
-                {d && tab !== 'Trip Stories' && <button className="mx-4 mb-2 min-h-11 text-xs text-terracotta" onClick={() => openExternal(luxeJetterLink(d.id, 'packing').url)}>Pack for This Trip → Luxe Jetter</button>}
+                {d && tab !== 'Trip Stories' && <button className="mx-4 mb-2 min-h-11 text-xs text-terracotta" onClick={() => openExternal(wardrobeCompanion(d.id,getEffectiveItinerary(t.itineraryId),true).url)}>Pack for This Trip → Luxe Jetter</button>}
                 <button
                   onClick={() => setPending(t.id)}
                   aria-label={`Delete ${t.title}`}
@@ -228,6 +229,7 @@ export function Saved() {
       )}
       {tab === "Saved Places" && places.length > 0 && <label className="mb-5 block text-sm">Find your places by city<select className="mt-2 block min-h-11 w-full border border-ink/20 bg-cream p-3" value={selectedCity} onChange={e => { setCity(e.target.value); setPlaceLimit(18); }}><option value="">All cities · {places.length} {places.length === 1 ? 'place' : 'places'}</option>{cities.map(value => <option key={value} value={value}>{value} · {places.filter(p => p.city === value).length}</option>)}</select></label>}
       {tab === "Saved Places" && selectedCity && filteredPlaces.length === 0 && <p className="mb-4 text-sm text-ink-soft">No places saved in {selectedCity} yet. Choose All cities to see your other favorites.</p>}
+      {tab === "Saved Places" && <CompanionReading link={foodCompanion(filteredPlaces.filter(p=>["restaurant","cafe"].includes(p.category)).map(p=>p.name+" "+p.description).join(" "))}/> }
       {tab === "Saved Places" && (
         <div className="space-y-4">
           {filteredPlaces.slice(0, placeLimit).map((p) => {

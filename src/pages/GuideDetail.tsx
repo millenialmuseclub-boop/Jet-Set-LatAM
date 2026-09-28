@@ -1,6 +1,10 @@
+import { guideSourceLink } from '@/lib/articleLinks';
+import { CompanionReading } from '@/components/CompanionReading';
+import { foodCompanion, familyCompanion, destinationFoodCompanion } from '@/lib/companionLinks';
 import { ArticleBody } from '@/components/ArticleBody';
 import { StyleBridge } from '@/components/StyleBridge';
 import { ShoppingStops } from '@/components/ShoppingStops';
+import { distinctStories } from '@/lib/destinationReading';
 import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
@@ -27,7 +31,7 @@ export function GuideDetail() {
   if (!guide) return <EmptyState title="Guide not found" />;
   const destination = getDestinationById(guide.destinationId);
   const places = getPlacesByIds(guide.placeIds);
-  const related = getGuidesByDestination(guide.destinationId)
+  const related = distinctStories(getGuidesByDestination(guide.destinationId))
     .filter((g) => g.id !== guide.id)
     .sort(
       (a, b) =>
@@ -104,7 +108,7 @@ export function GuideDetail() {
               Explore {d.city} ↗
             </Link>
           ))}
-          {destination?.status === "live" && (
+          {!!destination?.itineraryIds.length && (
             <Link
               to={`/plan?destination=${destination.slug}`}
               className="rounded-full bg-jungle-dark px-4 py-3 text-xs text-cream"
@@ -178,17 +182,19 @@ export function GuideDetail() {
         )}
         <div className="border-t border-ink/15 pt-5">
           {guide.sourceUrl && <button
-            onClick={() => openExternal(guide.sourceUrl)}
+            onClick={() => openExternal(guideSourceLink(guide.sourceUrl).url)}
             className="flex min-h-11 items-center gap-2 text-xs text-terracotta"
           >
-            {guide.editorialSource === 'researched' ? 'Visitor information and source' : 'Read the original published story'} <ExternalLink size={13} />
+            {guideSourceLink(guide.sourceUrl).label || (guide.editorialSource === 'researched' ? 'Visitor information and source' : 'Read the original published story')} <ExternalLink size={13} />
           </button>}
           <p className="mt-2 text-xs leading-relaxed text-ink-soft/55">
             {guide.editorialSource === 'researched' ? 'Jet Set LatAm planning guide, researched September 2026.' : 'From the Jet Set LatAm archive.'} Opening hours, prices and
             availability may have changed since publication.
           </p>
         </div>
-        {['shop', 'beaches', 'stay'].includes(guide.section) && <ShopMyEdit destinationId={guide.destinationId} packing/>}
+        {(['eat','drink'].includes(guide.section)||guide.categories?.includes('Food'))&&<CompanionReading link={foodCompanion(guide.title+' '+guide.dek)||destinationFoodCompanion(guide.destinationId)}/>}
+        <CompanionReading link={familyCompanion(guide.destinationId,/family|with kids|with children/i.test(guide.title+' '+(guide.categories||[]).join(' '))&&!/nightlife|honeymoon|romantic|adults.only/i.test(guide.title))}/>
+        {['shop', 'beaches', 'stay'].includes(guide.section) && <ShopMyEdit destinationId={guide.destinationId} packing wardrobe={!(guide.section==='shop'||guide.categories?.includes('Style'))}/>}
         {destination && (guide.section==='shop'||guide.categories?.includes('Style')) && <StyleBridge destination={destination} variant="shopping" commerce={false}/>}
         {destination && <Link className="story-plan" to={`/plan?destination=${destination.slug}`}><span className="eyebrow">Turn inspiration into a trip</span><strong>Make time for {destination.city} →</strong><span>Explore an itinerary, then make it yours.</span></Link>}
         <section>

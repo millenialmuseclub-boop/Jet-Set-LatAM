@@ -1,15 +1,17 @@
-import { destinations, getPlacesByDestination } from '@/data'
+import { destinations, getPlacesByDestination, getGuidesByDestination } from '@/data'
+import { editorialLinks } from '@/data/editorial-links'
+import { isFirstVisitGuide, guidesForSection } from './destinationReading'
 import type { Destination, Neighborhood, Place } from '@/types'
 
-export const discoveryIntents = ['Eat', 'Beach', 'Culture', 'Style', 'Nightlife', 'Nature', 'Weekend'] as const
+export const discoveryIntents = ['Eat', 'Beach', 'Culture', 'Style', 'Nightlife', 'Nature', 'Weekend', 'First Trip', 'Romantic'] as const
 export type DiscoveryIntent = typeof discoveryIntents[number]
 const categories: Record<DiscoveryIntent, Place['category'][]> = {
   Eat: ['restaurant', 'cafe'], Beach: ['beach'], Culture: ['museum', 'landmark'],
-  Style: ['shop'], Nightlife: ['bar', 'nightlife'], Nature: ['park', 'experience'], Weekend: [],
+  Style: ['shop'], Nightlife: ['bar', 'nightlife'], Nature: ['park', 'experience'], Weekend: [], 'First Trip': [], Romantic: [],
 }
 const natureTags = /nature|hiking|trail|garden|outdoor|mountain|waterfall/i
 export function matchesIntent(place: Place, intent: DiscoveryIntent) {
-  if (intent === 'Weekend') return place.category !== 'hotel'
+  if (['Weekend','First Trip','Romantic'].includes(intent)) return place.category !== 'hotel'
   if (intent === 'Nature') return place.category === 'park' || natureTags.test(place.tags.join(' '))
   return categories[intent].includes(place.category)
 }
@@ -17,12 +19,12 @@ export function matchesIntent(place: Place, intent: DiscoveryIntent) {
 const available = destinations.filter(d => d.status !== 'coming-soon' && d.heroPhoto)
 export const intentCollections = Object.fromEntries(discoveryIntents.map(intent => [intent,
   available.map(destination => ({ destination, places: getPlacesByDestination(destination.id).filter(p => matchesIntent(p, intent)) }))
-    .filter(item => intent === 'Weekend' ? item.destination.itineraryIds.length > 0 : item.places.length > 0)
+    .filter(item => intent === 'Weekend' ? item.destination.itineraryIds.length > 0 : intent === 'First Trip' ? getGuidesByDestination(item.destination.id).some(isFirstVisitGuide) : intent === 'Romantic' ? getGuidesByDestination(item.destination.id).some(g=>/honeymoon|romantic getaway/i.test(g.title)) : item.places.length > 0 || (intent==='Eat'||intent==='Style') && (guidesForSection(getGuidesByDestination(item.destination.id),intent==='Eat'?'eat':'shop').length>0||editorialLinks.some(g=>g.destinationId===item.destination.id&&g.section===(intent==='Eat'?'eat':'shop'))))
     .sort((a, b) => b.places.length - a.places.length),
 ])) as Record<DiscoveryIntent, { destination: Destination; places: Place[] }[]>
 const newIds = ['lima', 'montevideo', 'panama-city', 'san-jose-costa-rica', 'florianopolis', 'san-juan', 'antigua-guatemala', 'santiago', 'medellin', 'bogota', 'oaxaca']
 export const newDestinations = newIds.flatMap(id => available.filter(d => d.id === id))
-export const intentTab: Record<DiscoveryIntent, string> = { Eat: 'eat', Beach: 'experiences', Culture: 'see', Style: 'shop', Nightlife: 'drink', Nature: 'experiences', Weekend: 'overview' }
+export const intentTab: Record<DiscoveryIntent, string> = { Eat: 'eat', Beach: 'experiences', Culture: 'see', Style: 'shop', Nightlife: 'drink', Nature: 'experiences', Weekend: 'overview', 'First Trip':'overview', Romantic:'overview' }
 export const normalizeArea = (name: string) => name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
 export function neighborhoodPlaces(neighborhood: Neighborhood, places: Place[]) {
   // Match documented parent/child names, not unrelated city-wide proximity.

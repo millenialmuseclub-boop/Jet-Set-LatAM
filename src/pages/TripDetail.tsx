@@ -244,7 +244,7 @@ export function TripDetail() {
 
         {destination.id === "rio-de-janeiro" && <RioStoryLinks />}
         <TrailLinks destinationId={destination.id}/>
-        <ShopMyEdit destinationId={destination.id} packing/>
+        <ShopMyEdit destinationId={destination.id} packing wardrobe={false}/>
         <TripConstellation
           destination={destination}
           tripId={trip.id}

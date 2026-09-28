@@ -2,8 +2,9 @@ import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { StyleBridge } from '@/components/StyleBridge'
 import { planningDestinations, canPersonalizeTrip, starterItinerary, copyStarterItinerary } from '@/lib/planningDestinations'
 import { Carousel } from '@/components/Carousel'
-import { appFamily } from "@/config/appFamily";
-import { openExternal } from "@/lib/links";
+import { familyCompanion } from "@/lib/companionLinks";
+import { CompanionReading } from "@/components/CompanionReading";
+
 import { getTravelMemory, rememberPreferences } from '@/lib/travelMemory';
 import { getLibrary } from '@/lib/storage';
 import { WebsitePlanning } from '@/components/WebsitePlanning';
@@ -372,21 +373,8 @@ export function PlanTrip() {
         <p className="text-center text-[11px] text-ink-soft/70">
           Your {selectedDestination.city} shortlist, arranged into days. Open Options to reorder, swap or remove a stop. Check opening hours and reservations before you go.
         </p>
-        <ShopMyEdit destinationId={selectedDestination.id} packing/>
-        {itinerary.answers?.companions === "family" && (
-          <div className="flex items-center gap-2.5 rounded-2xl bg-jungle/10 p-3.5 ring-1 ring-jungle/15">
-            <Baby size={16} className="shrink-0 text-jungle" />
-            <p className="text-xs leading-relaxed text-ink-soft/70">
-              <span className="font-medium text-ink">
-                Little Jetters coming too?
-              </span>{" "}
-              Leave time for meals and rest, and keep a packing list for each child.{" "}
-              <button type="button" onClick={() => openExternal(appFamily["little-jetter"].iOSURL)} className="min-h-11 font-medium text-jungle underline underline-offset-2">
-                Pack with Little Jetter ↗
-              </button>
-            </p>
-          </div>
-        )}
+        <ShopMyEdit destinationId={selectedDestination.id} packing wardrobe={false}/>
+        <CompanionReading link={familyCompanion(selectedDestination.id,itinerary.answers?.companions === "family")}/>
       </div>
     );
   }

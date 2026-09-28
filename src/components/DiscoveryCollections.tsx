@@ -8,9 +8,9 @@ export function DiscoveryCollections() {
   const [intent, setIntent] = useState<DiscoveryIntent | null>(null)
   const [surprise, setSurprise] = useState<string | null>(null)
   const collection = intent ? intentCollections[intent] : []
-  const cities = intent ? collection.slice(0, 4).map(item => item.destination) : newDestinations
+  const cities = intent ? collection.map(item => item.destination) : newDestinations
   const experiences = intent ? collection.flatMap(item => item.places.map(place => ({ place, destination: item.destination }))) : []
-  const seen = new Set<string>()
+  const seen = new Set(cities.flatMap(d=>[d.heroPhoto,d.cardPhoto].filter((p):p is string=>!!p)))
   const photographed = experiences.filter(({ place }) => {
     const photo = place.photos[0]
     if (!photo || seen.has(photo)) return false

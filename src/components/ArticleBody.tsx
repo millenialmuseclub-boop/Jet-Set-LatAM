@@ -1,4 +1,6 @@
 import { Fragment, useMemo } from 'react'
+import { Link } from 'react-router-dom'
+import { internalArticleLink } from '@/lib/articleLinks'
 import { articleBlocks, safeArticleUrl } from '@/lib/article'
 import { openExternal } from '@/lib/links'
 
@@ -7,7 +9,10 @@ function Inline({ text }: { text: string }) {
   return <>{tokens.map((token, i) => {
     const link = token.match(/^\[([^\]]+)\]\((https?:\/\/[^\s]+)\)$/)
     const url = safeArticleUrl(link?.[2] || token)
-    if (url) return <a key={i} href={url} onClick={event => { event.preventDefault(); openExternal(url) }}>{link?.[1] || token}</a>
+    if (url) {
+      const internal=internalArticleLink(url)
+      return internal ? <Link key={i} to={internal}>{link?.[1] || token}</Link> : <a key={i} href={url} onClick={event => { event.preventDefault(); openExternal(url) }}>{link?.[1] || token}</a>
+    }
     if (token.startsWith('**') && token.endsWith('**')) return <strong key={i}>{token.slice(2, -2)}</strong>
     if (token.startsWith('*') && token.endsWith('*')) return <em key={i}>{token.slice(1, -1)}</em>
     return <Fragment key={i}>{token.replace(/(\p{Ll}[.!?])(?=\p{Lu})/gu, '$1 ')}</Fragment>

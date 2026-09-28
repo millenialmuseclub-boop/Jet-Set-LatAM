@@ -1,10 +1,14 @@
 import { NeighborhoodExplorer } from '@/components/NeighborhoodExplorer';
+import { DestinationReading } from '@/components/DestinationReading';
+import { distinctStories, guidesForSection } from '@/lib/destinationReading';
+import { editorialLinks } from '@/data/editorial-links';
 import { relatedDestinations } from '@/lib/discovery';
 import { CartagenaShopMyStays } from '@/components/ShopMyEdit'
 import { rememberDestination } from '@/lib/travelMemory';
 import { finalTravelPhotos } from '@/data/final-travel-photos';
 import { WebsitePlanning } from '@/components/WebsitePlanning';
-import { appFamily } from '@/config/appFamily';
+import { foodCompanion, destinationFoodCompanion } from '@/lib/companionLinks';
+import { CompanionReading } from '@/components/CompanionReading';
 import { rioCity2025 } from '@/data/rio-city-2025';
 import { TrailLinks } from '@/components/TrailLinks';
 import { TrenMayaStories } from '@/components/TrenMayaStories';
@@ -56,14 +60,6 @@ import type { GuideSection, Place } from "@/types";
 // check, so the ShopMy cards only ever appear next to the place they were
 // actually sourced for.
 const SHOP_THE_LOOK_PLACE_IDS = new Set(["pl-copacabana-palace"]);
-
-// Destinations with a strong enough wardrobe-relevant editorial framing to
-// earn ONE contextual Luxe Jetter mention on the destination page itself —
-// not every destination, just where it genuinely fits (colonial-heat
-// Cartagena, beach-to-dinner Rio). Luxe Jetter is a published app; its
-// deep-link URL isn't wired into appFamily.ts yet, so this stays a
-// destination-specific promo mention, same posture as everywhere
-// else Luxe Jetter appears.
 
 const TABS: {
   key: GuideSection | "overview" | "neighborhoods";
@@ -148,7 +144,7 @@ export function DestinationDetail() {
   if (!destination) return <EmptyState title="Destination not found" />;
 
   const places = getPlacesByDestination(destination.id);
-  const guides = getGuidesByDestination(destination.id);
+  const guides = distinctStories(getGuidesByDestination(destination.id));
   const picks = places.filter((p) => p.isJetSetPick);
   const mediaMoments = getMediaMomentsByDestination(destination.id);
   const readyMade = destination.itineraryIds.map(getItinerary).filter(Boolean);
@@ -158,7 +154,7 @@ export function DestinationDetail() {
       shop: ["shop"],
       experiences: ["experience", "park", "beach"],
       see: ["landmark", "museum"],
-      eat: ["restaurant"],
+      eat: ["restaurant", "cafe"],
       drink: ["cafe", "bar", "nightlife"],
       stay: ["hotel"],
     };
@@ -213,7 +209,7 @@ export function DestinationDetail() {
       ))}</details>}
 
       <div className="sticky top-[var(--app-header-height)] z-10 flex gap-1 overflow-x-auto bg-parchment/95 px-5 py-3 backdrop-blur-sm md:justify-center md:px-8">
-        {TABS.filter(t => t.key === "overview" || t.key === "stay" || (t.key === "neighborhoods" ? destination.neighborhoods.length > 0 : placesForTab(t.key).length > 0)).map((t) => (
+        {TABS.filter(t => t.key === "overview" || t.key === "stay" || t.key === "shop" || (t.key === "neighborhoods" ? destination.neighborhoods.length > 0 : placesForTab(t.key).length > 0 || guidesForSection(guides,t.key).length > 0 || editorialLinks.some(g=>g.destinationId===destination.id&&g.section===t.key))).map((t) => (
           <button
             key={t.key}
             aria-pressed={tab === t.key}
@@ -234,7 +230,11 @@ export function DestinationDetail() {
           <p className="eyebrow text-terracotta">Your city, at a glance</p>
           <div className="intent-strip mt-3">
             {destination.neighborhoods.length > 0 && <Link to={`?tab=neighborhoods`}>{destination.neighborhoods.length} neighborhoods →</Link>}
-            <Link to={`?tab=eat`}>{placesForTab('eat').length} {placesForTab('eat').length === 1 ? 'table' : 'tables'} →</Link>
+            <Link to={`/plan?destination=${destination.slug}`}>Plan →</Link>
+            <Link to="?tab=stay">Stay →</Link>
+            <Link to="?tab=eat">Eat →</Link>
+            <Link to="?tab=experiences">Explore →</Link>
+            <Link to="?tab=shop">Shop / Style →</Link>
             <Link to={`/explore?destination=${destination.id}`}>{guides.length} stories →</Link>
             <button onClick={() => { const panel = document.getElementById("city-practical") as HTMLDetailsElement | null; if (panel) { panel.open = true; panel.scrollIntoView({ block: "center" }); panel.querySelector("summary")?.focus(); } }}>Practical essentials ↓</button>
           </div>
@@ -652,10 +652,11 @@ export function DestinationDetail() {
         )}
 
         {tab === "neighborhoods" && <NeighborhoodExplorer destination={destination} places={places}/>}
+        {["shop", "experiences", "see", "eat", "drink", "stay"].includes(tab) && <DestinationReading destination={destination} guides={guides} section={tab}/>}
 
         {["shop", "experiences", "see", "eat", "drink", "stay"].includes(
           tab,
-        ) && (
+        ) && placesForTab(tab).length > 0 && (
           <Carousel label={`${destination.city} ${tab} places`}>
             {placesForTab(tab).length === 0 ? (
               <div className="md:col-span-2">
@@ -731,7 +732,7 @@ export function DestinationDetail() {
         )}
 
         {tab === "stay" && <WebsitePlanning />}
-        {tab === "eat" && placesForTab('eat').length > 0 && <section className="border-t border-ink/10 py-5"><h2 className="font-display text-2xl">Go deeper into food</h2><p className="my-2 text-sm text-ink-soft">Keep these {destination.city} tables in your trip. For food stories, flavors and traditions beyond this guide, explore Let Them Eat.</p><button className="min-h-11 text-sm text-terracotta" onClick={() => openExternal(appFamily['let-them-eat'].iOSURL)}>Explore Let Them Eat ↗</button></section>}
+        {tab === 'eat' && <CompanionReading link={foodCompanion(placesForTab('eat').map(p=>p.name+' '+p.description).join(' '))||destinationFoodCompanion(destination.id)}/>}
         {tab === "overview" && <TrailLinks destinationId={destination.id}/>}
         {tab === "overview" && <TrenMayaStories destinationId={destination.id} />}
         {tab === "overview" && <RalliiBridge destination={destination} />}
