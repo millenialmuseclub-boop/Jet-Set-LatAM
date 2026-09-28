@@ -16,6 +16,7 @@ export const shopmyEdits = {
 } as const
 export function shoppingEdits(destinationId?:string, packing=false) {
  const regional: Record<string, keyof typeof shopmyEdits> = {'rio-de-janeiro':'rio','sao-paulo':'sp','mexico-city':'cdmx',cartagena:'cartagena','buenos-aires':'ba',tulum:'beach','playa-del-carmen':'resort',guadalajara:'layers',bogota:'layers','san-juan':'beach','antigua-guatemala':'layers'}
+ Object.assign(regional,{salvador:'resort',mendoza:'layers',cusco:'layers',quito:'layers',havana:'resort','punta-del-este':'resort','bocas-del-toro':'beach',florianopolis:'beach',montevideo:'layers',lima:'layers','panama-city':'resort','san-jose-costa-rica':'essentials',santiago:'layers',medellin:'essentials',oaxaca:'essentials'})
  const keys: (keyof typeof shopmyEdits)[] = [regional[destinationId || ''] || 'essentials', packing?'airport':'accessories']
  return [...new Set(keys)].map(key=>shopmyEdits[key])
 }

@@ -1,4 +1,5 @@
 import type { Destination, Place, Neighborhood, Itinerary } from '@/types'
+import { nextCityPhotos } from '../next-city-photography'
 import caminitoPhoto from '@/assets/buenos-aires/caminito.webp'
 
 // ---------------------------------------------------------------------------
@@ -362,8 +363,8 @@ export const buenosAiresDestination: Destination = {
   slug: 'buenos-aires',
   city: 'Buenos Aires',
   country: 'Argentina',
-  heroPhoto: caminitoPhoto,
-  photoCredits: [{
+  heroPhoto: nextCityPhotos["buenos-aires-0"].src,
+  photoCredits: [{ photo: nextCityPhotos["buenos-aires-0"].src, credit: "Palacio Barolo — " + nextCityPhotos["buenos-aires-0"].credit.author + " · CC BY-SA 2.0", sourceUrl: nextCityPhotos["buenos-aires-0"].credit.sourceUrl, licenseUrl: nextCityPhotos["buenos-aires-0"].credit.licenseUrl }, {
     photo: caminitoPhoto,
     credit: 'Caminito, La Boca — Photo by Andrzej Otrębski / Wikimedia Commons, CC BY-SA 4.0. Resized and converted to WebP.',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Buenos_Aires_Caminito_1.jpg',

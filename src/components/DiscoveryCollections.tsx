@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { destinationCardPhoto } from '@/lib/destinationPhotography'
 import { Link } from 'react-router-dom'
 import { Photo } from './Photo'
 import { Carousel } from './Carousel'
@@ -10,7 +11,7 @@ export function DiscoveryCollections() {
   const collection = intent ? intentCollections[intent] : []
   const cities = intent ? collection.map(item => item.destination) : newDestinations
   const experiences = intent ? collection.flatMap(item => item.places.map(place => ({ place, destination: item.destination }))) : []
-  const seen = new Set(cities.flatMap(d=>[d.heroPhoto,d.cardPhoto].filter((p):p is string=>!!p)))
+  const seen = new Set(cities.flatMap(d=>[d.heroPhoto,destinationCardPhoto(d,'atlas',intent||'Every mood').src].filter((p):p is string=>!!p)))
   const photographed = experiences.filter(({ place }) => {
     const photo = place.photos[0]
     if (!photo || seen.has(photo)) return false
@@ -31,7 +32,7 @@ export function DiscoveryCollections() {
     <div className="section-heading mt-4"><h3 className="font-display text-2xl">{intent ? `${intent} energy` : 'Fresh perspectives'}</h3><Link to="/destinations">All destinations ↗</Link></div>
     <Carousel key={intent||'new'} label="Destination inspiration">
       {cities.map(d => <Link key={d.id} to={`/destinations/${d.slug}${intent ? `?tab=${intentTab[intent]}` : ''}`} className="discovery-city">
-        <Photo src={d.cardPhoto || d.heroPhoto} seed={d.id} alt={d.city} className="h-44 w-full"/>
+        <Photo src={destinationCardPhoto(d,'atlas',intent||'Every mood').src} seed={d.id} alt={destinationCardPhoto(d,'atlas',intent||'Every mood').caption} className="h-44 w-full"/>
         <div><p className="text-[10px] uppercase tracking-wider">{d.country}</p><h3 className="font-display text-2xl">{d.city}</h3></div>
       </Link>)}
     </Carousel>

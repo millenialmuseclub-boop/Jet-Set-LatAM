@@ -4,6 +4,13 @@ export const styleOffers: StyleOffer[] = [
  {id:'rio-stays',kind:'stay',title:'Rio stays collection',network:'ShopMy',affiliateUrl:'https://shopmy.us/collections/embed/2799513',cta:'Explore the stays collection',destinationIds:['rio-de-janeiro'],source:'Existing hotel collection previously mislabeled as a wardrobe edit',verifiedAt:'2026-09-13',status:'active'}
 ]
 export const destinationStyle: Record<string,{headline:string;body:string;occasions:string[]}> = {
+"salvador":{"headline":"Pack for Salvador","body":"Bahian cooking, colorful streets and culture by the sea.","occasions":["City Walk","Coastal Day","Dinner"]},
+"mendoza":{"headline":"Pack for Mendoza","body":"Leafy plazas, vineyard tables and an Andean horizon.","occasions":["City Walk","Wine Country","Dinner"]},
+"punta-del-este":{"headline":"Pack for Punta del Este","body":"Coastal walks, art afternoons and long Uruguayan lunches.","occasions":["City Walk","Coastal Day","Dinner"]},
+"bocas-del-toro":{"headline":"Pack for Bocas del Toro","body":"Island neighborhoods, Caribbean food and forest-fringed beaches.","occasions":["City Walk","Coastal Day","Dinner"]},
+ quito:{headline:'Pack for Quito',body:'Historic plazas, chocolate and creative neighborhoods. Build around comfortable shoes and layers for your planned outings.',occasions:['City Walk','Gallery Visit','Dinner']},
+ cusco:{headline:'Dress for Cusco',body:'Stone streets, a market morning and a table in town. Plan city clothes separately from equipment for any mountain excursion.',occasions:['City Walk','Craft Shopping','Dinner']},
+ havana:{headline:'Pack for Havana',body:'Old-city plazas, art and a seafront pause. Choose breathable layers and comfortable shoes for the days you have planned.',occasions:['City Walk','Gallery Visit','Dinner']},
  lima:{headline:'Dress for Lima',body:'Coastal walks, museum afternoons and a change for dinner. Check the forecast before choosing your layers.',occasions:['City Walk','Museum Morning','Dinner']},
  montevideo:{headline:'Pack for Montevideo',body:'Historic streets, market lunches and time on the Rambla. Leave room for a layer when the waterfront breeze picks up.',occasions:['City Walk','Shopping','Dinner']},
  'panama-city':{headline:'Your Panama City wardrobe',body:'Casco streets, a canal outing and museum time. Choose comfortable footwear and check the forecast before you go.',occasions:['City Walk','Museum Morning','Dinner']},

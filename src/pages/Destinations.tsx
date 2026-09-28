@@ -1,3 +1,4 @@
+import { destinationCardPhoto } from '@/lib/destinationPhotography';
 import { CompanionReading } from '@/components/CompanionReading';
 import { wardrobeCompanion, railCompanions } from '@/lib/companionLinks';
 import { useSearchParams } from 'react-router-dom';
@@ -20,7 +21,7 @@ const COUNTRY_ORDER = ["Mexico", "Colombia", "Brazil", "Southern Cone + Peru", "
 function groupByCountry(dests: Destination[]) {
   const groups = new Map<string, Destination[]>();
   for (const d of dests) {
-    const region = ['Argentina','Chile','Uruguay','Peru'].includes(d.country) ? 'Southern Cone + Peru' : ['Puerto Rico','Guatemala','Panama','Costa Rica'].includes(d.country) ? 'Caribbean + Central America' : d.country;
+    const region = ['Argentina','Chile','Uruguay','Peru'].includes(d.country) ? 'Southern Cone + Peru' : ['Puerto Rico','Guatemala','Panama','Costa Rica','Cuba'].includes(d.country) ? 'Caribbean + Central America' : d.country;
     const list = groups.get(region) ?? [];
     list.push(d);
     groups.set(region, list);
@@ -78,9 +79,9 @@ export function Destinations() {
                 >
                   {d.heroPhoto ? (
                     <Photo
-                      src={d.cardPhoto || d.heroPhoto}
+                      src={destinationCardPhoto(d,"atlas",mood).src}
                       seed={d.id}
-                      alt={d.city}
+                      alt={destinationCardPhoto(d,"atlas",mood).caption}
                       className="h-36 w-full md:h-52"
                     />
                   ) : (

@@ -71,6 +71,21 @@
       "id": "acce7d02-b698-4c00-8cd6-d4ccf9e367f3",
       "name": "Florianópolis",
       "country": "Brazil"
+    },
+    "cusco": {
+      "id": "adc13b84-1ba3-4371-aaff-32eb4bd8afdc",
+      "name": "Cusco",
+      "country": "Peru"
+    },
+    "salvador": {
+      "id": "b742cff8-99c3-4348-8c85-2b550fa92669",
+      "name": "Salvador",
+      "country": "Brazil"
+    },
+    "punta-del-este": {
+      "id": "bb53d114-7c90-4650-bd97-a94a61d0fa80",
+      "name": "Punta del Este",
+      "country": "Uruguay"
     }
   }
 }

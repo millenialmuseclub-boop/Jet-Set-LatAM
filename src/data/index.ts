@@ -23,14 +23,16 @@ import { planningGuides } from './planning-guides'
 import { buildPlacePhotography, supplementPhotoCredits } from './place-photography'
 import { websiteGuides } from './website-guides'
 import { fiveCityDestinations, fiveCityPlaces, fiveCityGuides, fiveCityItineraries } from './destinations/five-cities'
+import { nextCityDestinations, nextCityPlaces, nextCityGuides, nextCityItineraries } from './destinations/next-cities'
 import shoppingRecords from './shopping-notes.generated.json'
+import { readingPhotos } from './reading-photography'
 export { archivePhotos, archiveStats } from './archive'
 
 export { mediaMoments, getMediaMomentsByDestination } from './media'
 
-export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...expansionDestinations, ...fiveCityDestinations, ...comingSoonDestinations]
-export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces, ...sanJuanPlaces, ...antiguaPlaces, ...fiveCityPlaces, ...shoppingRecords.places as Place[]]
-const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides, ...oaxacaGuides, ...expansionCityGuides, ...planningGuides, ...fiveCityGuides]
+export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...expansionDestinations, ...fiveCityDestinations, ...nextCityDestinations, ...comingSoonDestinations]
+export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces, ...sanJuanPlaces, ...antiguaPlaces, ...fiveCityPlaces, ...nextCityPlaces, ...shoppingRecords.places as Place[]]
+const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides, ...oaxacaGuides, ...expansionCityGuides, ...planningGuides, ...fiveCityGuides, ...nextCityGuides]
 const baseGuides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[], ...websiteGuides]
 const shoppingGuides = (shoppingRecords.guides as (Guide & {coverGuideId:string})[]).map(({coverGuideId,...g}) => {
  const cover = baseGuides.find(source => source.id === coverGuideId)
@@ -74,7 +76,7 @@ for (const place of places.filter(p => p.city === 'Cartagena' && !p.photos.lengt
 }
 const cartagenaHero = archivePhotos.find(p => p.caption.includes('Torre del Reloj'))
 if (cartagenaHero) destinations.find(d => d.id === 'cartagena')!.heroPhoto = cartagenaHero.src
-export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary, oaxacaReadyMadeItinerary, santiagoReadyMadeItinerary, medellinReadyMadeItinerary, bogotaReadyMadeItinerary, ...expansionItineraries, ...shortItineraries, ...fiveCityItineraries]
+export const itineraries: Itinerary[] = [cdmxReadyMadeItinerary, rioReadyMadeItinerary, cartagenaReadyMadeItinerary, saoPauloReadyMadeItinerary, buenosAiresReadyMadeItinerary, oaxacaReadyMadeItinerary, santiagoReadyMadeItinerary, medellinReadyMadeItinerary, bogotaReadyMadeItinerary, ...expansionItineraries, ...shortItineraries, ...fiveCityItineraries, ...nextCityItineraries]
 for (const itinerary of shortItineraries) {
  const destination = destinations.find(d => d.id === itinerary.destinationId)
  if (destination && !destination.itineraryIds.includes(itinerary.id)) destination.itineraryIds.push(itinerary.id)
@@ -137,4 +139,5 @@ if (!rioDeJaneiroDestination.neighborhoods.some(n => n.name === 'Centro')) rioDe
 
 for (const g of railGuideRecords) if (!playaDelCarmenDestination.guideIds.includes(g.id)) playaDelCarmenDestination.guideIds.push(g.id)
 supplementPhotoCredits(destinations, guides)
+for(const [id,photos] of Object.entries(readingPhotos))for(const p of photos)destinations.find(d=>d.id===id)?.photoCredits?.push({photo:p.src,credit:`${p.credit.author} · ${p.credit.license}`,sourceUrl:p.credit.sourceUrl,licenseUrl:p.credit.licenseUrl})
 const placePhotography = buildPlacePhotography(destinations, places, guides)

@@ -1,4 +1,5 @@
 import { Carousel } from '@/components/Carousel';
+import { WebsiteReading } from '@/components/WebsiteReading';
 import { Photo } from '@/components/Photo';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Search, ArrowRight } from 'lucide-react';
@@ -43,6 +44,7 @@ export function Explore(){
    {!isSpecial&&total===0&&<div className="py-10 text-center"><h3 className="font-display text-3xl">A different detour?</h3><p className="my-3 text-sm">No stories match these filters.</p><button className="min-h-11 text-sm underline" onClick={()=>setParams({})}>Clear all filters</button></div>}
    {!isSpecial&&total>0&&<nav aria-label="Journal pages" className="journal-pagination"><button disabled={page===1} onClick={()=>turnPage(page-1)}>← Previous</button><span aria-live="polite">{page} / {pages}</span><button disabled={page===pages} onClick={()=>turnPage(page+1)}>Next →</button></nav>}
   </section>
+  <WebsiteReading destination={destination} category={category} query={query} excludedPhotos={stories.slice((page-1)*perPage,page*perPage).flatMap(g=>g.heroPhoto?[g.heroPhoto]:[])}/>
   <p className="journal-end">A little inspiration. Then, go live it.</p>
  </div>;
 }

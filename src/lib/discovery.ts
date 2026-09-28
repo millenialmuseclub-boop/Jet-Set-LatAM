@@ -22,7 +22,7 @@ export const intentCollections = Object.fromEntries(discoveryIntents.map(intent 
     .filter(item => intent === 'Weekend' ? item.destination.itineraryIds.length > 0 : intent === 'First Trip' ? getGuidesByDestination(item.destination.id).some(isFirstVisitGuide) : intent === 'Romantic' ? getGuidesByDestination(item.destination.id).some(g=>/honeymoon|romantic getaway/i.test(g.title)) : item.places.length > 0 || (intent==='Eat'||intent==='Style') && (guidesForSection(getGuidesByDestination(item.destination.id),intent==='Eat'?'eat':'shop').length>0||editorialLinks.some(g=>g.destinationId===item.destination.id&&g.section===(intent==='Eat'?'eat':'shop'))))
     .sort((a, b) => b.places.length - a.places.length),
 ])) as Record<DiscoveryIntent, { destination: Destination; places: Place[] }[]>
-const newIds = ['lima', 'montevideo', 'panama-city', 'san-jose-costa-rica', 'florianopolis', 'san-juan', 'antigua-guatemala', 'santiago', 'medellin', 'bogota', 'oaxaca']
+const newIds = ['salvador','mendoza','punta-del-este','bocas-del-toro','quito', 'cusco', 'havana', 'lima', 'montevideo', 'panama-city', 'san-jose-costa-rica', 'florianopolis', 'san-juan', 'antigua-guatemala', 'santiago', 'medellin', 'bogota', 'oaxaca']
 export const newDestinations = newIds.flatMap(id => available.filter(d => d.id === id))
 export const intentTab: Record<DiscoveryIntent, string> = { Eat: 'eat', Beach: 'experiences', Culture: 'see', Style: 'shop', Nightlife: 'drink', Nature: 'experiences', Weekend: 'overview', 'First Trip':'overview', Romantic:'overview' }
 export const normalizeArea = (name: string) => name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
@@ -33,7 +33,7 @@ export function neighborhoodPlaces(neighborhood: Neighborhood, places: Place[]) 
 }
 export function relatedDestinations(destination: Destination) {
   const ownCategories = new Set(getPlacesByDestination(destination.id).map(p => p.category))
-  const connections = [['lima','santiago'],['montevideo','buenos-aires'],['panama-city','cartagena'],['san-jose-costa-rica','antigua-guatemala'],['florianopolis','rio-de-janeiro']]
+  const connections = [['cusco','lima'],['mendoza','buenos-aires'],['punta-del-este','montevideo'],['salvador','rio-de-janeiro'],['bocas-del-toro','panama-city'],['lima','santiago'],['montevideo','buenos-aires'],['panama-city','cartagena'],['san-jose-costa-rica','antigua-guatemala'],['florianopolis','rio-de-janeiro']]
   return available.filter(d => d.id !== destination.id).map(d => ({ destination: d,
     score: (connections.some(pair=>pair.includes(destination.id)&&pair.includes(d.id)) ? 5 : 0) + (d.country === destination.country ? 3 : 0) + new Set(getPlacesByDestination(d.id).filter(p => ownCategories.has(p.category)).map(p => p.category)).size,
   })).sort((a, b) => b.score - a.score).slice(0, 3).map(item => item.destination)

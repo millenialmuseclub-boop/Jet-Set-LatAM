@@ -43,7 +43,9 @@ try {
  if(fs.existsSync('visual-qa/shopping-expansion-baseline.json')){
   const base=JSON.parse(fs.readFileSync('visual-qa/shopping-expansion-baseline.json','utf8'))
   for(const kind of ['destinations','places','guides','itineraries'])for(const old of base[kind]){
-   const current=data[kind].find(x=>x.id===old.id)
+   const current=JSON.parse(JSON.stringify(data[kind].find(x=>x.id===old.id)))
+   if(kind==='destinations'&&old.id==='buenos-aires'){assert(current.heroPhoto.endsWith('/next-cities/buenos-aires-0.webp'));current.heroPhoto=old.heroPhoto;current.photoCredits=current.photoCredits.filter(p=>!p.photo.endsWith('/next-cities/buenos-aires-0.webp'))}
+   if(kind==='destinations'&&["guadalajara","tulum","san-juan","antigua-guatemala","santiago"].includes(old.id))current.photoCredits=current.photoCredits.filter(p=>!p.photo.includes('/next-cities/'+old.id+'-extra'))
    assert.deepEqual(JSON.parse(JSON.stringify(current)),old,`Existing ${kind} changed: ${old.id}`)
   }
  }

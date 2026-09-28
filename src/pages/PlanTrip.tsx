@@ -1,3 +1,4 @@
+import { destinationCardPhoto } from '@/lib/destinationPhotography';
 import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { StyleBridge } from '@/components/StyleBridge'
 import { planningDestinations, canPersonalizeTrip, starterItinerary, copyStarterItinerary } from '@/lib/planningDestinations'
@@ -450,7 +451,7 @@ export function PlanTrip() {
                     className={`relative overflow-hidden rounded-2xl text-left transition-shadow ${destinationId === d.id ? "ring-2 ring-terracotta shadow-md shadow-terracotta/20" : "ring-1 ring-ink/5"}`}
                   >
                     <Photo
-                      src={d.cardPhoto || (d.id === "rio-de-janeiro" ? rio2025[7].src : d.heroPhoto)}
+                      src={destinationCardPhoto(d,"plan").src}
                       seed={d.id}
                       alt={d.city}
                       className="h-28 w-full"

@@ -1,3 +1,4 @@
+import { destinationCardPhoto, destinationOverviewStories } from '@/lib/destinationPhotography';
 import { NeighborhoodExplorer } from '@/components/NeighborhoodExplorer';
 import { DestinationReading } from '@/components/DestinationReading';
 import { distinctStories, guidesForSection } from '@/lib/destinationReading';
@@ -144,7 +145,7 @@ export function DestinationDetail() {
   if (!destination) return <EmptyState title="Destination not found" />;
 
   const places = getPlacesByDestination(destination.id);
-  const guides = distinctStories(getGuidesByDestination(destination.id));
+  const guides = destinationOverviewStories(destination, distinctStories(getGuidesByDestination(destination.id)));
   const picks = places.filter((p) => p.isJetSetPick);
   const mediaMoments = getMediaMomentsByDestination(destination.id);
   const readyMade = destination.itineraryIds.map(getItinerary).filter(Boolean);
@@ -317,7 +318,7 @@ export function DestinationDetail() {
           </div>
         )}
 
-        {tab === "overview" && <section aria-label="Related destinations"><div className="section-heading"><h2>Keep exploring</h2></div><div className="photo-rail">{relatedDestinations(destination).map(d => <Link key={d.id} className="w-40 shrink-0" to={`/destinations/${d.slug}`}><Photo src={d.cardPhoto || d.heroPhoto} seed={d.id} alt={d.city} className="h-28 w-full"/><h3 className="mt-2 font-display text-xl">{d.city}</h3><p className="text-xs text-ink-soft">{d.country}</p></Link>)}</div></section>}
+        {tab === "overview" && <section aria-label="Related destinations"><div className="section-heading"><h2>Keep exploring</h2></div><div className="photo-rail">{relatedDestinations(destination).map(d => <Link key={d.id} className="w-40 shrink-0" to={`/destinations/${d.slug}`}><Photo src={destinationCardPhoto(d,"related").src} seed={d.id} alt={d.city} className="h-28 w-full"/><h3 className="mt-2 font-display text-xl">{d.city}</h3><p className="text-xs text-ink-soft">{d.country}</p></Link>)}</div></section>}
         {tab === "overview" && guides.length > 2 && (
           <details className="destination-disclosure"><summary>More stories from {destination.city}</summary>
             <div className="section-heading">
@@ -739,7 +740,7 @@ export function DestinationDetail() {
 
         {tab === "stay" && destination.id === "cartagena" && <CartagenaShopMyStays/>}
         {tab === "overview" && <StyleBridge destination={destination} />}
-        {(tab === "shop" || tab === "neighborhoods") && <StyleBridge destination={destination} variant={tab === 'shop' ? 'shopping' : 'neighborhood'} commerce={false}/>}
+        {(tab === "shop" || tab === "neighborhoods") && <StyleBridge destination={destination} variant={tab === 'shop' ? 'shopping' : 'neighborhood'} commerce={tab === 'shop'}/>}
       </div>
     </div>
   );

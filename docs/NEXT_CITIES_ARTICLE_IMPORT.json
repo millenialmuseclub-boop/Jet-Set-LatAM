@@ -1,0 +1,164 @@
+[
+  {
+    "guideId": "wp-2087",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/10/26/mountain-biking-in-perus-sacred-valley-high-altitude-trails-incan-adventure/",
+    "amendments": [
+      "Discuss altitude, route difficulty and preparation with a qualified guide before riding."
+    ]
+  },
+  {
+    "guideId": "wp-2149",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/11/04/cusco-city-guide-gateway-to-the-sacred-valley/",
+    "amendments": [
+      "make separate arrangements for Sacred Valley and Machu Picchu visits.",
+      "Machu Picchu is lower than Cusco. Plan high-altitude travel around your individual needs, rather than a fixed acclimatization timetable.",
+      "For altitude concerns, seek qualified medical advice."
+    ]
+  },
+  {
+    "guideId": "wp-3623",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/10/21/quito-by-cruiser-bike-high-altitude-history-on-two-wheels/",
+    "amendments": [
+      "Added clear cycling route limitation."
+    ]
+  },
+  {
+    "guideId": "wp-9540",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2026/01/04/hibiscus-in-havana/",
+    "amendments": []
+  },
+  {
+    "guideId": "wp-9652",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2026/01/11/quito-ecuador-a-rising-cultural-hotspot-with-boutique-charm-2026/",
+    "amendments": []
+  },
+  {
+    "guideId": "wp-13919",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2026/09/24/where-to-stay-cusco-sacred-valley/",
+    "amendments": [
+      "The small town below Machu Picchu is commonly reached by train; check your chosen transport arrangements.",
+      "Choose your overnight bases around your booked entry time, transport and individual needs."
+    ]
+  },
+  {
+    "guideId": "wp-14059",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2026/09/24/havana-first-timers-guide/",
+    "amendments": []
+  },
+  {
+    "guideId": "wp-14092",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2026/09/24/where-to-stay-havana-old-havana-vedado/",
+    "amendments": []
+  },
+  {
+    "guideId": "wp-14137",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2026/09/25/where-to-stay-quito-neighborhoods/",
+    "amendments": []
+  },
+  {
+    "guideId": "wp-2143",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/10/28/mendoza-wine-regions-explained/",
+    "amendments": []
+  },
+  {
+    "guideId": "wp-2291",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/11/14/casa-de-uco-modern-vineyard-retreat-in-mendozas-uco-valley/",
+    "amendments": []
+  },
+  {
+    "guideId": "wp-3711",
+    "sourceUrl": "https://thebrunchmanifesto.blog/2025/11/08/bocas-del-toro-beach-guide-overwater-dreams-and-caribbean-rhythm/",
+    "amendments": [
+      "Removed blanket dry-season and swimming-safety assurances; added wildlife and transfer context."
+    ]
+  },
+  {
+    "guideId": "gd-salvador-experiences-intro",
+    "sourceUrl": "https://www.salvadordabahia.com/experiencias/mercado-modelo/",
+    "sources": [
+      "https://www.salvadordabahia.com/experiencias/mercado-modelo/",
+      "https://www.salvadordabahia.com/casa-do-carnaval/",
+      "https://www.salvadordabahia.com/roteiros/turismo-e-banho-de-mar/",
+      "https://www.salvadordabahia.com/experiencias/praia-do-porto-da-barra/",
+      "https://www.salvadordabahia.com/experiencias/casa-do-rio-vermelho/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-salvador-eat-intro",
+    "sourceUrl": "https://www.salvadordabahia.com/casa-do-carnaval/",
+    "sources": [
+      "https://www.salvadordabahia.com/casa-do-carnaval/",
+      "https://www.salvadordabahia.com/experiencias/casa-do-rio-vermelho/",
+      "https://casadetereza.com.br/sobre/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-salvador-shop-intro",
+    "sourceUrl": "https://www.salvadordabahia.com/experiencias/mercado-modelo/",
+    "sources": [
+      "https://www.salvadordabahia.com/experiencias/mercado-modelo/",
+      "https://www.salvadordabahia.com/casa-do-carnaval/",
+      "https://www.salvadordabahia.com/experiencias/casa-do-rio-vermelho/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-mendoza-eat-intro",
+    "sourceUrl": "https://inprotur-prod.turismo.gob.ar/enoturismo/casa-vigil",
+    "sources": [
+      "https://inprotur-prod.turismo.gob.ar/enoturismo/casa-vigil"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-punta-del-este-experiences-intro",
+    "sourceUrl": "https://uruguaynatural.com/wp-content/uploads/2023/02/circuito-pde-esp-ing.pdf",
+    "sources": [
+      "https://uruguaynatural.com/wp-content/uploads/2023/02/circuito-pde-esp-ing.pdf",
+      "https://museoralli.com.uy/",
+      "https://www.clubhotelcasapueblo.com/",
+      "https://lodetere.com/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-punta-del-este-eat-intro",
+    "sourceUrl": "https://museoralli.com.uy/",
+    "sources": [
+      "https://museoralli.com.uy/",
+      "https://lodetere.com/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-punta-del-este-shop-intro",
+    "sourceUrl": "https://uruguaynatural.com/wp-content/uploads/2023/02/circuito-pde-esp-ing.pdf",
+    "sources": [
+      "https://uruguaynatural.com/wp-content/uploads/2023/02/circuito-pde-esp-ing.pdf",
+      "https://museoralli.com.uy/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-bocas-del-toro-stay-intro",
+    "sourceUrl": "https://www.tourismpanama.com/plan-your-trip/itineraries/bocas-del-toro/",
+    "sources": [
+      "https://www.tourismpanama.com/plan-your-trip/itineraries/bocas-del-toro/",
+      "https://www.tourismpanama.com/places-to-visit/bocas-del-toro/places-to-stay/bastimentos-island/",
+      "https://stri.si.edu/visit/bocas-del-toro",
+      "https://merenbocas.com/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-bocas-del-toro-eat-intro",
+    "sourceUrl": "https://merenbocas.com/",
+    "sources": [
+      "https://merenbocas.com/",
+      "https://www.tourismpanama.com/places-to-visit/bocas-del-toro/places-to-stay/bastimentos-island/"
+    ],
+    "researched": true
+  }
+]
