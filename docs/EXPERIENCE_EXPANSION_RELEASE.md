@@ -1,6 +1,6 @@
 # Experience + ShopMy release handoff
 
-Status: implementation and local checks complete. Production source and native compatibility verified against OTA `1790553732`. Publishing through the existing production workflow; deployment confirmation is recorded in the release receipt after publication.
+Status: **production OTA 1790558561 deployed successfully**. Runtime jetset-ios-v1; app com.jetsetlatam.app; source 834dbb1426b5da4b68cf9dee2a5c87dfa0251967. Workflow 36365755699 passed; live manifest and bundle HTTP 200 verified on 2026-09-28. Receipt: visual-qa/experience-ota-receipt.json.
 
 ## Delivered
 
@@ -10,7 +10,7 @@ Status: implementation and local checks complete. Production source and native c
 - 26 destination-specific ShopMy treatments, each with two different local city photographs and the exact existing collection URLs. Redesigned shared cards cover Discover, destination Overview/Shop, eligible Journal articles, Plan, Saved trip detail and the dedicated Rio/Cartagena stays placements. About's profile link and existing article links remain unchanged.
 - Images are explicitly destination inspiration, not product or room previews. No retailer assets, invented products, price claims or new affiliate inventory. Luxe Jetter remains a separate action. Added verified destination matches for Cusco, Salvador and Punta del Este; other cities use the established wardrobe fallback.
 - All 26 cities have four different primary hero/atlas/planner/related photos and unique Journal covers within each city. Nine website-reading cards use distinct imagery from the visible Journal row. Buenos Aires has a new Palacio Barolo hero.
-- 43 credited local WebP photographs total 2,878,596 bytes. Each is under 160 KB and within 960 × 760. ShopMy adds no separate product-image payload: it reuses bundled destination/editorial photographs, two cards per shelf, lazy loaded. Actual encrypted OTA bundle size is pending deployment. The build retains the existing large content-chunk warning; no new dependency or SDK was added.
+- 43 credited local WebP photographs total 2,878,596 bytes. Each is under 160 KB and within 960 × 760. ShopMy adds no separate product-image payload: it reuses bundled destination/editorial photographs, two cards per shelf, lazy loaded. Verified encrypted OTA bundle: 59,308,464 bytes, up 2,922,912 bytes (5.184%) from production 1790553732. The build retains the existing large content-chunk warning; no new dependency or SDK was added.
 - Shopping Notes validation still passes; Jardins businesses/routes remain unimported pending the approved master record.
 
 ## Validation

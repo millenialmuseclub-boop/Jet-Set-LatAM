@@ -32,7 +32,7 @@ export function Explore(){
  const isSpecial=['Trails','Outdoors + Journeys','Carnival'].includes(category);
  function turnPage(nextPage:number){const next=new URLSearchParams(params);next.set('page',String(nextPage));setParams(next,{preventScrollReset:true});requestAnimationFrame(()=>requestAnimationFrame(()=>document.getElementById('journal-edit')?.scrollIntoView({behavior:'instant',block:'start'}))); }
  const pristine=category==='All'&&!query&&!destination&&page===1;
- return <div className="journal-page mx-auto max-w-5xl px-5 pb-8 pt-5 md:px-8">
+ return <div data-journal-category={category} className="journal-page mx-auto max-w-5xl px-5 pb-8 pt-5 md:px-8">
   <header className="journal-masthead"><p className="eyebrow text-terracotta">Jet Set LatAm / The travel journal</p><h1 className="font-display">The art of <em>going.</em></h1><span>Places. People. A different point of view.</span></header>
   {pristine&&<Link to="/guides/rio-quiet-2025" className="journal-cover"><img src={rioCity2025[3].src} alt={rioCity2025[3].caption} fetchPriority="high"/><div className="journal-cover-shade"/><div className="journal-cover-copy"><p className="eyebrow">The Rio diaries · 2025</p><h2>When the city<br/><em>exhales.</em></h2><span>Beach days &amp; the hours between <ArrowRight size={16}/></span></div></Link>}
   <nav aria-label="Explore features" className="journal-index">{[['Ask Jet Set','/ask'],['Trails','/explore?category=Trails'],['Carnival','/carnival'],['City guides','/explore?category=City+Guides']].map(([label,to])=><Link key={label} to={to}>{label} <span aria-hidden="true">↗</span></Link>)}</nav>
