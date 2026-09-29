@@ -10,7 +10,7 @@ try {
  const {editorialLinks}=await server.ssrLoadModule('/src/data/editorial-links.ts')
  const planning=await server.ssrLoadModule('/src/lib/planningDestinations.ts')
  const added=['quito','cusco','havana','salvador','mendoza','punta-del-este','bocas-del-toro']
- assert.equal(data.destinations.length,26);assert.equal(data.guides.length,159)
+ assert.equal(data.destinations.length,29);assert.equal(data.guides.length,168)
  const audit=[]
  for(const d of data.destinations){
   const guides=data.getGuidesByDestination(d.id),places=data.getPlacesByDestination(d.id)
@@ -51,10 +51,14 @@ try {
    assert.deepEqual(actual,old,`Existing ${kind} changed: ${old.id}`)
   }
  }
+ if(fs.existsSync('visual-qa/before-three-cities.json')) {const prior=JSON.parse(fs.readFileSync('visual-qa/before-three-cities.json'))
+ for(const kind of ['destinations','places','guides','itineraries'])for(const old of prior[kind])assert.deepEqual(JSON.parse(JSON.stringify(data[kind].find(x=>x.id===old.id))),old,'Prior record changed: '+old.id)
+ }
+ for(const id of ['merida','arequipa','valparaiso']){assert.equal(data.getPlacesByDestination(id).length,6);assert.equal(data.getGuidesByDestination(id).length,3);assert(data.itineraries.some(x=>x.destinationId===id&&x.days.length===2))}
  const cusco=data.getGuide('wp-2149').body
  assert(!/higher elevations like Machu Picchu|Coca tea is a local remedy/.test(cusco))
- fs.mkdirSync('visual-qa',{recursive:true});fs.writeFileSync('visual-qa/26-city-audit.json',JSON.stringify(audit,null,2))
+ fs.mkdirSync('visual-qa',{recursive:true});fs.writeFileSync('visual-qa/29-city-audit.json',JSON.stringify(audit,null,2))
  const urls=[...new Set([...editorialLinks.map(a=>a.url),...added.flatMap(id=>[...data.getGuidesByDestination(id).map(g=>g.sourceUrl),...data.getPlacesByDestination(id).map(p=>p.sourceUrl)])])]
  fs.writeFileSync('visual-qa/next-city-links.json',JSON.stringify(urls,null,2))
- console.log(`26 cities: four distinct primary photos each, unique Journal covers, all available in Plan. Original 19 cities preserved except the approved Buenos Aires hero. Seven cities, 56 places, 21 stories, 7 isolated starters; ${photos.length} WebP photos (${photos.reduce((n,p)=>n+p.bytes,0)} bytes).`)
+ console.log(`29 cities: four distinct primary photos each, unique Journal covers, all available in Plan. Original 19 cities preserved except the approved Buenos Aires hero. Ten added cities, 74 places, 30 stories, 10 isolated starters; ${photos.length} WebP photos (${photos.reduce((n,p)=>n+p.bytes,0)} bytes).`)
 }finally{await server.close()}

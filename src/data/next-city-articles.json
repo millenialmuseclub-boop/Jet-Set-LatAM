@@ -474,5 +474,228 @@
     "categories": [
       "Food"
     ]
+  },
+  {
+    "id": "gd-merida-stay-intro",
+    "title": "Mérida for a first visit: choosing a city base",
+    "destinationId": "merida",
+    "section": "stay",
+    "dek": "Yucatecan tables, shaded plazas and a museum-led city break.",
+    "body": "<h2>Choose the outings first</h2><p>Centro keeps the main square and market area in your plans. Santa Lucía offers another central reference point; Paseo de Montejo changes the focus to architecture and museum time. Compare exact addresses and access rather than assuming every hotel in a neighborhood has the same setting.</p><h2>Two different city days</h2><p>Use the editable starter for a historic-center day, then a separate avenue and museum outing. Build in breaks around the forecast. Keep any cenote or archaeological excursion outside this city outline, with its own booking and transport.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://yucatan.travel/region/merida/\">Visitor source 1</a></li><li><a href=\"https://lugares.inah.gob.mx/es/node/4258\">Visitor source 2</a></li><li><a href=\"https://prensa.merida.gob.mx/12528/Ecos-nueva-exposicion-del-Museo-de-la-Ciudad-que-reinterpreta-la-ceramica-prehispanica/amp\">Visitor source 3</a></li></ul>",
+    "placeIds": [
+      "pl-merida-grande",
+      "pl-merida-montejo",
+      "pl-merida-lucia",
+      "pl-merida-canton",
+      "pl-merida-mercado",
+      "pl-merida-museo"
+    ],
+    "sourceUrl": "https://yucatan.travel/region/merida/",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-merida-eat-intro",
+      "gd-merida-experiences-intro"
+    ],
+    "cover": "merida-2",
+    "categories": [
+      "City Guides"
+    ]
+  },
+  {
+    "id": "gd-merida-eat-intro",
+    "title": "Mérida: a Yucatecan market morning",
+    "destinationId": "merida",
+    "section": "eat",
+    "dek": "Yucatecan tables, shaded plazas and a museum-led city break.",
+    "body": "<h2>Start with the ingredients</h2><p>Lucas de Gálvez is a useful starting point for local food culture. Regional dishes to ask about include salbutes, panuchos and sopa de lima. Availability and recipes vary by vendor; discuss ingredients and dietary needs directly.</p><h2>A meal with time around it</h2><p>Pair the market with one nearby cultural stop rather than a long list of appointments. Ask before photographing people at work. This is an introduction to a market outing, not a ranked restaurant list; the fuller website food guide is still to come.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://yucatan.travel/region/merida/\">Visitor source 1</a></li></ul>",
+    "placeIds": [
+      "pl-merida-montejo",
+      "pl-merida-mercado"
+    ],
+    "sourceUrl": "https://yucatan.travel/region/merida/",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-merida-stay-intro",
+      "gd-merida-experiences-intro"
+    ],
+    "cover": "merida-4",
+    "categories": [
+      "Food"
+    ]
+  },
+  {
+    "id": "gd-merida-experiences-intro",
+    "title": "Mérida: architecture, museums and a slower afternoon",
+    "destinationId": "merida",
+    "section": "experiences",
+    "dek": "Yucatecan tables, shaded plazas and a museum-led city break.",
+    "body": "<h2>Look closely, visit selectively</h2><p>Give Palacio Cantón a dedicated visit, checking its current exhibitions and access. Choose one section of Paseo de Montejo afterward instead of rushing the entire avenue. On a different day, the Museo de la Ciudad offers another cultural starting point.</p><h2>Browsing with context</h2><p>If you shop, ask about the maker, material and origin of a piece. Do not assume a souvenir label proves local production. Leave Santa Lucía as an open-ended pause; performances and events need their own current listing. The wardrobe edit below is travel inspiration, separate from local store inventory.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://yucatan.travel/region/merida/\">Visitor source 1</a></li><li><a href=\"https://lugares.inah.gob.mx/es/node/4258\">Visitor source 2</a></li><li><a href=\"https://prensa.merida.gob.mx/12528/Ecos-nueva-exposicion-del-Museo-de-la-Ciudad-que-reinterpreta-la-ceramica-prehispanica/amp\">Visitor source 3</a></li></ul>",
+    "placeIds": [
+      "pl-merida-grande",
+      "pl-merida-montejo",
+      "pl-merida-lucia",
+      "pl-merida-canton",
+      "pl-merida-mercado",
+      "pl-merida-museo"
+    ],
+    "sourceUrl": "https://yucatan.travel/region/merida/",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-merida-stay-intro",
+      "gd-merida-eat-intro"
+    ],
+    "cover": "merida-3",
+    "categories": [
+      "City Guides"
+    ]
+  },
+  {
+    "id": "gd-arequipa-stay-intro",
+    "title": "Arequipa for a first visit: city time before Colca",
+    "destinationId": "arequipa",
+    "section": "stay",
+    "dek": "Volcanic-stone streets, colorful cloisters and a regional table.",
+    "body": "<h2>Keep the city in the trip</h2><p>A historic-center base puts the main square and Santa Catalina into a manageable city plan. Compare the exact address with your chosen outings and access needs. Treat Yanahuara as a separate neighborhood visit, with transport arranged around your own pace.</p><h2>Leave room for the region</h2><p>The two-day starter focuses on Arequipa itself. Colca Canyon requires separate travel planning; do not squeeze it into an already full museum day. Check your forecast, bookings and personal needs before committing to a packed schedule.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://www.peru.travel/attractions/historic-center-of-arequipa\">Visitor source 1</a></li><li><a href=\"https://www.peru.travel/es/inspirate/dejate-cautivar-por-la-belleza-arquitectonica-del-monasterio-de-santa-catalina\">Visitor source 2</a></li><li><a href=\"https://www.peru.travel/es/atractivos/mirador-de-yanahuara\">Visitor source 3</a></li><li><a href=\"https://www.peru.travel/destinations/arequipa\">Visitor source 4</a></li><li><a href=\"https://chicha.com.pe/location/arequipa/\">Visitor source 5</a></li></ul>",
+    "placeIds": [
+      "pl-arequipa-armas",
+      "pl-arequipa-catalina",
+      "pl-arequipa-yanahuara",
+      "pl-arequipa-camilo",
+      "pl-arequipa-lazaro",
+      "pl-arequipa-chicha"
+    ],
+    "sourceUrl": "https://www.peru.travel/attractions/historic-center-of-arequipa",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-arequipa-eat-intro",
+      "gd-arequipa-experiences-intro"
+    ],
+    "cover": "arequipa-2",
+    "categories": [
+      "City Guides"
+    ]
+  },
+  {
+    "id": "gd-arequipa-eat-intro",
+    "title": "Arequipa: market ingredients and a reserved table",
+    "destinationId": "arequipa",
+    "section": "eat",
+    "dek": "Volcanic-stone streets, colorful cloisters and a regional table.",
+    "body": "<h2>Two ways into the food scene</h2><p>Use San Camilo for a market-focused look at ingredients and everyday trade. For a separate sit-down meal, Chicha Arequipa has a verified city location; check its current menu and reservations directly.</p><h2>Ask about regional cooking</h2><p>Ocopa and rocoto relleno are part of Arequipa’s regional food tradition. Ask the restaurant about preparation, ingredients and what is available that day. This is a sourced starting point rather than a claim of firsthand dining. Leave space between market browsing and the meal, and use the website’s future food guide for a broader researched shortlist.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://www.peru.travel/attractions/historic-center-of-arequipa\">Visitor source 1</a></li><li><a href=\"https://www.peru.travel/destinations/arequipa\">Visitor source 2</a></li><li><a href=\"https://chicha.com.pe/location/arequipa/\">Visitor source 3</a></li></ul>",
+    "placeIds": [
+      "pl-arequipa-camilo",
+      "pl-arequipa-lazaro",
+      "pl-arequipa-chicha"
+    ],
+    "sourceUrl": "https://www.peru.travel/attractions/historic-center-of-arequipa",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-arequipa-stay-intro",
+      "gd-arequipa-experiences-intro"
+    ],
+    "cover": "arequipa-3",
+    "categories": [
+      "Food"
+    ]
+  },
+  {
+    "id": "gd-arequipa-experiences-intro",
+    "title": "Arequipa: cloisters, neighborhood streets and a viewpoint",
+    "destinationId": "arequipa",
+    "section": "experiences",
+    "dek": "Volcanic-stone streets, colorful cloisters and a regional table.",
+    "body": "<h2>Give one museum room to breathe</h2><p>Start with the main square, then allow time for Santa Catalina’s colorful passages and cloisters. Confirm ticketing and access before setting your order; a building photograph does not guarantee that every interior is open.</p><h2>A different perspective</h2><p>Put San Lázaro and Yanahuara into another day at a pace that suits you. The viewpoint depends on conditions, so make the neighborhood itself part of the reason to go. If browsing for craft, ask about makers and materials; this guide does not invent shops or turn a cultural stop into a sales recommendation.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://www.peru.travel/attractions/historic-center-of-arequipa\">Visitor source 1</a></li><li><a href=\"https://www.peru.travel/es/inspirate/dejate-cautivar-por-la-belleza-arquitectonica-del-monasterio-de-santa-catalina\">Visitor source 2</a></li><li><a href=\"https://www.peru.travel/es/atractivos/mirador-de-yanahuara\">Visitor source 3</a></li><li><a href=\"https://www.peru.travel/destinations/arequipa\">Visitor source 4</a></li><li><a href=\"https://chicha.com.pe/location/arequipa/\">Visitor source 5</a></li></ul>",
+    "placeIds": [
+      "pl-arequipa-armas",
+      "pl-arequipa-catalina",
+      "pl-arequipa-yanahuara",
+      "pl-arequipa-camilo",
+      "pl-arequipa-lazaro",
+      "pl-arequipa-chicha"
+    ],
+    "sourceUrl": "https://www.peru.travel/attractions/historic-center-of-arequipa",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-arequipa-stay-intro",
+      "gd-arequipa-eat-intro"
+    ],
+    "cover": "arequipa-4",
+    "categories": [
+      "City Guides"
+    ]
+  },
+  {
+    "id": "gd-valparaiso-stay-intro",
+    "title": "Valparaíso for a first visit: choosing a hill base",
+    "destinationId": "valparaiso",
+    "section": "stay",
+    "dek": "Hillside color, art stops and a different view of the Pacific.",
+    "body": "<h2>Choose by access as well as views</h2><p>Alegre and Concepción put you near well-known hill outings. Check the exact lodging entrance, steps, luggage arrangements and evening transport before booking. Bellavista is a separate reference point for a La Sebastiana visit.</p><h2>Keep the day realistic</h2><p>The starter separates the two-hill art outing from literary history and a slower afternoon. Verify which ascensores are operating before relying on one. This outline is not a checked walking route and does not promise that every connection is step-free.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://chile.travel/atractivos/cerro-alegre-y-concepcion/\">Visitor source 1</a></li><li><a href=\"https://chile.travel/itinerarios/recorre-los-cerros-de-valparaiso-itinerario-de-2-dias/\">Visitor source 2</a></li><li><a href=\"https://fundacionneruda.org/museos-casa-museo-la-sebastiana/\">Visitor source 3</a></li></ul>",
+    "placeIds": [
+      "pl-valparaiso-alegre",
+      "pl-valparaiso-concepcion",
+      "pl-valparaiso-baburizza",
+      "pl-valparaiso-sebastiana",
+      "pl-valparaiso-sotomayor",
+      "pl-valparaiso-gervasoni"
+    ],
+    "sourceUrl": "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-valparaiso-eat-intro",
+      "gd-valparaiso-experiences-intro"
+    ],
+    "cover": "valparaiso-2",
+    "categories": [
+      "City Guides"
+    ]
+  },
+  {
+    "id": "gd-valparaiso-eat-intro",
+    "title": "Valparaíso: a café pause between the hills",
+    "destinationId": "valparaiso",
+    "section": "eat",
+    "dek": "Hillside color, art stops and a different view of the Pacific.",
+    "body": "<h2>Let the outing set the meal</h2><p>Alegre and Concepción have café and dining options to investigate around your chosen cultural visit. Check menus and current opening details directly, and arrange your return before settling into an evening meal.</p><h2>A useful starting point</h2><p>Choose a place that fits the day’s route and your dietary needs rather than crossing town only for a view. This app note intentionally does not name unverified restaurants or market stalls. The requested website food guide should add a concise researched shortlist, including neighborhood context and current source links.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://chile.travel/atractivos/cerro-alegre-y-concepcion/\">Visitor source 1</a></li><li><a href=\"https://chile.travel/itinerarios/recorre-los-cerros-de-valparaiso-itinerario-de-2-dias/\">Visitor source 2</a></li></ul>",
+    "placeIds": [
+      "pl-valparaiso-alegre",
+      "pl-valparaiso-concepcion"
+    ],
+    "sourceUrl": "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-valparaiso-stay-intro",
+      "gd-valparaiso-experiences-intro"
+    ],
+    "cover": "valparaiso-1",
+    "categories": [
+      "Food"
+    ]
+  },
+  {
+    "id": "gd-valparaiso-experiences-intro",
+    "title": "Valparaíso: painted streets, fine art and literary history",
+    "destinationId": "valparaiso",
+    "section": "experiences",
+    "dek": "Hillside color, art stops and a different view of the Pacific.",
+    "body": "<h2>One hill outing at a time</h2><p>Combine a Baburizza museum visit with a manageable section of Alegre and Concepción. Give a viewpoint pause time in the plan, and remember that murals can change. Ask before photographing residents and respect private doorways.</p><h2>Make Bellavista its own chapter</h2><p>La Sebastiana offers a separate house-museum experience. Confirm the foundation’s visitor arrangements and the transfer. If you browse art or design along the way, ask who made it; no store list or walking route has been invented here.</p><h2>Plan from the source</h2><p>Researched app guide, not a published website story or firsthand review. Check current access and reservations.</p><ul><li><a href=\"https://chile.travel/atractivos/cerro-alegre-y-concepcion/\">Visitor source 1</a></li><li><a href=\"https://chile.travel/itinerarios/recorre-los-cerros-de-valparaiso-itinerario-de-2-dias/\">Visitor source 2</a></li><li><a href=\"https://fundacionneruda.org/museos-casa-museo-la-sebastiana/\">Visitor source 3</a></li></ul>",
+    "placeIds": [
+      "pl-valparaiso-alegre",
+      "pl-valparaiso-concepcion",
+      "pl-valparaiso-baburizza",
+      "pl-valparaiso-sebastiana",
+      "pl-valparaiso-sotomayor",
+      "pl-valparaiso-gervasoni"
+    ],
+    "sourceUrl": "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+    "editorialSource": "researched",
+    "relatedGuideIds": [
+      "gd-valparaiso-stay-intro",
+      "gd-valparaiso-eat-intro"
+    ],
+    "cover": "valparaiso-4",
+    "categories": [
+      "City Guides"
+    ]
   }
 ]

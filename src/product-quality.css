@@ -69,3 +69,6 @@
 [data-journal-category="City Guides"] .journal-story:nth-child(3n+2){background:#e4efe9;border-color:#b7d1c5}[data-journal-category="City Guides"] .journal-story:nth-child(3n){background:#f6ecd0;border-color:#ddcca0}
 [data-journal-category="City Guides"] .journal-story :is(.journal-story-kicker,h3){margin-inline:14px}
 .ask-color-page :is(button,select,textarea):focus-visible,.trail-color-shelf a:focus-visible,.trail-color-page :is(a,button,select):focus-visible,.journal-index>a:focus-visible{outline:3px solid #81364c;outline-offset:3px}
+
+/* Continue Exploring mirrors the Journal discovery palette. */
+.continue-color{padding:18px;border:1px solid #dfc7ce;border-radius:18px;background:linear-gradient(120deg,#f7e4ea,#fff4df)}.continue-color>a{border-top:0;padding-top:0;color:#682b43}.continue-color nav{border-bottom:0;padding-bottom:0}.continue-color nav>a{background:#f3dce3;color:#682b43;min-height:52px}.continue-color nav>a:nth-child(2){background:#dcece6;color:#244f43}.continue-color nav>a:nth-child(3){background:#eadff1;color:#55356d}.continue-color nav>a:nth-child(4){background:#f3e5bc;color:#654715}

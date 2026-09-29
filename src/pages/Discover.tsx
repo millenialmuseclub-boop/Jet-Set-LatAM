@@ -154,7 +154,7 @@ export function Discover() {
         </Link>
       </section>
       <div className="home-section"><ShopMyEdit packing/></div>
-      <section aria-labelledby="continue-title" className="home-section">
+      <section aria-labelledby="continue-title" className="home-section continue-color">
         <Link
           to="/explore"
           className="flex items-center justify-between border-t border-ink/15 pt-6 pb-3"

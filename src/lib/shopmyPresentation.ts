@@ -6,6 +6,7 @@ import { destinationCardPhoto } from './destinationPhotography'
 
 // Editorial direction for verified collection inventory, never inferred products.
 const directions:Record<string,[string,string]>={
+ merida:['Warm Weather','Market mornings, museums and a change for dinner.'],arequipa:['City Layers','Cloisters, a regional table and a neighborhood afternoon.'],valparaiso:['Coastal Layers','Hill walks, galleries and a Pacific breeze.'],
  'rio-de-janeiro':['Beach to Evening','Beach color, city plans and dinner by the coast.'],
  'buenos-aires':['Dinner Out','Polished city days with room for a late dinner.'],
  'mexico-city':['Art + City','Museum mornings, design browsing and an evening table.'],

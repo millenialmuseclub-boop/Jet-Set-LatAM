@@ -160,5 +160,96 @@
       "https://www.tourismpanama.com/places-to-visit/bocas-del-toro/places-to-stay/bastimentos-island/"
     ],
     "researched": true
+  },
+  {
+    "guideId": "gd-merida-stay-intro",
+    "sourceUrl": "https://yucatan.travel/region/merida/",
+    "sources": [
+      "https://yucatan.travel/region/merida/",
+      "https://lugares.inah.gob.mx/es/node/4258",
+      "https://prensa.merida.gob.mx/12528/Ecos-nueva-exposicion-del-Museo-de-la-Ciudad-que-reinterpreta-la-ceramica-prehispanica/amp"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-merida-eat-intro",
+    "sourceUrl": "https://yucatan.travel/region/merida/",
+    "sources": [
+      "https://yucatan.travel/region/merida/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-merida-experiences-intro",
+    "sourceUrl": "https://yucatan.travel/region/merida/",
+    "sources": [
+      "https://yucatan.travel/region/merida/",
+      "https://lugares.inah.gob.mx/es/node/4258",
+      "https://prensa.merida.gob.mx/12528/Ecos-nueva-exposicion-del-Museo-de-la-Ciudad-que-reinterpreta-la-ceramica-prehispanica/amp"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-arequipa-stay-intro",
+    "sourceUrl": "https://www.peru.travel/attractions/historic-center-of-arequipa",
+    "sources": [
+      "https://www.peru.travel/attractions/historic-center-of-arequipa",
+      "https://www.peru.travel/es/inspirate/dejate-cautivar-por-la-belleza-arquitectonica-del-monasterio-de-santa-catalina",
+      "https://www.peru.travel/es/atractivos/mirador-de-yanahuara",
+      "https://www.peru.travel/destinations/arequipa",
+      "https://chicha.com.pe/location/arequipa/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-arequipa-eat-intro",
+    "sourceUrl": "https://www.peru.travel/attractions/historic-center-of-arequipa",
+    "sources": [
+      "https://www.peru.travel/attractions/historic-center-of-arequipa",
+      "https://www.peru.travel/destinations/arequipa",
+      "https://chicha.com.pe/location/arequipa/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-arequipa-experiences-intro",
+    "sourceUrl": "https://www.peru.travel/attractions/historic-center-of-arequipa",
+    "sources": [
+      "https://www.peru.travel/attractions/historic-center-of-arequipa",
+      "https://www.peru.travel/es/inspirate/dejate-cautivar-por-la-belleza-arquitectonica-del-monasterio-de-santa-catalina",
+      "https://www.peru.travel/es/atractivos/mirador-de-yanahuara",
+      "https://www.peru.travel/destinations/arequipa",
+      "https://chicha.com.pe/location/arequipa/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-valparaiso-stay-intro",
+    "sourceUrl": "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+    "sources": [
+      "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+      "https://chile.travel/itinerarios/recorre-los-cerros-de-valparaiso-itinerario-de-2-dias/",
+      "https://fundacionneruda.org/museos-casa-museo-la-sebastiana/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-valparaiso-eat-intro",
+    "sourceUrl": "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+    "sources": [
+      "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+      "https://chile.travel/itinerarios/recorre-los-cerros-de-valparaiso-itinerario-de-2-dias/"
+    ],
+    "researched": true
+  },
+  {
+    "guideId": "gd-valparaiso-experiences-intro",
+    "sourceUrl": "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+    "sources": [
+      "https://chile.travel/atractivos/cerro-alegre-y-concepcion/",
+      "https://chile.travel/itinerarios/recorre-los-cerros-de-valparaiso-itinerario-de-2-dias/",
+      "https://fundacionneruda.org/museos-casa-museo-la-sebastiana/"
+    ],
+    "researched": true
   }
 ]

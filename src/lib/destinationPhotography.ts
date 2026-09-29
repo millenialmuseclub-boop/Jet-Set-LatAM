@@ -4,9 +4,9 @@ import { guidesForSection, distinctStories } from './destinationReading'
 import { readingPhotos } from '@/data/reading-photography'
 
 const moodSections:Record<string,string>={'Food + nights':'eat',Eat:'eat',Fashion:'shop',Style:'shop',Culture:'see','Art + culture':'see','Beach days':'experiences',Beach:'experiences',Nature:'experiences',Nightlife:'drink',Adventure:'experiences','First Trip':'stay',Weekend:'experiences',Romantic:'stay'}
-const regionalScene=/Guatapé|Casablanca|Teotihuac|Valladolid|Mérida|Amazon|Manaus|Tequila|Sacred Valley|traveler|portrait|selfie/i
+const regionalScene=/Guatapé|Casablanca|Teotihuac|Valladolid|Amazon|Manaus|Tequila|Sacred Valley|traveler|portrait|selfie/i
 // Build once from the bundled, credited city library. No random images or network requests.
-const cityStories=new Map(destinations.map(d=>[d.id,distinctStories(getGuidesByDestination(d.id)).filter(g=>g.heroPhoto&&!regionalScene.test(g.photoCaption||''))]))
+const cityStories=new Map(destinations.map(d=>[d.id,distinctStories(getGuidesByDestination(d.id)).filter(g=>g.heroPhoto&&!regionalScene.test(g.photoCaption||'')&&(d.id==='merida'||!/Mérida/i.test(g.photoCaption||'')))]))
 export function destinationCardPhoto(d:Destination,context:'atlas'|'plan'|'related'='atlas',mood='Every mood') {
  const stories=cityStories.get(d.id)||[]
  const card=d.cardPhoto&&d.cardPhoto!==d.heroPhoto&&!/guatape|casablanca|teotihuac/i.test(d.cardPhoto)?d.cardPhoto:stories.find(g=>g.heroPhoto!==d.heroPhoto)?.heroPhoto

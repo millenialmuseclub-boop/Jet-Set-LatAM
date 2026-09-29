@@ -34,6 +34,21 @@ import p32 from '../assets/next-cities/havana-3.webp'
 import p33 from '../assets/next-cities/havana-4.webp'
 import p34 from '../assets/next-cities/havana-1.webp'
 import p35 from '../assets/next-cities/havana-2.webp'
+import p36 from '../assets/next-cities/merida-0.webp'
+import p37 from '../assets/next-cities/merida-1.webp'
+import p38 from '../assets/next-cities/merida-2.webp'
+import p39 from '../assets/next-cities/merida-3.webp'
+import p40 from '../assets/next-cities/merida-4.webp'
+import p41 from '../assets/next-cities/arequipa-0.webp'
+import p42 from '../assets/next-cities/arequipa-1.webp'
+import p43 from '../assets/next-cities/arequipa-2.webp'
+import p44 from '../assets/next-cities/arequipa-3.webp'
+import p45 from '../assets/next-cities/arequipa-4.webp'
+import p46 from '../assets/next-cities/valparaiso-0.webp'
+import p47 from '../assets/next-cities/valparaiso-1.webp'
+import p48 from '../assets/next-cities/valparaiso-2.webp'
+import p49 from '../assets/next-cities/valparaiso-3.webp'
+import p50 from '../assets/next-cities/valparaiso-4.webp'
 export const nextCityPhotos = {
 "cusco-0":{src:p0,caption:"Plaza de Armas, Cusco",credit:{"author":"Diego Delso","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Plaza_de_Armas,_Cusco,_Per%C3%BA,_2015-07-31,_DD_53-56_PAN.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
 "cusco-1":{src:p1,caption:"Plaza de San Blas, Cusco",credit:{"author":"Carlos Adampol Galindo","license":"CC BY-SA 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Plaza_de_San_Blas,_Cusco,_Per%C3%BA.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/2.0"}},
@@ -70,5 +85,20 @@ export const nextCityPhotos = {
 "havana-3":{src:p32,caption:"Havana Cathedral",credit:{"author":"Velvet","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:La_Havane_cathedrale_face.JPG","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
 "havana-4":{src:p33,caption:"Callejón de Hamel, Havana",credit:{"author":"Dudva","license":"CC0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Callej%C3%B3n_de_Hamel_4.jpg","licenseUrl":"http://creativecommons.org/publicdomain/zero/1.0/deed.en"}},
 "havana-1":{src:p34,caption:"Malecón, Havana",credit:{"author":"Ezarate This is a retouched picture, which means that it has been digitally altered from its original version. Modifications: rebuild from raw fixing light compensation in shadows and lights, White balance, tonemaping balance, fix lens distortion, fix vertical distortions, remove dust spots, noise reduction and chromatic aberration fix, cut element distracting and remove oil spot and finally export in full jpeg quality by The Photographer 13:39, 12 February 2017 (UTC).","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:AvMalecon-LaHabanaCuba-04735.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
-"havana-2":{src:p35,caption:"Avenida 23 in Vedado, Havana",credit:{"author":"Tacorontey","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ave_23_(La_Rampa)_in_Vedado,_Havana.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}}
+"havana-2":{src:p35,caption:"Avenida 23 in Vedado, Havana",credit:{"author":"Tacorontey","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Ave_23_(La_Rampa)_in_Vedado,_Havana.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
+"merida-0":{src:p36,caption:"Cathedral beside Plaza Grande, Mérida",credit:{"author":"edenpictures","license":"CC BY 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Cathedral_of_M%C3%A9rida%2C_Yucat%C3%A1n%2C_June_2024.jpg","licenseUrl":"https://creativecommons.org/licenses/by/2.0"}},
+"merida-1":{src:p37,caption:"Paseo de Montejo, Mérida",credit:{"author":"Muñoz LC","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Paseo_Montejo_-_2.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
+"merida-2":{src:p38,caption:"Parque Santa Lucía, Mérida",credit:{"author":"edenpictures","license":"CC BY 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Parque_de_Santa_Lucia%2C_M%C3%A9rida%2C_Yucat%C3%A1n_Junio_2024.jpg","licenseUrl":"https://creativecommons.org/licenses/by/2.0"}},
+"merida-3":{src:p39,caption:"Palacio Cantón, Mérida",credit:{"author":"Sharon Hahn Darlin","license":"CC BY 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Paseo_de_Montejo%2C_Merida%2C_Yucatan%2C_Mexico_-_Palacio_Canton.jpg","licenseUrl":"https://creativecommons.org/licenses/by/2.0"}},
+"merida-4":{src:p40,caption:"Mercado Lucas de Gálvez, Mérida",credit:{"author":"edenpictures","license":"CC BY 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Mercado_Lucas_de_Galvez%2C_M%C3%A9rida%2C_Yucat%C3%A1n%2C_Junio_2024.jpg","licenseUrl":"https://creativecommons.org/licenses/by/2.0"}},
+"arequipa-0":{src:p41,caption:"Plaza de Armas, Arequipa",credit:{"author":"Ivan Mlinaric","license":"CC BY 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Plaza_de_Arequipa.jpg","licenseUrl":"https://creativecommons.org/licenses/by/2.0"}},
+"arequipa-1":{src:p42,caption:"Santa Catalina courtyard, Arequipa",credit:{"author":"EnriqueGuia","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Patio_de_los_Naranjos_Monasterio_de_Santa_Catalina.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
+"arequipa-2":{src:p43,caption:"Yanahuara, Arequipa",credit:{"author":"Joel Takv","license":"CC BY-SA 3.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Arequipa_Yanahuara.jpg","licenseUrl":"http://creativecommons.org/licenses/by-sa/3.0/"}},
+"arequipa-3":{src:p44,caption:"San Camilo market, Arequipa",credit:{"author":"Josep M. Gracia","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:ARE_-_Interior_of_San_Camilo_Market_in_Arequipa%2C_Peru%2C_2013.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
+"arequipa-4":{src:p45,caption:"Compañía cloisters, Arequipa",credit:{"author":"DocSlyper","license":"CC BY-SA 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Claustros_de_la_Iglesia_Compa%C3%B1ia_de_Jesus%2C_Arequipa.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/2.0"}},
+"valparaiso-0":{src:p46,caption:"Cerro Alegre, Valparaíso",credit:{"author":"Deensel","license":"CC BY 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Cerro_Alegre%2C_Valpara%C3%ADso_(28299816069).jpg","licenseUrl":"https://creativecommons.org/licenses/by/2.0"}},
+"valparaiso-1":{src:p47,caption:"Cerro Concepción, Valparaíso",credit:{"author":"Rodrigo.olivares","license":"CC BY-SA 3.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Cerro_Concepci%C3%B3n_Valpara%C3%ADso.JPG","licenseUrl":"https://creativecommons.org/licenses/by-sa/3.0"}},
+"valparaiso-2":{src:p48,caption:"Palacio Baburizza, Valparaíso",credit:{"author":"Rodrigo Fernández","license":"CC BY-SA 4.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Palacio_Baburizza_-fRF_15.1.jpg","licenseUrl":"https://creativecommons.org/licenses/by-sa/4.0"}},
+"valparaiso-3":{src:p49,caption:"La Sebastiana, Valparaíso",credit:{"author":"Nellu Mazilu from Mobile, Terra, Sol, Milky Way","license":"CC BY 2.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:La_Sebastiana.jpg","licenseUrl":"https://creativecommons.org/licenses/by/2.0"}},
+"valparaiso-4":{src:p50,caption:"Plaza Sotomayor, Valparaíso",credit:{"author":"Alexxxos","license":"CC BY-SA 3.0","sourceUrl":"https://commons.wikimedia.org/wiki/File:Plaza_Sotomayor%2C_Valpara%C3%ADso.JPG","licenseUrl":"https://creativecommons.org/licenses/by-sa/3.0"}}
 }

@@ -1,8 +1,39 @@
 # Website article requests — experience expansion
 
-The app now has 26 destinations: the original 19 plus Salvador, Mendoza, Cusco, Punta del Este, Bocas del Toro, Quito and Havana. Existing published stories were reused before requesting more. These are genuine editorial gaps, not articles the app claims are already published. Do not regenerate the 11 completed Lima/Montevideo/Panama City/San José/Florianópolis stories.
+The app now has 29 destinations: Mérida, Arequipa and Valparaíso join the original 19 plus Salvador, Mendoza, Cusco, Punta del Este, Bocas del Toro, Quito and Havana. Existing published stories were reused before requesting more. These are genuine editorial gaps, not articles the app claims are already published. Do not regenerate the 11 completed Lima/Montevideo/Panama City/San José/Florianópolis stories.
 
 For every prompt below: research current primary sources; provide source links and a final public URL. Use the existing Jet Set voice and website architecture. Distinguish firsthand reporting from research. Verify businesses, access, reservation requirements and transport; do not invent hours, prices, coordinates, routes, products or affiliate links. Preserve existing monetized URLs exactly. Keep neighborhoods geographically honest and day trips separate from city walks.
+
+## New three-city batch — 9 copy-paste website prompts
+
+These destinations have researched starter guides in the app. These website articles are requested, not represented as published. Follow the research and linking requirements above.
+
+**Mérida — first trip / where to stay**
+> Write a researched Jet Set LatAM first-timer and where-to-stay guide to Mérida. Compare Centro, Santa Lucía and Paseo de Montejo. Give useful arrival, neighborhood and trip-length decisions; verify current primary sources. No invented hotels, prices or firsthand claims. Return the published URL.
+
+**Mérida — food / markets / restaurants**
+> Write a destination-specific Jet Set LatAM food guide to Mérida, covering Yucatecan dishes, Lucas de Gálvez market and researched restaurants. Verify each business on its official source; include why to go and realistic planning context, without inventing hours, dietary guarantees or affiliate links. Return the published URL.
+
+**Mérida — two-day experiences / art / local shopping**
+> Write a flexible two-day Jet Set LatAM experience guide to Mérida: Plaza Grande, Palacio Cantón, city museums and locally made crafts. Include genuinely researched craft/design opportunities where supported; never invent businesses or routes. Distinguish research from firsthand reporting, cite sources and link the city's related food/stay guides. Return the published URL.
+
+**Arequipa — first trip / where to stay**
+> Write a researched Jet Set LatAM first-timer and where-to-stay guide to Arequipa. Compare the historic center and Yanahuara. Give useful arrival, neighborhood and trip-length decisions; verify current primary sources. No invented hotels, prices or firsthand claims. Return the published URL.
+
+**Arequipa — food / markets / restaurants**
+> Write a destination-specific Jet Set LatAM food guide to Arequipa, covering picanterías, regional dishes, San Camilo market and researched restaurants. Verify each business on its official source; include why to go and realistic planning context, without inventing hours, dietary guarantees or affiliate links. Return the published URL.
+
+**Arequipa — two-day experiences / art / local shopping**
+> Write a flexible two-day Jet Set LatAM experience guide to Arequipa: Santa Catalina, stone architecture, San Lázaro and Yanahuara; keep Colca a separate trip. Include genuinely researched craft/design opportunities where supported; never invent businesses or routes. Distinguish research from firsthand reporting, cite sources and link the city's related food/stay guides. Return the published URL.
+
+**Valparaíso — first trip / where to stay**
+> Write a researched Jet Set LatAM first-timer and where-to-stay guide to Valparaíso. Compare Cerro Alegre, Concepción and Bellavista. Give useful arrival, neighborhood and trip-length decisions; verify current primary sources. No invented hotels, prices or firsthand claims. Return the published URL.
+
+**Valparaíso — food / markets / restaurants**
+> Write a destination-specific Jet Set LatAM food guide to Valparaíso, covering verified cafés, seafood restaurants and local food experiences. Verify each business on its official source; include why to go and realistic planning context, without inventing hours, dietary guarantees or affiliate links. Return the published URL.
+
+**Valparaíso — two-day experiences / art / local shopping**
+> Write a flexible two-day Jet Set LatAM experience guide to Valparaíso: Baburizza, La Sebastiana, street art and locally made design; explain hills and transfers. Include genuinely researched craft/design opportunities where supported; never invent businesses or routes. Distinguish research from firsthand reporting, cite sources and link the city's related food/stay guides. Return the published URL.
 
 ## Highest priority — new cities with thin website coverage
 
