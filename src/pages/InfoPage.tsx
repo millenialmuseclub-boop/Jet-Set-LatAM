@@ -1,4 +1,4 @@
-import { appFamilyList, CREATOR_PORTFOLIO_URL } from "@/config/appFamily";
+import { appFamilyList } from "@/config/appFamily";
 import { openExternal } from "@/lib/links";
 import { AffiliateDisclosure } from "@/components/AffiliateDisclosure";
 export function InfoPage({
@@ -86,12 +86,6 @@ export function InfoPage({
               </div>
             ))}
           </div>
-          <button
-            onClick={() => openExternal(CREATOR_PORTFOLIO_URL)}
-            className="text-sm text-terracotta"
-          >
-            Made by @jordypop ↗
-          </button>
         </>
       )}
     </div>

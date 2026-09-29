@@ -95,7 +95,7 @@ export function Destinations() {
                     <p className="font-display text-xl leading-tight text-ink">
                       {d.city}
                     </p>
-                    <p className="mt-1 text-xs text-ink-soft/65">
+                    <p className="mt-1 text-xs text-ink-soft">
                       {getGuidesByDestination(d.id).length} stories to discover
                     </p>
                     <p
@@ -105,8 +105,8 @@ export function Destinations() {
                           : d.status === "guide"
                             ? "text-jungle"
                             : d.status === "field-note"
-                              ? "text-gold"
-                              : "text-ink-soft/50"
+                              ? "text-ink-soft"
+                              : "text-ink-soft"
                       }`}
                     >
                       {d.status === "live" && "Plan"}
@@ -115,7 +115,7 @@ export function Destinations() {
                       {d.status === "coming-soon" && "Coming soon"}
                     </p>
                     {d.railiiConnection && (
-                      <p className="mt-0.5 flex items-center gap-1 text-[10px] text-ink-soft/40">
+                      <p className="mt-0.5 flex items-center gap-1 text-[10px] text-ink-soft">
                         <appFamily.rallii.icon size={11} /> Scenic route
                       </p>
                     )}
@@ -126,7 +126,7 @@ export function Destinations() {
           </Carousel>
         </section>
       ))}
-      <p className="px-5 pt-2 text-center text-[11px] italic text-ink-soft/35 md:px-8">
+      <p className="px-5 pt-2 text-center text-[11px] italic text-ink-soft md:px-8">
         A{" "}
         <button
           type="button"

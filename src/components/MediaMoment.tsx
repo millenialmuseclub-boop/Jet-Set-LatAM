@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { Volume2, VolumeX, Play } from "lucide-react";
+import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 import type { MediaMoment as MediaMomentType } from "@/types";
 
 // Only one MediaMomentPlayer plays at a time across the whole app — when any
@@ -118,14 +118,15 @@ export function MediaMomentPlayer({
         />
       )}
 
-      {everInView && !playing && (
+      {everInView && (
         <button
+          type="button"
           onClick={togglePlay}
-          aria-label={`Play ${moment.caption}`}
-          className="video-play-control absolute inset-0 flex items-center justify-center"
+          aria-label={`${playing ? "Pause" : "Play"} ${moment.caption}`}
+          className={playing ? "video-play-control absolute left-2.5 top-2.5 z-10 flex items-center justify-center" : "video-play-control absolute inset-0 flex items-center justify-center"}
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-ink/50 backdrop-blur-sm">
-            <Play size={18} className="ml-0.5 text-cream" fill="currentColor" />
+            {playing ? <Pause size={18} className="text-cream" aria-hidden="true" /> : <Play size={18} className="ml-0.5 text-cream" fill="currentColor" aria-hidden="true" />}
           </div>
         </button>
       )}

@@ -14,6 +14,6 @@ export async function makeRecapPng(city:string,stats:ReturnType<typeof tripStory
  c.fillStyle='#38272e';c.font='italic 100px "Cormorant Garamond", serif';let y=340;let line='';for(const word of city.split(' ')){if(c.measureText(line+word).width>840&&line){c.fillText(line.trim(),100,y);y+=110;line=''}line+=word+' '}c.fillText(line.trim(),100,y)
  c.font='30px Jost, sans-serif';c.fillText(dateLabel,100,650);c.font='60px "Cormorant Garamond", serif';c.fillText(stats.days+' days · '+stats.planned.length+' planned places',100,820)
  c.font='30px Jost, sans-serif';c.fillText('Confirmed places visited: '+stats.visited.length,100,900);c.fillText(stats.neighborhoods.length+' neighborhoods in the plan',100,950)
- c.fillStyle='#a44760';c.font='24px Jost, sans-serif';c.fillText('A plan worth keeping. A story that is yours.',100,1130);c.fillText('Jet Set LatAm · @jordypop',100,1200)
+ c.fillStyle='#a44760';c.font='24px Jost, sans-serif';c.fillText('A plan worth keeping. A story that is yours.',100,1130);c.fillText('Jet Set LatAm',100,1200)
  return new Promise<Blob>((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Could not create recap.')),'image/png'))
 }

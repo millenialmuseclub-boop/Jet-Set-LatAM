@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ArrowUpRight, ArrowLeft, Menu, X } from "lucide-react";
-import { CREATOR_PORTFOLIO_URL } from "@/config/appFamily";
 import { openExternal } from "@/lib/links";
 const moreLinks = [
   ["/saved", "Saved"],
@@ -118,15 +117,6 @@ export function TopNav() {
           ))}
         </nav>
         <div className="mt-5 flex gap-4 text-sm text-terracotta">
-          <button
-            onClick={() => {
-              close();
-              openExternal(CREATOR_PORTFOLIO_URL);
-            }}
-            className="py-3"
-          >
-            @jordypop ↗
-          </button>
           <button
             onClick={() => {
               close();

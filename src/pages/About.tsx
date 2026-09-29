@@ -61,12 +61,7 @@ export function About() {
             <img src={rioSunset} alt="Silhouette of Christ the Redeemer on Corcovado Mountain in Rio de Janeiro at sunset" loading="lazy" className="h-auto w-full" />
           </div>
         </div>
-        <p className="text-sm text-ink-soft/50">
-          ©{' '}2026{' '}
-          <button type="button" onClick={() => openExternal(CREATOR_PORTFOLIO_URL)} className="underline decoration-ink-soft/20 underline-offset-2">
-            @jordypop
-          </button>
-        </p>
+        <p className="text-sm text-ink-soft/50">© 2026 Jet Set LatAM</p>
       </div>
 
       <div className="border-t border-ink/10 pt-6">
