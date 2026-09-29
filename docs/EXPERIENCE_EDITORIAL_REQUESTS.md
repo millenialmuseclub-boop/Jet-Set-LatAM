@@ -4,9 +4,9 @@ The app now has 29 destinations: Mérida, Arequipa and Valparaíso join the orig
 
 For every prompt below: research current primary sources; provide source links and a final public URL. Use the existing Jet Set voice and website architecture. Distinguish firsthand reporting from research. Verify businesses, access, reservation requirements and transport; do not invent hours, prices, coordinates, routes, products or affiliate links. Preserve existing monetized URLs exactly. Keep neighborhoods geographically honest and day trips separate from city walks.
 
-## New three-city batch — 9 copy-paste website prompts
+## Completed three-city batch — all 9 published September 29, 2026
 
-These destinations have researched starter guides in the app. These website articles are requested, not represented as published. Follow the research and linking requirements above.
+All nine articles below are published and integrated into their existing app guide IDs. Do not regenerate them. Published titles and URLs are recorded in THREE_CITY_PUBLISHED_ARTICLES.json. The prompts below are retained as the original brief.
 
 **Mérida — first trip / where to stay**
 > Write a researched Jet Set LatAM first-timer and where-to-stay guide to Mérida. Compare Centro, Santa Lucía and Paseo de Montejo. Give useful arrival, neighborhood and trip-length decisions; verify current primary sources. No invented hotels, prices or firsthand claims. Return the published URL.
