@@ -12,8 +12,6 @@ export const editorialLinks = [
  {"id":"wp-900042","destinationId":"playa-del-carmen","section":"shop","title":"Playa del Carmen Shopping Guide: Resort Clothing and Mexican Chocolate","url":"https://thebrunchmanifesto.blog/2026/09/27/playa-quinta-avenida-shopping-guide/"},
  {"id":"wp-900041","destinationId":"tulum","section":"shop","title":"Tulum Shopping Guide: A Focused Designer Edit on the Beach Road","url":"https://thebrunchmanifesto.blog/2026/09/27/tulum-designer-shopping-guide/"},
  {"id":"wp-900038","destinationId":"medellin","section":"shop","title":"Medellín Shopping Guide: Colombian Design and Coffee in El Poblado","url":"https://thebrunchmanifesto.blog/2026/09/27/medellin-el-poblado-shopping-guide/"},
- {"id":"wp-10146","destinationId":"santiago","section":"shop","title":"Discover Boutique Shopping in Santiago: Barrio Italia & Vitacura","url":"https://thebrunchmanifesto.blog/2026/02/12/discover-boutique-shopping-in-santiago-barrio-italia-vitacura/"},
  {"id":"wp-900039","destinationId":"san-juan","section":"shop","title":"Old San Juan Shopping Guide: Hats, Puerto Rican Art and Coffee","url":"https://thebrunchmanifesto.blog/2026/09/27/old-san-juan-shopping-guide/"},
  {"id":"wp-13034","destinationId":"lima","section":"shop","title":"Mozhdeh Matin in Lima: Peru’s Textile Memory Made Modern","url":"https://thebrunchmanifesto.blog/2026/09/20/mozhdeh-matin-lima-peruvian-textiles/"},
- {"id":"wp-12644","destinationId":"lima","section":"shop","title":"ESCVDO in Lima: The Peruvian Fashion House Weaving Heritage Forward","url":"https://thebrunchmanifesto.blog/2026/09/01/escvdo-in-lima-the-peruvian-fashion-house-weaving-heritage-forward/"},
 ] as const

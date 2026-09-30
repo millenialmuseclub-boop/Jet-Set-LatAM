@@ -13,6 +13,7 @@ export function StoryCard({
   return (
     <Link
       to={`/guides/${guide.id}`}
+      data-section={guide.section}
       className={`story-card group block ${compact ? "w-[255px] shrink-0 snap-start" : ""}`}
     >
       {guide.heroPhoto ? (

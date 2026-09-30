@@ -1,3 +1,4 @@
+import {beforeEditorialAdditions} from './editorial-baseline.mjs'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import sharp from 'sharp'
@@ -10,7 +11,7 @@ try {
  const {editorialLinks}=await server.ssrLoadModule('/src/data/editorial-links.ts')
  const planning=await server.ssrLoadModule('/src/lib/planningDestinations.ts')
  const added=['quito','cusco','havana','salvador','mendoza','punta-del-este','bocas-del-toro']
- assert.equal(data.destinations.length,29);assert.equal(data.guides.length,168)
+ assert.equal(data.destinations.length,29);assert.equal(data.guides.length,173)
  const audit=[]
  for(const d of data.destinations){
   const guides=data.getGuidesByDestination(d.id),places=data.getPlacesByDestination(d.id)
@@ -27,7 +28,7 @@ try {
   const combined=new Set(visible)
   for(const a of editorialLinks.filter(a=>a.destinationId===d.id)){const p=photography.websiteReadingPhoto(d,a.section,combined);assert(!visible.has(p.src),d.id+': website photo repeated in visible Journal');visible.add(p.src)}
   if(added.includes(d.id)){
-   assert.equal(d.status,'guide');assert(!planning.canPersonalizeTrip(d));assert.equal(guides.length,3);assert.equal(places.length,8)
+   assert.equal(d.status,'guide');assert(!planning.canPersonalizeTrip(d));assert.equal(guides.length,['cusco','mendoza'].includes(d.id)?4:3);assert.equal(places.length,8)
    assert(places.every(p=>p.sourceUrl?.startsWith('https://')&&!p.coordinates&&!p.isJetSetPick))
    const itinerary=data.getItinerary(d.itineraryIds[0]),copy=planning.copyStarterItinerary(itinerary)
    assert.equal(itinerary.days.length,2);assert.notEqual(copy.id,itinerary.id)
@@ -42,7 +43,7 @@ try {
  if(fs.existsSync(baselinePath)){
   const baseline=JSON.parse(fs.readFileSync(baselinePath))
   for(const kind of ['destinations','places','guides','itineraries'])for(const old of baseline[kind]){
-   const actual=JSON.parse(JSON.stringify(data[kind].find(x=>x.id===old.id)))
+   const actual=beforeEditorialAdditions(data[kind].find(x=>x.id===old.id),kind)
    if(kind==='destinations'&&old.id==='buenos-aires'){
     assert(actual.heroPhoto.includes('next-cities/buenos-aires-0'));assert.equal(actual.photoCredits.length,old.photoCredits.length+1)
     actual.heroPhoto=old.heroPhoto;actual.photoCredits=actual.photoCredits.filter(c=>!c.photo.includes('next-cities/buenos-aires-0'))
@@ -52,7 +53,7 @@ try {
   }
  }
  if(fs.existsSync('visual-qa/before-three-cities.json')) {const prior=JSON.parse(fs.readFileSync('visual-qa/before-three-cities.json'))
- for(const kind of ['destinations','places','guides','itineraries'])for(const old of prior[kind])assert.deepEqual(JSON.parse(JSON.stringify(data[kind].find(x=>x.id===old.id))),old,'Prior record changed: '+old.id)
+ for(const kind of ['destinations','places','guides','itineraries'])for(const old of prior[kind])assert.deepEqual(beforeEditorialAdditions(data[kind].find(x=>x.id===old.id),kind),old,'Prior record changed: '+old.id)
  }
  for(const id of ['merida','arequipa','valparaiso']){assert.equal(data.getPlacesByDestination(id).length,6);assert.equal(data.getGuidesByDestination(id).length,3);assert(data.itineraries.some(x=>x.destinationId===id&&x.days.length===2))}
  const cusco=data.getGuide('wp-2149').body

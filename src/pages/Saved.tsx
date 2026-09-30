@@ -1,3 +1,4 @@
+import { placeStoryLinks } from '@/lib/editorialExperience'
 import { TravelCompanion } from '@/components/TravelCompanion';
 import { wardrobeCompanion, foodCompanion } from '@/lib/companionLinks';
 import { CompanionReading } from '@/components/CompanionReading';
@@ -19,6 +20,7 @@ import {
 } from "@/lib/storage";
 import {
   destinations,
+  guides as allGuides,
   getPlace,
   getDestinationById,
   getDestinationForPlace,
@@ -192,6 +194,7 @@ export function Saved() {
                 <p className="text-xs text-terracotta">{d.country}</p>
               </Link>
               <Link className="inline-flex min-h-11 items-center text-xs text-terracotta" to={`/plan?destination=${d.slug}`}>Plan this escape →</Link>
+              <Link className="block py-2 text-xs text-terracotta" to={`/explore?destination=${d.id}`}>Read before you go →</Link>
               <button
                 onClick={() => {
                   toggleSavedDestination(d.id);
@@ -257,6 +260,7 @@ export function Saved() {
                       <p className="text-xs text-terracotta">{p.city}{p.neighborhood ? ` · ${p.neighborhood}` : ""}</p>
                     </Link>
                     <p className="mt-2 line-clamp-2 text-xs text-ink-soft">{p.pickDetails?.goFor || p.description}</p>
+                    {placeStoryLinks(p,allGuides).map(g=><Link key={g.id} className="block py-2 text-xs text-terracotta" to={`/guides/${g.id}`}>Read: {g.title} →</Link>)}
                     <div className="flex flex-wrap items-center gap-3"><AddToTripControl place={p} />{p.mapUrl && <button className="min-h-11 text-xs text-terracotta" onClick={() => openMap(p.mapUrl)}>Open map ↗</button>}</div>
                   </div>
                 </div>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "wp-12644",
+    "url": "https://thebrunchmanifesto.blog/2026/09/01/escvdo-in-lima-the-peruvian-fashion-house-weaving-heritage-forward/",
+    "title": "ESCVDO in Lima: The Peruvian Fashion House Weaving Heritage Forward",
+    "destinationId": "lima",
+    "previously": "not native",
+    "photoReuse": "/src/assets/five-cities/lima-1.webp"
+  },
+  {
+    "id": "wp-10146",
+    "url": "https://thebrunchmanifesto.blog/2026/02/12/discover-boutique-shopping-in-santiago-barrio-italia-vitacura/",
+    "title": "Discover Boutique Shopping in Santiago: Barrio Italia & Vitacura",
+    "destinationId": "santiago",
+    "previously": "not native",
+    "photoReuse": "/src/assets/next-cities/santiago-extra.webp"
+  },
+  {
+    "id": "wp-3621",
+    "url": "https://thebrunchmanifesto.blog/2025/10/21/montevideo-by-cruiser-bike-la-rambla-rides-and-vintage-charm/",
+    "title": "Montevideo by Cruiser Bike: La Rambla Rides and Vintage Charm",
+    "destinationId": "montevideo",
+    "previously": "not native",
+    "photoReuse": "/src/assets/five-cities/montevideo-1.webp"
+  },
+  {
+    "id": "wp-13343",
+    "url": "https://thebrunchmanifesto.blog/2026/09/29/cycling-mendozas-wine-roads-a-beautiful-day-through-maipu/",
+    "title": "Cycling Mendoza’s Wine Roads: A Beautiful Day Through Maipú",
+    "destinationId": "mendoza",
+    "previously": "not native",
+    "photoReuse": "/src/assets/next-cities/mendoza-1.webp"
+  },
+  {
+    "id": "wp-13546",
+    "url": "https://thebrunchmanifesto.blog/2026/09/30/perurail-titicaca-the-beautiful-day-train-from-cusco-to-puno/",
+    "title": "PeruRail Titicaca: The Beautiful Day Train From Cusco to Puno",
+    "destinationId": "cusco",
+    "previously": "not native",
+    "photoReuse": "/src/assets/next-cities/cusco-1.webp"
+  }
+]

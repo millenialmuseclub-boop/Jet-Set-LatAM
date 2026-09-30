@@ -1,3 +1,4 @@
+import {editorialUpgradeGuides,editorialUpgradePlaces,editorialPlaceLinks} from './editorial-upgrade'
 import { shortItineraries } from './short-itineraries';
 import { rioCityGuides } from './rio-city-guides';
 import railGuideRecords from './rail-guides.json'
@@ -31,16 +32,18 @@ export { archivePhotos, archiveStats } from './archive'
 export { mediaMoments, getMediaMomentsByDestination } from './media'
 
 export const destinations: Destination[] = [mexicoCityDestination, rioDeJaneiroDestination, cartagenaDestination, guadalajaraDestination, tulumDestination, saoPauloDestination, playaDelCarmenDestination, buenosAiresDestination, oaxacaDestination, santiagoDestination, medellinDestination, bogotaDestination, ...expansionDestinations, ...fiveCityDestinations, ...nextCityDestinations, ...comingSoonDestinations]
-export const places: Place[] = [...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces, ...sanJuanPlaces, ...antiguaPlaces, ...fiveCityPlaces, ...nextCityPlaces, ...shoppingRecords.places as Place[]]
+if(!santiagoDestination.neighborhoods.some(n=>n.name==='Barrio Italia'))santiagoDestination.neighborhoods.push({id:'nb-santiago-barrio-italia',city:'Santiago',name:'Barrio Italia',description:'Independent design, handmade jewelry and a sweets pause around Avenida Italia. Read the published shopping edit and check each store’s current hours.',heroPhoto:editorialUpgradeGuides.find(g=>g.id==='wp-10146')!.heroPhoto})
+export const places: Place[] = [...editorialUpgradePlaces,...cdmxPlaces, ...rioPlaces, ...cartagenaPlaces, ...guadalajaraPlaces, ...tulumPlaces, ...saoPauloPlaces, ...playaDelCarmenPlaces, ...buenosAiresPlaces, ...oaxacaPlaces, ...santiagoPlaces, ...medellinPlaces, ...bogotaPlaces, ...sanJuanPlaces, ...antiguaPlaces, ...fiveCityPlaces, ...nextCityPlaces, ...shoppingRecords.places as Place[]]
 const originalGuides: Guide[] = [...cdmxGuides, ...rioGuides, ...cartagenaGuides, ...guadalajaraGuides, ...santiagoGuides, ...medellinGuides, ...bogotaGuides, ...oaxacaGuides, ...expansionCityGuides, ...planningGuides, ...fiveCityGuides, ...nextCityGuides]
-const baseGuides: Guide[] = [...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[], ...websiteGuides]
+const baseGuides: Guide[] = [...editorialUpgradeGuides,...originalGuides.filter(g => !archiveGuides.some(a => a.id === g.id)), ...archiveGuides, ...rioPhotoGuides, ...rioCityGuides, ...railGuideRecords as Guide[], ...websiteGuides]
 const shoppingGuides = (shoppingRecords.guides as (Guide & {coverGuideId:string})[]).map(({coverGuideId,...g}) => {
  const cover = baseGuides.find(source => source.id === coverGuideId)
  const assigned = storyCovers[coverGuideId]
  return {...g,heroPhoto:assigned?.src || cover?.photos?.[0]?.src || cover?.heroPhoto,photoCaption:assigned?.caption || cover?.photos?.[0]?.caption || cover?.photoCaption,photoCredit:assigned?.credit || cover?.photoCredit}
 })
 export const guides: Guide[] = [...baseGuides.filter(g => !shoppingGuides.some(s => s.id === g.id)), ...shoppingGuides]
-for (const guide of shoppingGuides) {
+for(const link of editorialPlaceLinks){const g=guides.find(g=>g.id===link.guideId);if(g&&!g.placeIds.includes(link.placeId))g.placeIds=[...g.placeIds,link.placeId]}
+for (const guide of [...shoppingGuides,...editorialUpgradeGuides]) {
  const destination = destinations.find(d => d.id === guide.destinationId)
  if (destination) destination.placeIds = [...new Set([...destination.placeIds,...guide.placeIds])]
 }
@@ -138,6 +141,7 @@ for (const id of ['wp-2135','gd-rio-etiquette-nightlife']) { const g = guides.fi
 if (!rioDeJaneiroDestination.neighborhoods.some(n => n.name === 'Centro')) rioDeJaneiroDestination.neighborhoods.push({id:'nb-rio-centro',name:'Centro',city:'Rio de Janeiro',description:'Theatro Municipal anchors this part of the Rio culture archive. Open Centro in Details for firsthand portraits from Cinelândia and a separate historic café sequence.',heroPhoto:rio2025[0].src})
 
 for (const g of railGuideRecords) if (!playaDelCarmenDestination.guideIds.includes(g.id)) playaDelCarmenDestination.guideIds.push(g.id)
-supplementPhotoCredits(destinations, guides)
+supplementPhotoCredits(destinations, guides.filter(g=>!editorialUpgradeGuides.some(e=>e.id===g.id)))
 for(const [id,photos] of Object.entries(readingPhotos))for(const p of photos)destinations.find(d=>d.id===id)?.photoCredits?.push({photo:p.src,credit:`${p.credit.author} · ${p.credit.license}`,sourceUrl:p.credit.sourceUrl,licenseUrl:p.credit.licenseUrl})
+supplementPhotoCredits(destinations, guides)
 const placePhotography = buildPlacePhotography(destinations, places, guides)

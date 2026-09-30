@@ -1,3 +1,5 @@
+import { ArticleHighlights } from '@/components/ArticleHighlights'
+import { sameNeighborhoodPlaces } from '@/lib/editorialExperience'
 import { guideSourceLink } from '@/lib/articleLinks';
 import { CompanionReading } from '@/components/CompanionReading';
 import { foodCompanion, familyCompanion, destinationFoodCompanion } from '@/lib/companionLinks';
@@ -11,6 +13,7 @@ import { useState } from "react";
 import {
   getGuide,
   getPlacesByIds,
+  getPlacesByDestination,
   getDestinationById,
   getGuidesByDestination,
   getPlacePhoto,
@@ -31,6 +34,7 @@ export function GuideDetail() {
   if (!guide) return <EmptyState title="Guide not found" />;
   const destination = getDestinationById(guide.destinationId);
   const places = getPlacesByIds(guide.placeIds);
+  const nearby = destination ? sameNeighborhoodPlaces(places,getPlacesByDestination(destination.id)) : [];
   const related = distinctStories(getGuidesByDestination(guide.destinationId))
     .filter((g) => g.id !== guide.id)
     .sort(
@@ -118,6 +122,7 @@ export function GuideDetail() {
           )}
         </div>
         {saved && <Link className="inline-flex min-h-11 items-center text-xs text-terracotta" to="/saved">Open your saved stories and places →</Link>}
+        <ArticleHighlights guide={guide} destination={destination} places={guide.shoppingNotes ? [] : places}/>
         <ArticleBody body={guide.body}/>
         {!!guide.photos?.length && (
           <section aria-label="Story photographs">
@@ -142,7 +147,7 @@ export function GuideDetail() {
         )}
         {guide.shoppingNotes && <ShoppingStops notes={guide.shoppingNotes}/>}
         {!!places.length && !guide.shoppingNotes && (
-          <section>
+          <section id="story-places" className="scroll-mt-24">
             <h2 className="mb-4 font-display text-3xl">Places in this story</h2>
             <div className="space-y-3">
               {places.slice(0, showAllPlaces ? undefined : 4).map((p) => {
@@ -180,6 +185,7 @@ export function GuideDetail() {
             {places.length > 4 && !showAllPlaces && <button className="min-h-11 mt-3 text-sm text-terracotta" onClick={() => setShowAllPlaces(true)}>See all {places.length} places in this story →</button>}
           </section>
         )}
+        {nearby.length>0&&<details className="destination-disclosure"><summary>Eat & shop in the same neighborhood</summary><p className="text-xs text-ink-soft">From the Jet Set city collection, separate from this article’s recommendations. Check the exact location before planning a walk.</p>{nearby.map(p=><div key={p.id} className="border-t border-ink/10 py-3"><p className="font-display text-xl">{p.name}</p><p className="text-xs">{p.neighborhood}</p><AddToTripControl place={p}/></div>)}</details>}
         <div className="border-t border-ink/15 pt-5">
           {guide.sourceUrl && <button
             onClick={() => openExternal(guideSourceLink(guide.sourceUrl).url)}
@@ -192,7 +198,7 @@ export function GuideDetail() {
             availability may have changed since publication.
           </p>
         </div>
-        {(['eat','drink'].includes(guide.section)||guide.categories?.includes('Food'))&&<CompanionReading link={foodCompanion(guide.title+' '+guide.dek)||destinationFoodCompanion(guide.destinationId)}/>}
+        {(['eat','drink'].includes(guide.section)||guide.categories?.includes('Food')||places.some(p=>p.category==='cafe'))&&<CompanionReading link={foodCompanion(guide.title+' '+guide.dek+' '+places.filter(p=>['restaurant','cafe'].includes(p.category)).map(p=>p.name).join(' '))||destinationFoodCompanion(guide.destinationId)}/>}
         <CompanionReading link={familyCompanion(guide.destinationId,/family|with kids|with children/i.test(guide.title+' '+(guide.categories||[]).join(' '))&&!/nightlife|honeymoon|romantic|adults.only/i.test(guide.title))}/>
         {['shop', 'beaches', 'stay'].includes(guide.section) && <ShopMyEdit destinationId={guide.destinationId} packing wardrobe={!(guide.section==='shop'||guide.categories?.includes('Style'))}/>}
         {destination && (guide.section==='shop'||guide.categories?.includes('Style')) && <StyleBridge destination={destination} variant="shopping" commerce={false}/>}
