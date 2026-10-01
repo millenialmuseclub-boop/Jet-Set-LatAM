@@ -27,6 +27,7 @@ import { fiveCityDestinations, fiveCityPlaces, fiveCityGuides, fiveCityItinerari
 import { nextCityDestinations, nextCityPlaces, nextCityGuides, nextCityItineraries } from './destinations/next-cities'
 import shoppingRecords from './shopping-notes.generated.json'
 import { readingPhotos } from './reading-photography'
+import blogUpdateRecords from './blog-update.json'
 export { archivePhotos, archiveStats } from './archive'
 
 export { mediaMoments, getMediaMomentsByDestination } from './media'
@@ -41,7 +42,12 @@ const shoppingGuides = (shoppingRecords.guides as (Guide & {coverGuideId:string}
  const assigned = storyCovers[coverGuideId]
  return {...g,heroPhoto:assigned?.src || cover?.photos?.[0]?.src || cover?.heroPhoto,photoCaption:assigned?.caption || cover?.photos?.[0]?.caption || cover?.photoCaption,photoCredit:assigned?.credit || cover?.photoCredit}
 })
-export const guides: Guide[] = [...baseGuides.filter(g => !shoppingGuides.some(s => s.id === g.id)), ...shoppingGuides]
+const blogUpdateGuides: Guide[] = (blogUpdateRecords as Guide[]).map(g => {
+ const destination = destinations.find(d => d.id === g.destinationId)
+ const context = destination || mexicoCityDestination
+ return {...g,heroPhoto:context.heroPhoto,photoCaption:`${context.city} · destination context${destination ? '' : ' for this Latin America story'}`}
+})
+export const guides: Guide[] = [...baseGuides.filter(g => !shoppingGuides.some(s => s.id === g.id)), ...shoppingGuides, ...blogUpdateGuides]
 for(const link of editorialPlaceLinks){const g=guides.find(g=>g.id===link.guideId);if(g&&!g.placeIds.includes(link.placeId))g.placeIds=[...g.placeIds,link.placeId]}
 for (const guide of [...shoppingGuides,...editorialUpgradeGuides]) {
  const destination = destinations.find(d => d.id === guide.destinationId)
