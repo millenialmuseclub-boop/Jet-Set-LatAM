@@ -50,7 +50,7 @@ export function GuideDetail() {
     .map(getDestinationById)
     .filter((d) => !!d);
   return (
-    <article className="journal-story pb-10">
+    <article className="journal-story story-reader pb-10">
       {guide.heroPhoto ? (
         <figure>
           <Photo
@@ -58,7 +58,7 @@ export function GuideDetail() {
             seed={guide.id}
             alt={guide.photoCaption || guide.title}
             priority
-            className="h-[290px] w-full md:h-[450px]"
+            className="h-[210px] w-full md:h-[360px]"
             rounded="rounded-none"
           />
           <figcaption className="mx-auto max-w-3xl px-5 pt-2 text-[10px] text-ink-soft/55">
@@ -76,10 +76,10 @@ export function GuideDetail() {
         <div>
           <div className="flex items-center justify-between gap-3">
             <Link
-              to={`/destinations/${destination?.slug}`}
+              to={destination ? `/destinations/${destination.slug}` : '/explore'}
               className="eyebrow text-terracotta"
             >
-              {destination?.city} / {guide.section}
+              {destination?.city || 'Latin America'} / {guide.section}
             </Link>
             <button
               aria-label={saved ? "Unsave guide" : "Save guide"}
@@ -90,10 +90,10 @@ export function GuideDetail() {
               {saved ? "Saved" : "Save story"}
             </button>
           </div>
-          <h1 className="mt-3 font-display text-4xl leading-[1.06] md:text-5xl">
+          <h1 className="mt-3 font-display text-[30px] leading-[1.18] md:text-[40px]">
             {guide.title}
           </h1>
-          <p className="mt-4 border-l-2 border-gold pl-4 font-display text-xl italic text-ink-soft">
+          <p className="mt-3 border-l-2 border-gold pl-3 text-base leading-relaxed text-ink-soft">
             {guide.dek}
           </p>
           <p className="mt-4 text-[10px] uppercase tracking-widest text-ink-soft/50">

@@ -42,6 +42,12 @@
 @media(max-width:359px){.shopping-copy{padding:14px}.editorial-body p{font-size:15px;line-height:1.8}}
 
 .journal-story>figure{overflow:hidden}
+.story-reader .editorial-body{color:var(--color-ink);overflow-wrap:break-word}
+.story-reader .editorial-body p{font-size:16px;line-height:1.65;margin-bottom:1em}
+.story-reader .editorial-body h2{font-size:24px;line-height:1.3;margin:1.25em 0 .5em;padding-top:.5em}
+.story-reader .editorial-body h3{display:block;font-size:20px;line-height:1.35;margin:1em 0 .45em;overflow:visible;-webkit-line-clamp:unset}
+.story-reader .editorial-body ul,.story-reader .editorial-body ol{font-size:16px;line-height:1.65;margin:.75em 0 1em}
+.story-reader .editorial-body blockquote{font-size:20px;line-height:1.5;padding:8px 14px;margin:20px 0}
 
 /* Scrollable editorial shelves, with no reserved empty grid cells. */
 .editorial-carousel{min-width:0;max-width:100%}
