@@ -1,14 +1,20 @@
-import { guides } from '@/data'
+import { guides, destinations } from '@/data'
 
 // Match published story URLs only. Tracking queries and anchors remain external
 // and untouched; affiliate URLs never enter this index.
 const storyRoutes = new Map(guides.filter(g=>g.sourceUrl&&g.editorialSource!=='researched').map(g=>[g.sourceUrl.replace(/\/$/,''),`/guides/${g.id}`]))
+const slug = (text:string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')
+const locationRoutes = new Map<string,string>([
+  ...guides.flatMap(g=>(g.storyLocations||[]).filter(location=>location!=='Latin America').map(location=>[`/${slug(location)}`,`/explore?destination=${encodeURIComponent(`reading:${location}`)}`] as const)),
+  ...[...new Set(guides.flatMap(g=>g.countries||[]))].map(country=>[`/${slug(country)}`,`/explore?country=${encodeURIComponent(country)}`] as const),
+  ...destinations.filter(d=>d.status!=='coming-soon').flatMap(d=>[d.slug,d.id,slug(d.city)].map(path=>[`/${path}`,`/destinations/${d.slug}`] as const)),
+])
 export function internalArticleLink(url:string) {
   try {
     const parsed=new URL(url)
     if(parsed.search||parsed.hash)return undefined
     if(!['thebrunchmanifesto.blog','jetsetlatam.com','www.jetsetlatam.com'].includes(parsed.hostname))return undefined
-    return storyRoutes.get(url.replace(/\/$/,''))
+    return storyRoutes.get(url.replace(/\/$/,'')) || locationRoutes.get(parsed.pathname.replace(/\/$/,''))
   } catch {return undefined}
 }
 

@@ -199,6 +199,9 @@ export interface Guide {
   id: string
   title: string
   destinationId: string
+  countries?: string[]
+  storyLocation?: string
+  storyLocations?: string[]
   section: GuideSection
   dek: string
   body: string // markdown-ish plain text pulled/adapted from the source article

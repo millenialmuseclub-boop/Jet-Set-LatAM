@@ -49,6 +49,29 @@
 .story-reader .editorial-body ul,.story-reader .editorial-body ol{font-size:16px;line-height:1.65;margin:.75em 0 1em}
 .story-reader .editorial-body blockquote{font-size:20px;line-height:1.5;padding:8px 14px;margin:20px 0}
 
+/* Keep iOS text inflation and long imported links from widening the reader. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.story-reader{width:100%;max-width:100%;min-width:0;overflow-wrap:anywhere}
+.story-reader>div{min-width:0;width:100%}
+.story-reader .editorial-body,.story-reader .story-contents{min-width:0;max-width:100%}
+.story-reader .story-title{font-size:28px;line-height:1.2;overflow-wrap:anywhere;text-wrap:pretty}
+.story-reader .editorial-body{width:100%;overflow-wrap:anywhere}
+.story-reader .editorial-body :is(p,li,h2,h3,blockquote),.story-contents button{max-width:100%;overflow-wrap:anywhere;white-space:normal}
+.story-reader .section-heading{flex-wrap:wrap}
+.story-reader>figure>img{height:170px}
+.journal-geography-filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+.journal-geography-filters label>span{display:block;font-size:10px;margin-bottom:5px;color:var(--color-ink-soft)}
+.journal-geography-filters label:last-child{grid-column:1/-1}
+.journal-search input,.journal-geography-filters select{font-size:16px}
+.journal-results{display:grid;grid-template-columns:minmax(0,1fr)}
+.journal-results .journal-result{display:grid;grid-template-columns:80px minmax(0,1fr);gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid #49303b20;background:transparent;border-radius:0}
+.journal-result-photo{width:80px;height:88px;object-fit:cover}
+.journal-results .journal-result>div{min-width:0}
+.journal-results .journal-result .journal-story-kicker{margin:0 0 6px;font-size:9px;line-height:1.5}
+.journal-results .journal-result h3{font-size:20px;line-height:1.2;margin:0}
+.journal-results .journal-result-text{grid-template-columns:minmax(0,1fr);border-left:2px solid var(--color-gold);padding-left:14px;margin-top:8px}
+@media(min-width:768px){.story-reader .story-title{font-size:36px}.story-reader>figure>img{height:300px}.journal-geography-filters{grid-template-columns:repeat(3,minmax(0,1fr))}.journal-geography-filters label:last-child{grid-column:auto}.journal-results{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}}
+
 /* Scrollable editorial shelves, with no reserved empty grid cells. */
 .editorial-carousel{min-width:0;max-width:100%}
 .carousel-controls{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:10px;color:var(--color-ink-soft)}

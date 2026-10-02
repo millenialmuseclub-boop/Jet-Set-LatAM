@@ -11,6 +11,7 @@ import { ShopMyEdit } from '@/components/ShopMyEdit'
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import {
+  guides as journalGuides,
   getGuide,
   getPlacesByIds,
   getPlacesByDestination,
@@ -35,7 +36,7 @@ export function GuideDetail() {
   const destination = getDestinationById(guide.destinationId);
   const places = getPlacesByIds(guide.placeIds);
   const nearby = destination ? sameNeighborhoodPlaces(places,getPlacesByDestination(destination.id)) : [];
-  const related = distinctStories(getGuidesByDestination(guide.destinationId))
+  const related = distinctStories(destination ? getGuidesByDestination(destination.id) : journalGuides.filter(g => g.storyLocation === guide.storyLocation || g.countries?.some(country => guide.countries?.includes(country))))
     .filter((g) => g.id !== guide.id)
     .sort(
       (a, b) =>
@@ -67,9 +68,9 @@ export function GuideDetail() {
           </figcaption>
         </figure>
       ) : (
-        <div className="bg-jungle-dark px-5 py-10 text-cream">
-          <p className="eyebrow">A letter from</p>
-          <p className="font-display text-5xl">{destination?.city}</p>
+        <div className="bg-jungle-dark px-5 py-6 text-cream">
+          <p className="eyebrow">The travel journal</p>
+          <p className="font-display text-3xl">{guide.storyLocation || destination?.city || 'Latin America'}</p>
         </div>
       )}
       <div className="mx-auto max-w-3xl space-y-7 px-5 pt-6 md:px-8">
@@ -79,7 +80,7 @@ export function GuideDetail() {
               to={destination ? `/destinations/${destination.slug}` : '/explore'}
               className="eyebrow text-terracotta"
             >
-              {destination?.city || 'Latin America'} / {guide.section}
+              {guide.storyLocation || destination?.city || 'Latin America'} / {guide.section}
             </Link>
             <button
               aria-label={saved ? "Unsave guide" : "Save guide"}
@@ -90,7 +91,7 @@ export function GuideDetail() {
               {saved ? "Saved" : "Save story"}
             </button>
           </div>
-          <h1 className="mt-3 font-display text-[30px] leading-[1.18] md:text-[40px]">
+          <h1 className="story-title mt-3 font-display">
             {guide.title}
           </h1>
           <p className="mt-3 border-l-2 border-gold pl-3 text-base leading-relaxed text-ink-soft">
@@ -103,6 +104,7 @@ export function GuideDetail() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          {guide.countries?.map(country=><Link key={country} to={`/explore?country=${encodeURIComponent(country)}`} className="border border-ink/15 px-3 py-3 text-xs">Stories from {country} ↗</Link>)}
           {relatedDests.map((d) => (
             <Link
               key={d.id}
@@ -206,7 +208,7 @@ export function GuideDetail() {
         <section>
           <div className="section-heading">
             <h2>Stay a little longer</h2>
-            <Link to={`/explore?destination=${guide.destinationId}`}>
+            <Link to={destination ? `/explore?destination=${destination.id}` : guide.countries?.length === 1 ? `/explore?country=${encodeURIComponent(guide.countries[0])}` : '/explore'}>
               All stories ↗
             </Link>
           </div>

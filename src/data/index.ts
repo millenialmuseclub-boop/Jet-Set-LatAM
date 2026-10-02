@@ -28,6 +28,8 @@ import { nextCityDestinations, nextCityPlaces, nextCityGuides, nextCityItinerari
 import shoppingRecords from './shopping-notes.generated.json'
 import { readingPhotos } from './reading-photography'
 import blogUpdateRecords from './blog-update.json'
+import { guideGeography } from '@/lib/guideGeography'
+import { publishedGuideSection } from '@/lib/guideTopics'
 export { archivePhotos, archiveStats } from './archive'
 
 export { mediaMoments, getMediaMomentsByDestination } from './media'
@@ -43,9 +45,9 @@ const shoppingGuides = (shoppingRecords.guides as (Guide & {coverGuideId:string}
  return {...g,heroPhoto:assigned?.src || cover?.photos?.[0]?.src || cover?.heroPhoto,photoCaption:assigned?.caption || cover?.photos?.[0]?.caption || cover?.photoCaption,photoCredit:assigned?.credit || cover?.photoCredit}
 })
 const blogUpdateGuides: Guide[] = (blogUpdateRecords as Guide[]).map(g => {
- const destination = destinations.find(d => d.id === g.destinationId)
- const context = destination || mexicoCityDestination
- return {...g,heroPhoto:context.heroPhoto,photoCaption:`${context.city} · destination context${destination ? '' : ' for this Latin America story'}`}
+ const geography = guideGeography(g, destinations)
+ const destination = destinations.find(d => d.id === (g.destinationId || geography.destinationIds[0]))
+ return {...g,section:publishedGuideSection(g.title),destinationId:destination?.id || '',relatedDestinationIds:geography.destinationIds,countries:geography.countries,storyLocation:geography.location,heroPhoto:destination?.heroPhoto,photoCaption:destination ? `${destination.city} · destination context` : undefined}
 })
 export const guides: Guide[] = [...baseGuides.filter(g => !shoppingGuides.some(s => s.id === g.id)), ...shoppingGuides, ...blogUpdateGuides]
 for(const link of editorialPlaceLinks){const g=guides.find(g=>g.id===link.guideId);if(g&&!g.placeIds.includes(link.placeId))g.placeIds=[...g.placeIds,link.placeId]}
@@ -58,6 +60,17 @@ for (const destination of destinations) {
   destination.guideIds = [...new Set([...websiteGuides.filter(g => g.destinationId === destination.id).map(g => g.id), ...destination.guideIds])]
 }
 for (const guide of guides) {
+  // Rio Negro is in the Amazon; its published title does not refer to Rio de Janeiro.
+  if (guide.destinationId === 'rio-de-janeiro' && /rio negro/i.test(guide.title) && !/rio de janeiro/i.test(guide.title)) {
+    guide.destinationId = ''
+    guide.relatedDestinationIds = (guide.relatedDestinationIds || []).filter(id => id !== 'rio-de-janeiro')
+    rioDeJaneiroDestination.guideIds = rioDeJaneiroDestination.guideIds.filter(id => id !== guide.id)
+  }
+  const geography = guideGeography(guide, destinations)
+  guide.countries = geography.countries
+  guide.storyLocation = geography.location
+  guide.storyLocations = geography.locations
+  guide.relatedDestinationIds = geography.destinationIds
   const dest = destinations.find(d => d.id === guide.destinationId)
   const original = originalGuides.find(g => g.id === guide.id)
   const photo = guide.photos?.[0]
@@ -72,6 +85,10 @@ for (const guide of guides) {
   // This imported gallery contained a Cartagena mural, not Rio's Olympic Boulevard.
   if (guide.id === 'gd-rio-olympic-boulevard') guide.photos = []
   if (dest && !dest.guideIds.includes(guide.id)) dest.guideIds.push(guide.id)
+  for (const destinationId of guide.relatedDestinationIds) {
+    const related = destinations.find(d => d.id === destinationId)
+    if (related && !related.guideIds.includes(guide.id)) related.guideIds.push(guide.id)
+  }
   for (const id of guide.placeIds) {
     const place = places.find(p => p.id === id)
     if (place) place.relatedGuideIds = [...new Set([...(place.relatedGuideIds || []), guide.id])]

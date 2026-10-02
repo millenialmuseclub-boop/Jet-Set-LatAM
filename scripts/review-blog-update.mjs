@@ -6,6 +6,7 @@ const plain=s=>cheerio.load(s||'').text().replace(/\s+/g,' ').trim()
 const server=await createServer({server:{middlewareMode:true}})
 try {
  const {guides,destinations,places}=await server.ssrLoadModule('/src/data/index.ts')
+ const {publishedGuideSection}=await server.ssrLoadModule('/src/lib/guideTopics.ts')
  const posts=JSON.parse(fs.readFileSync('archive-source/blog-review.json','utf8')).posts
  const urls=new Set(guides.map(g=>g.sourceUrl.replace(/\/$/,'')))
  const ids=new Set(guides.map(g=>g.id))
@@ -24,7 +25,7 @@ try {
   const body=$('body').html()?.trim()||''
   if(plain(body).length<200){incomplete.push({id:p.ID,title,url:p.URL});continue}
   const destinationId=matches[0]?.id||''
-  const section=/fashion|designer|shopping|jewelry|textiles|wardrobe|souvenir|handbags|menswear|boutique|couture/.test(t)?'shop':/where to stay|hotel|resort/.test(t)?'stay':/eat|food|restaurants|cooking|cafe|café|dining|brunch/.test(t)?'eat':/nightlife|tango|rooftop|bars/.test(t)?'nightlife':/museum|art and design|architecture|galler/.test(t)?'see':/beach|island/.test(t)?'beaches':'experiences'
+  const section=publishedGuideSection(title)
   const named=places.filter(pl=>matches.some(d=>d.city===pl.city)&&normalize(pl.name.split(' (')[0]).length>5&&normalize(plain(body)).includes(normalize(pl.name.split(' (')[0])))
   records.push({id:`wp-${p.ID}`,title,destinationId,section,dek:plain(p.excerpt).slice(0,400)||plain(body).slice(0,240),body,placeIds:named.map(pl=>pl.id),sourceUrl:p.URL,publishedAt:p.date,relatedDestinationIds:matches.map(d=>d.id),categories:Object.keys(p.categories||{}),relatedGuideIds:guides.filter(g=>g.destinationId===destinationId&&g.section===section).slice(0,3).map(g=>g.id)})
   ids.add(`wp-${p.ID}`);urls.add(p.URL.replace(/\/$/,''));added.push(records.at(-1))
